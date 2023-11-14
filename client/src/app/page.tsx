@@ -1,15 +1,13 @@
 import React from "react";
 import Image from "next/image";
-import InterviewImage from "../../public/images/interview.png";
-import SpeakImage from "../../public/images/speak.png";
-import textFormatImage from "../../public/images/text-format.png";
+
 export default function Home() {
   const title = "DIA (Developer Interview Assistant)";
   const description =
     "DIA는 개발자 면접 도우미 입니다. 취업,이직을 위한 코딩테스트 앱은 많지만 면접 준비를 위한 앱은 없다는 것에서 시작했습니다. 개발자들이 좀더 실전적인 면접 연습을 할수 있게 돕는것이 목표입니다";
 
   return (
-    <main className="h-screen flex flex-col justify-center items-center gap-y-7">
+    <main className="h-screen flex flex-col justify-center items-center gap-y-7 max-w-3xl mx-auto">
       {/* 텍스트를 가운데로 정렬 */}
       <span className="text-3xl text-center custom-color font-mono">
         {title}
@@ -26,7 +24,9 @@ export default function Home() {
             width={250}
             height={250}
           />
-          <p className="text-lg mt-2 flex justify-center">모의 인터뷰 기능 </p>
+          <p className="text-mg mt-2 flex justify-center text-slate-500">
+            모의 인터뷰 기능
+          </p>
         </div>
         <div>
           <Image
@@ -36,7 +36,9 @@ export default function Home() {
             width={250}
             height={250}
           />
-          <p className="text-lg mt-2 flex justify-center">TTS 기능 </p>
+          <p className="text-mg mt-2 flex justify-center text-slate-500">
+            TTS 기능{" "}
+          </p>
         </div>
         <div>
           <Image
@@ -46,7 +48,9 @@ export default function Home() {
             width={250}
             height={250}
           />
-          <p className="text-lg mt-2 flex justify-center">스크립트 수정 </p>
+          <p className="text-mg mt-2 flex justify-center text-slate-500">
+            스크립트 수정{" "}
+          </p>
         </div>
       </div>
     </main>
