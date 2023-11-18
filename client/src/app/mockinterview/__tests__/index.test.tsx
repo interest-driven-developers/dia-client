@@ -2,6 +2,15 @@ import { render, screen } from "@testing-library/react";
 import Home from "../page";
 import "@testing-library/jest-dom";
 
+// 초기 세팅
+test("init page", () => {
+    render(<Home />);
+    // 타이틀이 보이는지 확인
+    expect(screen.getByText("스크립트 별 모의 면접")).toBeInTheDocument();
+    // 스크립트의 갯수가 보이는지 확인
+    expect(screen.getByText("총 0개의 스크립트")).toBeInTheDocument();
+    // TODO: 스크립트 리스트가 보이는지 확인
+})
 // 로그인 X) 연습은 할 수 있지만 히스토리가 남지 않음
 test("", () => {});
 
