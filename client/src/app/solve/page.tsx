@@ -52,38 +52,36 @@ export default function Home() {
     // 스크립트 모달 닫기
   };
   return (
-    <main className="h-screen flex flex-col justify-center items-center max-w-3xl mx-auto">
+    <main className="h-screen flex flex-col gap-2  max-w-3xl mx-auto">
+      <h1 className="text-3xl font-sans mt-3">스크립트 리스트</h1>
+      <p className="text-gray-500 text-sm">스크립트를 작성 및 수정해보세요!</p>
       {/* 리스트 처리된 문제(스크립트)들이 나열되어있고, 스크립트 수정 기능까지 추가해야함 */}
       {/*1. 로그인이 되어있지 않다면   */}
-      <div className="h-screen flex flex-col items-center justify-center">
-        {/* 스크립트 작성 버튼 */}
-        <button
-          className="fixed bottom-4 right-4 bg-indigo-600 text-white py-2 px-4 rounded-full shadow-md hover:bg-indigo-700 focus:outline-none"
-          onClick={toggleScriptVisibility}
-        >
-          {isScriptVisible ? "닫기" : "작성"}
-        </button>
-        {/* 스크립트 표시 */}
-        {isScriptVisible && (
-          <ScriptModal
-            handleSaveScript={handleSaveScript}
-            closeScriptModal={toggleScriptVisibility}
-          />
-        )}
-
-        {/* 스크립트 리스트 */}
-        <div className=" w-full mt-0">
-          <ul className="bg-white rounded-md shadow-md">
-            {scriptList.map((script, index) => (
-              <li key={index} className={`border-b last:border-b-0 p-4 `}>
-                <ScriptContent
-                  title={script.title}
-                  description={script.description}
-                />
-              </li>
-            ))}
-          </ul>
-        </div>
+      {/* 스크립트 작성 버튼 */}
+      <button
+        className="fixed bottom-4 right-4 bg-indigo-600 text-white py-2 px-4 rounded-full shadow-md hover:bg-indigo-700 focus:outline-none"
+        onClick={toggleScriptVisibility}
+      >
+        {isScriptVisible ? "닫기" : "작성"}
+      </button>
+      {/* 스크립트 모달 */}
+      {isScriptVisible && (
+        <ScriptModal
+          handleSaveScript={handleSaveScript}
+          closeScriptModal={toggleScriptVisibility}
+        />
+      )}
+      {/* 스크립트 리스트 */}
+      <div className="w-full">
+        <ul className="grid gap-5 rounded-md shadow-md ">
+          {scriptList.map((script, index) => (
+            <ScriptContent
+              key={index}
+              title={script.title}
+              description={script.description}
+            />
+          ))}
+        </ul>
       </div>
     </main>
   );

@@ -22,7 +22,7 @@ export default function ScriptContent({
   };
 
   return (
-    <div className="max-w-xl mx-auto p-4 bg-white rounded-lg shadow-md relative">
+    <li className="bg-white rounded-lg p-4 border-solid border-2">
       <div className="flex justify-between items-center">
         <h1 className="text-2xl font-semibold">{title}</h1>
       </div>
@@ -43,6 +43,6 @@ export default function ScriptContent({
           {isEditing ? "저장" : "수정"}
         </button>
       </div>
-    </div>
+    </li>
   );
 }

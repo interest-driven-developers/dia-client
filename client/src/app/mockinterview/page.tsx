@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-
+import Link from "next/link";
 export default function Home() {
   const scriptData = [
     {
@@ -30,7 +30,7 @@ export default function Home() {
   ];
 
   return (
-    <div className="h-screen  max-w-3xl mx-auto">
+    <main className="h-screen  max-w-3xl mx-auto">
       <h1 className="text-3xl font-sans mt-3 mb-3">스크립트 별 모의 면접</h1>
       <div className="mb-6">
         <p className="text-gray-500 text-sm">
@@ -40,10 +40,10 @@ export default function Home() {
       <div className="grid gap-2">
         {scriptData.map((script) => (
           <div key={script.id} className="bg-white p-4 rounded-lg shadow-md">
-            <p className="text-gray-500">{`Q${script.id}: ${script.title}`}</p>
+            <Link href={`/mockinterview/${script.id}`} className="text-gray-500">{`Q${script.id}: ${script.title}`} </Link>
           </div>
         ))}
       </div>
-    </div>
+    </main>
   );
 }
