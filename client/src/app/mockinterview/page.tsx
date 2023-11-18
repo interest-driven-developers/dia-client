@@ -1,7 +1,6 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-export default function Home() {
   const scriptData = [
     {
       id: 1,
@@ -28,6 +27,8 @@ export default function Home() {
         "프로세스는 자원을 할당받는 작업의 단위이며, 스레드는 프로세스가 할당받은 자원을 이용하는 실행의 단위. 스레드는 자원을 공유한다는 점이 차이점이 있습니다.",
     },
   ];
+export default function Home() {
+
 
   return (
     <main className="h-screen  max-w-3xl mx-auto">

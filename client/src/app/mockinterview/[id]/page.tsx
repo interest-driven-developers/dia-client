@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import HistoryList from "../components/HistoryList";
-
+import Link from "next/link";
 const dummyData = {
   id: 1,
   title: "Solid 원칙에 대해 설명해보세요",
@@ -46,6 +46,13 @@ export default function Main({ params }: { params: { id: string } }) {
         </span>
       </div>
       <CategoryComponent></CategoryComponent>
+      <Link
+        href={`/mockinterview/${params.id}/mocktest`}
+        className="fixed bottom-4 right-4 bg-indigo-600 text-white py-2 px-4 rounded-full shadow-md hover:bg-indigo-700 focus:outline-none"
+        // onClick={toggleScriptVisibility}
+      >
+        면접 진행 🔥
+      </Link>
     </main>
   );
 }
