@@ -73,7 +73,7 @@ export default function Home() {
       )}
       {/* 스크립트 리스트 */}
       <div className="w-full">
-        <ul className="grid gap-5 rounded-md shadow-md ">
+        <ul className="grid gap-5">
           {scriptList.map((script, index) => (
             <ScriptContent
               key={index}
