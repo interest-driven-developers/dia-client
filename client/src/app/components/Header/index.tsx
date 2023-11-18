@@ -27,7 +27,10 @@ export default function Header() {
         <div className="flex items-center justify-between h-16">
           {/* 로고 */}
           <div className="flex-shrink-0">
-            <a href="#" className="text-2xl font-bold custom-color">
+            <a
+              onClick={handleLogoClick}
+              className="text-2xl font-bold custom-color cursor-pointer"
+            >
               DIA
             </a>
           </div>
@@ -36,18 +39,23 @@ export default function Header() {
           <div className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-4">
               <a
-                href="#"
-                className="text-gray-900 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium"
+                onClick={handleLogoClick}
+                className="text-gray-900 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium cursor-pointer"
               >
                 홈
               </a>
               <a
-                href="#"
+                href="/solve"
                 className="text-gray-900 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium"
               >
                 문제풀기
               </a>
-              {/* 추가 메뉴 항목을 원하는 만큼 반복해서 추가할 수 있습니다. */}
+              <a
+                href="/mockinterview"
+                className="text-gray-900 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium"
+              >
+                모의면접
+              </a>
             </div>
           </div>
         </div>

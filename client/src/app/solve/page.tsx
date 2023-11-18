@@ -40,17 +40,17 @@ export default function Home() {
     setScriptVisible(!isScriptVisible);
   };
 
-  const handleScriptInputChange = (event) => {
+  const handleScriptInputChange = (event: any) => {
     setScriptText(event.target.value);
   };
   const handleSaveScript = () => {
     // 스크립트 저장
     // 스크립트 모달 닫기
     // 스크립트 리스트 업데이트
-  }
+  };
   const closeScriptModal = () => {
     // 스크립트 모달 닫기
-  }
+  };
   return (
     <main className="h-screen flex flex-col justify-center items-center max-w-3xl mx-auto">
       {/* 리스트 처리된 문제(스크립트)들이 나열되어있고, 스크립트 수정 기능까지 추가해야함 */}
