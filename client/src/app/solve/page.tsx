@@ -3,14 +3,37 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { Script } from "@/types/Script";
 import ScriptContent from "./components/ScriptContent";
+import ScriptModal from "./components/ScriptModal";
 
 export default function Home() {
   const [isScriptVisible, setScriptVisible] = useState(false);
   const [scriptText, setScriptText] = useState("");
   // const [scriptList, setScriptList] = useState<Script[]>([]); // [{id: 1, title: "스크립트 제목",description: "스크립트 내용"}
   const scriptList = [
-    { id: 1, title: "스크립트 제목", description: "스크립트 내용" },
-    { id: 2, title: "스크립트 제목", description: "스크립트 내용" },
+    {
+      id: 1,
+      title: "Solid 원칙에 대해 설명해보세요",
+      description:
+        "객체지향 설계에서 지켜줘야 할 5개의 소프트웨어 개발 원칙( SRP, OCP, LSP, ISP, DIP )을 말한다.",
+    },
+    {
+      id: 2,
+      title: "프로세스와 스레드의 차이에 대해 설명해 보세요.",
+      description:
+        "프로세스는 자원을 할당받는 작업의 단위이며, 스레드는 프로세스가 할당받은 자원을 이용하는 실행의 단위. 스레드는 자원을 공유한다는 점이 차이점이 있습니다.",
+    },
+    {
+      id: 1,
+      title: "Solid 원칙에 대해 설명해보세요",
+      description:
+        "객체지향 설계에서 지켜줘야 할 5개의 소프트웨어 개발 원칙( SRP, OCP, LSP, ISP, DIP )을 말한다.",
+    },
+    {
+      id: 2,
+      title: "프로세스와 스레드의 차이에 대해 설명해 보세요.",
+      description:
+        "프로세스는 자원을 할당받는 작업의 단위이며, 스레드는 프로세스가 할당받은 자원을 이용하는 실행의 단위. 스레드는 자원을 공유한다는 점이 차이점이 있습니다.",
+    },
   ];
 
   const toggleScriptVisibility = () => {
@@ -20,9 +43,16 @@ export default function Home() {
   const handleScriptInputChange = (event) => {
     setScriptText(event.target.value);
   };
-
+  const handleSaveScript = () => {
+    // 스크립트 저장
+    // 스크립트 모달 닫기
+    // 스크립트 리스트 업데이트
+  }
+  const closeScriptModal = () => {
+    // 스크립트 모달 닫기
+  }
   return (
-    <main className="h-screen flex flex-col justify-center items-center gap-y-7 max-w-3xl mx-auto">
+    <main className="h-screen flex flex-col justify-center items-center max-w-3xl mx-auto">
       {/* 리스트 처리된 문제(스크립트)들이 나열되어있고, 스크립트 수정 기능까지 추가해야함 */}
       {/*1. 로그인이 되어있지 않다면   */}
       <div className="h-screen flex flex-col items-center justify-center">
@@ -33,35 +63,27 @@ export default function Home() {
         >
           {isScriptVisible ? "닫기" : "작성"}
         </button>
-
         {/* 스크립트 표시 */}
         {isScriptVisible && (
-          <div className="bg-white p-4 rounded-lg shadow-lg max-w-2xl mx-auto mt-8">
-            <h1 className="text-2xl font-semibold mb-4">스크립트</h1>
-            <textarea
-              className="w-full h-48 p-2 border rounded-md resize-none"
-              placeholder="스크립트를 작성하세요."
-              value={scriptText}
-              onChange={handleScriptInputChange}
-            ></textarea>
-          </div>
+          <ScriptModal
+            handleSaveScript={handleSaveScript}
+            closeScriptModal={toggleScriptVisibility}
+          />
         )}
+
         {/* 스크립트 리스트 */}
-        <div className="max-w-xl w-full">
+        <div className=" w-full mt-0">
           <ul className="bg-white rounded-md shadow-md">
             {scriptList.map((script, index) => (
-              <li
-                key={index}
-                className={`border-b last:border-b-0 p-4 ${
-                  index % 2 === 0 ? "bg-gray-100" : "bg-white"
-                }`}
-              >
-
+              <li key={index} className={`border-b last:border-b-0 p-4 `}>
+                <ScriptContent
+                  title={script.title}
+                  description={script.description}
+                />
               </li>
             ))}
           </ul>
         </div>
-        <ScriptContent></ScriptContent>
       </div>
     </main>
   );

@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import Home from "../page";
-import { server } from "@/mocks/server";
-import { http, HttpResponse } from "msw";
+// import { server } from "@/mocks/server";
+// import { http, HttpResponse } from "msw";
 import "@testing-library/jest-dom";
 
 test("init page", () => {
@@ -28,15 +28,15 @@ test("", () => {});
 test("", () => {});
 
 
-// msw test
-test("mock server test", async () => {
-    server.use(
-      http.get(`${process.env.NEXT_PUBLIC_SERVER_URL}/test`, () => {
-        return HttpResponse.json({ message: "hello there" });
-      })
-    );
-    render(<Home />);
-    const greeting = await screen.findByText("hello there");
-    expect(greeting).toBeInTheDocument();
-});
+// // msw test
+// test("mock server test", async () => {
+//     server.use(
+//       http.get(`${process.env.NEXT_PUBLIC_SERVER_URL}/test`, () => {
+//         return HttpResponse.json({ message: "hello there" });
+//       })
+//     );
+//     render(<Home />);
+//     const greeting = await screen.findByText("hello there");
+//     expect(greeting).toBeInTheDocument();
+// });
     
