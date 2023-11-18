@@ -1,7 +1,8 @@
 "use client";
-
+import React, { useState } from "react";
 import HistoryContainer from "./components/HistoryContainer";
-
+import HistoryModal from "./components/HistoryModal";
+import { HistoryType } from "@/types/History";
 const dummmyData = [
   {
     id: 1,
@@ -20,16 +21,39 @@ const dummmyData = [
   },
 ];
 export default function HistoryList() {
+  const [historyList, setHistoryList] = useState(dummmyData);
+  const [thisHistory, setThisHistory] = useState<HistoryType | null>(null);
+  const [isViewHistoryModal, setIsViewHistoryModal] = useState(false);
+  const handleHistoryModal = (id: number) => {
+    const history = historyList.find((data) => data.id === id);
+    setThisHistory(history || null);
+    setIsViewHistoryModal(true);
+  };
+    const handleCloseHistoryModal = () => {
+      console.log("??")
+    setIsViewHistoryModal(false);
+  };
   return (
-    <div className="grid gap-2 w-full mt-2">
-      {dummmyData.map((data) => (
+    <div className="grid gap-2 w-full mt-2 bg-white rounded-lg shadow-md divide-y border-dashed border-2 border-indigo-500">
+      {historyList.map((data) => (
         <HistoryContainer
           key={data.id}
+          id={data.id}
           title={data.title}
           description={data.description}
           date={data.date}
+          handleHistoryModal={handleHistoryModal}
         ></HistoryContainer>
       ))}
+      {/* 히스토리 모달 */}
+      {isViewHistoryModal && (
+        <HistoryModal
+          title={thisHistory!.title}
+          description={thisHistory!.description}
+          date={thisHistory!.date}
+          handleCloseHistoryModal={handleCloseHistoryModal}
+        ></HistoryModal>
+      )}
     </div>
   );
 }

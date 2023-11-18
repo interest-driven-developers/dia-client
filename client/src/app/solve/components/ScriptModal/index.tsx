@@ -1,10 +1,10 @@
 "use client";
 import React, { useState } from "react";
-interface ScriptContentProps {
+interface ScriptModalProps {
   handleSaveScript: () => void;
   closeScriptModal: () => void;
 }
-export default function ScriptModal({handleSaveScript, closeScriptModal}: ScriptContentProps) {
+export default function ScriptModal({handleSaveScript, closeScriptModal}: ScriptModalProps) {
   const [scriptTitle, setScriptTitle] = useState("");
   const [scriptDescription, setScriptDescription] = useState("");
   return (
