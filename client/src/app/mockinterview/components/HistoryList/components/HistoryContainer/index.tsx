@@ -1,6 +1,5 @@
-import MagnifyingGlassPlus from "@/ui/icons/MagnifyingGlassPlus";
 import React from "react";
-
+import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
 interface HistoryContainerProps {
   id: number;
   title: string;
@@ -24,7 +23,7 @@ export default function HistoryContainer({
           className="cursor-pointer hover:opacity-50"
           onClick={() => handleHistoryModal(id)}
         >
-          <MagnifyingGlassPlus></MagnifyingGlassPlus>
+          <MagnifyingGlassIcon className="w-5 h-5 text-black"></MagnifyingGlassIcon>
         </div>
       </div>
       <div className="flex justify-between">

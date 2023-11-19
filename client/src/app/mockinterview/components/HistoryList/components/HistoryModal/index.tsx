@@ -1,5 +1,5 @@
 'use client'
-import XMark from "@/ui/icons/XMark";
+import { XMarkIcon } from "@heroicons/react/20/solid";
 
 interface HistoryModalProps {
   title: string;
@@ -19,7 +19,7 @@ export default function HistoryModal({
         <div className="flex justify-between">
           <h1 className="text-2xl font-sans">{title}</h1>
           <div className="cursor-pointer hover:opacity-50" onClick={()=> handleCloseHistoryModal()}>
-            <XMark></XMark>
+            <XMarkIcon className="w-5 h-5 "/>
           </div>
         </div>
         <p className="text-sm text-gray-500">{date}</p>

@@ -48,7 +48,7 @@ export default function Header() {
                 href="/solve"
                 className="text-gray-900 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium"
               >
-                문제풀기
+                모든 문제
               </a>
               <a
                 href="/mockinterview"

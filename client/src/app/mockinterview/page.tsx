@@ -32,16 +32,21 @@ export default function Home() {
 
   return (
     <main className="h-screen  max-w-3xl mx-auto">
-      <h1 className="text-3xl font-sans mt-3 mb-3">스크립트 별 모의 면접</h1>
+      <h1 className="text-3xl font-sans mt-3 mb-3">문제 별 모의 면접</h1>
       <div className="mb-6">
         <p className="text-gray-500 text-sm">
-          총 {scriptData.length}개의 스크립트가 있습니다.
+          총 {scriptData.length}개의 문제가 있습니다.
         </p>
       </div>
-      <div className="grid gap-2">
+      <div className="grid gap-2 w-full mt-2 bg-white rounded-lg shadow-md divide-y border-dashed border-2 border-indigo-500">
         {scriptData.map((script) => (
-          <div key={script.id} className="bg-white p-4 rounded-lg shadow-md">
-            <Link href={`/mockinterview/${script.id}`} className="text-gray-500">{`Q${script.id}: ${script.title}`} </Link>
+          <div key={script.id} className="p-4">
+            <Link
+              href={`/mockinterview/${script.id}`}
+              className="text-gray-500"
+            >
+              {`Q${script.id}: ${script.title}`}{" "}
+            </Link>
           </div>
         ))}
       </div>
