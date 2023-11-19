@@ -26,10 +26,8 @@ export default function HistoryContainer({
           <MagnifyingGlassIcon className="w-5 h-5 text-black"></MagnifyingGlassIcon>
         </div>
       </div>
-      <div className="flex justify-between">
-        <p className="text-sm text-gray-500">{date}</p>
-      </div>
-      <p className="mt-4">{description}</p>
+      <p className="font-sans -mt-3 text-xs text-gray-500">{date}</p>
+      <p className="mt-2">{description}</p>
     </div>
   );
 }

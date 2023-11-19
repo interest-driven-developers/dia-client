@@ -16,7 +16,15 @@ export default function Main({ params }: { params: { id: string } }) {
       case 0:
         return <HistoryList></HistoryList>;
       case 1:
-        return <div>스크립트 보기</div>;
+        return (
+          <div className="p-3 w-full mt-2 bg-white rounded-lg shadow-md divide-y border-dashed border-2 border-indigo-500 ">
+            {dummyData.description ? (
+              <p>{dummyData.description}</p>
+            ) : (
+              <p>스크립트가 없습니다. 새로 작성해주세요✏️</p>
+            )}
+          </div>
+        );
       default:
         return <HistoryList></HistoryList>;
     }
@@ -48,10 +56,12 @@ export default function Main({ params }: { params: { id: string } }) {
       <CategoryComponent></CategoryComponent>
       <Link
         href={`/mockinterview/${params.id}/mocktest`}
-        className="fixed bottom-4 right-4 bg-indigo-600 text-white py-2 px-4 rounded-full shadow-md hover:bg-indigo-700 focus:outline-none"
+
         // onClick={toggleScriptVisibility}
       >
-        면접 진행 🔥
+        <button className="mt-3 w-full bg-indigo-600 text-white py-2 px-4 rounded-xl shadow-md hover:bg-indigo-700 focus:outline-none">
+          면접 진행 🔥
+        </button>
       </Link>
     </main>
   );
