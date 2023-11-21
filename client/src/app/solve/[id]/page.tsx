@@ -1,7 +1,11 @@
 "use client";
 import React, { useState } from "react";
 import Link from "next/link";
-import { PencilIcon, MicrophoneIcon } from "@heroicons/react/24/solid";
+import {
+  PencilIcon,
+  MicrophoneIcon,
+  CheckCircleIcon,
+} from "@heroicons/react/24/solid";
 const dummyData = {
   id: 1,
   title: "Solid 원칙에 대해 설명해보세요",
@@ -11,6 +15,13 @@ const dummyData = {
 export default function Main({ params }: { params: { id: string } }) {
   const [description, setDescription] = useState<string>(dummyData.description);
   const [isEditing, setIsEditing] = useState<boolean>(false);
+  const handleSaveScript = () => {
+    // 스크립트 저장
+    // 스크립트 모달 닫기
+    // 스크립트 리스트 업데이트
+    setIsEditing(false);
+  }
+
   return (
     <main className="h-screen max-w-3xl mx-auto">
       <div className="mt-5 flex justify-between items-center">
@@ -36,20 +47,29 @@ export default function Main({ params }: { params: { id: string } }) {
       </div>
       <p className="text-xs font-sans text-gray-500 -mb-1.5">스크립트</p>
       <div className="p-3 w-full mt-2 bg-white rounded-lg shadow-md divide-y border-dashed border-2 border-indigo-500 ">
-        {dummyData.description ? (
-          <p>{dummyData.description}</p>
+        {isEditing ? (
+          <>
+            <textarea
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              className="w-full h-40 p-2 border rounded-md"
+            />
+            <div className="flex p-1  justify-end ">
+              <CheckCircleIcon
+                onClick={() => handleSaveScript()}
+                className="w-5 h-5 text-indigo-500 cursor-pointer hover:opacity-50"
+              ></CheckCircleIcon>
+            </div>
+          </>
         ) : (
-          <p>스크립트가 없습니다.</p>
+          <p className="whitespace-pre-wrap">
+            {dummyData.description ? (
+              <p>{description}</p>
+            ) : (
+              <p>스크립트가 없습니다. 스크립트를 작성해주세요✏️</p>
+            )}
+          </p>
         )}
-        {/* {isEditing ? (
-          <textarea
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            className="w-full h-40 p-2 border rounded-md"
-          />
-        ) : (
-          <p className="whitespace-pre-wrap">{description}</p>
-        )} */}
       </div>
       <Link href={`/mockinterview/${params.id}/mocktest`}>
         <button className="mt-3 w-full bg-indigo-600 text-white py-2 px-4 rounded-xl shadow-md hover:bg-indigo-700 focus:outline-none">
