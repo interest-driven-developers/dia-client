@@ -14,12 +14,16 @@
     "@heroicons/react": "^2.0.18",
     "@testing-library/jest-dom": "^6.1.4",
     "@testing-library/react": "^14.1.0",
+    "@types/react-speech-recognition": "^3.9.5",
     "jest-environment-jsdom": "^29.7.0",
     "msw": "^2.0.6",
     "next": "14.0.2",
     "next-auth": "^4.24.5",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "react-hook-speech-to-text": "^0.8.0",
+    "react-speech-kit": "^3.0.1",
+    "react-speech-recognition": "^3.10.0"
   },
   "devDependencies": {
     "@types/jest": "^29.5.8",
