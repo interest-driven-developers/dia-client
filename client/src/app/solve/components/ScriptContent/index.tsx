@@ -1,11 +1,14 @@
 import React, { useState } from "react";
-
+import { EllipsisVerticalIcon } from "@heroicons/react/20/solid";
+import Link from "next/link";
 interface ScriptContentProps {
+  id: number;
   title: string;
   description: string;
 }
 
 export default function ScriptContent({
+  id,
   title,
   description,
 }: ScriptContentProps) {
@@ -22,11 +25,18 @@ export default function ScriptContent({
   };
 
   return (
-    <li className="bg-white rounded-lg p-4 border-solid border-2">
+    <li className="p-4 ">
       <div className="flex justify-between items-center">
-        <h1 className="text-2xl font-semibold">{title}</h1>
+        <Link href={`/solve/${id}`}>
+          <h1 className="text-2xl font-sans cursor-pointer hover:text-gray-500 ">
+            {title}
+          </h1>
+        </Link>
+        <div className="relative rounded-lg hover:bg-gray-100">
+          <EllipsisVerticalIcon className="w-5 h-5 "></EllipsisVerticalIcon>
+        </div>
       </div>
-      <div className="mt-4">
+      {/* <div className="mt-4">
         {isEditing ? (
           <textarea
             value={thisDescription}
@@ -42,7 +52,7 @@ export default function ScriptContent({
         >
           {isEditing ? "저장" : "수정"}
         </button>
-      </div>
+      </div> */}
     </li>
   );
 }
