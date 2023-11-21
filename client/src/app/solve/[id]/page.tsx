@@ -21,7 +21,10 @@ export default function Main({ params }: { params: { id: string } }) {
               <MicrophoneIcon className="w-5 h-5 text-red-500"></MicrophoneIcon>
             </div>
           </Link>
-          <div className="p-1 rounded-lg hover:bg-gray-100" onClick={()=> setIsEditing(true)}>
+          <div
+            className="p-1 rounded-lg hover:bg-gray-100"
+            onClick={() => setIsEditing(true)}
+          >
             <PencilIcon className="w-5 h-5 text-indigo-400"></PencilIcon>
           </div>
         </div>
@@ -48,6 +51,11 @@ export default function Main({ params }: { params: { id: string } }) {
           <p className="whitespace-pre-wrap">{description}</p>
         )} */}
       </div>
+      <Link href={`/mockinterview/${params.id}/mocktest`}>
+        <button className="mt-3 w-full bg-indigo-600 text-white py-2 px-4 rounded-xl shadow-md hover:bg-indigo-700 focus:outline-none">
+          면접 진행 🔥
+        </button>
+      </Link>
     </main>
   );
 }
