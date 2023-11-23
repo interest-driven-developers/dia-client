@@ -56,6 +56,12 @@ export default function Header() {
               >
                 모의면접
               </a>
+              <a
+                href="/mockinterview"
+                className="text-gray-900 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium"
+              >
+                로그인
+              </a>
             </div>
           </div>
         </div>
