@@ -15,12 +15,14 @@ const dummyData = {
 export default function Main({ params }: { params: { id: string } }) {
   const [description, setDescription] = useState<string>(dummyData.description);
   const [isEditing, setIsEditing] = useState<boolean>(false);
+  // TODO : 로그인시 세션 저장
+  let session = null;
   const handleSaveScript = () => {
     // 스크립트 저장
     // 스크립트 모달 닫기
     // 스크립트 리스트 업데이트
     setIsEditing(false);
-  }
+  };
 
   return (
     <main className="h-screen max-w-3xl mx-auto">
@@ -71,6 +73,11 @@ export default function Main({ params }: { params: { id: string } }) {
           </p>
         )}
       </div>
+      {!session && (
+        <p className="text-sm font-sans text-gray-500">
+          *로그인 후 이용해주시면 스크립트가 영구히 저장됩니다 😊
+        </p>
+      )}
       <Link href={`/mockinterview/${params.id}/mocktest`}>
         <button className="mt-3 w-full bg-indigo-600 text-white py-2 px-4 rounded-xl shadow-md hover:bg-indigo-700 focus:outline-none">
           면접 진행 🔥
