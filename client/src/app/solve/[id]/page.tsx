@@ -63,7 +63,7 @@ export default function Main({ params }: { params: { id: string } }) {
           </>
         ) : (
           <p className="whitespace-pre-wrap">
-            {dummyData.description ? (
+            {description ? (
               <p>{description}</p>
             ) : (
               <p>스크립트가 없습니다. 스크립트를 작성해주세요✏️</p>

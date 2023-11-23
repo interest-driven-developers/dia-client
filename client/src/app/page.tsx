@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-
+import Link from "next/link";
 export default function Home() {
   const title = "DIA (Developer Interview Assistant)";
   const description =
@@ -12,7 +12,7 @@ export default function Home() {
       <span className="text-3xl text-center custom-color font-mono">
         {title}
       </span>
-      <p className="mt-8">{description}</p>
+      <p className="mt-5">{description}</p>
 
       {/* 이미지 추가 예시 */}
       <div className="mt-10 gap-12 flex justify-center">
@@ -52,6 +52,18 @@ export default function Home() {
             스크립트 수정{" "}
           </p>
         </div>
+      </div>
+      <div className="mt-2 gap-y-2">
+        <Link href={`/mockinterview/`}>
+          <button className="w-full bg-indigo-600 text-white py-2 px-4 rounded-xl shadow-md hover:bg-indigo-700 focus:outline-none">
+            개발자들이 선별한 모의 면접 보러가기 🧑🏻‍💻
+          </button>
+        </Link>
+        <Link href={`/solve/`}>
+          <button className="mt-2 w-full bg-emerald-500 text-white py-2 px-4 rounded-xl shadow-md hover:bg-indigo-700 focus:outline-none">
+            질문에 해당하는 스크립트 작성하기 ✏️
+          </button>
+        </Link>
       </div>
     </main>
   );
