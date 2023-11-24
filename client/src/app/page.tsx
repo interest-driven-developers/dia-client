@@ -20,7 +20,7 @@ export default function Home() {
           <Image
             src="/images/interview.png"
             alt="인터뷰 이미지"
-            className="mr-5"
+            className="mr-5 opacity-70"
             width={250}
             height={250}
           />
@@ -32,7 +32,7 @@ export default function Home() {
           <Image
             src="/images/speak.png"
             alt="TTS"
-            className="mr-5"
+            className="mr-5 opacity-70"
             width={250}
             height={250}
           />
@@ -44,7 +44,7 @@ export default function Home() {
           <Image
             src="/images/text-format.png"
             alt="스크립트 수정"
-            className="mr-5"
+            className="mr-5 opacity-70"
             width={250}
             height={250}
           />
