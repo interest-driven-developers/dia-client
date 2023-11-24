@@ -33,7 +33,6 @@ export default function InterViewGuidance({
       stopSpeechToText();
       handleView(1);
       handleResults(interimResult!);
-      console.log(interimResult, results);
     }, 1000);
   };
   return (

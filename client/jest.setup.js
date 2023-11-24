@@ -7,7 +7,6 @@ const fetchPolifill = require("whatwg-fetch");
 
 global.fetch = fetchPolifill.fetch;
 beforeAll(() => {
-  console.log("listening...");
   server.listen();
 });
 

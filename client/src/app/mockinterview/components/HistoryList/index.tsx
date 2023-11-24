@@ -30,7 +30,6 @@ export default function HistoryList() {
     setIsViewHistoryModal(true);
   };
     const handleCloseHistoryModal = () => {
-      console.log("??")
     setIsViewHistoryModal(false);
   };
   return (
