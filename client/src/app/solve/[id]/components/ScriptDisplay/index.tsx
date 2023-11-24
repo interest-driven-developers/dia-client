@@ -2,8 +2,8 @@
 import React, { useState, useEffect } from "react";
 import { CheckCircleIcon, XCircleIcon } from "@heroicons/react/24/solid";
 interface ScriptDisplayProps {
-  description: string;
-  setDescription: any;
+  script: string;
+  setScript: any;
   isEditing: boolean;
   setIsEditing: any;
   handleSaveScript: any;
@@ -11,8 +11,8 @@ interface ScriptDisplayProps {
 }
 import Spinner from "@/app/components/Spinner";
 export default function ScriptDisplay({
-  description,
-  setDescription,
+  script,
+  setScript,
   isEditing,
   setIsEditing,
   handleSaveScript,
@@ -23,7 +23,7 @@ export default function ScriptDisplay({
   useEffect(() => {
     const savedScript = localStorage.getItem(`${id}script`);
     if (savedScript) {
-      setDescription(savedScript);
+      setScript(savedScript);
     }
     setIsLoading(false);
   }, []);
@@ -38,8 +38,8 @@ export default function ScriptDisplay({
         ) : isEditing ? (
           <>
             <textarea
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
+              value={script}
+              onChange={(e) => setScript(e.target.value)}
               className="w-full h-40 p-2 border rounded-md"
             />
             <div className="flex p-1 justify-end">
@@ -55,8 +55,8 @@ export default function ScriptDisplay({
           </>
         ) : (
           <p className="whitespace-pre-wrap ">
-            {description ? (
-              <p>{description}</p>
+            {script ? (
+              <p>{script}</p>
             ) : (
               <div
                 onClick={() => setIsEditing(true)}
