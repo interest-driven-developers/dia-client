@@ -48,7 +48,6 @@ export default function Main() {
     setIsView(view);
   };
   const handleResults = (results: string) => {
-    console.log(results);
     setResults(results);
   };
   return (

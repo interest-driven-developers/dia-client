@@ -34,7 +34,7 @@ export default function Home() {
     <main className="h-screen  max-w-3xl mx-auto">
       <h1 className="text-3xl font-sans mt-3 mb-3">문제 별 모의 면접</h1>
       <div className="mb-6">
-        <p className="text-gray-500 text-sm -mt-2">
+        <p className="text-gray-500 text-sm -mt-3">
           총 {scriptData.length}개의 문제가 있습니다.
         </p>
       </div>
