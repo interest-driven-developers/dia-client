@@ -1,4 +1,4 @@
-export interface Script {
+export interface Question {
   pk: number;
   title: string;
   description: string;
