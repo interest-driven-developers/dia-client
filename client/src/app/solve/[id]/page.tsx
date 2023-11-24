@@ -1,6 +1,6 @@
-import { Metadata } from "next";
 import { getQuestionDetails } from "@/app/api/getQuestionDetails";
 import QuestionContainer from "./components/QuestionContainer";
+import { Metadata } from "next";
 
 export const generateMetadata = async ({ params }: any): Promise<Metadata> => {
   const data = await getQuestionDetails(params.id);
