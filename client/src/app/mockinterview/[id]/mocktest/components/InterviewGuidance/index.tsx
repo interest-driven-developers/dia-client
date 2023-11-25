@@ -3,13 +3,16 @@ import React, { useState } from "react";
 import Image from "next/image";
 import useSpeechToText, { ResultType } from "react-hook-speech-to-text";
 import { MicrophoneIcon } from "@heroicons/react/24/solid";
+import TTSPlayer from "../TTSPlayer";
+import { VoiceType } from "@/types/Voice";
 interface InterViewGuidanceProps {
   handleView: (view: number) => void;
   handleResults: (results: string) => void;
+  voices: VoiceType[];
 }
 
 export default function InterViewGuidance({
-  handleView, handleResults
+  handleView, handleResults,voices
 }: InterViewGuidanceProps) {
   //   const [results, setResults] = useState<ResultType[]>([]);
   const [isDone, setIsDone] = useState<boolean>(false);
@@ -43,7 +46,8 @@ export default function InterViewGuidance({
           alt="면접관 이미지"
           width={600}
           height={500}
-          className="rounded-md"
+          className="rounded-md w-auto h-auto"
+          priority={true}
         />
       </div>
 
@@ -51,7 +55,7 @@ export default function InterViewGuidance({
       <p className="text-lg text-center mb-8 text-gray-500">
         버튼을 클릭하면 면접이 시작됩니다. <br />
         차분한 마음으로 대기해주시고, <br />
-        {`"삐"`} 소리가 나오면 질문에 대한 답변을 시작해주세요.
+        면접관의 질문이 나온 후 {`"삐"`} 소리가 나오면 질문에 대한 답변을 시작해주세요.
       </p>
 
       <div>
@@ -63,7 +67,7 @@ export default function InterViewGuidance({
           } text-white py-2 px-4 rounded-xl shadow-md focus:outline-none`}
           onClick={isRecording ? handleStop : startSpeechToText}
         >
-          {isRecording ? "녹음 종료 ✋" : "녹음 시작 🗣️"}
+          {isRecording ? "모의면접 종료 ✋" : "모의면접 시작 🗣️"}
         </button>
 
         <div className={`flex justify-center mt-2 ${!isRecording && "hidden"}`}>
@@ -78,6 +82,7 @@ export default function InterViewGuidance({
           {interimResult && <li>{interimResult}</li>} */}
         </ul>
         {/* {isDone && <div>{interimResult && <li>{interimResult}</li>}</div>} */}
+        <TTSPlayer isRecording={isRecording} voices={voices}></TTSPlayer>
       </div>
     </>
   );
