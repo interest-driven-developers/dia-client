@@ -5,8 +5,8 @@ import {
   PencilIcon,
   MicrophoneIcon,
 } from "@heroicons/react/24/solid";
-import Spinner from "@/app/components/Spinner";
 import ScriptDisplay from "../ScriptDisplay";
+
 interface QuestionContainerProps {
   title: string;
   script: string;
