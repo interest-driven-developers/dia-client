@@ -2,22 +2,17 @@
 import React, { useState, useEffect } from "react";
 import { CheckCircleIcon, XCircleIcon } from "@heroicons/react/24/solid";
 interface ScriptDisplayProps {
-  script: string;
-  setScript: any;
   isEditing: boolean;
   setIsEditing: any;
-  handleSaveScript: any;
   id: number;
 }
 import Spinner from "@/app/components/Spinner";
 export default function ScriptDisplay({
-  script,
-  setScript,
   isEditing,
   setIsEditing,
-  handleSaveScript,
   id,
 }: ScriptDisplayProps) {
+  const [script, setScript] = useState<string>(""); // 스크립트
   const [isLoading, setIsLoading] = useState<boolean>(true);
   // 페이지 로딩 시, 로컬 스토리지에서 스크립트 불러오기
   useEffect(() => {
@@ -26,7 +21,14 @@ export default function ScriptDisplay({
       setScript(savedScript);
     }
     setIsLoading(false);
-  }, []);
+  }, [id]);
+
+  const handleSaveScript = () => {
+    // 스크립트 저장
+    localStorage.setItem(`${id}script`, script);
+    // 스크립트 리스트 업데이트
+    setIsEditing(false);
+  };
   return (
     <>
       <p className="text-xs font-sans text-gray-500 -mb-1.5">스크립트</p>

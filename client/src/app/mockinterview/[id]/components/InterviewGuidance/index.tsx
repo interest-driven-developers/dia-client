@@ -39,8 +39,8 @@ export default function InterViewGuidance({
     }, 1000);
   };
   return (
-    <>
-      <div className="mb-6">
+    <div className="mt-5 ">
+      <div className="flex mt-5 mb-6 justify-center justify-items-center justify-self-center">
         <Image
           src="/images/interviewer.jpeg"
           alt="면접관 이미지"
@@ -84,6 +84,6 @@ export default function InterViewGuidance({
         {/* {isDone && <div>{interimResult && <li>{interimResult}</li>}</div>} */}
         <TTSPlayer isRecording={isRecording} voices={voices}></TTSPlayer>
       </div>
-    </>
+    </div>
   );
 }

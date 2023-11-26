@@ -20,13 +20,7 @@ export default function QuestionContainer({
   session,
 }: QuestionContainerProps) {
   const [isEditing, setIsEditing] = useState<boolean>(false);
-  const [thisScript, setScript] = useState<string>(script);
-  const handleSaveScript = () => {
-    // 스크립트 저장
-    localStorage.setItem(`${id}script`, thisScript);
-    // 스크립트 리스트 업데이트
-    setIsEditing(false);
-  };
+
   return (
     <>
       <div className="mt-5 flex justify-between items-center">
@@ -52,11 +46,8 @@ export default function QuestionContainer({
       </div>
       <ScriptDisplay
         id={id}
-        script={thisScript || ""}
         isEditing={isEditing}
-        setScript={setScript}
         setIsEditing={setIsEditing}
-        handleSaveScript={handleSaveScript}
       ></ScriptDisplay>
       {!session && (
         <p className="text-sm font-sans text-gray-500">
