@@ -50,12 +50,12 @@ export default function Header() {
               >
                 모든 문제
               </a>
-              <a
+              {/* <a
                 href="/mockinterview"
                 className="text-gray-900 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium"
               >
                 모의면접
-              </a>
+              </a> */}
               {/* <a
                 href="/mockinterview"
                 className="text-gray-900 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium"
