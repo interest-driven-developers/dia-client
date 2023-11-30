@@ -20,13 +20,12 @@ export default function QuestionContainer({
   session,
 }: QuestionContainerProps) {
   const [isEditing, setIsEditing] = useState<boolean>(false);
-
   return (
     <>
       <div className="mt-5 flex justify-between items-center">
         <h1 className="text-3xl font-sans text-black">{title}</h1>
         <div className="flex">
-          <Link href={`/mockinterview/${id}/mocktest`}>
+          <Link href={`/mockinterview/${id}`}>
             <div className="p-1 rounded-lg hover:bg-gray-100">
               <MicrophoneIcon className="w-5 h-5 text-red-500"></MicrophoneIcon>
             </div>
@@ -54,7 +53,7 @@ export default function QuestionContainer({
           *로그인 후 이용해주시면 스크립트가 영구히 저장됩니다 💾
         </p>
       )}
-      <Link href={`/mockinterview/${id}/mocktest`}>
+      <Link href={`/mockinterview/${id}`}>
         <button className="mt-3 w-full bg-indigo-600 text-white py-2 px-4 rounded-xl shadow-md hover:bg-indigo-700 focus:outline-none">
           면접 진행 🔥
         </button>

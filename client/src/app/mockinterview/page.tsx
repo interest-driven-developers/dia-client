@@ -1,7 +1,7 @@
 import QuestionList from "./components/QuestionList";
 import { getQuestionList } from "../api/getQuestionList";
 import { Metadata } from "next";
-
+export const dynamic = "force-dynamic";
 export const generateMetadata = async ({ params }: any): Promise<Metadata> => {
   return {
     title: "모의 면접",
