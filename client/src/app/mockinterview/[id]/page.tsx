@@ -1,7 +1,6 @@
 import MainContainer from "./components/MainContainer";
 // import { getQuestionDetails } from "@/app/api/getQuestionDetails";
 import { getPracticeDetails } from "@/app/api/getPracticeDetails";
-export const dynamic = "force-dynamic";
 export default async function Main({ params }: { params: { id: string } }) {
   const result = await getPracticeDetails(params.id);
 
