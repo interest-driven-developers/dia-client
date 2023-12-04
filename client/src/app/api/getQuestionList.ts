@@ -10,5 +10,5 @@ export const getQuestionList = cache(async () => {
     }
   );
   const data = await res.json();
-  return data.data.data;
+  return data.data.pageData;
 });
