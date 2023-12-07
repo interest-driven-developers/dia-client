@@ -26,15 +26,17 @@ export default function Header() {
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* 로고 */}
-          <div className="flex-shrink-0">
+          <div className="flex flex-shrink-0">
             <a
               onClick={handleLogoClick}
-              className="text-2xl font-bold custom-color cursor-pointer"
+              className="text-3xl font-bold custom-color cursor-pointer"
             >
               DIA
             </a>
+            <div className="h-7 ml-2 mt-1 items-self-center border-solid border-2 border-indigo-500 rounded-sm">
+              <span className="p-0.5 text-sm text-gray-500">Beta</span>
+            </div>
           </div>
-
           {/* 메뉴 */}
           <div className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-4">

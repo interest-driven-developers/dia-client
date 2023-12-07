@@ -10,6 +10,15 @@ export const authOptions = {
     }),
     // ...add more providers here
   ],
+
+  jwt: {
+    maxAge : 60
+  },
+  session: {
+    db: {
+      
+    }
+  }
 };
 
 export default NextAuth(authOptions);
