@@ -17,8 +17,9 @@
     "@types/react-speech-recognition": "^3.9.5",
     "jest-environment-jsdom": "^29.7.0",
     "msw": "^2.0.6",
-    "next": "14.0.2",
+    "next": "^13.4",
     "next-auth": "^4.24.5",
+    "pg": "^8.11.3",
     "react": "^18",
     "react-dom": "^18",
     "react-hook-speech-to-text": "^0.8.0",
@@ -28,6 +29,7 @@
   "devDependencies": {
     "@types/jest": "^29.5.8",
     "@types/node": "^20",
+    "@types/pg": "^8.10.9",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "autoprefixer": "^10.0.1",

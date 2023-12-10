@@ -14,11 +14,10 @@ export const authOptions = {
   jwt: {
     maxAge : 60
   },
-  session: {
-    db: {
-      
-    }
+  pages: {
+    signIn : '/signIn'
   }
 };
 
-export default NextAuth(authOptions);
+const handler =  NextAuth(authOptions);
+ export { handler as GET, handler as POST };

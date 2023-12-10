@@ -1,10 +1,5 @@
 "use client";
-import Link from "next/link";
-import Image from "next/image";
-import styles from "./page.module.css";
-import SignUpBtn from "./components/SignupBtn/SignupBtn";
-import LoginBtn from "./components/LoginBtn/LoginBtn";
-import LogoutBtn from "./components/LogoutBtn/LogoutBtn";
+import { signIn } from "next-auth/react";
 import { useRouter, usePathname } from "next/navigation";
 interface HeaderProps {
   session: any;
@@ -58,12 +53,12 @@ export default function Header() {
               >
                 모의면접
               </a> */}
-              {/* <a
-                href="/mockinterview"
+              <a
+                onClick={() => signIn()}
                 className="text-gray-900 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium"
               >
                 로그인
-              </a> */}
+              </a>
             </div>
           </div>
         </div>
