@@ -10,6 +10,6 @@ export const getPracticeDetails = cache(async (id: string | null | undefined) =>
     }
   );
   const data = await res.json();
-
+  
   return data.data;
 });
