@@ -16,6 +16,7 @@
     "@testing-library/jest-dom": "^6.1.4",
     "@testing-library/react": "^14.1.0",
     "@types/react-speech-recognition": "^3.9.5",
+    "@uiw/react-md-editor": "^4.0.1",
     "jest-environment-jsdom": "^29.7.0",
     "msw": "^2.0.6",
     "next": "^13.4",

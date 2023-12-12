@@ -1,10 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import {
-  PencilIcon,
-  MicrophoneIcon,
-} from "@heroicons/react/24/solid";
+import { PencilIcon, MicrophoneIcon } from "@heroicons/react/24/solid";
 import ScriptDisplay from "../ScriptDisplay";
 
 interface QuestionContainerProps {
@@ -23,23 +20,26 @@ export default function QuestionContainer({
   return (
     <>
       <div className="mt-5 flex justify-between items-center">
-        <h1 className="text-3xl font-sans text-black">{title}</h1>
+        <h1 className="text-2xl font-sans text-black font-semibold">{title}</h1>
         <div className="flex">
-          <Link href={`/mockinterview/${id}`}>
+          {/* <Link href={`/mockinterview/${id}`}>
             <div className="p-1 rounded-lg hover:bg-gray-100">
               <MicrophoneIcon className="w-5 h-5 text-red-500"></MicrophoneIcon>
             </div>
+          </Link> */}
+          <Link href={`/edit/${id}`}>
+            <div
+              className="p-1 rounded-lg hover:bg-gray-100 cursor-pointer"
+              // onClick={() => setIsEditing(true)}
+            >
+              <p className="text-sm font-sans text-gray-500">수정</p>
+              {/* <PencilIcon className="w-5 h-5 text-indigo-500"></PencilIcon> */}
+            </div>
           </Link>
-          <div
-            className="p-1 rounded-lg hover:bg-gray-100 cursor-pointer"
-            onClick={() => setIsEditing(true)}
-          >
-            <PencilIcon className="w-5 h-5 text-indigo-500"></PencilIcon>
-          </div>
         </div>
       </div>
       <div className="mb-6">
-        <p className="text-gray-500 text-sm">
+        <p className="text-gray-500 text-xs">
           스크립트를 작성 및 모의 면접을 진행해보세요🧐
         </p>
       </div>
@@ -49,7 +49,7 @@ export default function QuestionContainer({
         setIsEditing={setIsEditing}
       ></ScriptDisplay>
       {!session && (
-        <p className="text-sm font-sans text-gray-500">
+        <p className="text-xs font-sans text-gray-500">
           *로그인 후 이용해주시면 스크립트가 영구히 저장됩니다 💾
         </p>
       )}
