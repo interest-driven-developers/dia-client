@@ -11,6 +11,7 @@
     "test:ci": "jest --ci --passWithNoTests"
   },
   "dependencies": {
+    "@auth/pg-adapter": "^0.2.8",
     "@heroicons/react": "^2.0.18",
     "@testing-library/jest-dom": "^6.1.4",
     "@testing-library/react": "^14.1.0",

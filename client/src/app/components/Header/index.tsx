@@ -53,12 +53,12 @@ export default function Header() {
               >
                 모의면접
               </a> */}
-              <a
+              {/* <a
                 onClick={() => signIn()}
-                className="text-gray-900 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium"
+                className="text-gray-900 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium cursor-pointer"
               >
                 로그인
-              </a>
+              </a> */}
             </div>
           </div>
         </div>
