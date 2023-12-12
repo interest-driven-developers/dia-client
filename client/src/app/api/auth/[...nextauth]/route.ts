@@ -4,7 +4,7 @@ import pgAdapter from "../../../../../lib/adapter/pgAdapter";
 import { Pool } from "pg";
 
 const pool = new Pool({
-  host: "dia-poc-db.clsdnwnfi7ad.ap-northeast-2.rds.amazonaws.com",
+  host: process.env.AWS_RDS_URI,
   user: "front",
   database: "dia_poc",
   password: "1q2w3e4r!@",
