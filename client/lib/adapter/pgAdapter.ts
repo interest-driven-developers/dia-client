@@ -64,7 +64,12 @@ export default function pgAdapter(client: Pool): Adapter {
         emailVerified,
         image,
       ]);
-      return result.rows[0];
+      const adapterUser: AdapterUser = {
+        id: result.rows[0].pk,
+        email: result.rows[0].email,
+        emailVerified: result.rows[0].emailVerified,
+      };
+      return adapterUser;
     },
     async getUser(pk) {
       console.log(
@@ -124,7 +129,7 @@ export default function pgAdapter(client: Pool): Adapter {
         UPDATE dia_member set
         nickname = $2, email = $3, "emailVerified" = $4, image = $5
         where pk = $1
-        RETURNING nickname, pk, email, "emailVerified", image
+        RETURNING pk, nickname, email, "emailVerified", image
       `;
       const query2 = await client.query(updateSql, [
         pk,
@@ -169,7 +174,7 @@ export default function pgAdapter(client: Pool): Adapter {
       `;
 
       const params = [
-        account.user_id,
+        account.userId,
         account.provider,
         account.type,
         account.providerAccountId,
