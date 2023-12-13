@@ -16,7 +16,7 @@ export default function ScriptDisplay({
   const [isLoading, setIsLoading] = useState<boolean>(true);
   // 페이지 로딩 시, 로컬 스토리지에서 스크립트 불러오기
   useEffect(() => {
-    const savedScript = localStorage.getItem(`${id}script`);
+    const savedScript = localStorage.getItem(`script=${id}`);
     if (savedScript) {
       setScript(savedScript);
     }
@@ -25,7 +25,7 @@ export default function ScriptDisplay({
 
   const handleSaveScript = () => {
     // 스크립트 저장
-    localStorage.setItem(`${id}script`, script);
+    localStorage.setItem(`script=${id}`, script);
     // 스크립트 리스트 업데이트
     setIsEditing(false);
   };

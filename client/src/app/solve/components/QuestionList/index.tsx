@@ -20,10 +20,10 @@ export default function QuestionList({ questionList }: QuestionListProps) {
   // };
   return (
     <>
-      <h1 className="text-3xl font-sans mt-3">
+      <h1 className="text-2xl font-sans font-semibold mt-3">
         총 {questionList.length}개의 문제가 있습니다.
       </h1>
-      <p className="-mt-2 font-sans text-gray-500 text-sm">
+      <p className="-mt-2 font-sans text-gray-500 text-xs">
         문제에 해당하는 스크립트를 작성 및 수정해보세요!
       </p>
       {/* 리스트 처리된 문제(스크립트)들이 나열되어있고, 스크립트 수정 기능까지 추가해야함 */}
