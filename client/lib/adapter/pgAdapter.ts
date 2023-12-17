@@ -1,10 +1,10 @@
-
 import type {
   Adapter,
   AdapterUser,
   VerificationToken,
   AdapterSession,
 } from "@auth/core/adapters";
+
 import type { Pool } from "pg";
 
 export function mapExpiresAt(account: any): any {
@@ -13,19 +13,13 @@ export function mapExpiresAt(account: any): any {
     ...account,
     expires_at,
   };
-  
 }
-
 
 export default function pgAdapter(client: Pool): Adapter {
   return {
     async createVerificationToken(
       verificationToken: VerificationToken
     ): Promise<VerificationToken> {
-      console.log(
-        "1==============================================================="
-      );
-
       const { identifier, expires, token } = verificationToken;
       const sql = `
         INSERT INTO oauth_verification_token ( identifier, expires, token ) 
@@ -41,10 +35,6 @@ export default function pgAdapter(client: Pool): Adapter {
       identifier: string;
       token: string;
     }): Promise<VerificationToken> {
-      console.log(
-        "2==============================================================="
-      );
-
       const sql = `delete from oauth_verification_token
       where identifier = $1 and token = $2
       RETURNING identifier, expires, token `;
@@ -53,7 +43,6 @@ export default function pgAdapter(client: Pool): Adapter {
     },
 
     async createUser(user: Omit<AdapterUser, "pk">) {
-      console.log('3==========================', user)
       const { name, email, emailVerified, image } = user;
       const sql = `
         INSERT INTO dia_member (nickname, email, "emailVerified", image) 
@@ -65,13 +54,14 @@ export default function pgAdapter(client: Pool): Adapter {
         emailVerified,
         image,
       ]);
-      return result.rows[0];
+      const adapterUser: AdapterUser = {
+        id: result.rows[0].pk,
+        email: result.rows[0].email,
+        emailVerified: result.rows[0].emailVerified,
+      };
+      return adapterUser;
     },
     async getUser(pk) {
-      console.log(
-        "4=============================================================== "
-       , pk);
-
       const sql = `select * from dia_member where pk = $1`;
       try {
         const result = await client.query(sql, [pk]);
@@ -81,10 +71,6 @@ export default function pgAdapter(client: Pool): Adapter {
       }
     },
     async getUserByEmail(email) {
-      console.log(
-        "5==============================================================="
-      , email);
-
       const sql = `select * from dia_member where email = $1`;
       const result = await client.query(sql, [email]);
       return result.rowCount !== 0 ? result.rows[0] : null;
@@ -93,10 +79,6 @@ export default function pgAdapter(client: Pool): Adapter {
       providerAccountId,
       provider,
     }): Promise<AdapterUser | null> {
-      console.log(
-        "6==============================================================="
-      , providerAccountId, provider);
-
       const sql = `
           select u.* from dia_member u join oauth_accounts a on u.pk = a."memberPk"
           where 
@@ -107,10 +89,6 @@ export default function pgAdapter(client: Pool): Adapter {
       return result.rowCount !== 0 ? result.rows[0] : null;
     },
     async updateUser(user: Partial<AdapterUser>): Promise<AdapterUser> {
-      console.log(
-        "7==============================================================="
-      );
-
       const fetchSql = `select * from dia_member where pk = $1`;
       const query1 = await client.query(fetchSql, [user.id]);
       const oldUser = query1.rows[0];
@@ -125,7 +103,7 @@ export default function pgAdapter(client: Pool): Adapter {
         UPDATE dia_member set
         nickname = $2, email = $3, "emailVerified" = $4, image = $5
         where pk = $1
-        RETURNING nickname, pk, email, "emailVerified", image
+        RETURNING pk, nickname, email, "emailVerified", image
       `;
       const query2 = await client.query(updateSql, [
         pk,
@@ -137,7 +115,6 @@ export default function pgAdapter(client: Pool): Adapter {
       return query2.rows[0];
     },
     async linkAccount(account) {
-      console.log("============================account:", account);
       const sql = `
       insert into oauth_accounts 
       (
@@ -170,7 +147,7 @@ export default function pgAdapter(client: Pool): Adapter {
       `;
 
       const params = [
-        account.user_id,
+        account.userId,
         account.provider,
         account.type,
         account.providerAccountId,
@@ -187,7 +164,6 @@ export default function pgAdapter(client: Pool): Adapter {
       return mapExpiresAt(result.rows[0]);
     },
     async createSession({ sessionToken, userId, expires }) {
-      console.log("=====여긴 세션입니다 : ", sessionToken, userId, expires);
       if (userId === undefined) {
         throw Error(`memberPk is undef in createSession`);
       }
@@ -203,10 +179,6 @@ export default function pgAdapter(client: Pool): Adapter {
       session: AdapterSession;
       user: AdapterUser;
     } | null> {
-      console.log(
-        "8==============================================================="
-      );
-
       if (sessionToken === undefined) {
         return null;
       }
@@ -217,7 +189,12 @@ export default function pgAdapter(client: Pool): Adapter {
       if (result1.rowCount === 0) {
         return null;
       }
-      let session: AdapterSession = result1.rows[0];
+      let session: AdapterSession = {
+        sessionToken: result1.rows[0].sessionToken,
+        userId: result1.rows[0].memberPk,
+
+        expires: result1.rows[0].expires,
+      };
 
       const result2 = await client.query(
         "select * from dia_member where pk = $1",
@@ -235,10 +212,6 @@ export default function pgAdapter(client: Pool): Adapter {
     async updateSession(
       session: Partial<AdapterSession> & Pick<AdapterSession, "sessionToken">
     ): Promise<AdapterSession | null | undefined> {
-      console.log(
-        "9==============================================================="
-      );
-
       const { sessionToken } = session;
       const result1 = await client.query(
         `select * from oauth_sessions where "sessionToken" = $1`,
@@ -265,25 +238,15 @@ export default function pgAdapter(client: Pool): Adapter {
       return result.rows[0];
     },
     async deleteSession(sessionToken) {
-      console.log(
-        "deleteSession==============================================================="
-      );
-
       const sql = `delete from oauth_sessions where "sessionToken" = $1`;
       await client.query(sql, [sessionToken]);
     },
     async unlinkAccount(partialAccount) {
-      console.log(
-        "unlinkAccount==============================================================="
-      );
       const { provider, providerAccountId } = partialAccount;
       const sql = `delete from oauth_accounts where "providerAccountId" = $1 and provider = $2`;
       await client.query(sql, [providerAccountId, provider]);
     },
     async deleteUser(memberPk: string) {
-      console.log(
-        "deleteUser==============================================================="
-      );
       await client.query(`delete from dia_member where pk = $1`, [memberPk]);
       await client.query(`delete from oauth_sessions where "memberPk" = $1`, [
         memberPk,

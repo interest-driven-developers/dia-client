@@ -8,7 +8,6 @@ export default async function Home() {
   const description =
     "DIA는 개발자 면접 도우미 입니다. 취업,이직을 위한 코딩테스트 앱은 많지만 면접 준비를 위한 앱은 없다는 것에서 시작했습니다. 개발자들이 좀더 실전적인 면접 연습을 할수 있게 돕는것이 목표입니다";
   let session = await getServerSession(authOptions);
-  // console.log(session)
   return (
     <main className="h-screen flex flex-col justify-center items-center gap-y-7 max-w-3xl mx-auto">
       {/* 텍스트를 가운데로 정렬 */}

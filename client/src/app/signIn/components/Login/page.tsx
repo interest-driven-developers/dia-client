@@ -9,8 +9,8 @@ function Login({providers} : LoginProps ) {
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
   const handleSubmit = async () => {
-    console.log(emailRef.current);
-    console.log(passwordRef.current);
+    // console.log(emailRef.current);
+    // console.log(passwordRef.current);
   };
 
   return (

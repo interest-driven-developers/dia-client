@@ -1224,6 +1224,11 @@ ajv@^6.12.4:
     json-schema-traverse "^0.4.1"
     uri-js "^4.2.2"
 
+amplify@^0.0.11:
+  version "0.0.11"
+  resolved "https://registry.yarnpkg.com/amplify/-/amplify-0.0.11.tgz#fd81c7068c862823f2508b8f3c650eb76753f58c"
+  integrity sha512-RkVzlUUUczGhjRWTX3QXEPzgPScdUXvmthgvcNpCQHfxshvxLPTdiLP6kLaUb/eo8IpnjLpKqUWxTIT97c8xew==
+
 ansi-escapes@^4.2.1:
   version "4.3.2"
   resolved "https://registry.npmjs.org/ansi-escapes/-/ansi-escapes-4.3.2.tgz"
@@ -5410,11 +5415,6 @@ react-markdown@~9.0.1:
     unified "^11.0.0"
     unist-util-visit "^5.0.0"
     vfile "^6.0.0"
-
-react-speech-kit@^3.0.1:
-  version "3.0.1"
-  resolved "https://registry.npmjs.org/react-speech-kit/-/react-speech-kit-3.0.1.tgz"
-  integrity sha512-MXNOciISanhmnxpHJkBOev3M3NPDpW1T7nTc/eGw5pO9cXpoUccRxZkmr/IlpTPbPEneDNeTmbwri/YweyctZg==
 
 react-speech-recognition@^3.10.0:
   version "3.10.0"
