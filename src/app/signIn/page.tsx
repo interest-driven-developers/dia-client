@@ -7,7 +7,7 @@ export default async function SignInPage() {
 
   return (
     <>
-      <Login providers={providers} />
+      {/* <Login providers={providers} /> */}
     </>
   );
 }
