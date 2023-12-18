@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { EllipsisVerticalIcon } from "@heroicons/react/20/solid";
 import Link from "next/link";
+import { twMerge } from "tailwind-merge";
 interface ScriptContentProps {
   id: number;
   title: string;
@@ -25,7 +26,7 @@ export default function ScriptContent({
   };
 
   return (
-    <li className="p-4 ">
+    <li className={twMerge("p-5", "p-3")}>
       <div className="flex justify-between items-center">
         <Link href={`/solve/${id}`}>
           <h1 className="text-2xl font-sans cursor-pointer hover:text-gray-500 ">
@@ -36,23 +37,6 @@ export default function ScriptContent({
           <EllipsisVerticalIcon className="w-5 h-5 "></EllipsisVerticalIcon>
         </div>
       </div>
-      {/* <div className="mt-4">
-        {isEditing ? (
-          <textarea
-            value={thisDescription}
-            onChange={(e) => setDescription(e.target.value)}
-            className="w-full h-40 p-2 border rounded-md"
-          />
-        ) : (
-          <p className="whitespace-pre-wrap">{thisDescription}</p>
-        )}
-        <button
-          onClick={isEditing ? handleSaveClick : handleEditClick}
-          className="mt-1 px-1 py-1 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 focus:outline-none shadow-md justify-items-end"
-        >
-          {isEditing ? "저장" : "수정"}
-        </button>
-      </div> */}
     </li>
   );
 }
