@@ -5,7 +5,7 @@ interface LoginProps {
   providers: any;
 }
 
-function Login({ providers }: LoginProps) {
+export default function Login({ providers }: LoginProps) {
   return (
     <main className="flex h-screen bg-gradient-to-r from-purple-300 via-pink-200 to-red-200  justify-center items-center p-12 sm:p-4 md:p-8">
       <div className="bg-white flex flex-col sm:flex-row justify-center items-center p-10 rounded-lg sm:p-12 gap-4 sm:gap-12">
@@ -54,6 +54,4 @@ function Login({ providers }: LoginProps) {
     </main>
   );
 }
-
-export default Login;
 
