@@ -4,7 +4,7 @@ import { Question } from "@/types/Question";
 import Spinner from "@/app/components/Spinner";
 import Link from "next/link";
 interface QuestionListProps {
-  questionList: Question[];
+  questionList: any;
 }
 export default function QuestionList({ questionList }: QuestionListProps) {
   // const handleScriptInputChange = (event: any) => {
@@ -27,7 +27,7 @@ export default function QuestionList({ questionList }: QuestionListProps) {
         </p>
       </div>
       <div className="grid w-full mt-2 bg-white rounded-lg shadow-md divide-y border-dashed border-2 border-indigo-500">
-        {questionList.map((question) => (
+        {questionList.map((question : any) => (
           <div key={question.pk} className="p-4 hover:opacity-70">
             <Link
               href={`/mockinterview/${question.pk}`}

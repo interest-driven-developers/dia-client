@@ -4,7 +4,7 @@ import { Question } from "@/types/Question";
 import ScriptContent from "../ScriptContent";
 import Spinner from "@/app/components/Spinner";
 interface QuestionListProps {
-  questionList: Question[];
+  questionList: any;
 }
 export default function QuestionList({ questionList }: QuestionListProps) {
   // const handleScriptInputChange = (event: any) => {
@@ -45,7 +45,7 @@ export default function QuestionList({ questionList }: QuestionListProps) {
       {/* 스크립트 리스트 */}
       <div className="w-full">
         <ul className="grid w-full mt-2 bg-white rounded-lg shadow-md divide-y border-dashed border-2 border-indigo-500 ">
-          {questionList.map((qusetion, index) => (
+          {questionList.map((qusetion: any, index: number) => (
             <ScriptContent
               key={index}
               id={qusetion.pk}
