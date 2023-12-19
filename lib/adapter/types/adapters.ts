@@ -25,7 +25,7 @@ export interface AdapterSession {
 
 export interface AdapterUser extends User {
   /** A unique identifier for the user. */
-  pk: string;
+  id: string;
   /** The user's email address. */
   email: string;
   /**
@@ -33,4 +33,5 @@ export interface AdapterUser extends User {
    * It is `null` if the user has not signed in with the Email provider yet, or the date of the first successful signin.
    */
   emailVerified: Date | null;
+  username: string;
 }

@@ -24,39 +24,47 @@ export const authOptions = {
     GithubProvider({
       clientId: process.env.GITHUB_ID as string,
       clientSecret: process.env.GITHUB_SECRET as string,
+      profile(profile) {
+        return {
+          id: profile.id.toString(),
+          name: profile.name || profile.login,
+          email: profile.email,
+          image: profile.avatar_url,
+          username: profile.login,
+        };
+      },
     }),
   ],
+  pages: {
+    signIn: "/signIn",
+  },
   session: {
     strategy: "jwt" as any,
-    maxAge: 30 * 24 * 60 * 60, //30일
+    maxAge: 30 * 24 * 60 * 60, // 30 days
+    updateAge: 24 * 60 * 60, // 24 hours
   },
   jwt: {
-    maxAge: 60,
+    secret: process.env.NEXTAUTH_SECRET as string,
+    maxAge: 30 * 24 * 60 * 60, // 30 days
+
   },
-  // pages: {
-  //   signIn: "/signIn",
-  // },
+
   callbacks: {
     async session({ session, token }: any) {
-      // console.log("auth session : ", session, token);
-      session.user.id = token.user.id;
-      session.token = token;
-      // session.user = token as any;
+      session.accessToken = token.access_Token;
+      session.user = token.user
       return session as any;
     },
 
-    async jwt({ token, account, profile, user }: any) {
-      // console.log("auth jwt : ", token, account, profile);
-
-      if (account) {
+    async jwt({ token, user, account }: any) {
+      if (user) {
         token.user = user;
         token.user.name = account.name;
         token.user.email = account.email;
         token.user.role = account.role;
-        token.accessToken = account.access_token;
+        token.access_Token = account.access_token;
       }
       return token as any;
-      // return {...token, ...user }
     },
   },
 };

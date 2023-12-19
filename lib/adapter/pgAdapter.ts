@@ -1,18 +1,15 @@
 import type {
   Adapter,
-  AdapterUser,
+  // AdapterUser,
   VerificationToken,
   AdapterSession,
 } from "@auth/core/adapters";
+import type { AdapterUser } from "./types/adapters";
 
 import type { Pool } from "pg";
 
 export function mapExpiresAt(account: any): any {
-  console.log(
-    "*********************************mapExpiresAt method = ",
-    account,
-    "*********************************"
-  );
+
   const expires_at: number = parseInt(account.expires_at);
   return {
     ...account,
@@ -25,11 +22,7 @@ export default function pgAdapter(client: Pool): Adapter {
     async createVerificationToken(
       verificationToken: VerificationToken
     ): Promise<VerificationToken> {
-      console.log(
-        "*********************************createVerificationToken method = ",
-        verificationToken,
-        "*********************************"
-      );
+
 
       const { identifier, expires, token } = verificationToken;
       const sql = `
@@ -46,12 +39,8 @@ export default function pgAdapter(client: Pool): Adapter {
       identifier: string;
       token: string;
     }): Promise<VerificationToken> {
-      console.log(
-        "*********************************useVerificationToken method = ",
-        identifier,
-        token,
-        "*********************************"
-      );
+
+      
       const sql = `delete from oauth_verification_token
       where identifier = $1 and token = $2
       RETURNING identifier, expires, token `;
@@ -60,21 +49,27 @@ export default function pgAdapter(client: Pool): Adapter {
     },
 
     async createUser(user: Omit<AdapterUser, "pk">) {
+
       const { name, email, emailVerified, image } = user;
+
       const sql = `
-        INSERT INTO dia_member (nickname, email, "emailVerified", image) 
-        VALUES ($1, $2, $3, $4) 
-        RETURNING pk, nickname, email, "emailVerified", image`;
+        INSERT INTO dia_member (nickname, email, "emailVerified", image, "githubId") 
+        VALUES ($1, $2, $3, $4, $5) 
+        RETURNING pk, nickname, email, "emailVerified", image, "githubId"`;
       const result = await client.query(sql, [
         name,
         email,
         emailVerified,
         image,
+        user.username,
       ]);
       const adapterUser: AdapterUser = {
         id: result.rows[0].pk,
         email: result.rows[0].email,
         emailVerified: result.rows[0].emailVerified,
+        image: result.rows[0].image,
+        name: result.rows[0].nickname,
+        username: result.rows[0].githubId,
       };
       return adapterUser;
     },
@@ -96,6 +91,7 @@ export default function pgAdapter(client: Pool): Adapter {
       providerAccountId,
       provider,
     }): Promise<AdapterUser | null> {
+
       const sql = `
           select u.* from dia_member u join oauth_accounts a on u.pk = a."memberPk"
           where 
@@ -106,6 +102,7 @@ export default function pgAdapter(client: Pool): Adapter {
       return result.rowCount !== 0 ? result.rows[0] : null;
     },
     async updateUser(user: Partial<AdapterUser>): Promise<AdapterUser> {
+
       const fetchSql = `select * from dia_member where pk = $1`;
       const query1 = await client.query(fetchSql, [user.id]);
       const oldUser = query1.rows[0];
@@ -212,11 +209,11 @@ export default function pgAdapter(client: Pool): Adapter {
 
         expires: result1.rows[0].expires,
       };
-
       const result2 = await client.query(
         "select * from dia_member where pk = $1",
         [session.userId]
       );
+
       if (result2.rowCount === 0) {
         return null;
       }
