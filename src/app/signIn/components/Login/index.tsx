@@ -1,7 +1,6 @@
 "use client";
 import React, { useRef } from "react";
 import { signIn } from "next-auth/react";
-import GithubIcon from "@/app/ui/GithubIcon";
 interface LoginProps {
   providers: any;
 }
@@ -29,14 +28,14 @@ function Login({ providers }: LoginProps) {
             <div key={provider.name}>
               <button
                 onClick={() =>
-                  signIn(provider.id, { callbackUrl: "http://localhost:3000" })
+                  signIn(provider.id, { callbackUrl: process.env.NEXTAUTH_URL })
                 }
                 className="bg-[#333] text-white flex items-center justify-center gap-2 px-4 sm:px-8 py-1 sm:py-2 rounded"
               >
                 {/* 아이콘과 로그인 버튼 텍스트 */}
                 {provider.name === "GitHub" && (
                   <>
-                    <GithubIcon className="w-4 h-4 sm:w-6 sm:h-6 text-white" />
+                    {/* <GithubIcon className="w-4 h-4 sm:w-6 sm:h-6 text-white" /> */}
                     Login with GitHub
                   </>
                 )}
