@@ -1,5 +1,7 @@
 export interface Question {
-  pk: number;
-  title: string;
-  description: string;
+  data: {
+    pk: number;
+    title: string;
+    description: string;
+  };
 }

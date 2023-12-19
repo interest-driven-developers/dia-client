@@ -8,6 +8,11 @@ import type {
 import type { Pool } from "pg";
 
 export function mapExpiresAt(account: any): any {
+  console.log(
+    "*********************************mapExpiresAt method = ",
+    account,
+    "*********************************"
+  );
   const expires_at: number = parseInt(account.expires_at);
   return {
     ...account,
@@ -20,6 +25,12 @@ export default function pgAdapter(client: Pool): Adapter {
     async createVerificationToken(
       verificationToken: VerificationToken
     ): Promise<VerificationToken> {
+      console.log(
+        "*********************************createVerificationToken method = ",
+        verificationToken,
+        "*********************************"
+      );
+
       const { identifier, expires, token } = verificationToken;
       const sql = `
         INSERT INTO oauth_verification_token ( identifier, expires, token ) 
@@ -35,6 +46,12 @@ export default function pgAdapter(client: Pool): Adapter {
       identifier: string;
       token: string;
     }): Promise<VerificationToken> {
+      console.log(
+        "*********************************useVerificationToken method = ",
+        identifier,
+        token,
+        "*********************************"
+      );
       const sql = `delete from oauth_verification_token
       where identifier = $1 and token = $2
       RETURNING identifier, expires, token `;

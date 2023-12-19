@@ -18,6 +18,7 @@ const pool = new Pool({
 });
 export const authOptions = {
   // Configure one or more authentication providers
+  secret: process.env.NEXTAUTH_SECRET as string,
   adapter: pgAdapter(pool),
   providers: [
     GithubProvider({
@@ -25,7 +26,6 @@ export const authOptions = {
       clientSecret: process.env.GITHUB_SECRET as string,
     }),
   ],
-  secret: process.env.NEXTAUTH_SECRET,
   session: {
     strategy: "jwt" as any,
     maxAge: 30 * 24 * 60 * 60, //30일
@@ -45,7 +45,7 @@ export const authOptions = {
       return session as any;
     },
 
-    async jwt({ token, account, profile,user }: any) {
+    async jwt({ token, account, profile, user }: any) {
       // console.log("auth jwt : ", token, account, profile);
 
       if (account) {

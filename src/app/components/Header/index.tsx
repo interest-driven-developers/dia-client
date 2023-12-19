@@ -5,6 +5,7 @@ import { useRouter, usePathname } from "next/navigation";
 import LoginButton from "./Components/LoginButton";
 import Image from "next/image";
 import ProfileToolbar from "./Components/ProfileToolbar";
+import Link from "next/link";
 interface HeaderProps {
   session: any;
 }
@@ -47,12 +48,12 @@ export default function Header({ session }: HeaderProps) {
               >
                 홈
               </a>
-              <a
+              <Link
                 href="/solve"
                 className="text-gray-900 hover:text-indigo-600 px-3 py-5 rounded-md text-sm font-medium"
               >
                 모든 문제
-              </a>
+              </Link>
               {/* <a
                 href="/mockinterview"
                 className="text-gray-900 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium"

@@ -18,5 +18,6 @@ const nextConfig = {
     NEXT_PUBLIC_SERVER_URL: process.env.NEXT_PUBLIC_SERVER_URL,
     NEXT_PUBLIC_CLOUDFRONT_URL: process.env.NEXT_PUBLIC_CLOUDFRONT_URL,
   },
+  trailingSlash: true,
 };
 module.exports = nextConfig;
