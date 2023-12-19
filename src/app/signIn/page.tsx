@@ -5,7 +5,8 @@ export default async function Home() {
 
   return (
     <>
-      <Login providers={providers} />
+      {/* <Login providers={providers} /> */}
+      <Login  />
     </>
   );
 }
