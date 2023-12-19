@@ -56,7 +56,7 @@ export default function ScriptDisplay({
             </div>
           </>
         ) : (
-          <p className="whitespace-pre-wrap ">
+          <div className="whitespace-pre-wrap ">
             {script ? (
               <p>{script}</p>
             ) : (
@@ -72,7 +72,7 @@ export default function ScriptDisplay({
                 </p>
               </div>
             )}
-          </p>
+          </div>
         )}
       </div>
     </>

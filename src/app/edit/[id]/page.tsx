@@ -2,6 +2,9 @@ import { Metadata } from "next";
 import MarkdownEditor from "./components/MarkdownEditor";
 import { getQuestionDetails } from "@/app/api/getQuestionDetails";
 export const dynamic = "force-dynamic";
+export function generateStaticParams() {
+  return [{ id: "1" }, { id: "2" }, { id: "3" }];
+}
 
 export const generateMetadata = async ({ params }: any): Promise<Metadata> => {
   const data = await getQuestionDetails(params.id);
