@@ -5,6 +5,7 @@ import Header from "./components/Header";
 import { getServerSession } from "next-auth";
 import { authOptions } from "./api/auth/[...nextauth]/route";
 import AuthSession from "./api/auth/AuthSession";
+import { LayoutProvider } from "./utils/LayoutProvider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -17,15 +18,16 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  // let session = await getServerSession(authOptions);
+  let session = await getServerSession(authOptions);
+
   return (
     <html lang="en">
-      <AuthSession>
-        <body className={inter.className}>
-          <Header />
-          {children}
-        </body>
-      </AuthSession>
+      <body className={inter.className}>
+        <AuthSession>
+          <LayoutProvider session={session}>{children}</LayoutProvider>
+          {/* <Header session={session} /> */}
+        </AuthSession>
+      </body>
     </html>
   );
 }
