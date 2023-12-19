@@ -10,7 +10,7 @@ import QuestionInfo from "../QuestionInfo";
 import { Question } from "@/types/Question";
 import { VoiceType } from "@/types/Voice";
 interface MainContainerProps {
-  question: Question;
+  question: any;
   voices: VoiceType[];
 }
 export default function MainContainer({
