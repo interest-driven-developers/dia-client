@@ -42,7 +42,7 @@ export default function MainContainer({
   };
   return (
     <>
-      <h1 className="text-3xl font-sans mt-5 text-gray-500">
+      <h1 className="text-3xl text-semibold font-sans mt-5 text-black">
         {question.title}
       </h1>
       <ViewComponent></ViewComponent>

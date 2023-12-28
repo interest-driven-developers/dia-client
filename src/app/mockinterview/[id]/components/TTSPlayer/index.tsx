@@ -1,13 +1,15 @@
 'use client'
 import { VoiceType } from "@/types/Voice";
 import React, { useState, useRef, useEffect } from "react";
+import { start } from "repl";
 
 interface TTSPlayerProps {
   isRecording: boolean;
   voices: VoiceType[];
+  startSpeechToText: () => void;
 }
 
-export default function TTSPlayer({ isRecording, voices }: TTSPlayerProps) {
+export default function TTSPlayer({ isRecording, voices, startSpeechToText }: TTSPlayerProps) {
 
 
   const audio1Ref = useRef<HTMLAudioElement | null>(null);
@@ -45,6 +47,7 @@ export default function TTSPlayer({ isRecording, voices }: TTSPlayerProps) {
     // 첫 번째 MP3 파일 재생이 끝나면 두 번째 MP3 파일 실행
     setTimeout(() => {
       playAudio2();
+      startSpeechToText();
     }, 1000);
   };
 

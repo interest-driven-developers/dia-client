@@ -16,6 +16,7 @@ export default function InterViewGuidance({
 }: InterViewGuidanceProps) {
   //   const [results, setResults] = useState<ResultType[]>([]);
   const [isDone, setIsDone] = useState<boolean>(false);
+  const [isStart, setIsStart] = useState<boolean>(false);
   const {
     error,
     interimResult,
@@ -30,7 +31,9 @@ export default function InterViewGuidance({
   });
 
   if (error) return <p>Web Speech API is not available in this browser 🤷‍</p>;
-
+  const handleStart = () => {
+    setIsStart(!isStart);
+  };
   const handleStop = () => {
     setTimeout(() => {
       stopSpeechToText();
@@ -55,22 +58,23 @@ export default function InterViewGuidance({
       <p className="text-lg text-center mb-8 text-gray-500">
         버튼을 클릭하면 면접이 시작됩니다. <br />
         차분한 마음으로 대기해주시고, <br />
-        면접관의 질문이 나온 후 {`"삐"`} 소리가 나오면 질문에 대한 답변을 시작해주세요.
+        면접관의 질문이 나온 후 {`"삐"`} 소리가 나오면 질문에 대한 답변을
+        시작해주세요.
       </p>
 
       <div>
         <button
           className={`mt-3 w-full ${
-            isRecording
+            isStart
               ? "bg-red-500 hover:bg-red-700"
               : "bg-indigo-500 hover:bg-indigo-700"
           } text-white py-2 px-4 rounded-xl shadow-md focus:outline-none`}
-          onClick={isRecording ? handleStop : startSpeechToText}
+          onClick={isStart ? handleStop : handleStart}
         >
-          {isRecording ? "모의면접 종료 ✋" : "모의면접 시작 🗣️"}
+          {isStart ? "모의면접 종료 ✋" : "모의면접 시작 🗣️"}
         </button>
 
-        <div className={`flex justify-center mt-2 ${!isRecording && "hidden"}`}>
+        <div className={`flex justify-center mt-2 ${!isStart && "hidden"}`}>
           <MicrophoneIcon
             className={"w-7 h-7 text-red-500 animate-flash"}
           ></MicrophoneIcon>
@@ -82,7 +86,11 @@ export default function InterViewGuidance({
           {interimResult && <li>{interimResult}</li>} */}
         </ul>
         {/* {isDone && <div>{interimResult && <li>{interimResult}</li>}</div>} */}
-        <TTSPlayer isRecording={isRecording} voices={voices}></TTSPlayer>
+        <TTSPlayer
+          isRecording={isStart}
+          voices={voices}
+          startSpeechToText={startSpeechToText}
+        ></TTSPlayer>
       </div>
     </div>
   );
