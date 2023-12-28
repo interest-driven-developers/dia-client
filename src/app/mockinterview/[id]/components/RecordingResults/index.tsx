@@ -12,6 +12,7 @@ export default function RecordingResults({
   transcripts,
   handleRestartRecording,
 }: RecordingResultsProps) {
+  const handleSaveScript = () => {};
   return (
     <div className="w-full">
       <div className="grid grid-cols-4 p-4 gap-2">
@@ -42,7 +43,7 @@ export default function RecordingResults({
           // onClick={handleSaveScript}
           className="bg-emerald-500 hover:bg-emerald-700 text-white font-bold py-2 px-4 rounded-md focus:outline-none"
         >
-          결과 저장 💾
+          결과 저장 💾 (구현중)
         </button>
       </div>
     </div>
