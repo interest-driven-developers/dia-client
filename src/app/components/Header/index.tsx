@@ -59,7 +59,7 @@ export default function Header({ session }: HeaderProps) {
               >
                 모의면접
               </a> */}
-              {session && session.user ? (
+              {/* {session && session.user ? (
                 <>
                   <div
                     className="mt-2 cursor-pointer hover:opacity-80"
@@ -82,7 +82,7 @@ export default function Header({ session }: HeaderProps) {
                 </>
               ) : (
                 <LoginButton></LoginButton>
-              )}
+              )} */}
             </div>
           </div>
         </div>

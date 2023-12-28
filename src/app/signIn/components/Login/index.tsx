@@ -18,7 +18,7 @@ export default function Login() {
   useEffect(() => {
     (async () => {
       const res = await getProviders();
-      console.log(res);
+      // console.log(res);
       setProviders(res as any);
     })();
   }, []);

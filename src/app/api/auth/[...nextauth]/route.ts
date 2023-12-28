@@ -5,9 +5,9 @@ import { Pool } from "pg";
 
 const pool = new Pool({
   host: process.env.AWS_RDS_URI,
-  user: "front",
-  database: "dia_poc",
-  password: "1q2w3e4r!@",
+  user: process.env.AWS_RDS_USER,
+  database: process.env.AWS_RDS_DB,
+  password: process.env.AWS_RDS_PASSWORD,
   port: 5432, // RDS 기본 포트
   max: 20,
   idleTimeoutMillis: 30000,

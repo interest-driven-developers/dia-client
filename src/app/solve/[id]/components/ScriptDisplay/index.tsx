@@ -1,12 +1,13 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { CheckCircleIcon, XCircleIcon } from "@heroicons/react/24/solid";
-interface ScriptDisplayProps {
+import Spinner from "@/app/components/Spinner";
+import Link from "next/link";
+export interface ScriptDisplayProps {
   isEditing: boolean;
   setIsEditing: any;
   id: number;
 }
-import Spinner from "@/app/components/Spinner";
 export default function ScriptDisplay({
   isEditing,
   setIsEditing,
@@ -60,17 +61,16 @@ export default function ScriptDisplay({
             {script ? (
               <p>{script}</p>
             ) : (
-              <div
-                onClick={() => setIsEditing(true)}
-                className="flex h justify-center cursor-pointer hover:opacity-50"
-              >
-                <p className="text-gray-500">
-                  스크립트가 작성되지 않았습니다. <br />
-                  지금 바로{" "}
-                  <span className="animate-pulse text-indigo-500">작성</span>
-                  해보세요✏️
-                </p>
-              </div>
+              <Link href={`/edit/${id}`}>
+                <div className="flex h justify-center cursor-pointer hover:opacity-50">
+                  <p className="text-gray-500">
+                    스크립트가 작성되지 않았습니다. <br />
+                    지금 바로{" "}
+                    <span className="animate-pulse text-indigo-500">작성</span>
+                    해보세요✏️
+                  </p>
+                </div>
+              </Link>
             )}
           </div>
         )}
