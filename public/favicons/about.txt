@@ -1,0 +1,6 @@
+This favicon was generated using the following font:
+
+- Font Title: Megrim
+- Font Author: Copyright (c) 2010, 2011 by Daniel Johnson. Released under the terms of the SIL Open Font License.
+- Font Source: http://fonts.gstatic.com/s/megrim/v16/46kulbz5WjvLqJZlbWXgd0RY1g.ttf
+- Font License: SIL Open Font License, 1.1 (http://scripts.sil.org/OFL))
