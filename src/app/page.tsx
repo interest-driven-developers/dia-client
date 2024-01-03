@@ -3,20 +3,18 @@ import Image from "next/image";
 import Link from "next/link";
 import { getServerSession } from "next-auth";
 import { authOptions } from "./api/auth/[...nextauth]/route";
+import Intro from "./components/Intro";
 export default async function Home() {
   const title = "DIA (Developer Interview Assistant)";
   const description =
     "DIA는 개발자 면접 도우미 입니다. 취업,이직을 위한 코딩테스트 앱은 많지만 면접 준비를 위한 앱은 없다는 것에서 시작했습니다. 개발자들이 좀더 실전적인 면접 연습을 할수 있게 돕는것이 목표입니다";
   // let session = await getServerSession(authOptions);
   return (
-    <main className="h-screen flex flex-col justify-center items-center gap-y-7 max-w-3xl mx-auto">
-      {/* 텍스트를 가운데로 정렬 */}
-      <span className="text-3xl text-center custom-color font-mono">
+    <main className="flex flex-col justify-center items-center h-full w-full">
+      {/* <span className="text-3xl text-center custom-color font-mono">
         {title}
       </span>
       <p className="mt-5">{description}</p>
-
-      {/* 이미지 추가 예시 */}
       <div className="mt-10 gap-12 flex justify-center">
         <div>
           <Image
@@ -69,7 +67,8 @@ export default async function Home() {
             질문에 해당하는 스크립트 작성하기 ✏️
           </button>
         </Link>
-      </div>
+      </div> */}
+      <Intro />
     </main>
   );
 }
