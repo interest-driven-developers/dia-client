@@ -26,7 +26,8 @@
     "react": "^18",
     "react-dom": "^18",
     "react-hook-speech-to-text": "^0.8.0",
-    "tailwind-merge": "^2.1.0"
+    "tailwind-merge": "^2.1.0",
+    "typed.js": "^2.1.0"
   },
   "devDependencies": {
     "@types/jest": "^29.5.8",
