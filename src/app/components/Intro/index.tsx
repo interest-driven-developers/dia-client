@@ -29,10 +29,12 @@ export default function Intro() {
           <div className="grid items-center gap-6 lg:grid-cols-[1fr_500px] lg:gap-12 xl:grid-cols-[1fr_550px]">
             <Image
               alt="Voice Recognition"
-              className="mx-auto aspect-video overflow-hidden rounded-xl object-cover object-center sm:w-full lg:order-last"
-              height="310"
+              className="mx-auto h-auto w-full aspect-video overflow-hidden rounded-xl object-cover object-center sm:w-full lg:order-last"
               src="/images/intro/voice-recognition.png"
-              width="550"
+              height="0"
+              width="0"
+              sizes="100vw"
+              priority={true}
             />
             <div className="flex flex-col justify-center space-y-4">
               <div className="space-y-2">
@@ -53,10 +55,11 @@ export default function Intro() {
           <div className="grid items-center gap-6 lg:grid-cols-[1fr_500px] lg:gap-12 xl:grid-cols-[1fr_550px]">
             <Image
               alt="Text-to-Speech"
-              className="mx-auto aspect-video overflow-hidden rounded-xl object-cover object-center sm:w-full"
-              height="310"
+              className="mx-auto h-auto w-full  aspect-video overflow-hidden rounded-xl object-cover object-center sm:w-full"
               src="/images/intro/panic-interviewer.jpeg"
-              width="550"
+              height="0"
+              width="0"
+              sizes="100vw"
             />
             <div className="flex flex-col justify-center space-y-4">
               <div className="space-y-2">
@@ -77,10 +80,11 @@ export default function Intro() {
           <div className="grid items-center gap-6 lg:grid-cols-[1fr_500px] lg:gap-12 xl:grid-cols-[1fr_550px]">
             <Image
               alt="Mock Interview"
-              className="mx-auto aspect-video overflow-hidden rounded-xl object-cover object-center sm:w-full lg:order-last"
-              height="310"
+              className="mx-auto w-full h-auto aspect-video overflow-hidden rounded-xl object-cover object-center sm:w-full lg:order-last"
               src="/images/intro/mock-interview.png"
-              width="550"
+              height="0"
+              width="0"
+              sizes="100vw"
             />
             <div className="flex flex-col justify-center space-y-4">
               <div className="space-y-2">
