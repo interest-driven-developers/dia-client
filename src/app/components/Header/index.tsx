@@ -102,13 +102,14 @@ export default function Header({ session }: HeaderProps) {
               )} */}
             </div>
           </div>
-          <ToggleButton onClick={handleMenuClick}></ToggleButton>
+          <ToggleButton onClick={handleMenuClick} toggleState={isMenuOpen} ></ToggleButton>
         </div>
         {/* 모바일 메뉴 */}
         {isMenuOpen && (
           <ToggleMenu
             isToggleMenuOpen={isMenuOpen}
             animationClass={animationClass}
+            onClick={hideMenu}
           ></ToggleMenu>
         )}
       </nav>

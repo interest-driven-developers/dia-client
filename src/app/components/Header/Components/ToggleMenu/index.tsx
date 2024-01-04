@@ -3,6 +3,7 @@ import Link from "next/link";
 type ToggleMenuProps = {
   isToggleMenuOpen: boolean;
   animationClass: string;
+  onClick: () => void;
 };
 
 export default function ToggleMenu(props: ToggleMenuProps) {
@@ -17,12 +18,14 @@ export default function ToggleMenu(props: ToggleMenuProps) {
         <Link
           className="flex w-full items-center py-2 text-lg font-semibold text-slate-600"
           href="/"
+          onClick={props.onClick}
         >
           홈
         </Link>
         <Link
           className="flex w-full items-center py-2 text-lg font-semibold text-slate-600"
           href="/solve"
+          onClick={props.onClick}
         >
           모든 문제
         </Link>
