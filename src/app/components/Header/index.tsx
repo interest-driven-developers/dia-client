@@ -6,6 +6,8 @@ import LoginButton from "./Components/LoginButton";
 import Image from "next/image";
 import ProfileToolbar from "./Components/ProfileToolbar";
 import Link from "next/link";
+import ToggleButton from "./Components/ToggleButton";
+import ToggleMenu from "./Components/ToggleMenu";
 interface HeaderProps {
   session: any;
 }
@@ -14,6 +16,7 @@ export default function Header({ session }: HeaderProps) {
   const router = useRouter();
   const pathname = usePathname();
   const [isProfileToolbarOpen, setIsProfileToolbarOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const handleLogoClick = () => {
     if (pathname === "/") {
       location.reload(); // Reload the current page if already on the main page
@@ -21,7 +24,9 @@ export default function Header({ session }: HeaderProps) {
       router.push("/"); // Navigate to the main page if on a different page
     }
   };
-
+  const handleMenuClick = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
   return (
     <header className="bg-white shadow">
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -40,7 +45,7 @@ export default function Header({ session }: HeaderProps) {
           </div>
           {/* 메뉴 */}
           <div className="hidden md:block">
-            <div className="ml-10 flex  space-x-4">
+            <div className="ml-10 flex justify-items-end justify-self-end  space-x-4">
               <a
                 onClick={handleLogoClick}
                 className="text-gray-900 hover:text-indigo-600 px-3 py-5 rounded-md text-sm font-medium cursor-pointer"
@@ -85,7 +90,10 @@ export default function Header({ session }: HeaderProps) {
               )} */}
             </div>
           </div>
+          <ToggleButton onClick={handleMenuClick}></ToggleButton>
         </div>
+        {/* 모바일 메뉴 */}
+        <ToggleMenu></ToggleMenu>
       </nav>
     </header>
   );
