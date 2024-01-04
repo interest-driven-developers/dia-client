@@ -23,10 +23,15 @@ const config: Config = {
           "0%": { opacity: "0", transform: "translateX(20px)" },
           "100%": { opacity: "1", transform: "translateX(0)" },
         },
+        fadeOutRight: {
+          "0%": { opacity: "1", transform: "translateX(0)" },
+          "100%": { opacity: "0", transform: "translateX(20px)" },
+        },
       },
       animation: {
         flash: "flash 2s infinite",
         fadeInRight: "fadeInRight 1s ease-in-out",
+        fadeOutRight: "fadeOutRight 1s ease-out",
       },
       colors: {
         primary: "#6366f1",

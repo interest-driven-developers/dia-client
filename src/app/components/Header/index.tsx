@@ -17,6 +17,7 @@ export default function Header({ session }: HeaderProps) {
   const pathname = usePathname();
   const [isProfileToolbarOpen, setIsProfileToolbarOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [animationClass, setAnimationClass] = useState("");
   const handleLogoClick = () => {
     if (pathname === "/") {
       location.reload(); // Reload the current page if already on the main page
@@ -25,7 +26,18 @@ export default function Header({ session }: HeaderProps) {
     }
   };
   const handleMenuClick = () => {
-    setIsMenuOpen(!isMenuOpen);
+    if (isMenuOpen) {
+      hideMenu();
+    } else {
+      setAnimationClass("animate-fadeInRight");
+      setIsMenuOpen(true);
+    }
+  };
+
+  const hideMenu = async () => {
+    setAnimationClass("animate-fadeOutRight");
+    await new Promise((r) => setTimeout(r, 800));
+    setIsMenuOpen(false);
   };
   return (
     <header className="bg-white shadow">
@@ -93,7 +105,12 @@ export default function Header({ session }: HeaderProps) {
           <ToggleButton onClick={handleMenuClick}></ToggleButton>
         </div>
         {/* 모바일 메뉴 */}
-        <ToggleMenu></ToggleMenu>
+        {isMenuOpen && (
+          <ToggleMenu
+            isToggleMenuOpen={isMenuOpen}
+            animationClass={animationClass}
+          ></ToggleMenu>
+        )}
       </nav>
     </header>
   );
