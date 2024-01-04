@@ -19,9 +19,14 @@ const config: Config = {
           "50%": { opacity: "1" },
           "75%": { opacity: "0" },
         },
+        fadeInRight: {
+          "0%": { opacity: "0", transform: "translateX(20px)" },
+          "100%": { opacity: "1", transform: "translateX(0)" },
+        },
       },
       animation: {
         flash: "flash 2s infinite",
+        fadeInRight: "fadeInRight 1s ease-in-out",
       },
       colors: {
         primary: "#6366f1",
