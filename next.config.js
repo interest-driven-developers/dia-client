@@ -8,7 +8,6 @@ const nextConfig = {
         port: "",
       },
     ],
-    allowFutureImage: true,
   },
   env: {
     GITHUB_ID: process.env.GITHUB_ID,
