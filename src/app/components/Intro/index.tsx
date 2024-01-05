@@ -4,7 +4,8 @@ import ServiceIntro from "./components/ServiceIntro";
 import Tag from "../Tag";
 export default function Intro() {
   return (
-    <main className="flex flex-col items-center justify-center w-full gap-10 lg:w-9/12">
+    <>
+    {/* <main className="flex flex-col items-center justify-center w-full gap-10 lg:w-9/12"> */}
       <section className="flex flex-col items-center justify-center py-24 w-full bg-gray-100  ">
         <h1 className="text-2xl text-neutral-600 font-bold tracking-tighter sm:text-l md:text-4xl lg:text-6xl/none ">
           DIA는{" "}
@@ -100,6 +101,6 @@ export default function Intro() {
           </div>
         </div>
       </section>
-    </main>
+    </>
   );
 }
