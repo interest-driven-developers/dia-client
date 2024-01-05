@@ -36,7 +36,7 @@ export default function Header({ session }: HeaderProps) {
 
   const hideMenu = async () => {
     setAnimationClass("animate-fadeOutRight");
-    await new Promise((r) => setTimeout(r, 800));
+    await new Promise((r) => setTimeout(r, 600));
     setIsMenuOpen(false);
   };
   return (
@@ -102,7 +102,10 @@ export default function Header({ session }: HeaderProps) {
               )} */}
             </div>
           </div>
-          <ToggleButton onClick={handleMenuClick} toggleState={isMenuOpen} ></ToggleButton>
+          <ToggleButton
+            onClick={handleMenuClick}
+            toggleState={animationClass}
+          ></ToggleButton>
         </div>
         {/* 모바일 메뉴 */}
         {isMenuOpen && (
