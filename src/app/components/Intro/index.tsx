@@ -6,14 +6,14 @@ export default function Intro() {
   return (
     <main className="flex flex-col items-center justify-center w-full gap-10 lg:w-9/12">
       <section className="flex flex-col items-center justify-center py-24 w-full bg-gray-100  ">
-        <h1 className="text-3xl text-neutral-600 font-bold tracking-tighter sm:text-l md:text-4xl lg:text-6xl/none ">
+        <h1 className="text-2xl text-neutral-600 font-bold tracking-tighter sm:text-l md:text-4xl lg:text-6xl/none ">
           DIA는{" "}
           <span className="custom-color">
             <ServiceIntro></ServiceIntro>
           </span>
           입니다
         </h1>
-        <p className="mx-auto max-w-[700px] text-gray-500 text-xs md:text-xl ">
+        <p className="mx-auto max-w-[700px] text-gray-500 text-xs sm:text-xl ">
           현재 베타 버전으로 모의 면접 기능만을 제공하고 있습니다.
         </p>
         <Link
