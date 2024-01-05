@@ -19,14 +19,9 @@ export default function QuestionContainer({
   const [isEditing, setIsEditing] = useState<boolean>(false);
   return (
     <>
-      <div className="mt-5 flex justify-between items-center">
-        <h1 className="text-2xl font-sans text-black font-semibold">{title}</h1>
+      <div className="flex justify-between items-center">
+        <h1 className="text-3xl font-bold  text-slate-700">{title}</h1>
         <div className="flex">
-          {/* <Link href={`/mockinterview/${id}`}>
-            <div className="p-1 rounded-lg hover:bg-gray-100">
-              <MicrophoneIcon className="w-5 h-5 text-red-500"></MicrophoneIcon>
-            </div>
-          </Link> */}
           <Link href={`/edit/${id}`}>
             <div
               className="p-1 rounded-lg hover:bg-gray-100 cursor-pointer"
@@ -38,11 +33,10 @@ export default function QuestionContainer({
           </Link>
         </div>
       </div>
-      <div className="mb-6">
-        <p className="text-gray-500 text-xs">
-          스크립트를 작성 및 모의 면접을 진행해보세요🧐
-        </p>
-      </div>
+      <p className="text-gray-500 text-xs -mt-4">
+        스크립트를 작성 및 모의 면접을 진행해보세요🧐
+      </p>
+      <div className="border-t border-gray-300 "></div>
       <ScriptDisplay
         id={id}
         isEditing={isEditing}
