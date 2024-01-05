@@ -42,7 +42,7 @@ export default function Pagination(props: PaginationProps) {
   }
 
   return (
-    <div className="flex items-center justify-center mt-12 gap-4">
+    <div className="flex  items-center justify-center gap-x-4">
       <Link className="cursor-pointer hover:opacity-70" href="#">
         <ChevronDoubleLeftIcon className="h-5 w-5 text-indigo-400 rounded-3xl p-1 bg-gray-100"></ChevronDoubleLeftIcon>
       </Link>

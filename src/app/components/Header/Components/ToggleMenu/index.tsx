@@ -9,7 +9,7 @@ type ToggleMenuProps = {
 export default function ToggleMenu(props: ToggleMenuProps) {
   return (
     <div
-      className={`absolute right-1 w-2/3 h-1/2 bg-white shadow-lg rounded-md p-6 block md:hidden ${props.animationClass}`}
+      className={`absolute right-1 w-2/3 h-1/2 z-50 bg-white shadow-lg rounded-md p-6 block md:hidden ${props.animationClass}`}
     >
       <span className="items-center mb-5 text-3xl font-bold custom-color cursor-pointer">
         DIA
