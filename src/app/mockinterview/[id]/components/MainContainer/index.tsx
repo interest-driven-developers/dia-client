@@ -1,13 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import Link from "next/link";
-import HistoryList from "../../../components/HistoryList";
-import { PencilIcon, MicrophoneIcon } from "@heroicons/react/24/solid";
-import Script from "next/script";
-import ScriptDisplay from "@/app/solve/[id]/components/ScriptDisplay";
 import MockTest from "../MockTest";
 import QuestionInfo from "../QuestionInfo";
-import { Question } from "@/types/Question";
 import { VoiceType } from "@/types/Voice";
 interface MainContainerProps {
   question: any;
