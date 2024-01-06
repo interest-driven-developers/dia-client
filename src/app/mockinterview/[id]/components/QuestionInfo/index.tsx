@@ -2,13 +2,17 @@
 import React, { useState, useEffect } from "react";
 import HistoryList from "../../../components/HistoryList";
 import { PencilIcon, MicrophoneIcon } from "@heroicons/react/24/solid";
-import ScriptDisplay from "@/app/solve/[id]/components/ScriptDisplay";
+import ScriptDisplay from "@/app/solve/[id]/components/ScriptContainer";
 interface QuestionInfoProps {
   historyList: any;
   pk: number;
   setTestStart: (id: number) => void;
 }
-export default function QuestionInfo({ historyList, pk, setTestStart }: QuestionInfoProps) {
+export default function QuestionInfo({
+  historyList,
+  pk,
+  setTestStart,
+}: QuestionInfoProps) {
   const [isCategory, setIsCategory] = useState(0); // 0: 히스토리 보기, 1: 스크립트 보기
   const [isEditing, setIsEditing] = useState<boolean>(false);
 
@@ -62,7 +66,9 @@ export default function QuestionInfo({ historyList, pk, setTestStart }: Question
 
       <button
         className="mt-3 w-full bg-indigo-600 text-white py-2 px-4 rounded-xl shadow-md hover:bg-indigo-700 focus:outline-none"
-        onClick={() => {setTestStart(1)}}
+        onClick={() => {
+          setTestStart(1);
+        }}
       >
         면접 진행 🔥
       </button>
