@@ -19,5 +19,8 @@ const nextConfig = {
     NEXT_PUBLIC_CLOUDFRONT_URL: process.env.NEXT_PUBLIC_CLOUDFRONT_URL,
   },
   trailingSlash: true,
+  experimental: {
+    scrollRestoration: true,
+  },
 };
 module.exports = nextConfig;
