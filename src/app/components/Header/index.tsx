@@ -40,7 +40,7 @@ export default function Header({ session }: HeaderProps) {
     setIsMenuOpen(false);
   };
   return (
-    <header className="bg-white shadow sm:w-1/2 sm:mx-auto">
+    <header className="bg-white sm:w-1/2 sm:mx-auto">
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* 로고 */}

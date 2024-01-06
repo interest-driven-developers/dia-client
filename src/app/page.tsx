@@ -8,7 +8,7 @@ export default async function Home() {
 
   // let session = await getServerSession(authOptions);
   return (
-    <main className="flex flex-col justify-center mx-auto items-center w-full gap-10 sm:w-2/3">
+    <main className="flex flex-col justify-center mx-auto items-center w-full gap-10 sm:w-1/2">
       <Intro />
     </main>
   );
