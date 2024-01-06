@@ -40,19 +40,28 @@ export default function Header({ session }: HeaderProps) {
     setIsMenuOpen(false);
   };
   return (
-    <header className="bg-white sm:w-1/2 sm:mx-auto">
-      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <header className="bg-white shadow-sm w-screen sm:mx-auto">
+      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 sm:w-1/2">
         <div className="flex items-center justify-between h-16">
           {/* 로고 */}
           <div className="flex flex-shrink-0">
-            <a
+            {/* <a
               onClick={handleLogoClick}
               className="text-3xl font-bold custom-color cursor-pointer"
             >
               DIA
-            </a>
-            <div className="h-7 ml-2 mt-1 items-self-center border-solid border-2 border-indigo-500 rounded-sm">
-              <span className="p-0.5 text-sm text-gray-500">Beta</span>
+            </a> */}
+            <Image
+              className="h-10 w-10 rounded-full"
+              width={100}
+              height={100}
+              src="/images/logo.png"
+              alt=""
+            />
+            <div className="h-7 ml-2 mt-1 items-self-center ">
+              <span className="p-0.5 text-xs/relaxed text-bold font-light text-slate-400">
+                Beta
+              </span>
             </div>
           </div>
           {/* 메뉴 */}
