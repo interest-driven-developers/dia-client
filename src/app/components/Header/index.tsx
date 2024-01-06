@@ -58,10 +58,10 @@ export default function Header({ session }: HeaderProps) {
               src="/images/logo.png"
               alt=""
             />
-            <div className="h-7 ml-2 mt-1 items-self-center ">
-              <span className="p-0.5 text-xs/relaxed text-bold font-light text-slate-400">
+            <div className="h-6 ml-2 mt-2 items-self-center border-indigo-500 border rounded-sm">
+              <h1 className="p-0.5 text-xs/relaxed text-bold font-light text-slate-400">
                 Beta
-              </span>
+              </h1>
             </div>
           </div>
           {/* 메뉴 */}
