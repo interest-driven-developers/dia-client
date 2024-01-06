@@ -27,12 +27,16 @@ const config: Config = {
           "0%": { opacity: "1", transform: "translateX(0)" },
           "100%": { opacity: "0", transform: "translateX(20px)" },
         },
-
+        bounceLeft: {
+          "0%, 100%": { transform: "translateX(0)" },
+          "50%": { transform: "translateX(-20px)" },
+        },
       },
       animation: {
         flash: "flash 2s infinite",
         fadeInRight: "fadeInRight 1s ease-in-out",
         fadeOutRight: "fadeOutRight 1s ease-out",
+        bounceLeft: "bounceLeft 2s infinite",
       },
       colors: {
         primary: "#6366f1",
