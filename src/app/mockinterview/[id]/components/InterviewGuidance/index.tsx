@@ -4,7 +4,7 @@ import Image from "next/image";
 import useSpeechToText, { ResultType } from "react-hook-speech-to-text";
 import { MicrophoneIcon } from "@heroicons/react/24/solid";
 import TTSPlayer from "../TTSPlayer";
-import { VoiceType } from "@/types/Voice";
+import { VoiceType } from "@/app/types/Voice";
 interface InterViewGuidanceProps {
   handleView: (view: number) => void;
   handleResults: (results: string) => void;
@@ -12,7 +12,9 @@ interface InterViewGuidanceProps {
 }
 
 export default function InterViewGuidance({
-  handleView, handleResults,voices
+  handleView,
+  handleResults,
+  voices,
 }: InterViewGuidanceProps) {
   //   const [results, setResults] = useState<ResultType[]>([]);
   const [isDone, setIsDone] = useState<boolean>(false);

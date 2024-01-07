@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import type { User } from "@/types/User";
+import type { User } from "@/app/types/User";
 import { useRouter, usePathname } from "next/navigation";
 import LoginButton from "./Components/LoginButton";
 import Image from "next/image";

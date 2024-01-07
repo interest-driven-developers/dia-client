@@ -1,5 +1,5 @@
-'use client'
-import { VoiceType } from "@/types/Voice";
+"use client";
+import { VoiceType } from "@/app/types/Voice";
 import React, { useState, useRef, useEffect } from "react";
 import { start } from "repl";
 
@@ -9,9 +9,11 @@ interface TTSPlayerProps {
   startSpeechToText: () => void;
 }
 
-export default function TTSPlayer({ isRecording, voices, startSpeechToText }: TTSPlayerProps) {
-
-
+export default function TTSPlayer({
+  isRecording,
+  voices,
+  startSpeechToText,
+}: TTSPlayerProps) {
   const audio1Ref = useRef<HTMLAudioElement | null>(null);
   const audio2Ref = useRef<HTMLAudioElement | null>(null);
 

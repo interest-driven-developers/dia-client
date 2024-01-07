@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import HistoryContainer from "./components/HistoryContainer";
 import HistoryModal from "./components/HistoryModal";
-import { HistoryType } from "@/types/History";
+import { HistoryType } from "@/app/types/History";
 const dummmyData = [
   {
     id: 1,
@@ -29,7 +29,7 @@ export default function HistoryList() {
     setThisHistory(history || null);
     setIsViewHistoryModal(true);
   };
-    const handleCloseHistoryModal = () => {
+  const handleCloseHistoryModal = () => {
     setIsViewHistoryModal(false);
   };
   return (

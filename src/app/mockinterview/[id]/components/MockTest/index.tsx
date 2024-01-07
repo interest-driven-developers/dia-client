@@ -2,7 +2,7 @@
 import React, { useState, useEffect, use } from "react";
 import RecordingResults from "../RecordingResults";
 import InterViewGuidance from "../InterviewGuidance";
-import { VoiceType } from "@/types/Voice";
+import { VoiceType } from "@/app/types/Voice";
 
 interface MockTestProps {
   pk: number;

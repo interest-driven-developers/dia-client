@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { signOut } from "next-auth/react";
 import Image from "next/image";
-import type { User } from "@/types/User";
+import type { User } from "@/app/types/User";
 interface ProfileToolbarProps {
   isOpen: boolean;
   user: User;

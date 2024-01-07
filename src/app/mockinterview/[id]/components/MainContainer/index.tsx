@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import MockTest from "../MockTest";
 import QuestionInfo from "../QuestionInfo";
-import { VoiceType } from "@/types/Voice";
+import { VoiceType } from "@/app/types/Voice";
 interface MainContainerProps {
   question: any;
   voices: VoiceType[];
