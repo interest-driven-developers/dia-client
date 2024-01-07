@@ -3,16 +3,19 @@ import React, { useState, useEffect } from "react";
 import { CheckCircleIcon, XCircleIcon } from "@heroicons/react/24/solid";
 import Spinner from "@/app/components/Spinner";
 import Link from "next/link";
-export interface ScriptDisplayProps {
+import CustomSeparator from "@/app/ui/CustomSeparator";
+import PointSpeechBubble from "@/app/ui/PointSpeechBubble";
+export interface ScriptSectionProps {
   isEditing: boolean;
   setIsEditing: any;
   id: number;
 }
-export default function ScriptDisplay({
+
+export default function ScriptSection({
   isEditing,
   setIsEditing,
   id,
-}: ScriptDisplayProps) {
+}: ScriptSectionProps) {
   const [script, setScript] = useState<string>(""); // 스크립트
   const [isLoading, setIsLoading] = useState<boolean>(true);
   // 페이지 로딩 시, 로컬 스토리지에서 스크립트 불러오기
@@ -31,9 +34,13 @@ export default function ScriptDisplay({
     setIsEditing(false);
   };
   return (
-    <>
-      <p className="text-xs font-sans text-gray-500 -mb-1.5">스크립트</p>
-      <div className="p-3 w-full mt-2 bg-white rounded-lg shadow-md divide-y border-dashed border-2 border-indigo-500 ">
+    <section className="flex flex-col gap-y-2">
+      <h1 className="text-lg sm:text-2xl font-bold  text-slate-700">
+        작성한 스크립트
+      </h1>
+      <CustomSeparator className="w-32"></CustomSeparator>
+      <div className="w-full leading-1.5 p-4 bg-indigo-100 text-indigo-800 rounded-e-xl rounded-es-xl">
+        {/* <div className="p-3 w-full  bg-white rounded-md shadow-sm divide-y border border-indigo-500 "> */}
         {isLoading ? (
           <div className="w-full h-12 flex justify-center justify-items-center mt-2 r-8">
             <Spinner />
@@ -59,11 +66,11 @@ export default function ScriptDisplay({
         ) : (
           <div className="whitespace-pre-wrap ">
             {script ? (
-              <p>{script}</p>
+              <p className="text-base font-bold">{script}</p>
             ) : (
               <Link href={`/edit/${id}`}>
-                <div className="flex h justify-center cursor-pointer hover:opacity-50">
-                  <p className="text-gray-500">
+                <div className="flex justify-center cursor-pointer hover:opacity-50">
+                  <p className="text-base font-bold text-gray-500">
                     스크립트가 작성되지 않았습니다. <br />
                     지금 바로{" "}
                     <span className="animate-pulse text-indigo-500">작성</span>
@@ -75,6 +82,6 @@ export default function ScriptDisplay({
           </div>
         )}
       </div>
-    </>
+    </section>
   );
 }

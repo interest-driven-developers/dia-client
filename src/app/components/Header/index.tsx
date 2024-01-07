@@ -45,19 +45,19 @@ export default function Header({ session }: HeaderProps) {
         <div className="flex items-center justify-between h-16">
           {/* 로고 */}
           <div className="flex flex-shrink-0">
-            {/* <a
+            <a
               onClick={handleLogoClick}
               className="text-3xl font-bold custom-color cursor-pointer"
             >
               DIA
-            </a> */}
-            <Image
+            </a>
+            {/* <Image
               className="h-10 w-10 rounded-full"
               width={100}
               height={100}
               src="/images/logo.png"
               alt=""
-            />
+            /> */}
             <div className="h-6 ml-2 mt-2 items-self-center border-indigo-500 border rounded-sm">
               <h1 className="p-0.5 text-xs/relaxed text-bold font-light text-slate-400">
                 Beta

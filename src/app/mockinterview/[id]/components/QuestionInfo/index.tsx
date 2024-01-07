@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import HistoryList from "../../../components/HistoryList";
 import { PencilIcon, MicrophoneIcon } from "@heroicons/react/24/solid";
-import ScriptDisplay from "@/app/solve/[id]/components/ScriptContainer";
+import ScriptDisplay from "@/app/solve/[id]/components/ScriptSection";
 interface QuestionInfoProps {
   historyList: any;
   pk: number;
