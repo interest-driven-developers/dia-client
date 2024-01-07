@@ -17,7 +17,7 @@ export default function Tag(props: TagProps) {
       case "기타":
         return "bg-gray-300 text-gray-800";
       default:
-        return "bg-indigo-300 text-violet-500";
+        return "bg-gray-300 text-gray-500";
     }
   })();
 
