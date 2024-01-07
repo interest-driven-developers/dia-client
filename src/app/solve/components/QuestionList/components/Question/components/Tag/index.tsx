@@ -23,7 +23,7 @@ export default function Tag(props: TagProps) {
 
   return (
     <span
-      className={`inline-block  text-xs px-2 rounded-full uppercase font-semibold tracking-wide ${tagColor}`}
+      className={`inline-block text-xs px-2 rounded-full uppercase font-semibold tracking-wide ${tagColor}`}
     >
       {props.children}
     </span>

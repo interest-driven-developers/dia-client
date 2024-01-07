@@ -15,6 +15,7 @@ import { ArrowLeftCircleIcon } from "@heroicons/react/20/solid";
 import HistorySection from "../HistorySection";
 import LatestHistory from "../LatestHistory";
 import Tag from "@/app/solve/components/QuestionList/components/Question/components/Tag";
+import SolvingTipsModal from "../SolvingTipsModal";
 interface QuestionContainerProps {
   title: string;
   script: string;
@@ -68,8 +69,14 @@ export default function QuestionContainer({
   const router = useRouter();
   const [isEditing, setIsEditing] = useState<boolean>(false);
   const [historyData, setHistoryData] = useState<any>(dummyHistoryData);
-  const [latestHistory, setLatestHistory] = useState<any>(dummyHistoryData[0].description);
+  const [latestHistory, setLatestHistory] = useState<any>(
+    dummyHistoryData[0].description
+  );
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
+  const solveQuestion = () => {
+    router.push(`/mockinterview/${id}`);
+  };
   return (
     <>
       <div className="flex flex-col gap-4 md:flex-row md:items-center">
@@ -84,7 +91,7 @@ export default function QuestionContainer({
             명의 사용자가 도전하였습니다🔥
           </p>
         </div>
-        <div className="md:ml-auto">
+        <div className="sm:ml-auto">
           <div className="flex gap-3">
             <Tag>Easy</Tag>
             <Tag>Backend</Tag>
@@ -136,11 +143,12 @@ export default function QuestionContainer({
         setIsHistory={setLatestHistory}
       ></HistorySection>
 
-      <Link href={`/mockinterview/${id}`}>
-        <button className="fixed z-50 bottom-4 m-2 p-2 left-0 right-0 w-11/12 sm:w-1/2 mx-auto bg-indigo-600 text-white font-bold py-2 px-4 rounded-lg shadow-md hover:bg-indigo-700 focus:outline-none">
-          문제 풀기 🚀
-        </button>
-      </Link>
+      <button
+        onClick={() => setIsModalOpen(true)}
+        className="fixed z-50 bottom-4 m-2 p-2 left-0 right-0 w-11/12 sm:w-1/2 mx-auto bg-indigo-600 text-white font-bold py-2 px-4 rounded-lg shadow-md hover:bg-indigo-700 focus:outline-none"
+      >
+        문제 풀기 🚀
+      </button>
       <div
         className="mx-auto animate-bounceLeft flex text-indigo-500 hover:opacity-60 cursor-pointer"
         onClick={() => router.back()}
@@ -148,6 +156,13 @@ export default function QuestionContainer({
         <ArrowLeftCircleIcon className="h-5 w-5  mr-1 mt-0.5 " />
         이전 페이지
       </div>
+      {isModalOpen && (
+        <SolvingTipsModal
+          title={title}
+          closeModal={setIsModalOpen}
+          solveQuestion={solveQuestion}
+        ></SolvingTipsModal>
+      )}
     </>
   );
 }
