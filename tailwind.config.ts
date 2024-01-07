@@ -19,6 +19,7 @@ const config: Config = {
           "50%": { opacity: "1" },
           "75%": { opacity: "0" },
         },
+        // fade
         fadeInRight: {
           "0%": { opacity: "0", transform: "translateX(20px)" },
           "100%": { opacity: "1", transform: "translateX(0)" },
@@ -27,6 +28,16 @@ const config: Config = {
           "0%": { opacity: "1", transform: "translateX(0)" },
           "100%": { opacity: "0", transform: "translateX(20px)" },
         },
+        fadeInUp: {
+          "0%": { opacity: "0", transform: "translateY(20px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
+        fadeOutDown: {
+          "0%": { opacity: "1", transform: "translateY(0)" },
+          "100%": { opacity: "0", transform: "translateY(20px)" },
+        },
+
+        // bounce
         bounceLeft: {
           "0%, 100%": { transform: "translateX(0)" },
           "50%": { transform: "translateX(-20px)" },
@@ -36,6 +47,8 @@ const config: Config = {
         flash: "flash 2s infinite",
         fadeInRight: "fadeInRight 1s ease-in-out",
         fadeOutRight: "fadeOutRight 1s ease-out",
+        fadeInUp: "fadeInRight 1s ease-in-out",
+        fadeOutDown: "fadeOutRight 1s ease-out",
         bounceLeft: "bounceLeft 2s infinite",
       },
       colors: {
