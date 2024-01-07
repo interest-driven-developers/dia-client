@@ -9,7 +9,7 @@ export default async function Main({ params }: { params: { id: string } }) {
   const result = await getPracticeDetails(params.id);
 
   return (
-    <main className="h-screen max-w-3xl mx-auto">
+    <main className="flex flex-col gap-4 mx-auto px-4 sm:px-6 py-20 sm:py-5 h-full sm:w-1/2 overflow-y-auto">
       <MainContainer {...result}></MainContainer>
     </main>
   );

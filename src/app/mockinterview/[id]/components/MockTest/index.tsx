@@ -1,8 +1,11 @@
 "use client";
 import React, { useState, useEffect, use } from "react";
 import RecordingResults from "../RecordingResults";
-import InterViewGuidance from "../InterviewGuidance";
 import { VoiceType } from "@/app/types/Voice";
+import dynamic from "next/dynamic";
+const InterViewGuidance = dynamic(() => import("../InterviewGuidance"), {
+  ssr: false,
+});
 
 interface MockTestProps {
   pk: number;

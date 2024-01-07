@@ -1,23 +1,13 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { Question } from "@/app/types/Question";
+
 import Spinner from "@/app/components/Spinner";
 import Link from "next/link";
 interface QuestionListProps {
   questionList: any;
 }
 export default function QuestionList({ questionList }: QuestionListProps) {
-  // const handleScriptInputChange = (event: any) => {
-  //   setScriptText(event.target.value);
-  // };
-  // const handleSaveScript = () => {
-  //   // 스크립트 저장
-  //   // 스크립트 모달 닫기
-  //   // 스크립트 리스트 업데이트
-  // };
-  // const closeScriptModal = () => {
-  //   // 스크립트 모달 닫기
-  // };
+
   return (
     <>
       <h1 className="text-3xl font-sans mt-3 mb-3">문제 별 모의 면접</h1>

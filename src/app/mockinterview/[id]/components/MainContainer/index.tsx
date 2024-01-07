@@ -25,13 +25,7 @@ export default function MainContainer({
       case 1:
         return <MockTest pk={question.pk} voices={voices}></MockTest>;
       default:
-        return (
-          <QuestionInfo
-            historyList={[]}
-            pk={question.pk}
-            setTestStart={setIsView}
-          ></QuestionInfo>
-        );
+        return <MockTest pk={question.pk} voices={voices}></MockTest>;
     }
   };
   return (

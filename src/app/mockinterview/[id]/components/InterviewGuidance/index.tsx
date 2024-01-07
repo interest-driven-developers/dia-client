@@ -73,7 +73,7 @@ export default function InterViewGuidance({
           } text-white py-2 px-4 rounded-xl shadow-md focus:outline-none`}
           onClick={isStart ? handleStop : handleStart}
         >
-          {isStart ? "모의면접 종료 ✋" : "모의면접 시작 🗣️"}
+          {isStart ? "끝내기 ✋" : "시작하기 🗣️"}
         </button>
 
         <div className={`flex justify-center mt-2 ${!isStart && "hidden"}`}>
