@@ -22,5 +22,6 @@ const nextConfig = {
   experimental: {
     scrollRestoration: true,
   },
+  swcMinify: true,
 };
 module.exports = nextConfig;
