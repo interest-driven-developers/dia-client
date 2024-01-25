@@ -22,6 +22,8 @@ const nextConfig = {
   experimental: {
     scrollRestoration: true,
   },
-  swcMinify: true,
+  // swcMinify: true, # nextjs 13 to default
+  poweredByHeader: false,
+  
 };
 module.exports = nextConfig;

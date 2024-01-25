@@ -11,10 +11,13 @@ export interface LayoutProviderProps {
 
 export const LayoutProvider = ({ children, session }: LayoutProviderProps) => {
   const pathname = usePathname();
-  return (
-    <>
-      {pathname !== "/signIn/" && <Header session={session} />}
-      {children}
-    </>
-  );
+const notAllowedPath = ["/signIn/", "/mockinterview/"];
+const isNotAllowed = notAllowedPath.some((path) => pathname.startsWith(path));
+
+return (
+  <>
+    {!isNotAllowed && <Header session={session} />}
+    {children}
+  </>
+);
 };
