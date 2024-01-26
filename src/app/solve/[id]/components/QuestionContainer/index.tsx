@@ -81,7 +81,7 @@ export default function QuestionContainer({
     <>
       <div className="flex flex-col gap-4 md:flex-row md:items-center">
         <div className="flex flex-col gap-4">
-          <h1 className="text-xl sm:text-3xl font-bold text-slate-700 dark:text-slate-100">
+          <h1 className="text-xl sm:text-2xl font-bold text-slate-700 dark:text-slate-100">
             {title}
           </h1>
           <p className="text-gray-500 text-xs -mt-4">
@@ -91,15 +91,14 @@ export default function QuestionContainer({
             명의 사용자가 도전하였습니다🔥
           </p>
         </div>
-        <div className="sm:ml-auto">
-          <div className="flex gap-3">
-            <Tag>Easy</Tag>
-            <Tag>Backend</Tag>
-            <Tag>네카라쿠배</Tag>
-          </div>
+      </div>
+      <div className="">
+        <div className="flex gap-3">
+          <Tag>Easy</Tag>
+          <Tag>Backend</Tag>
+          <Tag>네카라쿠배</Tag>
         </div>
       </div>
-
       <CustomSeparator className="w-10"></CustomSeparator>
       <div className="flex items-center justify-between">
         <div onClick={() => router.back()}>

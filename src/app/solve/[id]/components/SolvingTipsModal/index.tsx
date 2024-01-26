@@ -14,18 +14,18 @@ export default function SolvingTipsModal({
 }: SolvingTipsModalProps) {
   const isMobile = isMobileDevice();
   return (
-    <div className="fixed inset-0 flex items-end justify-center z-50 bg-opacity-70 backdrop-brightness-75">
+    <div className="fixed inset-0 flex items-end justify-center z-50 bg-opacity-70 backdrop-brightness-75 ">
       <div
         className={`fixed ${
           isMobile ? "bottom-0" : "top-1/2 -translate-y-1/2"
-        } bg-white p-10 rounded-lg shadow-lg max-w-lg mx-auto mt-8`}
+        } bg-white p-10 rounded-lg shadow-lg max-w-lg mx-auto mt-8 dark:bg-slate-900`}
       >
         <XMarkIcon
           className="w-5 h-5 cursor-pointer absolute top-5 right-5 text-gray-500 hover:text-gray-700"
           onClick={() => closeModal(false)}
         />
         <div className="flex flex-col m-2 gap-6">
-          <h1 className="text-lg sm:text-2xl font-semibold text-slate-600">
+          <h1 className="text-lg sm:text-2xl font-semibold text-slate-600 dark:text-slate-100">
             <span className="text-indigo-500 font-bold">{title}</span> 를
             시작할까요?
           </h1>

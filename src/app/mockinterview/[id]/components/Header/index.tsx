@@ -5,9 +5,11 @@ import { XMarkIcon } from "@heroicons/react/24/solid";
 import Link from "next/link";
 interface HeaderProps {
   session?: any;
+  isOpen?: boolean;
+  setIsOpen?: any;
 }
 
-export default function Header({ session }: HeaderProps) {
+export default function Header({ session, isOpen, setIsOpen }: HeaderProps) {
   const router = useRouter();
   const pathname = usePathname();
   const [isProfileToolbarOpen, setIsProfileToolbarOpen] = useState(false);
@@ -39,14 +41,16 @@ export default function Header({ session }: HeaderProps) {
       <nav className="mx-auto px-4 ">
         <div className="flex items-center justify-between h-16">
           <div className="flex flex-shrink-0">
-            <Link className="cursor-pointer hover:opacity-70" href="#">
+            <div
+              className="cursor-pointer hover:opacity-70"
+              onClick={() => setIsOpen(true)}
+            >
               <XMarkIcon className="h-7 w-7 text-indigo-400 rounded-3xl p-1 " />{" "}
-            </Link>
+            </div>
           </div>
           {/* 메뉴 */}
           <div className="hidden md:block">
-            <div className="ml-10 flex justify-items-end justify-self-end  space-x-4">
-            </div>
+            <div className="ml-10 flex justify-items-end justify-self-end  space-x-4"></div>
           </div>
         </div>
       </nav>

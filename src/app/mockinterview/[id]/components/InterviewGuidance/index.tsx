@@ -51,31 +51,34 @@ export default function InterViewGuidance({
           alt="면접관 이미지"
           width={600}
           height={500}
-          className="rounded-md w-auto h-auto"
+          className="rounded-md h-auto w-full"
           priority={true}
         />
       </div>
 
       {/* 안내문 */}
-      <p className="text-lg text-center mb-8 text-gray-500">
-        버튼을 클릭하면 면접이 시작됩니다. <br />
-        차분한 마음으로 대기해주시고, <br />
-        면접관의 질문이 나온 후 {`"삐"`} 소리가 나오면 질문에 대한 답변을
-        시작해주세요.
-      </p>
+      <div className="w-full leading-1.5 p-4 bg-indigo-500  rounded-e-xl rounded-es-xl">
+        <div className="whitespace-pre-wrap ">
+          <p className="text-sm sm:text-lg text-center font-bold text-gray-500 dark:text-slate-100">
+            버튼을 클릭하면 면접이 시작됩니다. <br />
+            차분한 마음으로 대기해주시고, 면접관의 질문이 나온 후<br />
+            <span className="text-red-500">{`"삐"`}</span> 소리가 나오면 질문에
+            대한 답변을 시작해주세요.
+          </p>
+        </div>
+      </div>
 
       <div>
         <button
-          className={`mt-3 w-full ${
+          onClick={isStart ? handleStop : handleStart}
+          className={`fixed z-50 bottom-4 m-2 p-2 left-0 right-0 w-11/12 sm:w-1/2 mx-auto text-white font-bold py-2 px-4 rounded-lg shadow-md  focus:outline-none ${
             isStart
               ? "bg-red-500 hover:bg-red-700"
               : "bg-indigo-500 hover:bg-indigo-700"
-          } text-white py-2 px-4 rounded-xl shadow-md focus:outline-none`}
-          onClick={isStart ? handleStop : handleStart}
+          }`}
         >
           {isStart ? "끝내기 ✋" : "시작하기 🗣️"}
         </button>
-
         <div className={`flex justify-center mt-2 ${!isStart && "hidden"}`}>
           <MicrophoneIcon
             className={"w-7 h-7 text-red-500 animate-flash"}

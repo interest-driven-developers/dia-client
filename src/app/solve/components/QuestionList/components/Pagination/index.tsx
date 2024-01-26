@@ -28,7 +28,7 @@ export default function Pagination(props: PaginationProps) {
     pageButtons.push(
       <Link
         key={i}
-        className={`h-6 w-6 flex items-center justify-center  text-slate-900 hover:text-slate-500 ${
+        className={`h-6 w-6 flex items-center justify-center  text-slate-900 hover:text-slate-500 dark:text-slate-100 ${
           currentPage === i
             ? "decoration-indigo-500 decoration-2 underline font-bold"
             : ""
@@ -44,19 +44,19 @@ export default function Pagination(props: PaginationProps) {
   return (
     <div className="flex  items-center justify-center gap-x-4">
       <Link className="cursor-pointer hover:opacity-70" href="#">
-        <ChevronDoubleLeftIcon className="h-5 w-5 text-indigo-400 rounded-3xl p-1 bg-gray-100"></ChevronDoubleLeftIcon>
+        <ChevronDoubleLeftIcon className="h-5 w-5 text-indigo-400 rounded-3xl p-1 bg-gray-100 dark:bg-slate-950"></ChevronDoubleLeftIcon>
       </Link>
       <Link className="cursor-pointer hover:opacity-70" href="#">
-        <ChevronLeftIcon className="h-7 w-7 text-indigo-400 rounded-3xl p-1 bg-gray-100"></ChevronLeftIcon>
+        <ChevronLeftIcon className="h-7 w-7 text-indigo-400 rounded-3xl p-1 bg-gray-100 dark:bg-slate-950"></ChevronLeftIcon>
       </Link>
-      <div className="flex rounded-lg p-0.5 bg-gray-100 gap-1">
+      <div className="flex rounded-lg p-0.5 bg-gray-100 gap-1 dark:bg-slate-950">
         {pageButtons}
       </div>
       <Link className="cursor-pointer hover:opacity-70" href="#">
-        <ChevronRightIcon className="h-7 w-7 text-indigo-400 rounded-3xl p-1 bg-gray-100"></ChevronRightIcon>
+        <ChevronRightIcon className="h-7 w-7 text-indigo-400 rounded-3xl p-1 bg-gray-100 dark:bg-slate-950"></ChevronRightIcon>
       </Link>
       <Link className="cursor-pointer hover:opacity-70" href="#">
-        <ChevronDoubleRightIcon className="h-5 w-5 text-indigo-400 rounded-3xl p-1 bg-gray-100"></ChevronDoubleRightIcon>
+        <ChevronDoubleRightIcon className="h-5 w-5 text-indigo-400 rounded-3xl p-1 bg-gray-100 dark:bg-slate-950"></ChevronDoubleRightIcon>
       </Link>
     </div>
   );

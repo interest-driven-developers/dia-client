@@ -14,38 +14,59 @@ export default function RecordingResults({
 }: RecordingResultsProps) {
   const handleSaveScript = () => {};
   return (
-    <div className="w-full">
-      <div className="grid grid-cols-4 p-4 gap-2">
-        <div className="col-span-2">
-          <h2 className="text-xl font-sans mb-4">기존 스크립트</h2>
-          <div className="p-4 h-64 overflow-y-auto w-full bg-white rounded-lg shadow-md divide-y border-dashed border-2 border-indigo-500">
-            <p>{description}</p>
-          </div>
-        </div>
-        <div className="col-span-2">
-          <h2 className="text-xl font-sans mb-4">음성 인식 결과</h2>
-          <p className="text-xs text-gray-500 -mt-4">
-            * 음성인식의 정확도는 100%가 아닌점 참고해주세요{" "}
-          </p>
-          <div className="p-4 h-64 overflow-y-auto w-full bg-white rounded-lg shadow-md divide-y border-dashed border-2 border-emerald-500">
-            {<p> {transcripts}</p>}
+    <div className="flex flex-col gap-y-3 mt-2">
+      <h1 className="text-2xl sm:text-3xl font-bold  text-slate-700 dark:text-slate-100">
+        결과 🤖
+      </h1>
+      <div className="flex flex-col gap-y-1 mt-2">
+        <h1 className="text-lg sm:text-xl font-semibold  text-indigo-600 dark:text-indigo-600">
+          작성한 스크립트
+        </h1>
+        <div className="w-full leading-1.5 p-4 bg-indigo-200 text-indigo-800 rounded-e-xl rounded-es-xl">
+          <div className="whitespace-pre-wrap ">
+            <p className="text-base font-bold">{description}</p>
           </div>
         </div>
       </div>
-      <div className="mt-4 flex justify-end gap-2 mr-4">
-        <button
-          onClick={handleRestartRecording}
-          className="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-md focus:outline-none"
-        >
-          다시 녹음 🗣️
-        </button>
-        <button
-          // onClick={handleSaveScript}
-          className="bg-emerald-500 hover:bg-emerald-700 text-white font-bold py-2 px-4 rounded-md focus:outline-none"
-        >
-          결과 저장 💾 (구현중)
-        </button>
+      <div className="flex flex-col gap-y-1 mt-2">
+        <h1 className="text-lg sm:text-xl font-semibold  text-purple-400 ml-auto">
+          🗣️
+        </h1>
+        <div className="w-full leading-1.5 p-4 bg-purple-200 text-purple-800 rounded-s-xl rounded-ee-xl">
+          <div className="whitespace-pre-wrap ">
+            {transcripts ? (
+              <p className="text-base font-bold">{transcripts}</p>
+            ) : (
+              <div className="flex flex-col justify-center items-center">
+                <p className="text-base font-bold text-gray-500">
+                  음성이 녹음되지 않았어요.
+                </p>
+                <p className="text-base font-bold text-gray-500">
+                  브라우저 설정에서{" "}
+                  <span className="animate-pulse text-indigo-500">
+                    마이크 접근을 허용
+                  </span>{" "}
+                  해주세요 😂
+                </p>
+              </div>
+            )}
+          </div>
+        </div>
+        <p className="text-gray-500 text-xs mt-1 ml-auto">
+          * 기본값은 가장{" "}
+          <span className="text-purple-500 font-bold">최근의</span>{" "}
+          히스토리입니다.
+        </p>
       </div>
+      <button
+        className="fixed z-50 bottom-16 m-2 p-2 left-0 right-0 w-11/12 sm:w-1/2 mx-auto bg-indigo-600 text-white font-bold py-2 px-4 rounded-lg shadow-md hover:bg-indigo-700 focus:outline-none"
+        onClick={() => handleRestartRecording()}
+      >
+        다시 도전하기 🚀
+      </button>
+      <button className="fixed z-50 bottom-4 m-2 p-2 left-0 right-0 w-11/12 sm:w-1/2 mx-auto bg-emerald-600 text-white font-bold py-2 px-4 rounded-lg shadow-md hover:bg-emerald-700 focus:outline-none">
+        저장하기 💾(구현 중🛠️)
+      </button>
     </div>
   );
 }
