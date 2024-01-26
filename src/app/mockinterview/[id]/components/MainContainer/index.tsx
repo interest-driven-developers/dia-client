@@ -3,6 +3,8 @@ import React, { useState, useEffect } from "react";
 import MockTest from "../MockTest";
 import QuestionInfo from "../QuestionInfo";
 import { VoiceType } from "@/app/types/Voice";
+import ConfirmModal from "../ConfrimModal";
+import Header from "../Header"
 interface MainContainerProps {
   question: any;
   voices: VoiceType[];
@@ -13,7 +15,7 @@ export default function MainContainer({
 }: MainContainerProps) {
   const [isView, setIsView] = useState<number | null>(null); // 0: 히스토리 보기, 1: 스크립트 보기
   const [isEditing, setIsEditing] = useState<boolean>(false);
-
+  
   const ViewComponent = () => {
     switch (isView) {
       case 0:
@@ -29,11 +31,15 @@ export default function MainContainer({
     }
   };
   return (
-    <>
-      <h1 className="text-3xl text-semibold font-sans mt-5 text-black">
+    <div >
+      <Header></Header>
+      <h1 className="text-2xl text-semibold text-slate-800 dark:text-slate-100">
+        Question
+      </h1>
+      <h1 className="text-xl text-slate-800 dark:text-slate-100">
         {question.title}
       </h1>
       <ViewComponent></ViewComponent>
-    </>
+    </div>
   );
 }
