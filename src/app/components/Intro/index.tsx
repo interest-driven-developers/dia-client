@@ -6,14 +6,14 @@ export default function Intro() {
   return (
     <>
       <section className="flex flex-col items-center justify-center py-24 w-screen bg-gray-100 dark:bg-gray-900">
-        <h1 className="text-2xl text-neutral-600 font-bold tracking-tighter sm:text-l md:text-4xl lg:text-6xl/none dark:text-white ">
+        <h1 className="text-2xl text-neutral-600 font-bold tracking-tighter sm:text-l md:text-4xl lg:text-6xl/none dark:text-slate-100 ">
           DIA는{" "}
           <span className="custom-color">
             <ServiceIntro></ServiceIntro>
           </span>
           입니다
         </h1>
-        <p className="mx-auto max-w-[700px] text-gray-500 text-xs/relaxed sm:text-xl/relaxed dark:text-white">
+        <p className="mx-auto max-w-[700px] text-gray-500 text-xs/relaxed sm:text-xl/relaxed dark:text-slate-100">
           현재 베타 버전으로 모의 면접 기능만을 제공하고 있습니다.
         </p>
         <Link
@@ -39,7 +39,7 @@ export default function Intro() {
             <div className="flex flex-col justify-center space-y-4">
               <div className="space-y-2">
                 <Tag>Voice Recognition</Tag>
-                <h2 className="text-xl font-bold tracking-tighter sm:text-2xl md:text-3xl">
+                <h2 className="text-xl font-bold tracking-tighter sm:text-2xl md:text-3xl dark:text-slate-100">
                   음성인식 기능을 통해 자신의 대답을 확인하세요
                 </h2>
                 <p className="text-xs/relaxed max-w-[600px] text-gray-500  sm:text-xs/relaxed lg:text-sm/relaxed xl:text-base/relaxed ">
@@ -64,7 +64,7 @@ export default function Intro() {
             <div className="flex flex-col justify-center space-y-4">
               <div className="space-y-2">
                 <Tag>Text-to-Speech</Tag>
-                <h2 className="text-xl font-bold tracking-tighter sm:text-2xl md:text-3xl">
+                <h2 className="text-xl font-bold tracking-tighter sm:text-2xl md:text-3xl dark:text-slate-100">
                   TTS 기능을 통해 실제 면접과 같은 경험을 해보세요
                 </h2>
                 <p className="text-xs/relaxed max-w-[600px] text-gray-500 md:text-xs/relaxed lg:text-sm/relaxed xl:text-base/relaxed">
@@ -89,7 +89,7 @@ export default function Intro() {
             <div className="flex flex-col justify-center space-y-4">
               <div className="space-y-2">
                 <Tag>Mock Interview</Tag>
-                <h2 className="text-xl font-bold tracking-tighter sm:text-2xl md:text-3xl">
+                <h2 className="text-xl font-bold tracking-tighter sm:text-2xl md:text-3xl dark:text-slate-100">
                   모의 면접 기능을 통해 실전 면접에 대비하세요
                 </h2>
                 <p className="text-xs/relaxed max-w-[600px] text-gray-500 md:text-xs/relaxed lg:text-sm/relaxed xl:text-base/relaxed">
