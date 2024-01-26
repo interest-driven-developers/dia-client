@@ -15,7 +15,7 @@ export default function QuestionList({ questionList }: QuestionListProps) {
   return (
     <>
       <div className="flex justify-between items-center">
-        <h1 className="text-3xl font-bold  text-slate-700">
+        <h1 className="text-3xl font-bold  text-slate-700 dark:text-slate-100">
           총
           <span className="custom-color ">
             {' "'}

@@ -81,7 +81,7 @@ export default function QuestionContainer({
     <>
       <div className="flex flex-col gap-4 md:flex-row md:items-center">
         <div className="flex flex-col gap-4">
-          <h1 className="text-xl sm:text-3xl font-bold text-slate-700">
+          <h1 className="text-xl sm:text-3xl font-bold text-slate-700 dark:text-slate-100">
             {title}
           </h1>
           <p className="text-gray-500 text-xs -mt-4">

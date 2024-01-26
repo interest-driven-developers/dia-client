@@ -35,7 +35,7 @@ export default function ScriptSection({
   };
   return (
     <section className="flex flex-col gap-y-2">
-      <h1 className="text-lg sm:text-2xl font-bold  text-slate-700">
+      <h1 className="text-lg sm:text-2xl font-bold  text-slate-700 dark:text-slate-100">
         작성한 스크립트
       </h1>
       <CustomSeparator className="w-32"></CustomSeparator>
