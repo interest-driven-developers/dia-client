@@ -31,17 +31,17 @@ export default function MarkdownEditor({id}: MarkdownEditorProps) {
   };
 
   return (
-    <div className="container" data-color-mode="light">
-      <MDEditor value={script} onChange={handleChange} /> {/* onChange 추가 */}
+    <div className="container">
+      <MDEditor value={script} onChange={handleChange} height={500}/> {/* onChange 추가 */}
       {/* <MDEditor.Markdown
         source={value || ""}
         style={{ whiteSpace: "pre-wrap" }}
       /> */}
       <button
-        className="mt-3 w-full bg-emerald-500 text-white py-2 px-4 rounded-xl shadow-md hover:bg-emerald-700 focus:outline-none"
+        className="fixed z-50 bottom-4 m-2 p-2 left-0 right-0 w-11/12 sm:w-1/2 mx-auto bg-emerald-600 text-white font-bold py-2 px-4 rounded-lg shadow-md hover:bg-emerald-700 focus:outline-none"
         onClick={handleSaveScript}
       >
-        수정하기
+        수정하기 ✏️
       </button>
     </div>
   );
