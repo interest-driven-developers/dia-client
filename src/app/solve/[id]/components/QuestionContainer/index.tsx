@@ -102,19 +102,19 @@ export default function QuestionContainer({
       <CustomSeparator className="w-10"></CustomSeparator>
       <div className="flex items-center justify-between">
         <div onClick={() => router.back()}>
-          <ArrowLeftIcon className="h-6 w-6 text-indigo-600 cursor-pointer rounded-md hover:bg-gray-100" />
+          <ArrowLeftIcon className="h-6 w-6 text-indigo-600 cursor-pointer rounded-md hover:opacity-50" />
         </div>
         <div className="flex space-x-3">
           <HeartIcon
             onClick={() => alert("기능 구현 중에 있습니다")}
-            className="h-6 w-6 text-indigo-600 cursor-pointer rounded-md hover:bg-gray-100"
+            className="h-6 w-6 text-indigo-600 cursor-pointer rounded-md hover:opacity-50"
           />
           <Link href={`/edit/${id}`}>
-            <PencilIcon className="h-6 w-6 text-indigo-600 cursor-pointer rounded-md hover:bg-gray-100" />
+            <PencilIcon className="h-6 w-6 text-indigo-600 cursor-pointer rounded-md hover:opacity-50" />
           </Link>
           <ShareIcon
             onClick={copyToClipboard}
-            className="h-6 w-6 text-indigo-600 cursor-pointer rounded-md hover:bg-gray-100"
+            className="h-6 w-6 text-indigo-600 cursor-pointer rounded-md hover:opacity-50"
           />
         </div>
       </div>
