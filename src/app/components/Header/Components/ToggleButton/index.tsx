@@ -13,7 +13,7 @@ export default function ToggleButton(props: ToggleButtonProps) {
   return (
     <div
       className={`md:hidden group flex h-16 w-16 cursor-pointer items-center justify-center rounded-3xl p-2 ${
-        props.toggleState ? "bg-slate-50" : ""
+        props.toggleState ? "bg-slate-900" : "bg-slate-200"
       }`}
       onClick={toggleButton}
     >
