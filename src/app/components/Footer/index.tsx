@@ -2,7 +2,7 @@ import Link from "next/link";
 import GithubIcon from "@/app/ui/GithubIcon";
 export default function Footer() {
   return (
-    <footer className="flex items-center justify-between p-6 bg-gray-100 ">
+    <footer className="z-40 shadow-sm w-screen sm:mx-auto flex items-center justify-between p-6 bg-gray-100 bottom-0">
       <div className="flex gap-1 sm:gap-4">
         <Link
           className="text-xs sm:text-sm text-gray-500 hover:underline"

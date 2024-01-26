@@ -5,15 +5,15 @@ import Tag from "../Tag";
 export default function Intro() {
   return (
     <>
-      <section className="flex flex-col items-center justify-center py-24 w-screen bg-gray-100  ">
-        <h1 className="text-2xl text-neutral-600 font-bold tracking-tighter sm:text-l md:text-4xl lg:text-6xl/none ">
+      <section className="flex flex-col items-center justify-center py-24 w-screen bg-gray-100 dark:bg-gray-900">
+        <h1 className="text-2xl text-neutral-600 font-bold tracking-tighter sm:text-l md:text-4xl lg:text-6xl/none dark:text-white ">
           DIA는{" "}
           <span className="custom-color">
             <ServiceIntro></ServiceIntro>
           </span>
           입니다
         </h1>
-        <p className="mx-auto max-w-[700px] text-gray-500 text-xs/relaxed sm:text-xl/relaxed ">
+        <p className="mx-auto max-w-[700px] text-gray-500 text-xs/relaxed sm:text-xl/relaxed dark:text-white">
           현재 베타 버전으로 모의 면접 기능만을 제공하고 있습니다.
         </p>
         <Link

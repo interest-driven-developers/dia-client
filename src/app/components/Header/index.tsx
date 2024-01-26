@@ -40,7 +40,7 @@ export default function Header({ session }: HeaderProps) {
     setIsMenuOpen(false);
   };
   return (
-    <header className="fixed z-40 sm:relative bg-white shadow-sm w-screen sm:mx-auto">
+    <header className="fixed z-40 sm:relative bg-white shadow-sm w-screen sm:mx-auto dark:bg-slate-800">
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 sm:w-1/2">
         <div className="flex items-center justify-between h-16">
           {/* 로고 */}
@@ -69,13 +69,13 @@ export default function Header({ session }: HeaderProps) {
             <div className="ml-10 flex justify-items-end justify-self-end  space-x-4">
               <a
                 onClick={handleLogoClick}
-                className="text-gray-900 hover:text-indigo-600 px-3 py-5 rounded-md text-sm font-medium cursor-pointer"
+                className="text-gray-900 hover:text-indigo-600 px-3 py-5 rounded-md text-sm font-medium cursor-pointer dark:text-slate-100"
               >
                 홈
               </a>
               <Link
                 href="/solve"
-                className="text-gray-900 hover:text-indigo-600 px-3 py-5 rounded-md text-sm font-medium"
+                className="text-gray-900 hover:text-indigo-600 px-3 py-5 rounded-md text-sm font-medium dark:text-slate-100"
               >
                 모든 문제
               </Link>
