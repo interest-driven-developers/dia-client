@@ -5,10 +5,15 @@
 body {
   height: 100vh;
   margin: 0 auto;
-  /* overflow-x: hidden; */
   font-family: "Noto Sans KR", sans-serif;
+
 }
 
+@layer base {
+  body {
+    @apply bg-slate-50 dark:bg-slate-900;
+  }
+}
 
 /* 그라데이션 컬러 */
 .custom-color {
