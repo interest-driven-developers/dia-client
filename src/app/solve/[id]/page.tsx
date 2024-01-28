@@ -23,7 +23,8 @@ export default async function Main({ params }: { params: { id: string } }) {
   // TODO 로그인시 이전 로컬 스토리지 데이터 불러오기
   return (
     // <main className="container h-screen flex flex-col gap-4 mx-auto px-4 sm:px-6 py-8 w-full sm:w-1/2">
-    <main className="flex flex-col gap-4 mx-auto px-4 sm:px-6 py-20 sm:py-5 h-full sm:w-1/2 overflow-y-auto">
+    <main className="flex flex-col gap-4 mx-auto px-4 sm:px-6 py-20 sm:w-1/2">
+      {/* <main className="flex flex-col gap-4 mx-auto px-4 sm:px-6 py-20 sm:py-5 h-full sm:w-1/2 overflow-y-auto"> */}
       <QuestionContainer {...result.data} session={session}></QuestionContainer>
     </main>
   );

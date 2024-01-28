@@ -46,7 +46,7 @@ export default async function RootLayout({
         href="/static/favicons/safari-pinned-tab.svg"
         color="#5bbad5"
       />
-      <body className={inter.className}>
+      <body className="font-Pretendard">
         <AuthSession>
           <LayoutProvider session={session}>{children}</LayoutProvider>
           {/* <Header session={session} /> */}

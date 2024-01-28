@@ -53,6 +53,10 @@ const config: Config = {
       },
       colors: {
         primary: "#6366f1",
+        
+      },
+      fontFamily: {
+        Pretendard: ["Pretendard"],
       },
     },
   },

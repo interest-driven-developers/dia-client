@@ -93,7 +93,7 @@ export default function pgAdapter(client: Pool): Adapter {
     }): Promise<AdapterUser | null> {
 
       const sql = `
-          select u.* from dia_member u join oauth_accounts a on u.pk = a."memberPk"
+          select u.* from dia_member u join oauth_accounts a on u.pk = a."member_pk"
           where 
           a.provider = $1 
           and 
@@ -132,7 +132,7 @@ export default function pgAdapter(client: Pool): Adapter {
       const sql = `
       insert into oauth_accounts 
       (
-        "memberPk", 
+        "member_pk", 
         provider, 
         type, 
         "providerAccountId", 
@@ -147,7 +147,7 @@ export default function pgAdapter(client: Pool): Adapter {
       values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)
       returning
         pk,
-        "memberPk", 
+        "member_pk", 
         provider, 
         type, 
         "providerAccountId", 
@@ -179,11 +179,11 @@ export default function pgAdapter(client: Pool): Adapter {
     },
     async createSession({ sessionToken, userId, expires }) {
       if (userId === undefined) {
-        throw Error(`memberPk is undef in createSession`);
+        throw Error(`member_pk is undef in createSession`);
       }
-      const sql = `insert into oauth_sessions ("memberPk", expires, "sessionToken")
+      const sql = `insert into oauth_sessions ("member_pk", expires, "sessionToken")
       values ($1, $2, $3)
-      RETURNING pk, "sessionToken", "memberPk", expires`;
+      RETURNING pk, "sessionToken", "member_pk", expires`;
 
       const result = await client.query(sql, [userId, expires, sessionToken]);
       return result.rows[0];
@@ -205,7 +205,7 @@ export default function pgAdapter(client: Pool): Adapter {
       }
       let session: AdapterSession = {
         sessionToken: result1.rows[0].sessionToken,
-        userId: result1.rows[0].memberPk,
+        userId: result1.rows[0].member_pk,
 
         expires: result1.rows[0].expires,
       };
@@ -260,13 +260,13 @@ export default function pgAdapter(client: Pool): Adapter {
       const sql = `delete from oauth_accounts where "providerAccountId" = $1 and provider = $2`;
       await client.query(sql, [providerAccountId, provider]);
     },
-    async deleteUser(memberPk: string) {
-      await client.query(`delete from dia_member where pk = $1`, [memberPk]);
-      await client.query(`delete from oauth_sessions where "memberPk" = $1`, [
-        memberPk,
+    async deleteUser(member_pk: string) {
+      await client.query(`delete from dia_member where pk = $1`, [member_pk]);
+      await client.query(`delete from oauth_sessions where "member_pk" = $1`, [
+        member_pk,
       ]);
-      await client.query(`delete from oauth_accounts where "memberPk" = $1`, [
-        memberPk,
+      await client.query(`delete from oauth_accounts where "member_pk" = $1`, [
+        member_pk,
       ]);
     },
   };
