@@ -11,11 +11,15 @@ import {
 import ScriptContainer from "../ScriptSection";
 import CustomSeparator from "@/app/ui/CustomSeparator";
 import copyToClipboard from "@/app/utils/copyToClipBoard";
-import { ArrowLeftCircleIcon } from "@heroicons/react/20/solid";
+import { ChevronLeftIcon } from "@heroicons/react/20/solid";
 import HistorySection from "../HistorySection";
 import LatestHistory from "../LatestHistory";
 import Tag from "@/app/solve/components/QuestionList/components/Question/components/Tag";
 import SolvingTipsModal from "../SolvingTipsModal";
+import ScriptCopyIcon from "@/app/ui/ScriptCopyIcon";
+import Question from "../Question";
+import BookMarkIcon from "@/app/ui/BookMarkIcon";
+import ScriptSection from "../ScriptSection";
 interface QuestionContainerProps {
   title: string;
   script: string;
@@ -73,95 +77,75 @@ export default function QuestionContainer({
     dummyHistoryData[0].description
   );
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-
+  const [animationClass, setAnimationClass] = useState<string>("");
   const solveQuestion = () => {
     router.push(`/mockinterview/${id}`);
   };
+  const hideMenu = async () => {
+    setAnimationClass("animate-fadeOutDown");
+    await new Promise((r) => setTimeout(r, 600));
+    setIsModalOpen(false);
+  };
+    const handleClick = () => {
+      if (isModalOpen) {
+        hideMenu();
+      } else {
+        setAnimationClass("animate-fadeInUp");
+        setIsModalOpen(true);
+      }
+    };
   return (
-    <>
-      <div className="flex flex-col gap-4 md:flex-row md:items-center">
-        <div className="flex flex-col gap-4">
-          <h1 className="text-xl sm:text-2xl font-bold text-slate-700 dark:text-slate-100">
-            {title}
-          </h1>
-          <p className="text-gray-500 text-xs -mt-4">
-            <span className="text-indigo-500 font-bold">
-              {"'" + Math.floor(Math.random() * 2000) + "'"}
-            </span>
-            명의 사용자가 도전하였습니다🔥
-          </p>
+    <div>
+      <div className="grid grid-cols-3 gap-1 mb-2">
+        <div className="relative">
+          <div className="w-full h-2 border-t-4 border-primary"></div>
+        </div>
+        <div className="relative">
+          <div className="w-full h-2 border-t-4 border-[#D9D9D9]"></div>
+        </div>
+        <div className="relative">
+          <div className="w-full h-2 border-t-4 border-[#D9D9D9]]"></div>
         </div>
       </div>
-      <div className="">
-        <div className="flex gap-3">
-          <Tag>Easy</Tag>
-          <Tag>Backend</Tag>
-          <Tag>네카라쿠배</Tag>
-        </div>
-      </div>
-      <CustomSeparator className="w-10"></CustomSeparator>
-      <div className="flex items-center justify-between">
+      <div className="flex items-center mb-[17px]">
         <div onClick={() => router.back()}>
-          <ArrowLeftIcon className="h-6 w-6 text-indigo-600 cursor-pointer rounded-md hover:opacity-50" />
+          <ChevronLeftIcon className="h-6 w-6 text-black cursor-pointer rounded-md hover:opacity-50" />
         </div>
-        <div className="flex space-x-3">
-          <HeartIcon
-            onClick={() => alert("기능 구현 중에 있습니다")}
-            className="h-6 w-6 text-indigo-600 cursor-pointer rounded-md hover:opacity-50"
-          />
-          <Link href={`/edit/${id}`}>
-            <PencilIcon className="h-6 w-6 text-indigo-600 cursor-pointer rounded-md hover:opacity-50" />
-          </Link>
-          <ShareIcon
-            onClick={copyToClipboard}
-            className="h-6 w-6 text-indigo-600 cursor-pointer rounded-md hover:opacity-50"
-          />
-        </div>
+        <h1 className="text-lg sm:text-xl font-bold text-center text-primary flex-grow mr-6">
+          문제풀기
+        </h1>
       </div>
-      <ScriptContainer
-        id={id}
-        isEditing={isEditing}
-        setIsEditing={setIsEditing}
-      />
-      {!session && (
-        <p className="text-gray-500 text-xs -mt-3">
-          * 로그인 후 이용해주시면{" "}
-          <span className="text-indigo-500 font-bold">
-            스크립트가 영구히 저장
-          </span>
-          됩니다 💾
-        </p>
-      )}
-      <LatestHistory text={latestHistory} />
-
-      <HistorySection
-        id={id}
-        isEditing={isEditing}
-        setIsEditing={setIsEditing}
-        historyList={historyData}
-        setIsHistory={setLatestHistory}
-      ></HistorySection>
-
+      <div className="flex flex-col gap-y-3 mb-[27px]">
+        <div className="flex items-end justify-end">
+          <div className="flex gap-1">
+            <div onClick={() => alert("기능 구현 중에 있습니다")}>
+              <ScriptCopyIcon></ScriptCopyIcon>
+            </div>
+            <div onClick={() => alert("기능 구현 중에 있습니다")}>
+              <BookMarkIcon></BookMarkIcon>
+            </div>
+          </div>
+        </div>
+        <Question title={title}></Question>
+        <ScriptSection
+          // isEditing={isEditing}
+          id={id}
+          // setIsEditing={setIsEditing}
+        ></ScriptSection>
+      </div>
       <button
-        onClick={() => setIsModalOpen(true)}
-        className="fixed z-50 bottom-4 m-2 p-2 left-0 right-0 w-11/12 sm:w-1/2 mx-auto bg-indigo-600 text-white font-bold py-2 px-4 rounded-lg shadow-md hover:bg-indigo-700 focus:outline-none"
+        className="flex justify-center w-full px-[127px] py-[13px] bg-primary rounded-[100px]  items-center hover:opacity-90"
+        onClick={() => handleClick()}
       >
-        문제 풀기 🚀
+        <p className="text-white font-bold text-lg sm:text-xl">문제 풀기</p>
       </button>
-      <div
-        className="mx-auto animate-bounceLeft flex text-indigo-500 hover:opacity-60 cursor-pointer"
-        onClick={() => router.back()}
-      >
-        <ArrowLeftCircleIcon className="h-5 w-5  mr-1 mt-0.5 " />
-        이전 페이지
-      </div>
       {isModalOpen && (
         <SolvingTipsModal
-          title={title}
-          closeModal={setIsModalOpen}
           solveQuestion={solveQuestion}
+          closeModal={hideMenu}
+          animationClass={animationClass}
         ></SolvingTipsModal>
       )}
-    </>
+    </div>
   );
 }
