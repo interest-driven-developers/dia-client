@@ -51,7 +51,7 @@ export default async function RootLayout({
           <LayoutProvider session={session}>{children}</LayoutProvider>
           {/* <Header session={session} /> */}
         </AuthSession>
-        <Footer />
+        {/* <Footer /> */}
       </body>
     </html>
   );
