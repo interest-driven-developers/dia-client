@@ -9,9 +9,9 @@ export default async function Layout({
 }) {
 
   return (
-    <>
+    <div className="bg-[#B8A0FA] h-screen">
       {/* <Header/> */}
       {children}
-    </>
+    </div>
   );
 }
