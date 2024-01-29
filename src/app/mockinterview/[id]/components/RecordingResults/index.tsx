@@ -1,17 +1,27 @@
 "use client";
+import React, { useState, useEffect } from "react";
 import { ResultType } from "react-hook-speech-to-text";
 interface RecordingResultsProps {
   handleRestartRecording: () => void;
-  // handleSaveScript: () => void;
-  description: string;
+  id: number;
   transcripts: string;
 }
 
 export default function RecordingResults({
-  description,
   transcripts,
+  id,
   handleRestartRecording,
 }: RecordingResultsProps) {
+  const [script, setScript] = useState<string>("");
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  // 페이지 로딩 시, 로컬 스토리지에서 스크립트 불러오기
+  useEffect(() => {
+    const savedScript = localStorage.getItem(`script=${id}`);
+    if (savedScript) {
+      setScript(savedScript);
+    }
+    setIsLoading(false);
+  }, [id]);
   const handleSaveScript = () => {};
   return (
     <div className="flex flex-col gap-y-3 mt-2">
@@ -24,7 +34,7 @@ export default function RecordingResults({
         </h1>
         <div className="w-full leading-1.5 p-4 bg-indigo-200 text-indigo-800 rounded-e-xl rounded-es-xl">
           <div className="whitespace-pre-wrap ">
-            <p className="text-base font-bold">{description}</p>
+            <p className="text-base font-bold">{script}</p>
           </div>
         </div>
       </div>

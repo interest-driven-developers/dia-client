@@ -28,7 +28,7 @@ export default function MockTest({ pk, voices }: MockTestProps) {
       case 1:
         return (
           <RecordingResults
-            description={"dd"}
+            id={pk}
             transcripts={results}
             handleRestartRecording={() => setIsView(0)}
           ></RecordingResults>

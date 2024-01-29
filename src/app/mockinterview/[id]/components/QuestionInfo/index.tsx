@@ -20,14 +20,14 @@ export default function QuestionInfo({
     switch (isCategory) {
       case 0:
         return <HistoryList></HistoryList>;
-      case 1:
-        return (
-          <ScriptDisplay
-            id={pk}
-            isEditing={isEditing}
-            setIsEditing={setIsEditing}
-          ></ScriptDisplay>
-        );
+      // case 1:
+      //   return (
+      //     <ScriptDisplay
+      //       id={pk}
+      //       isEditing={isEditing}
+      //       setIsEditing={setIsEditing}
+      //     ></ScriptDisplay>
+      //   );
       default:
         return <HistoryList></HistoryList>;
     }

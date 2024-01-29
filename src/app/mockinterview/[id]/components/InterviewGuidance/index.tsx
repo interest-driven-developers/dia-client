@@ -5,6 +5,7 @@ import useSpeechToText, { ResultType } from "react-hook-speech-to-text";
 import { MicrophoneIcon } from "@heroicons/react/24/solid";
 import TTSPlayer from "../TTSPlayer";
 import { VoiceType } from "@/app/types/Voice";
+import EqualizerIcon from "@/app/ui/EqualizerIcon";
 interface InterViewGuidanceProps {
   handleView: (view: number) => void;
   handleResults: (results: string) => void;
@@ -16,7 +17,6 @@ export default function InterViewGuidance({
   handleResults,
   voices,
 }: InterViewGuidanceProps) {
-  //   const [results, setResults] = useState<ResultType[]>([]);
   const [isDone, setIsDone] = useState<boolean>(false);
   const [isStart, setIsStart] = useState<boolean>(false);
   const {
@@ -32,7 +32,7 @@ export default function InterViewGuidance({
     useLegacyResults: false,
   });
 
-  if (error) return <p>Web Speech API is not available in this browser 🤷‍</p>;
+  if (error) return <p>Web Speech API is not available in this device 🤷‍</p>;
   const handleStart = () => {
     setIsStart(!isStart);
   };
@@ -44,53 +44,47 @@ export default function InterViewGuidance({
     }, 1000);
   };
   return (
-    <div className="mt-5 ">
-      <div className="flex mt-5 mb-6 justify-center justify-items-center justify-self-center">
-        <Image
-          src="/images/interviewer.jpeg"
-          alt="면접관 이미지"
-          width={600}
-          height={500}
-          className="rounded-md h-auto w-full"
-          priority={true}
-        />
-      </div>
-
-      {/* 안내문 */}
-      <div className="w-full leading-1.5 p-4 bg-indigo-500  rounded-e-xl rounded-es-xl">
-        <div className="whitespace-pre-wrap ">
-          <p className="text-sm sm:text-lg text-center font-bold text-gray-500 dark:text-slate-100">
-            버튼을 클릭하면 면접이 시작됩니다. <br />
-            차분한 마음으로 대기해주시고, 면접관의 질문이 나온 후<br />
-            <span className="text-red-500">{`"삐"`}</span> 소리가 나오면 질문에
-            대한 답변을 시작해주세요.
-          </p>
+    <div className="">
+      {isStart ? (
+        <div className="animate-pulse flex w-full max-w-screen-xl mx-auto p-0 mt-[220px]  mb-[210px] justify-center items-center">
+          <EqualizerIcon></EqualizerIcon>
         </div>
-      </div>
+      ) : (
+        <>
+          <div className="flex px-4 py-7 bg-[#212121] rounded-[10px] justify-center mb-[22px]">
+            <div className="whitespace-pre-wrap px-10 sm:px-16">
+              <p className="text-[16px] leading-5 sm:text-lg font-medium text-center text-white">
+                버튼을 클릭하면 면접이 시작됩니다
+                <br /> 차분한 마음으로 대기해주시고 <br />
+                질문이 나온 후 <span className="text-red-500">{`"삐"`}</span>{" "}
+                소리가 나오면 <br /> 답변을 시작해주세요.
+              </p>
+            </div>
+          </div>
+          <div className="flex h-[353px] rounded-[10px] justify-center mb-[46px]">
+            <Image
+              src="/images/interviewer.jpeg"
+              alt="면접관 이미지"
+              width={600}
+              height={500}
+              className="rounded-md h-auto w-full"
+              priority={true}
+            />
+          </div>
+        </>
+      )}
 
       <div>
         <button
           onClick={isStart ? handleStop : handleStart}
-          className={`fixed z-50 bottom-4 m-2 p-2 left-0 right-0 w-11/12 sm:w-1/2 mx-auto text-white font-bold py-2 px-4 rounded-lg shadow-md  focus:outline-none ${
-            isStart
-              ? "bg-red-500 hover:bg-red-700"
-              : "bg-indigo-500 hover:bg-indigo-700"
+          className={`flex justify-center w-full px-[127px] py-[13px] rounded-[100px]  items-center hover:opacity-90 ${
+            isStart ? "bg-[#9E9E9E] " : "bg-primary "
           }`}
         >
-          {isStart ? "끝내기 ✋" : "시작하기 🗣️"}
+          <p className="text-white font-bold text-lg sm:text-xl">
+            {isStart ? "답변완료" : "시작하기"}
+          </p>
         </button>
-        <div className={`flex justify-center mt-2 ${!isStart && "hidden"}`}>
-          <MicrophoneIcon
-            className={"w-7 h-7 text-red-500 animate-flash"}
-          ></MicrophoneIcon>
-        </div>
-        <ul>
-          {/* {results.map((result) => (
-            <li key={result.timestamp}>{result.transcript}</li>
-          ))}
-          {interimResult && <li>{interimResult}</li>} */}
-        </ul>
-        {/* {isDone && <div>{interimResult && <li>{interimResult}</li>}</div>} */}
         <TTSPlayer
           isRecording={isStart}
           voices={voices}

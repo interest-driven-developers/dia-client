@@ -20,7 +20,7 @@ export default async function Main({ params }: { params: { id: string } }) {
   const result = await getPracticeDetails(params.id);
 
   return (
-    <main className="flex flex-col gap-4 mx-auto px-4 py-20 h-full sm:w-1/2 overflow-y-auto">
+    <main className="flex flex-col gap-4 mx-auto px-5 py-20 h-full sm:w-1/2 overflow-y-auto bg-[#B8A0FA]">
       <MainContainer {...result}></MainContainer>
     </main>
   );
