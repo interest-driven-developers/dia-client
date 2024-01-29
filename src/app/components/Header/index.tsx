@@ -69,13 +69,13 @@ export default function Header({ session }: HeaderProps) {
             <div className="ml-10 flex justify-items-end justify-self-end  space-x-4">
               <a
                 onClick={handleLogoClick}
-                className="text-gray-900 hover:text-indigo-600 px-3 py-5 rounded-md text-sm font-medium cursor-pointer dark:text-slate-100"
+                className="text-gray-900 hover:text-indigo-600 px-3 py-5 rounded-md text-sm font-medium cursor-pointer "
               >
                 홈
               </a>
               <Link
                 href="/solve"
-                className="text-gray-900 hover:text-indigo-600 px-3 py-5 rounded-md text-sm font-medium dark:text-slate-100"
+                className="text-gray-900 hover:text-indigo-600 px-3 py-5 rounded-md text-sm font-medium"
               >
                 모든 문제
               </Link>
