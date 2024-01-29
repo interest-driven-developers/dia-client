@@ -13,9 +13,11 @@ export default function Tag(props: TagProps) {
 
   return (
     <div
-      className={`flex items-center rounded-[100px] py-1.5 px-5  ${tagStyle}`}
+      className={`flex items-center rounded-[100px] py-1.5 px-[19px]  ${tagStyle}`}
     >
-      <p className="text-[12px] sm:text-lg text-center whitespace-nowrap">{props.children}</p>
+      <p className="text-[12px] sm:text-lg text-center font-semibold whitespace-nowrap leading-3">
+        {props.children}
+      </p>
     </div>
   );
 }

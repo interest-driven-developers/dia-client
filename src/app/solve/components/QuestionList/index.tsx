@@ -34,17 +34,17 @@ export default function QuestionList({ questionList }: QuestionListProps) {
         </h1>
       </div>
       <SearchBar></SearchBar> */}
-      <div className="flex flex-row w-full mb-2">
-        <CategoryButton selected={true}>개별 연습</CategoryButton>
-        <CategoryButton >실전 연습</CategoryButton>
+      <div className="flex flex-row w-full mb-2.5">
+        <CategoryButton selected={true}>개별연습</CategoryButton>
+        <CategoryButton >실전연습</CategoryButton>
       </div>
-      <div className="flex flex-row gap-3 overflow-x-auto w-full mb-10">
+      <div className="flex flex-row gap-2 overflow-x-auto w-full mb-9">
         <Tag selected={true}>백엔드</Tag>
         <Tag>프론트엔드</Tag>
         <Tag>IOS</Tag>
         <Tag>AOS</Tag>
       </div>
-      <section className="grid gap-4">
+      <section className="grid gap-3">
         {questionList.map((qusetion: any, index: number) => (
           <Question
             key={index}
