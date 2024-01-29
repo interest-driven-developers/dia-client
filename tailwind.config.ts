@@ -47,13 +47,12 @@ const config: Config = {
         flash: "flash 2s infinite",
         fadeInRight: "fadeInRight 1s ease-in-out",
         fadeOutRight: "fadeOutRight 1s ease-out",
-        fadeInUp: "fadeInRight 1s ease-in-out",
-        fadeOutDown: "fadeOutRight 1s ease-out",
+        fadeInUp: "fadeInUp 1s ease-in-out",
+        fadeOutDown: "fadeOutDown 1s ease-out",
         bounceLeft: "bounceLeft 2s infinite",
       },
       colors: {
-        primary: "#6366f1",
-        
+        primary: "#651FFF",
       },
       fontFamily: {
         Pretendard: ["Pretendard"],
