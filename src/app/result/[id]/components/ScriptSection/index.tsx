@@ -1,4 +1,4 @@
-"use client";
+// "use client";
 import React, { useState, useEffect } from "react";
 import { CheckCircleIcon, XCircleIcon } from "@heroicons/react/24/solid";
 import Spinner from "@/app/components/Spinner";
@@ -12,7 +12,7 @@ export interface ScriptSectionProps {
 
 export default function ScriptSection({
   // isEditing,
-  // setIsEditing,÷
+  // setIsEditing,
   id,
 }: ScriptSectionProps) {
   const [script, setScript] = useState<string>(""); // 스크립트
@@ -35,7 +35,7 @@ export default function ScriptSection({
     setIsEditing(false);
   };
   return (
-    <div className="relative px-5 py-6  bg-[#F8F3FF] text-indigo-800 rounded-[10px] h-[438px]">
+    <div className="relative px-5 py-6  bg-[#F8F3FF] text-indigo-800 rounded-[10px] h-[264px] mb-5">
       {/* <div className="p-3 w-full  bg-white rounded-md shadow-sm divide-y border border-indigo-500 "> */}
       {isLoading ? (
         <div className="w-full h-12 flex justify-center justify-items-center mt-2 r-8">

@@ -43,6 +43,8 @@ export default function InterViewGuidance({
       handleResults(interimResult!);
     }, 1000);
   };
+
+
   return (
     <div className="">
       {isStart ? (
