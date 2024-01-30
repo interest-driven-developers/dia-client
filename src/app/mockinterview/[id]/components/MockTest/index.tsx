@@ -26,21 +26,8 @@ export default function MockTest({ pk, voices }: MockTestProps) {
             handleResults={handleResults}
             voices={voices}
           ></InterViewGuidance>
-          // <RecordingResults
-          //   id={pk}
-          //   transcripts={results}
-          //   handleRestartRecording={() => setIsView(0)}
-          // ></RecordingResults>
         );
 
-      case 1:
-        return (
-          <RecordingResults
-            id={pk}
-            transcripts={results}
-            handleRestartRecording={() => setIsView(0)}
-          ></RecordingResults>
-        );
       default:
         return (
           <InterViewGuidance

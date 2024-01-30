@@ -39,7 +39,6 @@ export default function InterViewGuidance({
   const handleStop = () => {
     setTimeout(() => {
       stopSpeechToText();
-      handleView(1);
       handleResults(interimResult!);
     }, 1000);
   };
