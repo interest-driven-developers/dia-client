@@ -7,13 +7,13 @@ export default function Tag(props: TagProps) {
     if (props.selected) {
       return "bg-[#651FFF] text-white";
     } else {
-      return "bg-white text-[#651FFF] border border-[#7C4DFF] border-solid";
+      return "bg-white text-[#651FFF] border border-[#7C4DFF] border-solid hover:bg-primary hover:text-white";
     }
   })();
 
   return (
     <div
-      className={`flex items-center rounded-[100px] py-1.5 px-[19px]  ${tagStyle}`}
+      className={`flex items-center rounded-[100px] py-1.5 px-[19px]   ${tagStyle}`}
     >
       <p className="text-[12px] sm:text-lg text-center font-semibold whitespace-nowrap leading-3">
         {props.children}

@@ -16,27 +16,9 @@ export default function QuestionList({ questionList }: QuestionListProps) {
   const [currentTag, setCurrentTag] = useState("백엔드");
   return (
     <div>
-      {/* <div className="flex justify-between items-center">
-        <h1 className="text-3xl font-bold  text-slate-700 dark:text-slate-100">
-          총
-          <span className="custom-color ">
-            {' "'}
-            {
-              <CountUp
-                start={0}
-                end={questionList.length}
-                duration={5}
-              ></CountUp>
-            }
-            {'" '}
-          </span>
-          개의 문제가 있습니다.
-        </h1>
-      </div>
-      <SearchBar></SearchBar> */}
       <div className="flex flex-row w-full mb-2.5">
         <CategoryButton selected={true}>개별연습</CategoryButton>
-        <CategoryButton >실전연습</CategoryButton>
+        <CategoryButton>실전연습</CategoryButton>
       </div>
       <div className="flex flex-row gap-2 overflow-x-auto w-full mb-9">
         <Tag selected={true}>백엔드</Tag>
