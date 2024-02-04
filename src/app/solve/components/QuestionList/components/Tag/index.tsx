@@ -5,9 +5,9 @@ type TagProps = {
 export default function Tag(props: TagProps) {
   const tagStyle = (() => {
     if (props.selected) {
-      return "bg-[#651FFF] text-white";
+      return "bg-primary text-white";
     } else {
-      return "bg-white text-[#651FFF] border border-[#7C4DFF] border-solid hover:bg-primary hover:text-white";
+      return "bg-white text-primaryborder border-[#7C4DFF] border-solid hover:bg-primary hover:text-white";
     }
   })();
 

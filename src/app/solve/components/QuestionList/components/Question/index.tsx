@@ -26,7 +26,7 @@ export default function Question({ id, title, description }: QuestionProps) {
         </div>
         <p className="text-[#616161] text-[12px] sm:text-lg font-semibold leading-3">
           👥{" "}
-          <span className="text-[#651FFF]">
+          <span className="text-primary">
             {Math.floor(Math.random() * 2000) + 1}
           </span>
           명의 사용자가 도전했습니다
