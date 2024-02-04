@@ -1,6 +1,7 @@
 "use client";
 
 import Header from "@/app/components/Header";
+import NavigationBar from "@/app/components/NavigationBar";
 // Use usePathname for catching route name.
 import { usePathname } from "next/navigation";
 
@@ -18,6 +19,7 @@ return (
   <>
     {!isNotAllowed && <Header session={session} />}
     {children}
+    <NavigationBar></NavigationBar>
   </>
 );
 };
