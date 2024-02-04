@@ -8,6 +8,8 @@ import ProfileToolbar from "./Components/ProfileToolbar";
 import Link from "next/link";
 import ToggleButton from "./Components/ToggleButton";
 import ToggleMenu from "./Components/ToggleMenu";
+import Logo from "@/app/ui/Logo";
+import MobileMenu from "./Components/MobileMenu";
 interface HeaderProps {
   session: any;
 }
@@ -40,17 +42,16 @@ export default function Header({ session }: HeaderProps) {
     setIsMenuOpen(false);
   };
   return (
-    <header className="fixed z-40  bg-white shadow-sm w-screen sm:mx-auto ">
+    <header className="fixed z-40 bg-white  w-screen sm:mx-auto ">
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 sm:w-1/2">
         <div className="flex items-center justify-between h-16">
           {/* 로고 */}
-          <div className="flex flex-shrink-0">
-            <a
-              onClick={handleLogoClick}
-              className="text-3xl font-bold custom-color cursor-pointer"
-            >
-              DIA
-            </a>
+          <div className="flex items-center ">
+            <div className=" cursor-pointer" onClick={handleLogoClick}>
+              <Logo
+              // className="text-3xl font-bold custom-color cursor-pointer"
+              ></Logo>
+            </div>
             {/* <Image
               className="h-10 w-10 rounded-full"
               width={100}
@@ -58,11 +59,11 @@ export default function Header({ session }: HeaderProps) {
               src="/images/logo.png"
               alt=""
             /> */}
-            <div className="h-6 ml-2 mt-2 items-self-center border-indigo-500 border rounded-sm">
+            {/* <div className="h-6 ml-2 mt-2 items-self-center border-indigo-500 border rounded-sm">
               <h1 className="p-0.5 text-xs/relaxed text-bold font-light text-slate-400">
                 Beta
               </h1>
-            </div>
+            </div> */}
           </div>
           {/* 메뉴 */}
           <div className="hidden md:block">
@@ -111,10 +112,11 @@ export default function Header({ session }: HeaderProps) {
               )} */}
             </div>
           </div>
-          <ToggleButton
+          {/* <ToggleButton
             onClick={handleMenuClick}
             toggleState={animationClass}
-          ></ToggleButton>
+          ></ToggleButton> */}
+          <MobileMenu onClick={handleMenuClick}></MobileMenu>
         </div>
         {/* 모바일 메뉴 */}
         {isMenuOpen && (

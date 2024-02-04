@@ -36,7 +36,7 @@ export default function QuestionList({ questionList }: QuestionListProps) {
             // tags={qusetion.tags}
           />
         ))}
-        <Pagination contentNum={questionList.length}></Pagination>
+        {/* <Pagination contentNum={questionList.length}></Pagination> */}
       </section>
     </div>
   );
