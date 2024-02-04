@@ -18,7 +18,7 @@ export default function CategoryButton(props: CategoryButtonProps) {
       </p>
       {props.selected && (
         <div className="relative mt-2">
-          <div className="border-t-2 border-primary"></div>
+          <div className="border-t-[5px] border-primary"></div>
         </div>
       )}
     </div>

@@ -13,7 +13,7 @@ export default async function Home() {
   const questionList: Question[] = await getQuestionList();
 
   return (
-    <main className="flex flex-col gap-4 mx-auto px-5 sm:px-6 py-20 sm:w-1/2 ">
+    <main className="flex flex-col gap-4 mx-auto px-5 sm:px-6 py-16 sm:w-1/2 ">
       <QuestionList questionList={questionList}></QuestionList>
     </main>
   );
