@@ -6,7 +6,7 @@ export default function LoginButton() {
     <div className="mt-4">
       <a
         onClick={() => signIn()}
-        className="text-gray-900 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium cursor-pointer"
+        className="text-slate-700 hover:text-primary px-3 py-5 rounded-md text-sm font-semibold cursor-pointer"
       >
         로그인
       </a>
