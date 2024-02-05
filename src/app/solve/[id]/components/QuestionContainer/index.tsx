@@ -20,10 +20,9 @@ import ScriptCopyIcon from "@/app/ui/ScriptCopyIcon";
 import Question from "../Question";
 import BookMarkIcon from "@/app/ui/BookMarkIcon";
 import ScriptSection from "../ScriptSection";
+import type { Question as QuestionType } from "@/app/types/Question";
 interface QuestionContainerProps {
-  title: string;
-  script: string;
-  pk: number;
+  questionData: QuestionType;
   session: any;
 }
 
@@ -65,9 +64,7 @@ const dummyHistoryData = [
   },
 ];
 export default function QuestionContainer({
-  title,
-  script,
-  pk: id,
+  questionData,
   session,
 }: QuestionContainerProps) {
   const router = useRouter();
@@ -79,7 +76,7 @@ export default function QuestionContainer({
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [animationClass, setAnimationClass] = useState<string>("");
   const solveQuestion = () => {
-    router.push(`/mockinterview/${id}`);
+    router.push(`/mockinterview/${questionData.pkValue}`);
   };
   const hideMenu = async () => {
     setAnimationClass("animate-fadeOutDown");
@@ -126,10 +123,10 @@ export default function QuestionContainer({
             </div>
           </div>
         </div>
-        <Question title={title}></Question>
+        <Question title={questionData.korTitleValue}></Question>
         <ScriptSection
           // isEditing={isEditing}
-          id={id}
+          id={questionData.pkValue}
           // setIsEditing={setIsEditing}
         ></ScriptSection>
       </div>

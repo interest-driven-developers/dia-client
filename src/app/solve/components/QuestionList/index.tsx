@@ -9,8 +9,9 @@ import Question from "./components/Question";
 import Pagination from "./components/Pagination";
 import Tag from "./components/Tag";
 import CategoryButton from "./components/CategoryButton";
+import type { Question as QuestionType } from "@/app/types/Question";
 interface QuestionListProps {
-  questionList: any;
+  questionList: QuestionType[];
 }
 export default function QuestionList({ questionList }: QuestionListProps) {
   const [currentTag, setCurrentTag] = useState("백엔드");
@@ -27,12 +28,12 @@ export default function QuestionList({ questionList }: QuestionListProps) {
         <Tag>AOS</Tag>
       </div>
       <section className="grid gap-3">
-        {questionList.map((qusetion: any, index: number) => (
+        {questionList.map((qusetion: QuestionType, index: number) => (
           <Question
-            key={index}
-            id={qusetion.pk}
-            title={qusetion.title}
-            description={qusetion.description || ""}
+            key={qusetion.pkValue}
+            id={qusetion.pkValue}
+            title={qusetion.korTitleValue}
+            // description={qusetion.description || ""}
             // tags={qusetion.tags}
           />
         ))}

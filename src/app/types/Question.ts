@@ -1,7 +1,6 @@
 export interface Question {
-  data: {
-    pk: number;
-    title: string;
-    description: string;
-  };
+  pkValue: number;
+  korTitleValue: string;
+  categories: {}
+  voices: {}
 }

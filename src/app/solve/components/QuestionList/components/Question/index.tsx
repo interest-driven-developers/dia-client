@@ -5,13 +5,11 @@ import Tag from "./components/Tag";
 interface QuestionProps {
   id: number;
   title: string;
-  description: string;
 }
 
-export default function Question({ id, title, description }: QuestionProps) {
+export default function Question({ id, title}: QuestionProps) {
   const [isEditing, setIsEditing] = useState(false);
   const [thisTitle, setTitle] = useState(title);
-  const [thisDescription, setDescription] = useState(description);
 
   return (
     <Link href={`/solve/${id}`}>
