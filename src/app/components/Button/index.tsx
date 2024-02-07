@@ -1,5 +1,4 @@
 "use client";
-import { twMerge } from "tailwind-merge";
 interface ButtonProps {
   onClick: () => void;
   className?: string;
@@ -8,13 +7,12 @@ interface ButtonProps {
 export default function Button(props: ButtonProps) {
   return (
     <button
-      className={twMerge(
-        "px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 focus:outline-none",
-        props.className
-      )}
-      onClick={props.onClick}
+      className="flex justify-center w-full px-[127px] py-[13px] bg-primary rounded-[100px]  items-center hover:opacity-90 whitespace-nowrap "
+      onClick={() => props.onClick()}
     >
-      {props.children}
+      <p className="text-white font-bold text-lg leading-[1.35rem] sm:text-xl">
+        {props.children}
+      </p>
     </button>
   );
 }
