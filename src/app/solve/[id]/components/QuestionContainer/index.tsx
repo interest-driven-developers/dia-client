@@ -21,6 +21,9 @@ import Question from "../Question";
 import BookMarkIcon from "@/app/ui/BookMarkIcon";
 import ScriptSection from "../ScriptSection";
 import type { Question as QuestionType } from "@/app/types/Question";
+import { Modal } from "@/app/components/Modal";
+import { ModalHeader } from "@/app/components/Modal/ui/ModalHeader";
+import Button from "@/app/components/Button";
 interface QuestionContainerProps {
   questionData: QuestionType;
   session: any;
@@ -83,14 +86,14 @@ export default function QuestionContainer({
     await new Promise((r) => setTimeout(r, 600));
     setIsModalOpen(false);
   };
-    const handleClick = () => {
-      if (isModalOpen) {
-        hideMenu();
-      } else {
-        setAnimationClass("animate-fadeInUp");
-        setIsModalOpen(true);
-      }
-    };
+  const handleClick = () => {
+    if (isModalOpen) {
+      hideMenu();
+    } else {
+      setAnimationClass("animate-fadeInUp");
+      setIsModalOpen(true);
+    }
+  };
   return (
     <div>
       <div className="grid grid-cols-3 gap-1 mb-2">
@@ -130,19 +133,15 @@ export default function QuestionContainer({
           // setIsEditing={setIsEditing}
         ></ScriptSection>
       </div>
-      <button
-        className="flex justify-center w-full px-[127px] py-[13px] bg-primary rounded-[100px]  items-center hover:opacity-90"
-        onClick={() => handleClick()}
-      >
-        <p className="text-white font-bold text-lg sm:text-xl">문제 풀기</p>
-      </button>
-      {isModalOpen && (
-        <SolvingTipsModal
-          solveQuestion={solveQuestion}
-          closeModal={hideMenu}
-          animationClass={animationClass}
-        ></SolvingTipsModal>
-      )}
+      <Button onClick={handleClick}>문제 풀기</Button>
+      <Modal animationClass={animationClass} isOpen={isModalOpen}>
+        <Modal.Header closeModal={hideMenu} />
+        <Modal.Body
+          title="모의 면접을 시작해볼까요?"
+          description="문제의 리얼한 TTS가 제공되며 소요 시간은 평균 1~2분입니다."
+        />
+        <Modal.Button onClick={solveQuestion}>문제 풀기</Modal.Button>
+      </Modal>
     </div>
   );
 }

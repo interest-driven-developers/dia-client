@@ -34,6 +34,7 @@ export default function ScriptSection({
     // 스크립트 리스트 업데이트
     setIsEditing(false);
   };
+  
   return (
     <div className="relative px-5 py-6  bg-[#F8F3FF] text-indigo-800 rounded-[10px] h-[438px]">
       {/* <div className="p-3 w-full  bg-white rounded-md shadow-sm divide-y border border-indigo-500 "> */}
