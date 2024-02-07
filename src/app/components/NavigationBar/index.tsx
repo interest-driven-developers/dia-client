@@ -19,7 +19,7 @@ export default function NavigationBar({}: NavigationBarProps) {
   useEffect(() => {
     if (pathname === "/") {
       setIsMenu("home");
-    } else if (pathname === "/solve") {
+    } else if (pathname === "/solve/") {
       setIsMenu("solve");
     } else if (pathname === "/history") {
       setIsMenu("history");
