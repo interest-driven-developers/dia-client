@@ -52,7 +52,7 @@ const config: Config = {
         bounceLeft: "bounceLeft 2s infinite",
       },
       colors: {
-        primary: "#651FFF",
+        primary: "#591FD9",
       },
       fontFamily: {
         Pretendard: ["Pretendard"],
