@@ -53,9 +53,9 @@ export default function pgAdapter(client: Pool): Adapter {
       const { name, email, emailVerified, image } = user;
 
       const sql = `
-        INSERT INTO dia_member (nickname, email, "emailVerified", image, "githubId") 
+        INSERT INTO dia_member (nickname, email, "emailVerified", image, "github_id") 
         VALUES ($1, $2, $3, $4, $5) 
-        RETURNING pk, nickname, email, "emailVerified", image, "githubId"`;
+        RETURNING pk, nickname, email, "emailVerified", image, "github_id"`;
       const result = await client.query(sql, [
         name,
         email,
@@ -69,7 +69,7 @@ export default function pgAdapter(client: Pool): Adapter {
         emailVerified: result.rows[0].emailVerified,
         image: result.rows[0].image,
         name: result.rows[0].nickname,
-        username: result.rows[0].githubId,
+        username: result.rows[0].github_id,
       };
       return adapterUser;
     },
