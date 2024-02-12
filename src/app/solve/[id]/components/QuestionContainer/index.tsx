@@ -6,7 +6,6 @@ import {
   PencilIcon,
   ArrowLeftIcon,
   HeartIcon,
-  ShareIcon,
 } from "@heroicons/react/24/solid";
 import ScriptContainer from "../ScriptSection";
 import CustomSeparator from "@/app/ui/CustomSeparator";
@@ -16,14 +15,15 @@ import HistorySection from "../HistorySection";
 import LatestHistory from "../LatestHistory";
 import Tag from "@/app/solve/components/QuestionList/components/Question/components/Tag";
 import SolvingTipsModal from "../SolvingTipsModal";
-import ScriptCopyIcon from "@/app/ui/ScriptCopyIcon";
+import ScriptCopyIcon from "@/app/ui/icons/ScriptCopyIcon";
 import Question from "../Question";
-import BookMarkIcon from "@/app/ui/BookMarkIcon";
+import BookMarkIcon from "@/app/ui/icons/BookMarkIcon";
 import ScriptSection from "../ScriptSection";
 import type { Question as QuestionType } from "@/app/types/Question";
 import { Modal } from "@/app/components/Modal";
 import { ModalHeader } from "@/app/components/Modal/ui/ModalHeader";
 import Button from "@/app/components/Button";
+import ShareIcon from "@/app/ui/icons/ShareIcon";
 interface QuestionContainerProps {
   questionData: QuestionType;
   session: any;
@@ -117,9 +117,9 @@ export default function QuestionContainer({
       </div>
       <div className="flex flex-col gap-y-3 mb-[27px]">
         <div className="flex items-end justify-end">
-          <div className="flex gap-1">
-            <div onClick={() => alert("기능 구현 중에 있습니다")}>
-              <ScriptCopyIcon></ScriptCopyIcon>
+          <div className="flex gap-2">
+            <div className="mt-0.5" onClick={() => alert("기능 구현 중에 있습니다")}>
+              <ShareIcon/>
             </div>
             <div onClick={() => alert("기능 구현 중에 있습니다")}>
               <BookMarkIcon></BookMarkIcon>

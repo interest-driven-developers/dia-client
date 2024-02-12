@@ -5,9 +5,9 @@ import { useRouter, usePathname } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import Logo from "@/app/ui/Logo";
-import HomeIcon from "@/app/ui/HomeIcon";
-import SolveIcon from "@/app/ui/SolveIcon";
-import HistoryIcon from "@/app/ui/HistoryIcon";
+import HomeIcon from "@/app/ui/icons/HomeIcon";
+import SolveIcon from "@/app/ui/icons/SolveIcon";
+import HistoryIcon from "@/app/ui/icons/HistoryIcon";
 interface NavigationBarProps {
   // session: any;
 }

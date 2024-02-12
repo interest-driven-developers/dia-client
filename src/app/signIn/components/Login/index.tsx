@@ -6,7 +6,7 @@ import {
   LiteralUnion,
   ClientSafeProvider,
 } from "next-auth/react";
-import GithubIcon from "@/app/ui/GithubIcon";
+import GithubIcon from "@/app/ui/icons/GithubIcon";
 
 interface LoginProps {
   providers: Record<string, ClientSafeProvider>;
