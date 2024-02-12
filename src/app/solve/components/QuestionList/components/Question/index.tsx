@@ -7,13 +7,13 @@ interface QuestionProps {
   title: string;
 }
 
-export default function Question({ id, title}: QuestionProps) {
+export default function Question({ id, title }: QuestionProps) {
   const [isEditing, setIsEditing] = useState(false);
   const [thisTitle, setTitle] = useState(title);
 
   return (
     <Link href={`/solve/${id}`}>
-      <div className="flex flex-col bg-[#FAFAFA] rounded-lg px-5 py-4 gap-5 cursor-pointer hover:opacity-70 ">
+      <div className="relative flex flex-col bg-[#FAFAFA] rounded-lg px-5 py-4 gap-5 cursor-pointer hover:opacity-70 ">
         <div>
           <h1 className="text-[#BDBDBD] text-[12px] sm:text-lg font-semibold leading-3">
             Question
@@ -29,6 +29,9 @@ export default function Question({ id, title}: QuestionProps) {
           </span>
           명의 사용자가 도전했습니다
         </p>
+        <div className="absolute bottom-[10px] right-[10px] mt-2 bg-[#EEEEEE] rounded-[100px] px-4 py-1">
+          <p className="text-[#616161] text-[10px] leading-3 font-medium">1 min</p>
+        </div>
       </div>
     </Link>
   );
