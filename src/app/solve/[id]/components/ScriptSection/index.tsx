@@ -4,6 +4,7 @@ import { CheckCircleIcon, XCircleIcon } from "@heroicons/react/24/solid";
 import Spinner from "@/app/components/Spinner";
 import Link from "next/link";
 import CustomSeparator from "@/app/ui/CustomSeparator";
+import EditIcon from "@/app/ui/icons/EditIcon";
 export interface ScriptSectionProps {
   // isEditing: boolean;
   // setIsEditing: any;
@@ -34,10 +35,9 @@ export default function ScriptSection({
     // 스크립트 리스트 업데이트
     setIsEditing(false);
   };
-  
+
   return (
     <div className="relative px-5 py-6  bg-[#F8F3FF] text-indigo-800 rounded-[10px] h-[438px]">
-      {/* <div className="p-3 w-full  bg-white rounded-md shadow-sm divide-y border border-indigo-500 "> */}
       {isLoading ? (
         <div className="w-full h-12 flex justify-center justify-items-center mt-2 r-8">
           <Spinner />
@@ -79,12 +79,20 @@ export default function ScriptSection({
           )}
         </div>
       )}
-      <div className="absolute bottom-4 right-4  mt-2">
+      <div className="absolute bottom-4 right-4 mt-2">
         <p className="text-xs font-medium text-[#D1C4E9]">
           <span className="text-[#9575CD]">{script.length}</span>
           {`/${maxCharacterCount}`}
         </p>
       </div>
+      {!isEditing && (
+        <div
+          className="absolute bottom-[18px] left-6 mt-2 cursor-pointer hover:opacity-70"
+          onClick={() => setIsEditing(true)}
+        >
+          <EditIcon></EditIcon>
+        </div>
+      )}
     </div>
   );
 }
