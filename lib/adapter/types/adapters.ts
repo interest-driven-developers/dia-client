@@ -34,4 +34,5 @@ export interface AdapterUser extends User {
    */
   emailVerified: Date | null;
   username: string;
+  image_url: string;
 }

@@ -50,24 +50,24 @@ export default function pgAdapter(client: Pool): Adapter {
 
     async createUser(user: Omit<AdapterUser, "pk">) {
 
-      const { name, email, emailVerified, image } = user;
+      const { name, email, emailVerified, image_url } = user;
 
       const sql = `
-        INSERT INTO dia_member (nickname, email, "emailVerified", image, "github_id") 
+        INSERT INTO dia_member (nickname, email, "emailVerified", image_url, "github_id") 
         VALUES ($1, $2, $3, $4, $5) 
-        RETURNING pk, nickname, email, "emailVerified", image, "github_id"`;
+        RETURNING pk, nickname, email, "emailVerified", image_url, "github_id"`;
       const result = await client.query(sql, [
         name,
         email,
         emailVerified,
-        image,
+        image_url,
         user.username,
       ]);
       const adapterUser: AdapterUser = {
         id: result.rows[0].pk,
         email: result.rows[0].email,
         emailVerified: result.rows[0].emailVerified,
-        image: result.rows[0].image,
+        image_url: result.rows[0].image_url,
         name: result.rows[0].nickname,
         username: result.rows[0].github_id,
       };
@@ -112,19 +112,19 @@ export default function pgAdapter(client: Pool): Adapter {
         ...user,
       };
 
-      const { pk, nickname, email, emailVerified, image } = newUser;
+      const { pk, nickname, email, emailVerified, image_url } = newUser;
       const updateSql = `
         UPDATE dia_member set
-        nickname = $2, email = $3, "emailVerified" = $4, image = $5
+        nickname = $2, email = $3, "emailVerified" = $4, image_url = $5
         where pk = $1
-        RETURNING pk, nickname, email, "emailVerified", image
+        RETURNING pk, nickname, email, "emailVerified", image_url
       `;
       const query2 = await client.query(updateSql, [
         pk,
         nickname,
         email,
         emailVerified,
-        image,
+        image_url,
       ]);
       return query2.rows[0];
     },
