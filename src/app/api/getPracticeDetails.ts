@@ -1,5 +1,4 @@
-import { cache } from "react";
-export const getPracticeDetails = cache(async (id: string | null | undefined) => {
+export const getPracticeDetails = async (id: string | null | undefined) => {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_SERVER_URL}/api/v0/interview/practice/single?interviewQuestionPkValue=${id}`,
     {
@@ -10,6 +9,6 @@ export const getPracticeDetails = cache(async (id: string | null | undefined) =>
     }
   );
   const data = await res.json();
-  
+
   return data.data;
-});
+};

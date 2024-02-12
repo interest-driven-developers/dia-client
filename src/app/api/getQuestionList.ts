@@ -1,5 +1,4 @@
-import { cache } from "react";
-export const getQuestionList = cache(async () => {
+export const getQuestionList = async () => {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_SERVER_URL}/api/v0/interview/questions?categoryValues=backend`,
     {
@@ -11,4 +10,4 @@ export const getQuestionList = cache(async () => {
   );
   const data = await res.json();
   return data.data.pageData;
-});
+};
