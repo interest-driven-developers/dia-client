@@ -1,32 +1,18 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
-import {
-  PencilIcon,
-  ArrowLeftIcon,
-  HeartIcon,
-} from "@heroicons/react/24/solid";
-import ScriptContainer from "../ScriptSection";
-import CustomSeparator from "@/app/ui/CustomSeparator";
-import copyToClipboard from "@/app/utils/copyToClipBoard";
 import { ChevronLeftIcon } from "@heroicons/react/20/solid";
-import HistorySection from "../HistorySection";
-import LatestHistory from "../LatestHistory";
-import Tag from "@/app/solve/components/QuestionList/components/Question/components/Tag";
-import SolvingTipsModal from "../SolvingTipsModal";
-import ScriptCopyIcon from "@/app/ui/icons/ScriptCopyIcon";
 import Question from "../Question";
 import BookMarkIcon from "@/app/ui/icons/BookMarkIcon";
 import ScriptSection from "../ScriptSection";
 import type { Question as QuestionType } from "@/app/types/Question";
 import { Modal } from "@/app/components/Modal";
-import { ModalHeader } from "@/app/components/Modal/ui/ModalHeader";
 import Button from "@/app/components/Button";
 import ShareIcon from "@/app/ui/icons/ShareIcon";
+import { useSession } from "next-auth/react";
 interface QuestionContainerProps {
   questionData: QuestionType;
-  session: any;
+  session?: any;
 }
 
 const dummyHistoryData = [
@@ -68,8 +54,9 @@ const dummyHistoryData = [
 ];
 export default function QuestionContainer({
   questionData,
-  session,
+  // session,
 }: QuestionContainerProps) {
+  const { data: session, status } = useSession();
   const router = useRouter();
   const [isEditing, setIsEditing] = useState<boolean>(false);
   const [historyData, setHistoryData] = useState<any>(dummyHistoryData);

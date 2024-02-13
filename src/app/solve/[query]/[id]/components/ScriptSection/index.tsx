@@ -5,6 +5,8 @@ import Spinner from "@/app/components/Spinner";
 import Link from "next/link";
 import CustomSeparator from "@/app/ui/CustomSeparator";
 import EditIcon from "@/app/ui/icons/EditIcon";
+import { useSession } from "next-auth/react";
+import { getQuestionScript } from "@/app/api/getQuestionScript";
 export interface ScriptSectionProps {
   // isEditing: boolean;
   // setIsEditing: any;
@@ -16,21 +18,27 @@ export default function ScriptSection({
   // setIsEditing,÷
   id,
 }: ScriptSectionProps) {
+  const { data: session, status } = useSession();
   const [script, setScript] = useState<string>(""); // 스크립트
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isEditing, setIsEditing] = useState<boolean>(false);
   const maxCharacterCount = 500;
   // 페이지 로딩 시, 로컬 스토리지에서 스크립트 불러오기
   useEffect(() => {
-    const savedScript = localStorage.getItem(`script=${id}`);
-    if (savedScript) {
-      setScript(savedScript);
-    }
+    const fetchData = async () => {
+      //@ts-ignore
+      const getScript = await getQuestionScript(id, session?.accessToken);
+    };
+
+    fetchData();
     setIsLoading(false);
   }, [id]);
 
   const handleSaveScript = () => {
     // 스크립트 저장
+    if (session && session.user) {
+      console.log('test')
+    }
     localStorage.setItem(`script=${id}`, script);
     // 스크립트 리스트 업데이트
     setIsEditing(false);

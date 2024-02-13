@@ -75,7 +75,7 @@ export default function Header({ session }: HeaderProps) {
                 홈
               </a>
               <Link
-                href="/solve"
+                href="/solve/backend"
                 className="text-slate-700 hover:text-indigo-600 px-3 py-5 rounded-md text-sm font-semibold"
               >
                 모든 문제

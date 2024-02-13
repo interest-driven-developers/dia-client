@@ -18,7 +18,7 @@ export default function Intro() {
         </p>
         <Link
           className="mt-8 px-4 py-3 text-white bg-primary rounded-md hover:bg-indigo-700 focus:outline-none focus:bg-indigo-700"
-          href="/solve/"
+          href="/solve/backend"
         >
           바로 시작하기
         </Link>

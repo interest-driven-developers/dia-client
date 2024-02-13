@@ -1,4 +1,5 @@
 import { authOptions } from "./api/auth/[...nextauth]/route";
+import { getServerSession } from "next-auth/next";
 import Intro from "./components/Intro";
 
 export default async function Home() {
