@@ -17,14 +17,16 @@ export default function NavigationBar({}: NavigationBarProps) {
   const pathname = usePathname();
   const [isMenu, setIsMenu] = useState("home");
   useEffect(() => {
+    const solvePathPattern = /^\/solve(\/.*)?$/;
+
     if (pathname === "/") {
       setIsMenu("home");
-    } else if (pathname === "/solve/") {
+    } else if (solvePathPattern.test(pathname)) {
       setIsMenu("solve");
     } else if (pathname === "/history") {
       setIsMenu("history");
     } else {
-      setIsMenu(""); // 다른 페이지일 경우 isMenu를 초기화합니다.
+      setIsMenu("");
     }
   }, [pathname]);
 
@@ -53,10 +55,10 @@ export default function NavigationBar({}: NavigationBarProps) {
         </p>
       </div>
       <Link
-        href="/solve"
+        href="/solve/backend"
         className="flex flex-col items-center justify-center flex-grow cursor-pointer group"
       >
-        <SolveIcon className={isMenu === "solve" ? "stroke-primary" : ""} />
+        <SolveIcon className={isMenu === "solve" ? "fill-primary" : ""} />
         <p
           className={`text-[#E0E0E0] group-hover:text-primary group-focus:text-primary text-[10px] font-semibold text-center ${
             isMenu === "solve" && "text-primary"
