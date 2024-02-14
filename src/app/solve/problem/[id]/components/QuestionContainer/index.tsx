@@ -122,7 +122,7 @@ export default function QuestionContainer({
         ></ScriptSection>
       </div>
       <Button onClick={handleClick}>문제 풀기</Button>
-      <Modal animationClass={animationClass} isOpen={isModalOpen}>
+      <Modal animationClass={animationClass} isOpen={isModalOpen} setIsOpen={setIsModalOpen}>
         <Modal.Header closeModal={hideMenu} />
         <Modal.Body
           title="모의 면접을 시작해볼까요?"
