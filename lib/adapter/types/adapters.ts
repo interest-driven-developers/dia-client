@@ -32,7 +32,7 @@ export interface AdapterUser extends User {
    * Whether the user has verified their email address via an [Email provider](https://authjs.dev/reference/core/providers/email).
    * It is `null` if the user has not signed in with the Email provider yet, or the date of the first successful signin.
    */
-  emailVerified: Date | null;
+  email_verified: Date | null;
   username: string;
   image_url: string;
 }
