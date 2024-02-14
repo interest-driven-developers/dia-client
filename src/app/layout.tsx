@@ -52,6 +52,8 @@ export default async function RootLayout({
           {/* <Header session={session} /> */}
         </AuthSession>
         {/* <Footer /> */}
+        {/* createPortal to Modal */}
+        <div id="modal-root"></div>
       </body>
     </html>
   );
