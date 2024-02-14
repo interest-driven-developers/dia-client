@@ -12,16 +12,16 @@ import SelctButtons from "../SelectButtons";
 import SelectButtons from "../SelectButtons";
 import HistoryPage from "../HistoryPage";
 interface ResultContainerProps {
-  title: string;
+  korTitleValue: string;
   script: string;
-  pk: number;
+  pkValue: number;
   session: any;
 }
 
 export default function ResultContainer({
-  title,
+  korTitleValue,
   script,
-  pk: id,
+  pkValue: id,
   session,
 }: ResultContainerProps) {
   const router = useRouter();
@@ -69,6 +69,7 @@ export default function ResultContainer({
 
   useEffect(() => {
     const storedData = localStorage.getItem(`history=${id}`);
+    console.log(storedData, "storedData");
     if (storedData) {
       // 데이터가 없을 경우 기본값으로 빈 배열 설정
       const historyArray = storedData ? JSON.parse(storedData) : [];
