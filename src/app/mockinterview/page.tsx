@@ -10,10 +10,10 @@ export const generateMetadata = async ({ params }: any): Promise<Metadata> => {
 };
 
 export default async function Home() {
-  const questionList = await getQuestionList();
+  // const questionList = await getQuestionList();
   return (
     <main className="h-screen  max-w-3xl mx-auto">
-      <QuestionList questionList={questionList}></QuestionList>
+      {/* <QuestionList questionList={questionList}></QuestionList> */}
     </main>
   );
 }
