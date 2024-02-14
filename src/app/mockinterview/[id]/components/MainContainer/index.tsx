@@ -39,10 +39,10 @@ export default function MainContainer({
     <div>
       <div className="flex items-center mb-[47px]">
         <div onClick={() => router.back()}>
-          <ChevronLeftIcon className="h-6 w-6 text-white cursor-pointer rounded-md hover:opacity-50" />
+          <ChevronLeftIcon className="h-6 w-6 text-[#212121] cursor-pointer rounded-md hover:opacity-50" />
         </div>
-        <h1 className="text-lg sm:text-xl font-bold text-center text-white flex-grow mr-6">
-          실전면접
+        <h1 className="text-lg sm:text-xl font-bold text-center text-primary flex-grow mr-6">
+          실전연습
         </h1>
       </div>
       <ViewComponent></ViewComponent>
