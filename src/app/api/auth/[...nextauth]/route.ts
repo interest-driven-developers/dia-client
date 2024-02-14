@@ -29,7 +29,7 @@ export const authOptions = {
           id: profile.id.toString(),
           name: profile.name || profile.login,
           email: profile.email,
-          image: profile.avatar_url,
+          image_url: profile.avatar_url,
           username: profile.login,
         };
       },
@@ -39,24 +39,21 @@ export const authOptions = {
     signIn: "/signIn",
   },
   session: {
-    strategy: "jwt" as any,
     maxAge: 30 * 24 * 60 * 60, // 30 days
     updateAge: 24 * 60 * 60, // 24 hours
   },
   jwt: {
     secret: process.env.NEXTAUTH_SECRET as string,
-    maxAge: 30 * 24 * 60 * 60, // 30 days
-
+    maxAge: 30, // 30 days
   },
 
   callbacks: {
-    async session({ session, token }: any) {
-      session.accessToken = token.access_Token;
-      session.user = token.user
+    async session({ session, token, user }: any) {
+      session.user = user;
       return session as any;
     },
 
-    async jwt({ token, user, account }: any) {
+    async jwt({ token, user, account, trigger }: any) {
       if (user) {
         token.user = user;
         token.user.name = account.name;
