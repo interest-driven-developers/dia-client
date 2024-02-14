@@ -9,6 +9,7 @@ interface ConfirmModalProps {
 export default function ConfirmModal({ closeModal }: ConfirmModalProps) {
   const router = useRouter();
   return (
+    <></>
     // <Modal isOpen={isModalOpen} setIsOpen={setIsModalOpen}>
     //   <Modal.Header closeModal={closeModal} />
     //   <Modal.Body
