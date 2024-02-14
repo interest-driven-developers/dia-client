@@ -7,7 +7,7 @@ interface QuestionProps {
 
 export default function Question({ id, title }: QuestionProps) {
   return (
-    <Link href={`/solve/${id}`}>
+    <Link href={`/solve/problem/${id}`}>
       <div className="relative flex flex-col bg-[#FAFAFA] rounded-lg px-5 py-4 gap-5 cursor-pointer hover:opacity-70 ">
         <div>
           <h1 className="text-[#BDBDBD] text-[12px] sm:text-lg font-semibold leading-3">

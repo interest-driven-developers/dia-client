@@ -19,6 +19,7 @@ export default function ScriptSection({
   id,
 }: ScriptSectionProps) {
   const { data: session, status } = useSession();
+  // console.log('세션 체크',session);
   const [script, setScript] = useState<string>(""); // 스크립트
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isEditing, setIsEditing] = useState<boolean>(false);
@@ -27,7 +28,7 @@ export default function ScriptSection({
   useEffect(() => {
     const fetchData = async () => {
       //@ts-ignore
-      const getScript = await getQuestionScript(id, session?.accessToken);
+      // const getScript = await getQuestionScript(id, session?.accessToken);
     };
 
     fetchData();
@@ -37,7 +38,7 @@ export default function ScriptSection({
   const handleSaveScript = () => {
     // 스크립트 저장
     if (session && session.user) {
-      console.log('test')
+      // console.log('test')
     }
     localStorage.setItem(`script=${id}`, script);
     // 스크립트 리스트 업데이트

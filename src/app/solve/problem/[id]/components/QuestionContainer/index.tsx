@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { ChevronLeftIcon } from "@heroicons/react/20/solid";
 import Question from "../Question";
 import BookMarkIcon from "@/app/ui/icons/BookMarkIcon";
@@ -10,6 +10,7 @@ import { Modal } from "@/app/components/Modal";
 import Button from "@/app/components/Button";
 import ShareIcon from "@/app/ui/icons/ShareIcon";
 import { useSession } from "next-auth/react";
+import copyToClipboard from "@/app/utils/copyToClipBoard";
 interface QuestionContainerProps {
   questionData: QuestionType;
   session?: any;
@@ -105,7 +106,7 @@ export default function QuestionContainer({
       <div className="flex flex-col gap-y-3 mb-[27px]">
         <div className="flex items-end justify-end">
           <div className="flex gap-2">
-            <div className="mt-0.5" onClick={() => alert("기능 구현 중에 있습니다")}>
+            <div className="mt-0.5" onClick={() => copyToClipboard()}>
               <ShareIcon/>
             </div>
             <div onClick={() => alert("기능 구현 중에 있습니다")}>

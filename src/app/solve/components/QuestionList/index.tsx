@@ -22,11 +22,11 @@ export default function QuestionList({
   return (
     <div className="">
       <div className="sticky top-16 bg-white z-10">
-        <div className="flex flex-row w-full mb-2.5">
+        <div className="flex flex-row w-full mb-4">
           <CategoryButton selected={true}>개별연습</CategoryButton>
           <CategoryButton>실전연습</CategoryButton>
         </div>
-        <div className="flex flex-row gap-2 overflow-x-auto w-full mb-9">
+        <div className="flex flex-row gap-3 overflow-x-auto w-full mb-4">
           {tags.map((tag, index) => (
             <Tag key={index} selected={currentTag}>
               {tag.name}
