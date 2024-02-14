@@ -1,5 +1,3 @@
-import React, { useState } from "react";
-import { EllipsisVerticalIcon } from "@heroicons/react/20/solid";
 import Link from "next/link";
 import Tag from "./components/Tag";
 interface QuestionProps {
@@ -8,9 +6,6 @@ interface QuestionProps {
 }
 
 export default function Question({ id, title }: QuestionProps) {
-  const [isEditing, setIsEditing] = useState(false);
-  const [thisTitle, setTitle] = useState(title);
-
   return (
     <Link href={`/solve/${id}`}>
       <div className="relative flex flex-col bg-[#FAFAFA] rounded-lg px-5 py-4 gap-5 cursor-pointer hover:opacity-70 ">

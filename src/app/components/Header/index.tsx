@@ -98,7 +98,7 @@ export default function Header({ session }: HeaderProps) {
                       className="h-10 w-10 rounded-full"
                       width={20}
                       height={20}
-                      src={session.user?.image || "/images/default-profile.png"}
+                      src={session.user?.image_url || "/images/default-profile.png"}
                       alt=""
                     />
                   </div>

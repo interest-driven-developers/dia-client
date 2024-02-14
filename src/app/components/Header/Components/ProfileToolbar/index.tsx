@@ -24,7 +24,7 @@ export default function ProfileToolbar({ isOpen, user }: ProfileToolbarProps) {
               className="mt-5 h-10 w-10 rounded-full justify-items-center items-center itmes-self-center"
               width={30}
               height={30}
-              src={user.image || "/default-user.png"}
+              src={user.image_url || "/default-user.png"}
               alt="user Image"
             />
             <p className="font-semibold ">{user.nickname}</p>
