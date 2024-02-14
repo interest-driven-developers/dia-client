@@ -55,6 +55,7 @@ export default function ScriptSection({
         <>
           <textarea
             value={script}
+            placeholder="여기에 스크립트를 작성해주세요."
             onChange={(e) => setScript(e.target.value)}
             className="w-full h-40 p-2 rounded-md bg-[#F8F3FF] focus:ring-blue-500"
           />
