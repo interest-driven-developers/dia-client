@@ -7,38 +7,32 @@ import CategoryButton from "./components/CategoryButton";
 import type { Question as QuestionType } from "@/app/types/Question";
 import { getTags } from "@/app/utils/getTags";
 import { getQuestionList } from "@/app/api/getQuestionList";
+import { useSession } from "next-auth/react";
 interface QuestionListProps {
   questionList: QuestionType[];
   query: string;
 }
-export default function QuestionList({ questionList,query }: QuestionListProps) {
+export default function QuestionList({
+  questionList,
+  query,
+}: QuestionListProps) {
   const tags = getTags();
+  const { data: session, status } = useSession();
   const [currentTag, setCurrentTag] = useState(query);
-  console.log(questionList);
-  // const [currentQuestionList, setCurrentQuestionList] =
-  //   useState<QuestionType[]>(questionList);
-
-  // useEffect(() => {
-  //   async function fetchData() {
-  //     const result = await getQuestionList(currentTag);
-  //     console.log("새로 가져오기", result);
-  //     setCurrentQuestionList(result);
-  //   }
-  //   fetchData();
-  // }, [currentTag, questionList]);
-  // console.log(currentTag);
   return (
-    <div>
-      <div className="flex flex-row w-full mb-2.5">
-        <CategoryButton selected={true}>개별연습</CategoryButton>
-        <CategoryButton>실전연습</CategoryButton>
-      </div>
-      <div className="flex flex-row gap-2 overflow-x-auto w-full mb-9">
-        {tags.map((tag, index) => (
-          <Tag key={index} selected={currentTag}>
-            {tag.name}
-          </Tag>
-        ))}
+    <div className="">
+      <div className="sticky top-16 bg-white z-10">
+        <div className="flex flex-row w-full mb-2.5">
+          <CategoryButton selected={true}>개별연습</CategoryButton>
+          <CategoryButton>실전연습</CategoryButton>
+        </div>
+        <div className="flex flex-row gap-2 overflow-x-auto w-full mb-9">
+          {tags.map((tag, index) => (
+            <Tag key={index} selected={currentTag}>
+              {tag.name}
+            </Tag>
+          ))}
+        </div>
       </div>
       <section className="grid gap-3">
         {questionList.map((qusetion: QuestionType, index: number) => (
