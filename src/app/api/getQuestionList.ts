@@ -5,7 +5,6 @@ export const getQuestionList = async (category: string) => {
     .split(",")
     .map((tag) => mapTagToPurpose(tag))
     .join(",");
-  console.log("categoryValues", categoryValues);
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_SERVER_URL}/api/v0/interview/questions?categoryValues=${categoryValues}`,
     {
