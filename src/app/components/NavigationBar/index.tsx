@@ -4,10 +4,10 @@ import type { User } from "@/types/User";
 import { useRouter, usePathname } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import Logo from "@/ui/Logo";
-import HomeIcon from "@/ui/icons/HomeIcon";
-import SolveIcon from "@/ui/icons/SolveIcon";
-import HistoryIcon from "@/ui/icons/HistoryIcon";
+import Logo from "@/app/ui/Logo";
+import HomeIcon from "@/app/ui/icons/HomeIcon";
+import SolveIcon from "@/app/ui/icons/SolveIcon";
+import HistoryIcon from "@/app/ui/icons/HistoryIcon";
 interface NavigationBarProps {
   // session: any;
 }
@@ -18,12 +18,13 @@ export default function NavigationBar({}: NavigationBarProps) {
   const [isMenu, setIsMenu] = useState("home");
   useEffect(() => {
     const solvePathPattern = /^\/(solve|mockinterview)(\/.*)?$/;
+    const historyPathPattern = /^\/history(\/.*)?$/;
 
     if (pathname === "/") {
       setIsMenu("home");
     } else if (solvePathPattern.test(pathname)) {
       setIsMenu("solve");
-    } else if (pathname === "/history") {
+    } else if (historyPathPattern.test(pathname)) {
       setIsMenu("history");
     } else {
       setIsMenu("");
@@ -67,12 +68,19 @@ export default function NavigationBar({}: NavigationBarProps) {
           문제풀기
         </p>
       </Link>
-      <div className="flex flex-col items-center justify-center flex-grow cursor-pointer group">
+      <Link
+        href="/history"
+        className="flex flex-col items-center justify-center flex-grow cursor-pointer group"
+      >
         <HistoryIcon className={isMenu === "history" ? "stroke-primary" : ""} />
-        <p className="text-[#E0E0E0] group-hover:text-primary text-[10px] font-semibold text-center">
+        <p
+          className={`text-[#E0E0E0] group-hover:text-primary group-focus:text-primary text-[10px] font-semibold text-center ${
+            isMenu === "history" && "text-primary"
+          }`}
+        >
           히스토리
         </p>
-      </div>
+      </Link>
     </div>
   );
 }

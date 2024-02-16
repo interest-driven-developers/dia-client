@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import MarkdownEditor from "./components/MarkdownEditor";
 import { getQuestionDetails } from "@/app/api/getQuestionDetails";
-import CustomSeparator from "@/ui/CustomSeparator";
+import CustomSeparator from "@/app/ui/CustomSeparator";
 export const dynamic = "force-dynamic";
 export function generateStaticParams() {
   return [{ id: "1" }, { id: "2" }, { id: "3" }];

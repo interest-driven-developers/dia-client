@@ -1,5 +1,5 @@
-import HamburgerIcon from "@/ui/icons/HamburgerIcon";
-import SearchIcon from "@/ui/icons/SeacrhIcon";
+import HamburgerIcon from "@/app/ui/icons/HamburgerIcon";
+import SearchIcon from "@/app/ui/icons/SeacrhIcon";
 import Link from "next/link";
 
 type MobileMenuProps = {

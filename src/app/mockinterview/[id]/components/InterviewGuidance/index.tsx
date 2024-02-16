@@ -5,7 +5,7 @@ import useSpeechToText, { ResultType } from "react-hook-speech-to-text";
 import { MicrophoneIcon } from "@heroicons/react/24/solid";
 import TTSPlayer from "../TTSPlayer";
 import { VoiceType } from "@/types/Voice";
-import EqualizerIcon from "@/ui/icons/EqualizerIcon";
+import EqualizerIcon from "@/app/ui/icons/EqualizerIcon";
 interface InterViewGuidanceProps {
   handleView: (view: number) => void;
   handleResults: (results: string) => void;

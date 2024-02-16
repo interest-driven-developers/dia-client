@@ -1,5 +1,5 @@
 import Link from "next/link";
-import GithubIcon from "@/ui/icons/GithubIcon";
+import GithubIcon from "@/app/ui/icons/GithubIcon";
 export default function Footer() {
   return (
     <footer className="z-40 shadow-sm w-screen sm:mx-auto flex items-center justify-between p-6 bg-gray-100 dark:bg-slate-700 bottom-0">

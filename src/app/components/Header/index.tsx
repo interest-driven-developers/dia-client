@@ -8,7 +8,7 @@ import ProfileToolbar from "./Components/ProfileToolbar";
 import Link from "next/link";
 import ToggleButton from "./Components/ToggleButton";
 import ToggleMenu from "./Components/ToggleMenu";
-import Logo from "@/ui/Logo";
+import Logo from "@/app/ui/Logo";
 import MobileMenu from "./Components/MobileMenu";
 interface HeaderProps {
   session: any;

@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import VoiceIcon from "@/ui/icons/VoiceIcon";
+import VoiceIcon from "@/app/ui/icons/VoiceIcon";
 export interface HistorySectionProps {
   id: number;
   script: string;

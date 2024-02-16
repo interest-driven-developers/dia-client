@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { CheckCircleIcon, XCircleIcon } from "@heroicons/react/24/solid";
 import Spinner from "@/app/components/Spinner";
 import Link from "next/link";
-import CustomSeparator from "@/ui/CustomSeparator";
+import CustomSeparator from "@/app/ui/CustomSeparator";
 export interface ScriptSectionProps {
   // isEditing: boolean;
   // setIsEditing: any;

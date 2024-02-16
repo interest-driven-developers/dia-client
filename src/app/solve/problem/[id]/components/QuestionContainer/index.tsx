@@ -3,12 +3,12 @@ import React, { useState, useEffect } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import { ChevronLeftIcon } from "@heroicons/react/20/solid";
 import Question from "../Question";
-import BookMarkIcon from "@/ui/icons/BookMarkIcon";
+import BookMarkIcon from "@/app/ui/icons/BookMarkIcon";
 import ScriptSection from "../ScriptSection";
 import type { Question as QuestionType } from "@/types/Question";
 import { Modal } from "@/app/components/Modal";
 import Button from "@/app/components/Button";
-import ShareIcon from "@/ui/icons/ShareIcon";
+import ShareIcon from "@/app/ui/icons/ShareIcon";
 import { useSession } from "next-auth/react";
 import copyToClipboard from "@/utils/copyToClipBoard";
 interface QuestionContainerProps {

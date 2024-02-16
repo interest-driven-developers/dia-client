@@ -5,7 +5,7 @@ import QuestionInfo from "../QuestionInfo";
 import { VoiceType } from "@/types/Voice";
 import ConfirmModal from "../ConfrimModal";
 import Header from "../Header";
-import CustomSeparator from "@/ui/CustomSeparator";
+import CustomSeparator from "@/app/ui/CustomSeparator";
 import { ChevronLeftIcon } from "@heroicons/react/20/solid";
 import { useRouter } from "next/navigation";
 interface MainContainerProps {
