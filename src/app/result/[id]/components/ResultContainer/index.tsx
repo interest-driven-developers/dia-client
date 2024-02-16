@@ -16,10 +16,11 @@ interface ResultContainerProps {
   script: string;
   pkValue: number;
   session: any;
+  contentValue: string;
 }
 
 export default function ResultContainer({
-  korTitleValue,
+  contentValue,
   script,
   pkValue: id,
   session,
@@ -51,8 +52,11 @@ export default function ResultContainer({
       case 0:
         return (
           <>
-            <ScriptSection id={id}></ScriptSection>
-            <HistorySection id={id} script={lastHistory || ""}></HistorySection>
+            <ScriptSection id={id} script={contentValue || ''}></ScriptSection>
+            <HistorySection
+              id={id}
+              script={historyList[historyList.length - 1]?.results || ""}
+            ></HistorySection>
           </>
         );
       case 1:
@@ -60,8 +64,11 @@ export default function ResultContainer({
       default:
         return (
           <>
-            <ScriptSection id={id}></ScriptSection>
-            <HistorySection id={id} script={lastHistory || ""}></HistorySection>
+            <ScriptSection id={id} script={contentValue || ""}></ScriptSection>
+            <HistorySection
+              id={id}
+              script={historyList[historyList.length - 1]?.results || ""}
+            ></HistorySection>
           </>
         );
     }

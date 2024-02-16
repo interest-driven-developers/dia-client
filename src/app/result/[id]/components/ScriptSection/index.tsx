@@ -7,23 +7,25 @@ import CustomSeparator from "@/app/ui/CustomSeparator";
 export interface ScriptSectionProps {
   // isEditing: boolean;
   // setIsEditing: any;
+  script : string;
   id: number;
 }
 
+const maxCharacterCount = 500;
 export default function ScriptSection({
   // isEditing,
   // setIsEditing,
   id,
+  script,
 }: ScriptSectionProps) {
-  const [script, setScript] = useState<string>(""); // 스크립트
+  const [prevScript, setPrevScript] = useState<string>(script); // 스크립트
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isEditing, setIsEditing] = useState<boolean>(false);
-  const maxCharacterCount = 500;
   // 페이지 로딩 시, 로컬 스토리지에서 스크립트 불러오기
   useEffect(() => {
     const savedScript = localStorage.getItem(`script=${id}`);
     if (savedScript) {
-      setScript(savedScript);
+      setPrevScript(savedScript);
     }
     setIsLoading(false);
   }, [id]);
@@ -45,7 +47,7 @@ export default function ScriptSection({
         <>
           <textarea
             value={script}
-            onChange={(e) => setScript(e.target.value)}
+            onChange={(e) => setPrevScript(e.target.value)}
             className="w-full h-40 p-2 rounded-md bg-[#F8F3FF] focus:ring-blue-500"
           />
           <div className="absolute bottom-4 left-4 flex items-center">

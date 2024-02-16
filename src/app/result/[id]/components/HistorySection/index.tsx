@@ -6,14 +6,13 @@ export interface HistorySectionProps {
   script: string;
   className?: string;
 }
+const maxCharacterCount = 500;
 
 export default function HistorySection({
   script,
   id,
   className,
 }: HistorySectionProps) {
-  const maxCharacterCount = 500;
-
   return (
     <div
       className={`relative px-5 py-6  bg-[#B8A0FA] rounded-[10px] h-[264px] ${className}`}

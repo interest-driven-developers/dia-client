@@ -7,11 +7,14 @@ import CustomSeparator from "@/app/ui/CustomSeparator";
 import EditIcon from "@/app/ui/icons/EditIcon";
 import { useSession } from "next-auth/react";
 import { getQuestionScript } from "@/app/api/getQuestionScript";
+import { editQuestionScript } from "@/app/api/editQuestionScript";
 export interface ScriptSectionProps {
   // isEditing: boolean;
   // setIsEditing: any;
   id: number;
 }
+
+const maxCharacterCount = 500;
 
 export default function ScriptSection({
   // isEditing,
@@ -19,36 +22,41 @@ export default function ScriptSection({
   id,
 }: ScriptSectionProps) {
   const { data: session, status } = useSession();
-  // console.log('세션 체크',session);
-  const [script, setScript] = useState<string>(""); // 스크립트
+  // console.log("세션 체크", session);
+  const [script, setScript] = useState<string>("");
+  const [prevScript, setPrevScript] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isEditing, setIsEditing] = useState<boolean>(false);
-  const maxCharacterCount = 500;
-  // 페이지 로딩 시, 로컬 스토리지에서 스크립트 불러오기
   useEffect(() => {
     const fetchData = async () => {
       //@ts-ignore
-      // const getScript = await getQuestionScript(id, session?.accessToken);
+      const getScript = await getQuestionScript(id, session?.user.access_token);
+      setScript(getScript.contentValue);
     };
 
     fetchData();
     setIsLoading(false);
-  }, [id]);
+  }, [id, session]);
 
-  const handleSaveScript = () => {
-    // 스크립트 저장
+  const handleSaveScript = async () => {
     if (session && session.user) {
-      // console.log('test')
+      await editQuestionScript({
+        questionPkValue: id,
+        contentValue: script,
+        //@ts-ignore
+        accessToken: session?.user.access_token,
+      });
+    } else {
+      localStorage.setItem(`script=${id}`, script);
     }
-    localStorage.setItem(`script=${id}`, script);
-    // 스크립트 리스트 업데이트
     setIsEditing(false);
+    setPrevScript(script);
   };
 
   return (
     <div className="relative px-5 py-6  bg-[#F8F3FF] rounded-[10px] h-[438px]">
       {isLoading ? (
-        <div className="w-full h-12 flex justify-center justify-items-center mt-2 r-8">
+        <div className="w-full h-screen flex justify-center justify-items-center mt-24 r-8">
           <Spinner />
         </div>
       ) : isEditing ? (
@@ -61,7 +69,10 @@ export default function ScriptSection({
           />
           <div className="absolute bottom-4 left-4 flex items-center">
             <XCircleIcon
-              onClick={() => setIsEditing(false)}
+              onClick={() => {
+                setIsEditing(false);
+                setScript(prevScript);
+              }}
               className="w-5 h-5 text-red-500 cursor-pointer hover:opacity-50"
             ></XCircleIcon>
             <CheckCircleIcon
@@ -93,7 +104,10 @@ export default function ScriptSection({
       {!isEditing && (
         <div
           className="absolute bottom-[18px] left-6 mt-2 cursor-pointer hover:opacity-70"
-          onClick={() => setIsEditing(true)}
+          onClick={() => {
+            setIsEditing(true);
+            setPrevScript(script);
+          }}
         >
           <EditIcon></EditIcon>
         </div>
