@@ -8,6 +8,7 @@ import type { Question as QuestionType } from "@/types/Question";
 import { getTags } from "@/utils/getTags";
 import { getQuestionList } from "@/app/api/getQuestionList";
 import { useSession } from "next-auth/react";
+import Link from "next/link";
 interface QuestionListProps {
   questionList: QuestionType[];
   query: string;
