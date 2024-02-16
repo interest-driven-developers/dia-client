@@ -1,7 +1,6 @@
 export interface VoiceType {
-  filePath: string;
-  gender: string;
-  pk: number;
-  questionPk: number;
-  subtitle: string;
+  fileUrlValue: string;
+  genderValue: string;
+  pkValue: number;
+  questionPkValue: number;
 }
