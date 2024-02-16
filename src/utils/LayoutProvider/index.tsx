@@ -12,14 +12,14 @@ export interface LayoutProviderProps {
 
 export const LayoutProvider = ({ children, session }: LayoutProviderProps) => {
   const pathname = usePathname();
-const notAllowedPath = ["/signIn/", "/mockinterview/"];
-const isNotAllowed = notAllowedPath.some((path) => pathname.startsWith(path));
+  const notAllowedPath = ["/signIn/", "/mockinterview/"];
+  const isNotAllowed = notAllowedPath.some((path) => pathname.startsWith(path));
 
-return (
-  <SessionProvider session={session}>
-    {!isNotAllowed && <Header session={session} />}
-    {children}
-    <NavigationBar></NavigationBar>
-  </SessionProvider>
-);
+  return (
+    <SessionProvider session={session}>
+      {!isNotAllowed && <Header session={session} />}
+      {children}
+      {!isNotAllowed && <NavigationBar></NavigationBar>}
+    </SessionProvider>
+  );
 };
