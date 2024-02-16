@@ -3,10 +3,9 @@ type Params = {
   accessToken: string | undefined;
 };
 export const getQuestionScript = async (
-  id: number,
+  id: string,
   accessToken: string
 ): Promise<any> => {
-  console.log("되는가?", id, accessToken);
   if (!id) {
     throw new Error("id is required");
   }
@@ -36,7 +35,6 @@ export const getQuestionScript = async (
       );
     }
 
-    console.log("스크립트 가져오기", data);
     return data.data;
   } catch (error) {
     console.error("Error fetching question script:", error);
