@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect, use } from "react";
 import RecordingResults from "../RecordingResults";
-import { VoiceType } from "@/app/types/Voice";
+import { VoiceType } from "@/types/Voice";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
 import { RouteKind } from "next/dist/server/future/route-kind";

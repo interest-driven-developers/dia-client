@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import HistoryContainer from "./components/HistoryContainer";
 import HistoryModal from "./components/HistoryModal";
-import { HistoryType } from "@/app/types/History";
+import { HistoryType } from "@/types/History";
 const dummmyData = [
   {
     id: 1,

@@ -3,8 +3,7 @@ import MainContainer from "./components/MainContainer";
 import { getQuestionDetails } from "@/app/api/getQuestionDetails";
 import { getPracticeDetails } from "@/app/api/getPracticeDetails";
 import { getQuestionList } from "@/app/api/getQuestionList";
-import { Question } from "@/app/types/Question";
-
+import { Question } from "@/types/Question";
 
 // export async function generateStaticParams() {
 //   // const lists = await getPracticeDetails();

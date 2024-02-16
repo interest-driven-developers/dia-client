@@ -1,6 +1,6 @@
 "use Client";
 import Link from "next/link";
-import mapTagToPurpose from "@/app/utils/mapTagToPurpose";
+import mapTagToPurpose from "@/utils/mapTagToPurpose";
 type TagProps = {
   children?: React.ReactNode;
   selected: string;

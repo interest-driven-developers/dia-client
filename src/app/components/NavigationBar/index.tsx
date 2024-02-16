@@ -1,13 +1,13 @@
 "use client";
 import { useState, useEffect } from "react";
-import type { User } from "@/app/types/User";
+import type { User } from "@/types/User";
 import { useRouter, usePathname } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import Logo from "@/app/ui/Logo";
-import HomeIcon from "@/app/ui/icons/HomeIcon";
-import SolveIcon from "@/app/ui/icons/SolveIcon";
-import HistoryIcon from "@/app/ui/icons/HistoryIcon";
+import Logo from "@/ui/Logo";
+import HomeIcon from "@/ui/icons/HomeIcon";
+import SolveIcon from "@/ui/icons/SolveIcon";
+import HistoryIcon from "@/ui/icons/HistoryIcon";
 interface NavigationBarProps {
   // session: any;
 }

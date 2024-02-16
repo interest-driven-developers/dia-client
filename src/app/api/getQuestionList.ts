@@ -1,4 +1,4 @@
-import mapTagToPurpose from "../utils/mapTagToPurpose";
+import mapTagToPurpose from "../../utils/mapTagToPurpose";
 
 export const getQuestionList = async (category: string) => {
   const categoryValues = category

@@ -3,14 +3,14 @@ import React, { useState, useEffect } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import { ChevronLeftIcon } from "@heroicons/react/20/solid";
 import Question from "../Question";
-import BookMarkIcon from "@/app/ui/icons/BookMarkIcon";
+import BookMarkIcon from "@/ui/icons/BookMarkIcon";
 import ScriptSection from "../ScriptSection";
-import type { Question as QuestionType } from "@/app/types/Question";
+import type { Question as QuestionType } from "@/types/Question";
 import { Modal } from "@/app/components/Modal";
 import Button from "@/app/components/Button";
-import ShareIcon from "@/app/ui/icons/ShareIcon";
+import ShareIcon from "@/ui/icons/ShareIcon";
 import { useSession } from "next-auth/react";
-import copyToClipboard from "@/app/utils/copyToClipBoard";
+import copyToClipboard from "@/utils/copyToClipBoard";
 interface QuestionContainerProps {
   questionData: QuestionType;
   session?: any;
@@ -55,8 +55,8 @@ const dummyHistoryData = [
 ];
 export default function QuestionContainer({
   questionData,
-  // session,
-}: QuestionContainerProps) {
+}: // session,
+QuestionContainerProps) {
   const { data: session, status } = useSession();
   const router = useRouter();
   const [isEditing, setIsEditing] = useState<boolean>(false);
@@ -107,7 +107,7 @@ export default function QuestionContainer({
         <div className="flex items-end justify-end">
           <div className="flex gap-2">
             <div className="mt-0.5" onClick={() => copyToClipboard()}>
-              <ShareIcon/>
+              <ShareIcon />
             </div>
             <div onClick={() => alert("기능 구현 중에 있습니다")}>
               <BookMarkIcon></BookMarkIcon>
@@ -122,7 +122,11 @@ export default function QuestionContainer({
         ></ScriptSection>
       </div>
       <Button onClick={handleClick}>문제 풀기</Button>
-      <Modal animationClass={animationClass} isOpen={isModalOpen} setIsOpen={setIsModalOpen}>
+      <Modal
+        animationClass={animationClass}
+        isOpen={isModalOpen}
+        setIsOpen={setIsModalOpen}
+      >
         <Modal.Header closeModal={hideMenu} />
         <Modal.Body
           title="모의 면접을 시작해볼까요?"

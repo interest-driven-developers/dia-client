@@ -4,8 +4,8 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { ChevronLeftIcon } from "@heroicons/react/20/solid";
 import Tag from "@/app/solve/components/QuestionList/components/Question/components/Tag";
-import ScriptCopyIcon from "@/app/ui/icons/ScriptCopyIcon";
-import BookMarkIcon from "@/app/ui/icons/BookMarkIcon";
+import ScriptCopyIcon from "@/ui/icons/ScriptCopyIcon";
+import BookMarkIcon from "@/ui/icons/BookMarkIcon";
 import ScriptSection from "../ScriptSection";
 import HistorySection from "../HistorySection";
 import SelctButtons from "../SelectButtons";
@@ -52,7 +52,7 @@ export default function ResultContainer({
       case 0:
         return (
           <>
-            <ScriptSection id={id} script={contentValue || ''}></ScriptSection>
+            <ScriptSection id={id} script={contentValue || ""}></ScriptSection>
             <HistorySection
               id={id}
               script={historyList[historyList.length - 1]?.results || ""}

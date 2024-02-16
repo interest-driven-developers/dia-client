@@ -1,5 +1,5 @@
 "use client";
-import { VoiceType } from "@/app/types/Voice";
+import { VoiceType } from "@/types/Voice";
 import React, { useState, useRef, useEffect } from "react";
 import { start } from "repl";
 

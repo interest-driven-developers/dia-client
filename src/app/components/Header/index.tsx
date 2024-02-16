@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import type { User } from "@/app/types/User";
+import type { User } from "@/types/User";
 import { useRouter, usePathname } from "next/navigation";
 import LoginButton from "./Components/LoginButton";
 import Image from "next/image";
@@ -8,7 +8,7 @@ import ProfileToolbar from "./Components/ProfileToolbar";
 import Link from "next/link";
 import ToggleButton from "./Components/ToggleButton";
 import ToggleMenu from "./Components/ToggleMenu";
-import Logo from "@/app/ui/Logo";
+import Logo from "@/ui/Logo";
 import MobileMenu from "./Components/MobileMenu";
 interface HeaderProps {
   session: any;
@@ -98,7 +98,9 @@ export default function Header({ session }: HeaderProps) {
                       className="h-10 w-10 rounded-full"
                       width={20}
                       height={20}
-                      src={session.user?.image_url || "/images/default-profile.png"}
+                      src={
+                        session.user?.image_url || "/images/default-profile.png"
+                      }
                       alt=""
                     />
                   </div>

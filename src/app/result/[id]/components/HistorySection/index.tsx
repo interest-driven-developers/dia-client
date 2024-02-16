@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import VoiceIcon from "@/app/ui/icons/VoiceIcon";
+import VoiceIcon from "@/ui/icons/VoiceIcon";
 export interface HistorySectionProps {
   id: number;
   script: string;
@@ -17,7 +17,6 @@ export default function HistorySection({
     <div
       className={`relative px-5 py-6  bg-[#B8A0FA] rounded-[10px] h-[264px] ${className}`}
     >
-
       <div className="whitespace-pre-wrap flex">
         {script ? (
           <p className="text-[16px] text-white leading-7 sm:text-lg font-medium">

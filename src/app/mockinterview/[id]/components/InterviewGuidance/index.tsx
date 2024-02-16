@@ -4,8 +4,8 @@ import Image from "next/image";
 import useSpeechToText, { ResultType } from "react-hook-speech-to-text";
 import { MicrophoneIcon } from "@heroicons/react/24/solid";
 import TTSPlayer from "../TTSPlayer";
-import { VoiceType } from "@/app/types/Voice";
-import EqualizerIcon from "@/app/ui/icons/EqualizerIcon";
+import { VoiceType } from "@/types/Voice";
+import EqualizerIcon from "@/ui/icons/EqualizerIcon";
 interface InterViewGuidanceProps {
   handleView: (view: number) => void;
   handleResults: (results: string) => void;
@@ -54,9 +54,11 @@ export default function InterViewGuidance({
           <div className="flex px-2 py-7 bg-[#212121] rounded-[10px] justify-center mb-[22px]">
             <div className="whitespace-pre-wrap px-10 sm:px-16">
               <p className="text-[16px] leading-[22px] sm:text-lg font-medium text-center text-white">
-                버튼을 클릭하면 면접이 시작됩니다.<br/>
-                차분한 마음으로 대기해주시고 질문이 나온 후 <span className="text-red-500">{`"삐"`}</span>{" "}
-                소리가 나오면  답변을 시작해주세요.
+                버튼을 클릭하면 면접이 시작됩니다.
+                <br />
+                차분한 마음으로 대기해주시고 질문이 나온 후{" "}
+                <span className="text-red-500">{`"삐"`}</span> 소리가 나오면
+                답변을 시작해주세요.
               </p>
             </div>
           </div>

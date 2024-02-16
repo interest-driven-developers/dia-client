@@ -2,10 +2,10 @@
 import React, { useState, useEffect } from "react";
 import MockTest from "../MockTest";
 import QuestionInfo from "../QuestionInfo";
-import { VoiceType } from "@/app/types/Voice";
+import { VoiceType } from "@/types/Voice";
 import ConfirmModal from "../ConfrimModal";
 import Header from "../Header";
-import CustomSeparator from "@/app/ui/CustomSeparator";
+import CustomSeparator from "@/ui/CustomSeparator";
 import { ChevronLeftIcon } from "@heroicons/react/20/solid";
 import { useRouter } from "next/navigation";
 interface MainContainerProps {

@@ -1,5 +1,5 @@
 "use client";
-import OverlayClickHandler from "@/app/utils/OverlayClickHandler";
+import OverlayClickHandler from "@/utils/OverlayClickHandler";
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 type Props = {

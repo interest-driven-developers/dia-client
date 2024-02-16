@@ -7,13 +7,13 @@ import {
 } from "@heroicons/react/24/solid";
 import Spinner from "@/app/components/Spinner";
 import Link from "next/link";
-import CustomSeparator from "@/app/ui/CustomSeparator";
+import CustomSeparator from "@/ui/CustomSeparator";
 export interface HistorySectionProps {
   isEditing: boolean;
   setIsEditing: any;
   id: number;
   historyList: any;
-  setIsHistory: (data : string) => void;
+  setIsHistory: (data: string) => void;
 }
 
 export default function HistorySection({

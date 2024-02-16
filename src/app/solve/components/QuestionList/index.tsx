@@ -4,8 +4,8 @@ import Question from "./components/Question";
 import Pagination from "./components/Pagination";
 import Tag from "./components/Tag";
 import CategoryButton from "./components/CategoryButton";
-import type { Question as QuestionType } from "@/app/types/Question";
-import { getTags } from "@/app/utils/getTags";
+import type { Question as QuestionType } from "@/types/Question";
+import { getTags } from "@/utils/getTags";
 import { getQuestionList } from "@/app/api/getQuestionList";
 import { useSession } from "next-auth/react";
 interface QuestionListProps {

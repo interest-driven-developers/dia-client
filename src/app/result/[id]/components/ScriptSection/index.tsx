@@ -3,11 +3,11 @@ import React, { useState, useEffect } from "react";
 import { CheckCircleIcon, XCircleIcon } from "@heroicons/react/24/solid";
 import Spinner from "@/app/components/Spinner";
 import Link from "next/link";
-import CustomSeparator from "@/app/ui/CustomSeparator";
+import CustomSeparator from "@/ui/CustomSeparator";
 export interface ScriptSectionProps {
   // isEditing: boolean;
   // setIsEditing: any;
-  script : string;
+  script: string;
   id: number;
 }
 
