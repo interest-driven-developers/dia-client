@@ -122,6 +122,7 @@ QuestionContainerProps) {
         ></ScriptSection>
       </div>
       <Button onClick={handleClick}>문제 풀기</Button>
+      {/* 모달 섹션 */}
       <Modal
         animationClass={animationClass}
         isOpen={isModalOpen}

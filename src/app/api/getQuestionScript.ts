@@ -11,17 +11,17 @@ export const getQuestionScript = async (
   }
 
   if (!accessToken) {
-    const savedScript = localStorage.getItem(`script=${id}`);
-    if (savedScript) {
-      return savedScript;
-    }
+    const savedScript = localStorage.getItem(`script=${id}`) || {
+      contentValue: "",
+    };
+    return { contentValue: savedScript };
   }
   const apiUrl = `${process.env.NEXT_PUBLIC_SERVER_URL}/api/v0/interview/scripts?questionPk=${id}`;
   const requestOptions: RequestInit = {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
-      "authorization": `${accessToken}`,
+      authorization: `${accessToken}`,
     },
   };
 

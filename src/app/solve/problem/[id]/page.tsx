@@ -14,13 +14,14 @@ export const generateMetadata = async ({ params }: any): Promise<Metadata> => {
   const data = await getQuestionDetails(params.id);
   return {
     title: data.data.korTitleValue,
-    description: '개발자들이 실제로 경험한 면접 문제들을 풀어보세요!'
+    description: "개발자들이 실제로 경험한 면접 문제들을 풀어보세요!",
   };
 };
 
 export default async function Main({ params }: { params: { id: string } }) {
   const result = await getQuestionDetails(params.id);
   // const session = await getServerSession(authOptions);
+  console.log(result);
   return (
     <main className="flex flex-col gap-4 mx-auto px-5 sm:px-6 py-20 sm:w-1/2">
       <QuestionContainer

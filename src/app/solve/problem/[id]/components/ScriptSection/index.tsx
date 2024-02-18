@@ -95,12 +95,14 @@ export default function ScriptSection({
           )}
         </div>
       )}
-      <div className="absolute bottom-4 right-4 mt-2">
-        <p className="text-xs font-medium text-[#D1C4E9]">
-          <span className="text-[#9575CD]">{script.length}</span>
-          {`/${maxCharacterCount}`}
-        </p>
-      </div>
+      {script && (
+        <div className="absolute bottom-4 right-4 mt-2">
+          <p className="text-xs font-medium text-[#D1C4E9]">
+            <span className="text-[#9575CD]">{script.length}</span>
+            {`/${maxCharacterCount}`}
+          </p>
+        </div>
+      )}
       {!isEditing && (
         <div
           className="absolute bottom-[18px] left-6 mt-2 cursor-pointer hover:opacity-70"
