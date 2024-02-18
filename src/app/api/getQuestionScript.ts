@@ -9,13 +9,10 @@ export const getQuestionScript = async (
   if (!id) {
     throw new Error("id is required");
   }
-
   if (!accessToken) {
-    const savedScript = localStorage.getItem(`script=${id}`) || {
-      contentValue: "",
-    };
-    return { contentValue: savedScript };
+    return null;
   }
+
   const apiUrl = `${process.env.NEXT_PUBLIC_SERVER_URL}/api/v0/interview/scripts?questionPk=${id}`;
   const requestOptions: RequestInit = {
     method: "GET",

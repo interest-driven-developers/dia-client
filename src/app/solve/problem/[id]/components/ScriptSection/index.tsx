@@ -8,10 +8,12 @@ import EditIcon from "@/app/ui/icons/EditIcon";
 import { useSession } from "next-auth/react";
 import { getQuestionScript } from "@/app/api/getQuestionScript";
 import { editQuestionScript } from "@/app/api/editQuestionScript";
+import { twMerge } from "tailwind-merge";
 export interface ScriptSectionProps {
   // isEditing: boolean;
   // setIsEditing: any;
   id: number;
+  className?: string;
 }
 
 const maxCharacterCount = 500;
@@ -20,18 +22,30 @@ export default function ScriptSection({
   // isEditing,
   // setIsEditing,÷
   id,
+  className,
 }: ScriptSectionProps) {
+  const Styled = twMerge(
+    `relative px-5 py-6  bg-[#F8F3FF] rounded-[10px] h-[438px]`,
+    className
+  );
+
   const { data: session, status } = useSession();
-  // console.log("세션 체크", session);
   const [script, setScript] = useState<string>("");
   const [prevScript, setPrevScript] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isEditing, setIsEditing] = useState<boolean>(false);
   useEffect(() => {
     const fetchData = async () => {
-      //@ts-ignore
-      const getScript = await getQuestionScript(id, session?.user.access_token);
-      setScript(getScript.contentValue);
+      if (session) {
+        //@ts-ignore
+        const getScript = await getQuestionScript(id, session?.user.access_token);
+        if (getScript) setScript(getScript.contentValue);
+      } else {
+        const savedScript = localStorage.getItem(`script=${id}`);
+        if (savedScript) {
+          setScript(savedScript);
+        }
+      }
     };
 
     fetchData();
@@ -54,7 +68,7 @@ export default function ScriptSection({
   };
 
   return (
-    <div className="relative px-5 py-6  bg-[#F8F3FF] rounded-[10px] h-[438px]">
+    <div className={Styled}>
       {isLoading ? (
         <div className="w-full h-screen flex justify-center justify-items-center mt-24 r-8">
           <Spinner />

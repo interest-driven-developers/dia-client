@@ -4,11 +4,13 @@ import { CheckCircleIcon, XCircleIcon } from "@heroicons/react/24/solid";
 import Spinner from "@/app/components/Spinner";
 import Link from "next/link";
 import CustomSeparator from "@/app/ui/CustomSeparator";
+import { twMerge } from "tailwind-merge";
 export interface ScriptSectionProps {
   // isEditing: boolean;
   // setIsEditing: any;
   script: string;
   id: number;
+  className?: string;
 }
 
 const maxCharacterCount = 500;
@@ -17,18 +19,24 @@ export default function ScriptSection({
   // setIsEditing,
   id,
   script,
+  className
 }: ScriptSectionProps) {
+  const Styled = twMerge(`relative px-5 py-6  bg-[#F8F3FF] text-indigo-800 rounded-[10px] h-[264px] mb-5`, className);
   const [prevScript, setPrevScript] = useState<string>(script); // 스크립트
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isEditing, setIsEditing] = useState<boolean>(false);
   // 페이지 로딩 시, 로컬 스토리지에서 스크립트 불러오기
   useEffect(() => {
-    const savedScript = localStorage.getItem(`script=${id}`);
-    if (savedScript) {
-      setPrevScript(savedScript);
+    if (!script) {
+      const savedScript = localStorage.getItem(`script=${id}`);
+      console.log('test',savedScript)
+      if (savedScript) {
+        setPrevScript(savedScript);
+      }
+
+      setIsLoading(false);
     }
-    setIsLoading(false);
-  }, [id]);
+  }, [id, script]);
 
   const handleSaveScript = () => {
     // 스크립트 저장
@@ -37,7 +45,7 @@ export default function ScriptSection({
     setIsEditing(false);
   };
   return (
-    <div className="relative px-5 py-6  bg-[#F8F3FF] text-indigo-800 rounded-[10px] h-[264px] mb-5">
+    <div className={Styled}>
       {/* <div className="p-3 w-full  bg-white rounded-md shadow-sm divide-y border border-indigo-500 "> */}
       {isLoading ? (
         <div className="w-full h-12 flex justify-center justify-items-center mt-2 r-8">
@@ -69,13 +77,11 @@ export default function ScriptSection({
             </p>
           ) : (
             <p
-              className="text-[16px] text-[#424242] leading-7 sm:text-lg font-normal"
+              className="text-[16px] text-gray-400 leading-7 sm:text-lg font-normal"
               onClick={() => setIsEditing(true)}
             >
               스크립트가 작성되지 않았습니다. <br />
-              지금 바로{" "}
-              <span className="animate-pulse text-indigo-500">작성</span>
-              해보세요✏️
+              지금 바로 작성 해보세요
             </p>
           )}
         </div>

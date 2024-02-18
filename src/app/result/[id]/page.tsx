@@ -24,7 +24,7 @@ export default async function Home({ params }: { params: { id: string } }) {
   const result = await getQuestionScript(params.id, session?.user.access_token);
   return (
     <main className="flex flex-col gap-4 mx-auto px-5 py-20 h-full sm:w-1/2 overflow-y-auto bg-white">
-      <ResultContainer {...result}></ResultContainer>
+      <ResultContainer pkValue={params.id} {...result}></ResultContainer>
     </main>
   );
 }
