@@ -3,18 +3,19 @@ type Params = {
   contentValue: string;
   accessToken: string;
 };
-export const editQuestionScript = async (params: Params): Promise<void> => {
+export const saveQuestionScript = async (params: Params): Promise<void> => {
   const { questionPkValue, contentValue, accessToken } = params;
-  const apiUrl = `${process.env.NEXT_PUBLIC_SERVER_URL}/api/v0/interview/scripts/${questionPkValue}`;
+  const apiUrl = `${process.env.NEXT_PUBLIC_SERVER_URL}/api/v0/interview/scripts`;
 
   const requestOptions: RequestInit = {
-    method: "PATCH",
+    method: "POST",
     headers: {
       "Content-Type": "application/json",
       authorization: `${accessToken}`,
     },
     body: JSON.stringify({
-      contentValue: contentValue,
+      questionPkValue,
+      contentValue,
     }),
   };
 
