@@ -3,7 +3,7 @@ type Params = {
   accessToken: string | undefined;
 };
 export const getQuestionScript = async (
-  id: string,
+  id: number,
   accessToken: string
 ): Promise<any> => {
   if (!id) {
@@ -13,7 +13,7 @@ export const getQuestionScript = async (
     return null;
   }
 
-  const apiUrl = `${process.env.NEXT_PUBLIC_SERVER_URL}/api/v0/interview/scripts?questionPk=${id}`;
+  const apiUrl = `${process.env.NEXT_PUBLIC_SERVER_URL}/api/v0/interview/scripts?questionPkValue=${id}`;
   const requestOptions: RequestInit = {
     method: "GET",
     headers: {
@@ -25,7 +25,6 @@ export const getQuestionScript = async (
   try {
     const response = await fetch(apiUrl, requestOptions);
     const data = await response.json();
-
     if (data.status !== 200) {
       throw new Error(
         `Failed to fetch question script. Status: ${response.status}`
