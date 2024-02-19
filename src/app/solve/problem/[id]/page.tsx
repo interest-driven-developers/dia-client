@@ -6,9 +6,9 @@ import { getServerSession } from "next-auth/next";
 
 export const dynamic = "force-dynamic";
 
-export function generateStaticParams() {
-  return [{ id: "1" }, { id: "2" }, { id: "3" }];
-}
+// export function generateStaticParams() {
+//   return [{ id: "1" }, { id: "2" }, { id: "3" }];
+// }
 
 export const generateMetadata = async ({ params }: any): Promise<Metadata> => {
   const data = await getQuestionDetails(params.id);
@@ -21,7 +21,6 @@ export const generateMetadata = async ({ params }: any): Promise<Metadata> => {
 export default async function Main({ params }: { params: { id: string } }) {
   const result = await getQuestionDetails(params.id);
   // const session = await getServerSession(authOptions);
-  console.log(result);
   return (
     <main className="flex flex-col gap-4 mx-auto px-5 sm:px-6 py-20 sm:w-1/2">
       <QuestionContainer

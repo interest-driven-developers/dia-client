@@ -8,7 +8,9 @@ import EditIcon from "@/app/ui/icons/EditIcon";
 import { useSession } from "next-auth/react";
 import { getQuestionScript } from "@/app/api/getQuestionScript";
 import { editQuestionScript } from "@/app/api/editQuestionScript";
+import { saveQuestionScript } from "@/app/api/saveQuestionScript";
 import { twMerge } from "tailwind-merge";
+import type { Session } from "@/types/Session";
 export interface ScriptSectionProps {
   // isEditing: boolean;
   // setIsEditing: any;
@@ -30,15 +32,18 @@ export default function ScriptSection({
   );
 
   const { data: session, status } = useSession();
-  const [script, setScript] = useState<string>("");
+  const typedSession = session as Session;
+  const [script, setScript] = useState<string | undefined>(undefined);
   const [prevScript, setPrevScript] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isEditing, setIsEditing] = useState<boolean>(false);
   useEffect(() => {
     const fetchData = async () => {
       if (session) {
-        //@ts-ignore
-        const getScript = await getQuestionScript(id, session?.user.access_token);
+        const getScript = await getQuestionScript(
+          id,
+          typedSession?.user.access_token
+        );
         if (getScript) setScript(getScript.contentValue);
       } else {
         const savedScript = localStorage.getItem(`script=${id}`);
@@ -50,21 +55,29 @@ export default function ScriptSection({
 
     fetchData();
     setIsLoading(false);
-  }, [id, session]);
+  }, [id, typedSession, session]);
 
   const handleSaveScript = async () => {
     if (session && session.user) {
-      await editQuestionScript({
-        questionPkValue: id,
-        contentValue: script,
-        //@ts-ignore
-        accessToken: session?.user.access_token,
-      });
+      if (prevScript) {
+        console.log('요기는 에디터')
+        await editQuestionScript({
+          questionPkValue: id,
+          contentValue: script as string,
+          accessToken: typedSession?.user.access_token,
+        });
+      } else {
+        await saveQuestionScript({
+          questionPkValue: id,
+          contentValue: script as string,
+          accessToken: typedSession?.user.access_token,
+        });
+      }
     } else {
-      localStorage.setItem(`script=${id}`, script);
+      localStorage.setItem(`script=${id}`, script as string);
     }
     setIsEditing(false);
-    setPrevScript(script);
+    setPrevScript(script as string);
   };
 
   return (
@@ -122,7 +135,7 @@ export default function ScriptSection({
           className="absolute bottom-[18px] left-6 mt-2 cursor-pointer hover:opacity-70"
           onClick={() => {
             setIsEditing(true);
-            setPrevScript(script);
+            setPrevScript(script as string);
           }}
         >
           <EditIcon></EditIcon>
