@@ -6,6 +6,7 @@ import { MicrophoneIcon } from "@heroicons/react/24/solid";
 import TTSPlayer from "../TTSPlayer";
 import { VoiceType } from "@/types/Voice";
 import EqualizerIcon from "@/app/ui/icons/EqualizerIcon";
+import ShrinkingIcon from "@/app/mockinterview/practice/[id]/components/ShrinkingIcon";
 interface InterViewGuidanceProps {
   handleView: (view: number) => void;
   handleResults: (results: string) => void;
@@ -46,9 +47,15 @@ export default function InterViewGuidance({
   return (
     <div className="">
       {isStart ? (
-        <div className="animate-pulse flex w-full max-w-screen-xl mx-auto p-0 mt-[220px]  mb-[210px] justify-center items-center">
-          <EqualizerIcon></EqualizerIcon>
-        </div>
+        <>
+          <div className="w-full sm:w-1/2 fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate-pulse">
+            <EqualizerIcon />
+          </div>
+          <ShrinkingIcon
+            timeInSeconds={70}
+            onClick={() => alert("추가중인 기능입니다.")}
+          />
+        </>
       ) : (
         <>
           <div className="flex px-2 py-7 bg-[#212121] rounded-[10px] justify-center mb-[22px]">
@@ -78,7 +85,7 @@ export default function InterViewGuidance({
       <div>
         <button
           onClick={isStart ? handleStop : handleStart}
-          className={`flex justify-center w-full px-[127px] py-[13px] rounded-[100px]  items-center hover:opacity-90 ${
+          className={`relative bottom-10  flex justify-center w-full px-[127px] py-[13px] rounded-[100px]  items-center hover:opacity-90 ${
             isStart ? "bg-[#9E9E9E] " : "bg-primary "
           }`}
         >

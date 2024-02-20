@@ -1,7 +1,11 @@
+import type { Question } from "./Question";
+
 export interface HistoryType {
-  id: number;
-  title: string;
-  description: string;
-  date: string;
-  score: number;
+  pkValue: number;
+  question: Question
+  typeValue: "MULTI" | "SINGLE";
+  elapsedTimeValue: number;
+  contentValue: string;
+  filePathValue: string | null;
+  createdTimeValue : string;
 }

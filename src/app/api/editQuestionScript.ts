@@ -1,11 +1,11 @@
 type Params = {
-  questionPkValue: number;
+  scriptPkValue: number;
   contentValue: string;
   accessToken: string;
 };
 export const editQuestionScript = async (params: Params): Promise<void> => {
-  const { questionPkValue, contentValue, accessToken } = params;
-  const apiUrl = `${process.env.NEXT_PUBLIC_SERVER_URL}/api/v0/interview/scripts/${questionPkValue}`;
+  const { scriptPkValue, contentValue, accessToken } = params;
+  const apiUrl = `${process.env.NEXT_PUBLIC_SERVER_URL}/api/v0/interview/scripts/${scriptPkValue}`;
 
   const requestOptions: RequestInit = {
     method: "PATCH",

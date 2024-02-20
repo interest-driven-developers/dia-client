@@ -1,11 +1,11 @@
+import type { PracticeResult } from "@/types/PracticeResult";
 type Params = {
-  questionPkValue: number;
-  contentValue: string;
+  practiceResult: PracticeResult;
   accessToken: string;
 };
 export const savePractice = async (params: Params): Promise<void> => {
-  const { questionPkValue, contentValue, accessToken } = params;
-  const apiUrl = `${process.env.NEXT_PUBLIC_SERVER_URL}/api/v0/interview/scripts`;
+  const { practiceResult, accessToken } = params;
+  const apiUrl = `${process.env.NEXT_PUBLIC_SERVER_URL}/api/v0/interview/practice/histories`;
 
   const requestOptions: RequestInit = {
     method: "POST",
@@ -13,10 +13,7 @@ export const savePractice = async (params: Params): Promise<void> => {
       "Content-Type": "application/json",
       authorization: `${accessToken}`,
     },
-    body: JSON.stringify({
-      questionPkValue,
-      contentValue,
-    }),
+    body: JSON.stringify(practiceResult),
   };
 
   try {

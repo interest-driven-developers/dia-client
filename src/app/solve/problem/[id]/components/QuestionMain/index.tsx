@@ -53,7 +53,7 @@ const dummyHistoryData = [
       "웹 브라우징에서 HTTP는 보안 경고가 발생할 수 있지만, HTTPS는 안전하고 믿을 수 있는 연결로 웹 사이트를 보호합니다. ",
   },
 ];
-export default function QuestionContainer({
+export default function QuestionMain({
   questionData,
 }: // session,
 QuestionContainerProps) {
@@ -127,6 +127,7 @@ QuestionContainerProps) {
         animationClass={animationClass}
         isOpen={isModalOpen}
         setIsOpen={setIsModalOpen}
+        isOverlayClickClose={true}
       >
         <Modal.Header closeModal={hideMenu} />
         <Modal.Body

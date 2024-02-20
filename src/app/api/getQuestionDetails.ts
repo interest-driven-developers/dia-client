@@ -1,4 +1,4 @@
-export const getQuestionDetails = async (id: string) => {
+export const getQuestionDetails = async (id: number) => {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_SERVER_URL}/api/v0/interview/questions/${id}`,
     {

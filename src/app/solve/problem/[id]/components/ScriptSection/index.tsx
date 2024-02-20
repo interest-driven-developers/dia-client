@@ -11,6 +11,7 @@ import { editQuestionScript } from "@/app/api/editQuestionScript";
 import { saveQuestionScript } from "@/app/api/saveQuestionScript";
 import { twMerge } from "tailwind-merge";
 import type { Session } from "@/types/Session";
+import type { Script } from "@/types/Script";
 export interface ScriptSectionProps {
   // isEditing: boolean;
   // setIsEditing: any;
@@ -33,8 +34,8 @@ export default function ScriptSection({
 
   const { data: session, status } = useSession();
   const typedSession = session as Session;
-  const [script, setScript] = useState<string | undefined>(undefined);
-  const [prevScript, setPrevScript] = useState<string>("");
+  const [script, setScript] = useState<Script | undefined>(undefined);
+  const [prevScript, setPrevScript] = useState<Script | undefined>(undefined);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isEditing, setIsEditing] = useState<boolean>(false);
   useEffect(() => {
@@ -46,7 +47,7 @@ export default function ScriptSection({
         );
         if (getScript) setScript(getScript.contentValue);
       } else {
-        const savedScript = localStorage.getItem(`script=${id}`);
+        const savedScript = localStorage.getItem(`script=${id}`) ;
         if (savedScript) {
           setScript(savedScript);
         }
@@ -60,10 +61,9 @@ export default function ScriptSection({
   const handleSaveScript = async () => {
     if (session && session.user) {
       if (prevScript) {
-        console.log('요기는 에디터')
         await editQuestionScript({
-          questionPkValue: id,
-          contentValue: script as string,
+          scriptPkValue: id,
+          contentValue: script?.contentValue as string,
           accessToken: typedSession?.user.access_token,
         });
       } else {

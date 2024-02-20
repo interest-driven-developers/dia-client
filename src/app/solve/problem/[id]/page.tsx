@@ -1,5 +1,5 @@
 import { getQuestionDetails } from "@/app/api/getQuestionDetails";
-import QuestionContainer from "./components/QuestionContainer";
+import QuestionContainer from "./components/QuestionMain";
 import { Metadata } from "next";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { getServerSession } from "next-auth/next";
@@ -18,7 +18,7 @@ export const generateMetadata = async ({ params }: any): Promise<Metadata> => {
   };
 };
 
-export default async function Main({ params }: { params: { id: string } }) {
+export default async function Main({ params }: { params: { id: number } }) {
   const result = await getQuestionDetails(params.id);
   // const session = await getServerSession(authOptions);
   return (

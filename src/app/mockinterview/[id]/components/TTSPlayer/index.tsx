@@ -58,7 +58,7 @@ export default function TTSPlayer({
       <audio
         ref={audio1Ref}
         src={`${process.env.NEXT_PUBLIC_CLOUDFRONT_URL}/${
-          !(voices === undefined) && voices[0].filePath
+          !(voices === undefined) && voices[0].fileUrlValue
         }`}
         onEnded={handleAudio1Ended} // 첫 번째 MP3 파일 재생 종료 이벤트 처리
       ></audio>

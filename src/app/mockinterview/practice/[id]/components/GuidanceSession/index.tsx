@@ -26,16 +26,16 @@ export default function GuidanceSession({ setIsView }: Props) {
           alt="면접관 이미지"
           width={700}
           height={600}
-          className="h-auto w-full object-contain"
+          className="w-full object-contain"
           priority={true}
         />
       </div>
       <button
         onClick={() => setIsView(1)}
-        className={`flex justify-center w-full px-[127px] py-[13px] rounded-[100px]  items-center hover:opacity-90 bg-primary
+        className={`flex justify-center w-full px-[127px] py-[13px] rounded-[100px] whitespace-nowrap  items-center hover:opacity-90 bg-primary 
           `}
       >
-        <p className="text-white font-bold text-lg sm:text-xl">시작하기</p>
+        <p className="text-white font-bold text-lg sm:text-xl ">시작하기</p>
       </button>
     </section>
   );

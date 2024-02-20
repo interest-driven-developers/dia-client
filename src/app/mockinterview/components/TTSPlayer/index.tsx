@@ -1,40 +1,25 @@
 "use client";
 import { VoiceType } from "@/types/Voice";
 import React, { useState, useRef, useEffect } from "react";
-import { start } from "repl";
-import dynamic from "next/dynamic";
-// const useSpeechToText = dynamic(() => import("react-hook-speech-to-text"), {
-//   ssr: false,
-// });
 import useSpeechToText from "react-hook-speech-to-text";
-import { Question } from "@/types/Question";
 
 interface TTSPlayerProps {
   isStart: boolean;
-  questionList: Question[];
-  // startSpeechToText: () => void;
   setDuration: (duration: number) => void;
-  handleStop?: (interimResult: string) => void;
-  questionIdx: number;
-  isStop?: boolean;
+  handleStop?: (interimResult: string, elapsedTime: number) => void;
+  voice: VoiceType;
 }
 
 export default function TTSPlayer({
   isStart,
-  questionList,
-  questionIdx,
-  // startSpeechToText,
   setDuration,
-  isStop,
   handleStop,
+  voice,
 }: TTSPlayerProps) {
-  console.log("잘들어오나?", questionList);
-  console.log("이번 문제는 ", questionIdx);
-  // const [questionIdx, setQuestionIdx] = useState<number>(0);
   const audio1Ref = useRef<HTMLAudioElement | null>(null);
   const audio2Ref = useRef<HTMLAudioElement | null>(null);
+  const [time, setTime] = useState<number>(0);
   if (typeof window !== "undefined") {
-    
   }
   const {
     error,
@@ -71,22 +56,29 @@ export default function TTSPlayer({
   };
 
   useEffect(() => {
+    let timer: any;
     if (isStart) {
       playAudio1();
-    } else {
+      timer = setInterval(() => {
+        setTime((prevTime) => prevTime + 1);
+      }, 1000);
+    } else if (!isStart && handleStop) {
       stopAudio();
       stopSpeechToText();
+      handleStop(interimResult as string, time);
     }
-  }, [isStart, questionIdx, handleStop]);
-
-  useEffect(() => {
-    if (isStop && handleStop) {
-      stopAudio();
-      stopSpeechToText();
-      handleStop(interimResult);
+    return () => {
+      clearInterval(timer);
     }
-  }, [isStop, handleStop, interimResult]);
+  }, [isStart, handleStop]);
 
+  // useEffect(() => {
+  //   if (!isStart && handleStop) {
+  //     stopAudio();
+  //     stopSpeechToText();
+  //     handleStop(interimResult as string);
+  //   }
+  // }, [isStart, handleStop, interimResult]);
   const handleAudio1Ended = () => {
     // 첫 번째 MP3 파일 재생이 끝나면 두 번째 MP3 파일 실행
     setTimeout(() => {
@@ -107,7 +99,7 @@ export default function TTSPlayer({
     <div>
       <audio
         ref={audio1Ref}
-        src={questionList[questionIdx].voices[0].fileUrlValue}
+        src={voice.fileUrlValue}
         onEnded={handleAudio1Ended} //
         onLoadedMetadata={handleLoadedMetadata}
       ></audio>
