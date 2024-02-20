@@ -25,7 +25,6 @@ export default function PraceticeSession(props: Props) {
 
   const handleStop = useCallback(
     (interimResult: string, elapsedTime: number) => {
-      console.log("이건 왜 두번실행될까?");
       setIsModalOpen(true);
       // 결과물이 있을때만 저장
       if (!interimResult) return;
@@ -42,7 +41,6 @@ export default function PraceticeSession(props: Props) {
         });
       } else {
         const getHistory = localStorage.getItem(`history=${question.pkValue}`);
-        console.log("check", getHistory);
         const practiceResult: PracticeResult = {
           interviewQuestionPkValue: question.pkValue as number,
           contentValue: interimResult as string,

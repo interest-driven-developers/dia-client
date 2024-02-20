@@ -63,7 +63,6 @@ export default function ResultMain({
         if (getHistory) {
           // 데이터가 없을 경우 기본값으로 빈 배열 설정
           const historyArray = getHistory ? JSON.parse(getHistory) : [];
-          console.log('historyArray', historyArray);
           setHistoryList(historyArray);
         }
       }
@@ -72,7 +71,6 @@ export default function ResultMain({
     fetchData();
   }, [id, typedSession, session]);
 
-   console.log(historyList);
     const ViewComponent = () => {
       switch (isView) {
         case 0:
