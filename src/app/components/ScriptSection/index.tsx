@@ -2,8 +2,6 @@
 import React, { useState, useEffect } from "react";
 import { CheckCircleIcon, XCircleIcon } from "@heroicons/react/24/solid";
 import Spinner from "@/app/components/Spinner";
-import Link from "next/link";
-import CustomSeparator from "@/app/ui/CustomSeparator";
 import EditIcon from "@/app/ui/icons/EditIcon";
 import { useSession } from "next-auth/react";
 import { getQuestionScript } from "@/app/api/getQuestionScript";
@@ -12,32 +10,21 @@ import { saveQuestionScript } from "@/app/api/saveQuestionScript";
 import { twMerge } from "tailwind-merge";
 import type { Session } from "@/types/Session";
 import type { Script } from "@/types/Script";
-export interface ScriptSectionProps {
-  // isEditing: boolean;
-  // setIsEditing: any;
+export interface Props {
   id: number;
   className?: string;
 }
 
 const maxCharacterCount = 500;
 
-export default function ScriptSection({
-  // isEditing,
-  // setIsEditing,÷
-  id,
-  className,
-}: ScriptSectionProps) {
-  const Styled = twMerge(
-    `relative px-5 py-6  bg-[#F8F3FF] rounded-[10px] h-[438px]`,
-    className
-  );
-
+export default function ScriptSection({ id, className }: Props) {
   const { data: session, status } = useSession();
   const typedSession = session as Session;
   const [script, setScript] = useState<Script | undefined>(undefined);
   const [prevScript, setPrevScript] = useState<Script | undefined>(undefined);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isEditing, setIsEditing] = useState<boolean>(false);
+
   useEffect(() => {
     const fetchData = async () => {
       if (session) {
@@ -82,8 +69,18 @@ export default function ScriptSection({
     setPrevScript(script);
   };
 
+  const handleSectionClick = () => {
+    if (isEditing || script) return;
+    setIsEditing(true);
+  };
   return (
-    <div className={Styled}>
+    <div
+      className={twMerge(
+        `relative px-4 py-3  bg-[#F8F3FF] rounded-[5px] h-[438px]`,
+        className
+      )}
+      onClick={handleSectionClick}
+    >
       {isLoading ? (
         <div className="w-full h-screen flex justify-center justify-items-center mt-24 r-8">
           <Spinner />
@@ -94,10 +91,13 @@ export default function ScriptSection({
             value={script?.contentValue}
             placeholder="여기에 스크립트를 작성해주세요."
             onChange={(e) =>
-              setScript((prevScript) => ({
-                ...prevScript,
-                contentValue: e.target.value,
-              } as Script))
+              setScript(
+                (prevScript) =>
+                  ({
+                    ...prevScript,
+                    contentValue: e.target.value,
+                  } as Script)
+              )
             }
             className="w-full h-40 p-2 rounded-md bg-[#F8F3FF] focus:ring-blue-500"
           />
@@ -122,18 +122,17 @@ export default function ScriptSection({
               {script.contentValue}
             </p>
           ) : (
-            <p className="text-[16px] text-gray-500 leading-7 sm:text-lg font-normal">
-              스크립트가 작성되지 않았습니다. <br />
-              지금 바로 작성 해보세요 !
+            <p className="text-[14px] text-[#D1C4E9] leading-7 sm:text-lg font-normal">
+              스크립트를 클릭 후 작성해주세요
             </p>
           )}
         </div>
       )}
       {script && (
-        <div className="absolute bottom-4 right-4 mt-2">
-          <p className="text-xs font-medium text-[#D1C4E9]">
+        <div className="absolute bottom-2 right-4">
+          <p className="text-xs leading-7 font-medium text-[#D1C4E9]">
             <span className="text-[#9575CD]">{script.contentValue.length}</span>
-            {`/${maxCharacterCount}`}
+            {` / ${maxCharacterCount}`}
           </p>
         </div>
       )}

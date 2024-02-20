@@ -7,7 +7,7 @@ interface ButtonProps {
 export default function Button(props: ButtonProps) {
   return (
     <button
-      className="flex justify-center w-full px-[127px] py-[13px] bg-primary rounded-[100px]  items-center hover:opacity-90 whitespace-nowrap "
+      className="flex justify-center w-full px-[127px] py-[13px] bg-primary rounded-[5px]  items-center hover:opacity-90 whitespace-nowrap "
       onClick={() => props.onClick()}
     >
       <p className="text-white font-bold text-lg leading-[1.35rem] sm:text-xl">

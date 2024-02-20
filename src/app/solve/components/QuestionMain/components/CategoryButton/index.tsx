@@ -13,7 +13,7 @@ export default function CategoryButton(props: CategoryButtonProps) {
 
   return (
     <div className={`relative items-center w-full ${curStyle}`}>
-      <p className="text-[18px] sm:text-lg font-bold text-center whitespace-nowrap leading-5">
+      <p className="text-[18px] sm:text-lg font-bold text-center whitespace-nowrap leading-[21.6px]">
         {props.children}
       </p>
       {props.selected && (

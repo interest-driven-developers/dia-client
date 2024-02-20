@@ -9,25 +9,25 @@ import { getTags } from "@/utils/getTags";
 import { getQuestionList } from "@/app/api/getQuestionList";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
-interface QuestionListProps {
+interface Props {
   questionList: QuestionType[];
   query: string;
 }
-export default function QuestionList({
+export default function QuestionMain({
   questionList,
   query,
-}: QuestionListProps) {
+}: Props) {
   const tags = getTags();
   const { data: session, status } = useSession();
   const [currentTag, setCurrentTag] = useState(query);
   return (
     <div className="">
       <div className="sticky top-16 bg-white z-10">
-        <div className="flex flex-row w-full mb-4">
+        <div className="flex flex-row w-full mb-3 gap-2">
           <CategoryButton selected={true}>개별연습</CategoryButton>
           <CategoryButton>실전연습</CategoryButton>
         </div>
-        <div className="flex flex-row gap-3 overflow-x-auto w-full mb-4">
+        <div className="flex flex-row gap-1.5 overflow-x-auto w-full mb-3">
           {tags.map((tag, index) => (
             <Tag key={index} selected={currentTag}>
               {tag.name}
