@@ -36,7 +36,6 @@ export default function PracticeMain({ question }: Props) {
         </h1>
       </div>
       <ViewPage></ViewPage>
-
     </div>
   );
 }
