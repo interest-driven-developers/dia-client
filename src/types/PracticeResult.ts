@@ -3,5 +3,5 @@ export type PracticeResult = {
   contentValue: string;
   typeValue: "SINGLE" | "MULTI";
   elapsedTimeValue: number;
-  filePathValue: string | null;
+  filePathValue?: string | null;
 };

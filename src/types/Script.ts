@@ -1,5 +1,10 @@
+import type { Question } from "./Question";
 export interface Script {
-  pk: number;
-  title: string;
-  description: string;
+  pkValue: number;
+  ownerPkValue: number;
+  question: Question;
+  contentValue: string;
+  createdTimeValue: string;
+  lastModifiedTimeValue: string;
+  lastReadTimeValue: string;
 }
