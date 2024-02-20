@@ -34,7 +34,6 @@ export default function ResultMain({
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [animationClass, setAnimationClass] = useState<string>("");
   const [historyList, setHistoryList] = useState<HistoryType[]>([]);
-  const lastHistory = historyList[historyList.length - 1] || "";
   const hideMenu = async () => {
     setAnimationClass("animate-fadeOutDown");
     await new Promise((r) => setTimeout(r, 600));
@@ -64,8 +63,8 @@ export default function ResultMain({
         if (getHistory) {
           // 데이터가 없을 경우 기본값으로 빈 배열 설정
           const historyArray = getHistory ? JSON.parse(getHistory) : [];
-          const HistoryList = historyArray[id];
-          setHistoryList(HistoryList);
+          console.log('historyArray', historyArray);
+          setHistoryList(historyArray);
         }
       }
     };
@@ -73,14 +72,14 @@ export default function ResultMain({
     fetchData();
   }, [id, typedSession, session]);
 
-
+   console.log(historyList);
     const ViewComponent = () => {
       switch (isView) {
         case 0:
           return (
             <>
               <ScriptSection id={id} className="h-[264px] mb-3"></ScriptSection>
-              <HistorySection id={id} history={lastHistory}></HistorySection>
+              <HistorySection id={id} history={historyList[0]}></HistorySection>
             </>
           );
         case 1:
@@ -89,7 +88,7 @@ export default function ResultMain({
           return (
             <>
               <ScriptSection id={id} className="h-[264px] mb-3"></ScriptSection>
-              <HistorySection id={id} history={lastHistory}></HistorySection>
+              <HistorySection id={id} history={historyList[0]}></HistorySection>
             </>
           );
       }

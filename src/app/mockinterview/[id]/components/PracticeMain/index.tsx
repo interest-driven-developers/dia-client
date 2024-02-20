@@ -4,8 +4,12 @@ import { ChevronLeftIcon } from "@heroicons/react/20/solid";
 import { useRouter } from "next/navigation";
 import type { Question } from "@/types/Question";
 import GuidanceSession from "@/app/mockinterview/practice/[id]/components/GuidanceSession";
-import PraceticeSession from "../PracticeSession";
+// import PraceticeSession from "../PracticeSession";
 import { Modal } from "@/app/components/Modal";
+import dynamic from "next/dynamic";
+const PraceticeSession = dynamic(() => import("../PracticeSession"), {
+  ssr: false,
+});
 interface Props {
   question: Question;
 }

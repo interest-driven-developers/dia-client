@@ -1,20 +1,13 @@
 import EqualizerIcon from "@/app/ui/icons/EqualizerIcon";
-import useSpeechToText, { ResultType } from "react-hook-speech-to-text";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import type { Question } from "@/types/Question";
 import type { PracticeResult } from "@/types/PracticeResult";
-import type { VoiceType } from "@/types/Voice";
 import ShrinkingIcon from "@/app/mockinterview/practice/[id]/components/ShrinkingIcon";
 import { savePractice } from "@/app/api/savePractice";
-import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import type { Session } from "@/types/Session";
 import { Modal } from "@/app/components/Modal";
-// const TTSPlayer = dynamic(
-//   () => import("@/app/mockinterview/components/TTSPlayer"),
-//   { ssr: false }
-// );
 import TTSPlayer from "@/app/mockinterview/components/TTSPlayer";
 type Props = {
   question: Question;
@@ -30,36 +23,49 @@ export default function PraceticeSession(props: Props) {
   const [isStart, setIsStart] = useState<boolean>(true);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
-  const handleStop = async (interimResult: string, elapsedTime: number) => {
-    setIsModalOpen(true);
-    // 결과물이 있을때만 저장
-    if (!interimResult) return;
-    if (session) {
-      await savePractice({
-        practiceResult: {
+  const handleStop = useCallback(
+    (interimResult: string, elapsedTime: number) => {
+      console.log("이건 왜 두번실행될까?");
+      setIsModalOpen(true);
+      // 결과물이 있을때만 저장
+      if (!interimResult) return;
+      if (session) {
+        savePractice({
+          practiceResult: {
+            interviewQuestionPkValue: question.pkValue as number,
+            contentValue: interimResult as string,
+            typeValue: "SINGLE",
+            elapsedTimeValue: elapsedTime,
+            filePathValue: null,
+          },
+          accessToken: typedSession.user.access_token,
+        });
+      } else {
+        const getHistory = localStorage.getItem(`history=${question.pkValue}`);
+        console.log("check", getHistory);
+        const practiceResult: PracticeResult = {
           interviewQuestionPkValue: question.pkValue as number,
           contentValue: interimResult as string,
           typeValue: "SINGLE",
           elapsedTimeValue: elapsedTime,
           filePathValue: null,
-        },
-        accessToken: typedSession.user.access_token,
-      }).then(() => {
-        setIsModalOpen(true);
-      });
-    }
-    else {
-      const practiceResult: PracticeResult = {
-        interviewQuestionPkValue: question.pkValue as number,
-        contentValue: interimResult as string,
-        typeValue: "SINGLE",
-        elapsedTimeValue: elapsedTime,
-        filePathValue: null,
+        };
+        if (getHistory) {
+          const historyList = JSON.parse(getHistory);
+          localStorage.setItem(
+            `history=${question.pkValue}`,
+            JSON.stringify([practiceResult, ...historyList])
+          );
+        } else {
+          localStorage.setItem(
+            `history=${question.pkValue}`,
+            JSON.stringify([practiceResult])
+          );
+        }
       }
-      localStorage.setItem(`history=${question.pkValue}`, JSON.stringify(practiceResult));
-    }
-    
-  };
+    },
+    [question, session]
+  );
 
   return (
     <section className="w-full h-screen">

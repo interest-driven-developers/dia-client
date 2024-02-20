@@ -62,23 +62,24 @@ export default function TTSPlayer({
       timer = setInterval(() => {
         setTime((prevTime) => prevTime + 1);
       }, 1000);
-    } else if (!isStart && handleStop) {
-      stopAudio();
-      handleStop(interimResult as string, time);
-      stopSpeechToText();
     }
+    // else if (!isStart && handleStop) {
+    //   stopAudio();
+    //   handleStop(interimResult as string, time);
+    //   stopSpeechToText();
+    // }
     return () => {
       clearInterval(timer);
     }
   }, [isStart, handleStop]);
 
-  // useEffect(() => {
-  //   if (!isStart && handleStop) {
-  //     stopAudio();
-  //     stopSpeechToText();
-  //     handleStop(interimResult as string);
-  //   }
-  // }, [isStart, handleStop, interimResult]);
+  useEffect(() => {
+    if (!isStart && handleStop) {
+      stopAudio();
+      handleStop(interimResult as string, time);
+      stopSpeechToText();
+    }
+  }, [isStart, handleStop, interimResult]);
   const handleAudio1Ended = () => {
     // 첫 번째 MP3 파일 재생이 끝나면 두 번째 MP3 파일 실행
     setTimeout(() => {
