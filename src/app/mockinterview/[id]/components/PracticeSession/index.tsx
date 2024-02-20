@@ -32,33 +32,32 @@ export default function PraceticeSession(props: Props) {
 
   const handleStop = async (interimResult: string, elapsedTime: number) => {
     setIsModalOpen(true);
-    console.log('녹음 결과' , interimResult, elapsedTime)
     // 결과물이 있을때만 저장
     if (!interimResult) return;
-    // if (session) {
-    //   await savePractice({
-    //     practiceResult: {
-    //       interviewQuestionPkValue: question.pkValue as number,
-    //       contentValue: interimResult as string,
-    //       typeValue: "SINGLE",
-    //       elapsedTimeValue: elapsedTime,
-    //       filePathValue: null,
-    //     },
-    //     accessToken: typedSession.user.access_token,
-    //   }).then(() => {
-    //     setIsModalOpen(true);
-    //   });
-    // }
-    // else {
-    //   const practiceResult: PracticeResult = {
-    //     interviewQuestionPkValue: question.pkValue as number,
-    //     contentValue: interimResult as string,
-    //     typeValue: "SINGLE",
-    //     elapsedTimeValue: elapsedTime,
-    //     filePathValue: null,
-    //   }
-    //   localStorage.setItem(`history=${question.pkValue}`, JSON.stringify(practiceResult));
-    // }
+    if (session) {
+      await savePractice({
+        practiceResult: {
+          interviewQuestionPkValue: question.pkValue as number,
+          contentValue: interimResult as string,
+          typeValue: "SINGLE",
+          elapsedTimeValue: elapsedTime,
+          filePathValue: null,
+        },
+        accessToken: typedSession.user.access_token,
+      }).then(() => {
+        setIsModalOpen(true);
+      });
+    }
+    else {
+      const practiceResult: PracticeResult = {
+        interviewQuestionPkValue: question.pkValue as number,
+        contentValue: interimResult as string,
+        typeValue: "SINGLE",
+        elapsedTimeValue: elapsedTime,
+        filePathValue: null,
+      }
+      localStorage.setItem(`history=${question.pkValue}`, JSON.stringify(practiceResult));
+    }
     
   };
 
