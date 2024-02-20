@@ -11,11 +11,11 @@ import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import type { Session } from "@/types/Session";
 import { Modal } from "@/app/components/Modal";
-const TTSPlayer = dynamic(
-  () => import("@/app/mockinterview/components/TTSPlayer"),
-  { ssr: false }
-);
-
+// const TTSPlayer = dynamic(
+//   () => import("@/app/mockinterview/components/TTSPlayer"),
+//   { ssr: false }
+// );
+import TTSPlayer from "@/app/mockinterview/components/TTSPlayer";
 type Props = {
   question: Question;
   setIsView: (isView: number) => void;
@@ -30,22 +30,36 @@ export default function PraceticeSession(props: Props) {
   const [isStart, setIsStart] = useState<boolean>(true);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
-  const handleStop = (interimResult: string, elapsedTime: number) => {
+  const handleStop = async (interimResult: string, elapsedTime: number) => {
+    setIsModalOpen(true);
+    console.log('녹음 결과' , interimResult, elapsedTime)
     // 결과물이 있을때만 저장
-    if (interimResult) {
-      savePractice({
-        practiceResult: {
-          interviewQuestionPkValue: question.pkValue as number,
-          contentValue: interimResult as string,
-          typeValue: "SINGLE",
-          elapsedTimeValue: elapsedTime,
-          filePathValue: null,
-        },
-        accessToken: typedSession.user.access_token,
-      }).then(() => {
-        setIsModalOpen(true);
-      });
-    }
+    if (!interimResult) return;
+    // if (session) {
+    //   await savePractice({
+    //     practiceResult: {
+    //       interviewQuestionPkValue: question.pkValue as number,
+    //       contentValue: interimResult as string,
+    //       typeValue: "SINGLE",
+    //       elapsedTimeValue: elapsedTime,
+    //       filePathValue: null,
+    //     },
+    //     accessToken: typedSession.user.access_token,
+    //   }).then(() => {
+    //     setIsModalOpen(true);
+    //   });
+    // }
+    // else {
+    //   const practiceResult: PracticeResult = {
+    //     interviewQuestionPkValue: question.pkValue as number,
+    //     contentValue: interimResult as string,
+    //     typeValue: "SINGLE",
+    //     elapsedTimeValue: elapsedTime,
+    //     filePathValue: null,
+    //   }
+    //   localStorage.setItem(`history=${question.pkValue}`, JSON.stringify(practiceResult));
+    // }
+    
   };
 
   return (

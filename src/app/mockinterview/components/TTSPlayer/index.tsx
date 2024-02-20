@@ -64,8 +64,8 @@ export default function TTSPlayer({
       }, 1000);
     } else if (!isStart && handleStop) {
       stopAudio();
-      stopSpeechToText();
       handleStop(interimResult as string, time);
+      stopSpeechToText();
     }
     return () => {
       clearInterval(timer);
@@ -94,7 +94,7 @@ export default function TTSPlayer({
   };
 
   if (error) return <p>Web Speech API is not available in this device 🤷‍</p>;
-
+  console.log("interimResult", interimResult);
   return (
     <div>
       <audio
