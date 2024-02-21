@@ -22,12 +22,12 @@ export default function SelectButtons(props: SelctButtonsProps) {
   }
 
   return (
-    <div className="flex flex-row items-center gap-1 px-1.5 py-2 justify-center mx-auto bg-gray-100 rounded-[100px] w-[216px] h-[40px] mb-4">
+    <div className="flex flex-row items-center gap-1 px-1.5 py-2 justify-center mx-auto bg-gray-100 rounded-[100px] w-[216px] h-[40px] mb-6">
       <button
         className={`flex-grow text-xs font-semibold text-center text-[#BDBDBD] ${firstButtonStyle}`}
         onClick={() => props.setIsView(0)}
       >
-        현재 답변
+        답변확인
       </button>
       <button
         className={`flex-grow text-xs font-semibold text-center text-[#BDBDBD] ${secondButtonStyle}`}

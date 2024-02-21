@@ -2,6 +2,7 @@ import EqualizerIcon from "@/app/ui/icons/EqualizerIcon";
 import { useEffect, useState, useCallback } from "react";
 import type { Question } from "@/types/Question";
 import type { PracticeResult } from "@/types/PracticeResult";
+import type { HistoryType } from "@/types/History";
 import ShrinkingIcon from "@/app/mockinterview/practice/[id]/components/ShrinkingIcon";
 import { savePractice } from "@/app/api/savePractice";
 import { useRouter } from "next/navigation";
@@ -9,6 +10,7 @@ import { useSession } from "next-auth/react";
 import type { Session } from "@/types/Session";
 import { Modal } from "@/app/components/Modal";
 import TTSPlayer from "@/app/mockinterview/components/TTSPlayer";
+import Image from "next/image";
 type Props = {
   question: Question;
   setIsView: (isView: number) => void;
@@ -67,24 +69,34 @@ export default function PraceticeSession(props: Props) {
 
   return (
     <section className="w-full h-screen">
-      <div className="w-full sm:w-1/2 fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate-pulse">
-        <EqualizerIcon />
+      <div className="flex px-[16px] py-[17px] m-5 bg-[#212121] rounded-[10px] justify-center">
+        <p className="text-[16px] leading-[22px] sm:text-lg font-medium text-center text-white">
+          마이크 버튼을 눌러 답변을 종료할 수 있습니다
+        </p>
       </div>
-      <ShrinkingIcon timeInSeconds={90} onClick={() => setIsStart(false)} />
-      {question && (
+      <div className="flex rounded-[10px] justify-center mb-16 m-4">
+        <Image
+          src="/images/interviewer_sm.png"
+          alt="면접관 이미지"
+          width={320}
+          height={270}
+          className="w-full "
+          priority={true}
+        />
+      </div>
+      <div className="w-full relative ">
+        <EqualizerIcon />
+        <ShrinkingIcon timeInSeconds={90} onClick={() => setIsStart(false)} />
+      </div>
+      {/* {question && (
         <TTSPlayer
           isStart={isStart}
           handleStop={handleStop}
           setDuration={setDuration}
           voice={question.voices[0]}
         ></TTSPlayer>
-      )}
+      )} */}
 
-      <div className="fixed bottom-10 left-0 right-0 flex px-2 py-[17px] mx-4 w-auto sm:w-2/5 sm:mx-auto bg-[#212121] rounded-[10px] justify-center ">
-        <p className="text-[16px] leading-[22px] sm:text-lg font-medium text-center text-white">
-          마이크 버튼을 눌러 답변을 완료해주세요.
-        </p>
-      </div>
       {/* 모달 섹션 */}
       <Modal modalPosition="center" isOpen={isModalOpen}>
         <Modal.Body

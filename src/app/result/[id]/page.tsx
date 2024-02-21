@@ -8,10 +8,6 @@ import { getQuestionScript } from "@/app/api/getQuestionScript";
 
 export const dynamic = "force-dynamic";
 
-// export function generateStaticParams() {
-//   return [{ id: "1" }, { id: "2" }, { id: "3" }];
-// }
-
 export const generateMetadata = async ({ params }: any): Promise<Metadata> => {
   // const data = await getQuestionDetails(params.id);
   return {
@@ -22,11 +18,10 @@ export const generateMetadata = async ({ params }: any): Promise<Metadata> => {
 export default async function Home({ params }: { params: { id: number } }) {
   // const session = await getServerSession(authOptions);
   // const result = await getQuestionScript(params.id, session?.user.access_token);
-  // const test = await getQuestionDetails(params.id);
-  // console.log('면접 결과',result,test);
+  const result = await getQuestionDetails(params.id);
   return (
-    <main className="flex flex-col gap-4 mx-auto px-5 py-20 h-full sm:w-1/2 overflow-y-auto bg-white">
-      <ResultMain pkValue={params.id} ></ResultMain>
+    <main className="flex flex-col mx-auto py-20 h-full max-w-[500px] max-h-[1000px] overflow-y-hidden bg-white no-scrollbar">
+      <ResultMain pkValue={params.id} question={result.data}></ResultMain>
     </main>
   );
 }

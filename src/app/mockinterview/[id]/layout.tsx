@@ -9,7 +9,7 @@ export default async function Layout({
 }) {
 
   return (
-    <div className="bg-[#B8A0FA] h-screen">
+    <div className="bg-[#E2D7FF] h-screen">
       {/* <Header/> */}
       {children}
     </div>

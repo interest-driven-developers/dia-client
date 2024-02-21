@@ -70,10 +70,10 @@ Props) {
       >
         <Modal.Header closeModal={hideMenu} />
         <Modal.Body
-          title="모의 면접을 시작해볼까요?"
+          title="개별연습을 시작해볼까요?"
           description="문제의 리얼한 TTS가 제공되며 소요 시간은 평균 1~2분입니다."
         />
-        <Modal.Button onClick={solveQuestion}>문제 풀기</Modal.Button>
+        <Modal.Button onClick={solveQuestion}>시작하기</Modal.Button>
       </Modal>
     </>
   );

@@ -13,7 +13,7 @@ export interface LayoutProviderProps {
 export const LayoutProvider = ({ children, session }: LayoutProviderProps) => {
   const pathname = usePathname();
   const headerNotAllowedPath = ["/signIn/", "/mockinterview/"];
-  const naviNotAllowedPath = ["/signIn/", "/mockinterview/", '/solve/problem/'];
+  const naviNotAllowedPath = ["/signIn/", "/mockinterview/", '/solve/problem/','/result/'];
   const headerIsNotAllowed = headerNotAllowedPath.some((path) =>
     pathname.startsWith(path)
   );

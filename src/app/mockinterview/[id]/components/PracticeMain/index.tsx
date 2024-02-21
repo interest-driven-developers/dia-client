@@ -22,24 +22,23 @@ export default function PracticeMain({ question }: Props) {
       case 0:
         return <GuidanceSession setIsView={setIsView} />;
       case 1:
-        return (
-          <PraceticeSession question={question} setIsView={setIsView} />
-        );
+        return <PraceticeSession question={question} setIsView={setIsView} />;
       default:
         return <GuidanceSession setIsView={setIsView} />;
     }
   };
   return (
     <div>
-      <div className="flex items-center mb-[47px]">
+      <div className="flex px-4 items-center mb-[47px]">
         <div onClick={() => router.back()}>
           <ChevronLeftIcon className="h-6 w-6 text-[#212121] cursor-pointer rounded-md hover:opacity-50" />
         </div>
         <h1 className="text-lg sm:text-xl font-bold text-center text-primary flex-grow mr-6">
-          실전연습
+          개별 모의연습
         </h1>
       </div>
-      <ViewPage></ViewPage>
+      {/* <ViewPage></ViewPage> */}
+      <PraceticeSession question={question} setIsView={setIsView} />
     </div>
   );
 }

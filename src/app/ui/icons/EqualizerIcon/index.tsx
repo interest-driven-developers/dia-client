@@ -6,7 +6,7 @@ export default function EqualizerIcon(props: any) {
       viewBox="0 0 360 177"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className="w-full h-full px-[-100px]"
+      className="w-full h-full px-[-100px] animate-pulse"
     >
       <rect opacity="0.1" x="15" y="72" width="11" height="33" fill="#7C4DFF" />
       <rect opacity="0.1" x="-5" y="72" width="11" height="33" fill="#7C4DFF" />

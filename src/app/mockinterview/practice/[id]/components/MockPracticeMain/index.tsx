@@ -35,7 +35,7 @@ export default function MockPracticeMain({ questionList }: Props) {
     }
   };
   return (
-    <main className="flex flex-col mx-auto py-20 h-full max-w-[450px] overflow-y-hidden bg-[#B8A0FA] no-scrollbar">
+    <main className="flex flex-col mx-auto py-20 sm:py-12 h-full max-w-[450px] overflow-y-hidden bg-[#B8A0FA] no-scrollbar">
       <MockPracticeHeader isView={isView} />
       <ViewPage />
     </main>
