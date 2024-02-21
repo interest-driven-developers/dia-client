@@ -54,7 +54,7 @@ export const ModalMain = (props: Props) => {
     modalPositionClass()
   );
   const modalStyle = twMerge(
-    `fixed bg-white px-6 py-14 rounded-t-[20px] shadow-lg  sm:w-[450px] mx-auto mt-8  ${animationClass}`,
+    `fixed bg-white px-6 py-14 rounded-t-[20px] shadow-lg  sm:w-1/2 mx-auto mt-8  ${animationClass}`,
     modalStyleClass()
   );
   useEffect(() => {

@@ -34,11 +34,12 @@ export default function ScriptSection({ id, className }: Props) {
         );
         if (getScript) setScript(getScript);
       } else {
-        const savedScript = localStorage.getItem(`script=${id}`);
-        const savedScriptObj = JSON.parse(savedScript as string);
-        if (savedScript) {
-          setScript(savedScriptObj);
-        }
+        const savedScriptString = localStorage.getItem(`script=${id}`);
+        const savedScriptObj = savedScriptString
+          ? JSON.parse(savedScriptString)
+          : { contentValue: "" };
+        setScript(savedScriptObj);
+
       }
     };
 
@@ -116,7 +117,7 @@ export default function ScriptSection({ id, className }: Props) {
           </>
         ) : (
           <div className="whitespace-pre-wrap flex w-full">
-            {script ? (
+            {script && script.contentValue ? (
               <p className="text-[14px] text-[#424242] leading-[22px] sm:text-lg font-normal">
                 {script.contentValue}
               </p>

@@ -13,18 +13,18 @@ const dummyList = [
     pkValue: 1,
     korTitleValue: "실전 모의고사 30분",
   },
-  {
-    pkValue: 2,
-    korTitleValue: "실전 모의고사 60분",
-  },
-  {
-    pkValue: 3,
-    korTitleValue: "실전 모의고사 90분",
-  },
-  {
-    pkValue: 4,
-    korTitleValue: "실전 모의고사 120분",
-  },
+  // {
+  //   pkValue: 2,
+  //   korTitleValue: "실전 모의고사 60분",
+  // },
+  // {
+  //   pkValue: 3,
+  //   korTitleValue: "실전 모의고사 90분",
+  // },
+  // {
+  //   pkValue: 4,
+  //   korTitleValue: "실전 모의고사 120분",
+  // },
 ];
 export default async function Home({ params }: { params: { query: string } }) {
   return <PracticeMain practiceList={dummyList} query={params.query}></PracticeMain>;

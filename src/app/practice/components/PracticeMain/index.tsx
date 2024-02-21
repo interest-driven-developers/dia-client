@@ -10,7 +10,6 @@ type Props = {
 };
 
 export const PracticeMain = (props: Props) => {
-  //   const { data: session, status } = useSession();
   const router = useRouter();
   const [practicePk, setPracticePk] = useState<number>(0);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
