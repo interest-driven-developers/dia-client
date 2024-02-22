@@ -26,9 +26,18 @@ export const getQuestionScript = async (
     const response = await fetch(apiUrl, requestOptions);
     const data = await response.json();
     if (data.status !== 200) {
-      throw new Error(
-        `Failed to fetch question script. Status: ${response.status}`
-      );
+      switch (response.status) {
+        case 401:
+          throw new Error("Unauthorized");
+        case 403:
+          throw new Error("Forbidden");
+        case 404:
+          return null;
+        default:
+          throw new Error(
+            `Failed to fetch question script. Status: ${response.status}`
+          );
+      }
     }
 
     return data.data;
