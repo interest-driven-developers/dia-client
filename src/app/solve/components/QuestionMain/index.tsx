@@ -25,10 +25,10 @@ export default function QuestionMain({ questionList, query }: Props) {
             <CategoryButton selected={true}>개별연습</CategoryButton>
           </Link>
           <Link href={`/practice/${currentTag}`} className="flex-1">
-            <CategoryButton >실전연습</CategoryButton>
+            <CategoryButton>실전연습</CategoryButton>
           </Link>
         </div>
-        <div className="flex flex-row gap-1.5 overflow-x-auto w-full mb-3">
+        <div className="flex flex-row gap-1.5 overflow-x-auto w-full mb-3 no-scrollbar">
           {tags.map((tag, index) => (
             <Tag key={index} selected={currentTag}>
               {tag.name}
