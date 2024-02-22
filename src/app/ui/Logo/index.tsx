@@ -1,11 +1,16 @@
-export default function Logo() {
+type Props = {
+  className?: string;
+  onClick?: () => void;
+};
+
+export default function Logo({ className,onClick }: Props) {
   return (
     <svg
-      width="52"
-      height="20"
       viewBox="0 0 52 20"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      onClick={onClick}
     >
       <g clipPath="url(#clip0_107_105)">
         <path

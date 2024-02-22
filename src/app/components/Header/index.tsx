@@ -47,11 +47,10 @@ export default function Header({ session }: HeaderProps) {
         <div className="flex items-center justify-between h-16">
           {/* 로고 */}
           <div className="flex items-center ">
-            <div className=" cursor-pointer" onClick={handleLogoClick}>
-              <Logo
-              // className="text-3xl font-bold custom-color cursor-pointer"
-              ></Logo>
-            </div>
+            <Logo
+              className="w-[70px] h-10 cursor-pointer"
+              onClick={handleLogoClick}
+            ></Logo>
             {/* <Image
               className="h-10 w-10 rounded-full"
               width={100}
@@ -76,9 +75,9 @@ export default function Header({ session }: HeaderProps) {
               </a>
               <Link
                 href="/solve/backend"
-                className="text-slate-700 hover:text-indigo-600 px-3 py-5 rounded-md text-sm font-semibold"
+                className="text-slate-700 hover:text-primary px-3 py-5 rounded-md text-sm font-semibold"
               >
-                모든 문제
+                문제 풀기
               </Link>
               {/* <a
                 href="/mockinterview"
