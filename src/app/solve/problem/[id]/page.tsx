@@ -15,7 +15,7 @@ export const generateMetadata = async ({ params }: any): Promise<Metadata> => {
 export default async function Main({ params }: { params: { id: number } }) {
   const result = await getQuestionDetails(params.id);
   return (
-    <main className="flex flex-col mx-auto px-5 sm:px-6 py-20 h-full sm:w-1/2 no-scrollbar overflow-hidden ">
+    <main className="flex flex-col mx-auto px-5 sm:px-6 py-20 h-full sm:w-1/2 2xl:w-1/3 sm:h-[1000px] no-scrollbar overflow-y-hidden">
       <QuestionMain questionData={result.data}></QuestionMain>
     </main>
   );

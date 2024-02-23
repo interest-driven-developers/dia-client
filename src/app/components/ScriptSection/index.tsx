@@ -77,7 +77,7 @@ export default function ScriptSection({ id, className }: Props) {
   return (
     <div
       className={twMerge(
-        `flex flex-col relative bg-[#F8F3FF] rounded-[5px] w-full h-[438px]`,
+        `flex flex-col relative bg-[#F8F3FF] rounded-[5px] w-full `,
         className
       )}
       onClick={handleSectionClick}

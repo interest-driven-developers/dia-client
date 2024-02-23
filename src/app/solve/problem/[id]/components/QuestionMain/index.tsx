@@ -53,11 +53,11 @@ Props) {
           <ShareIcon />
         </div>
       </div>
-      <div className="flex flex-col gap-y-3 mb-5">
+      <div className="flex flex-col gap-y-3 mb-5 h-full">
         <Question title={questionData.korTitleValue}></Question>
         <ScriptSection
           id={questionData.pkValue}
-          className="h-[474px]"
+          className="h-full"
         ></ScriptSection>
       </div>
       <Button onClick={handleClick}>개별 모의연습</Button>

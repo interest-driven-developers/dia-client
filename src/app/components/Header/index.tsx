@@ -10,6 +10,7 @@ import ToggleButton from "./Components/ToggleButton";
 import ToggleMenu from "./Components/ToggleMenu";
 import Logo from "@/app/ui/Logo";
 import MobileMenu from "./Components/MobileMenu";
+import DesktopMenu from "./Components/DesktopMenu";
 interface HeaderProps {
   session: any;
 }
@@ -42,8 +43,8 @@ export default function Header({ session }: HeaderProps) {
     setIsMenuOpen(false);
   };
   return (
-    <header className="fixed z-40 bg-white   w-screen sm:mx-auto ">
-      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 sm:w-1/2">
+    <header className="fixed z-40 bg-white w-full sm:mx-auto ">
+      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 sm:w-1/2 2xl:w-1/3">
         <div className="flex items-center justify-between h-16">
           {/* 로고 */}
           <div className="flex items-center ">
@@ -51,73 +52,37 @@ export default function Header({ session }: HeaderProps) {
               className="w-[70px] h-10 cursor-pointer"
               onClick={handleLogoClick}
             ></Logo>
-            {/* <Image
-              className="h-10 w-10 rounded-full"
-              width={100}
-              height={100}
-              src="/images/logo.png"
-              alt=""
-            /> */}
-            {/* <div className="h-6 ml-2 mt-2 items-self-center border-indigo-500 border rounded-sm">
-              <h1 className="p-0.5 text-xs/relaxed text-bold font-light text-slate-400">
-                Beta
-              </h1>
-            </div> */}
           </div>
           {/* 메뉴 */}
-          <div className="hidden md:block">
-            <div className="ml-10 flex justify-items-end justify-self-end  space-x-4">
-              <a
-                onClick={handleLogoClick}
-                className="text-slate-700 hover:text-primary px-3 py-5 rounded-md text-sm font-semibold cursor-pointer"
-              >
-                홈
-              </a>
-              <Link
-                href="/solve/backend"
-                className="text-slate-700 hover:text-primary px-3 py-5 rounded-md text-sm font-semibold"
-              >
-                문제 풀기
-              </Link>
-              {/* <a
-                href="/mockinterview"
-                className="text-gray-900 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium"
-              >
-                모의면접
-              </a> */}
-              {session && session.user ? (
-                <>
-                  <div
-                    className="mt-2 cursor-pointer hover:opacity-80"
-                    onClick={() =>
-                      setIsProfileToolbarOpen(!isProfileToolbarOpen)
-                    }
-                  >
-                    <Image
-                      className="h-10 w-10 rounded-full"
-                      width={20}
-                      height={20}
-                      src={
-                        session.user?.image_url || "/images/default-profile.png"
-                      }
-                      alt=""
-                    />
-                  </div>
-                  <ProfileToolbar
-                    isOpen={isProfileToolbarOpen}
-                    user={session.user}
-                  ></ProfileToolbar>
-                </>
-              ) : (
-                <LoginButton></LoginButton>
-              )}
-            </div>
+          <div className="ml-10 flex justify-items-end justify-self-end  space-x-4">
+            <DesktopMenu />
+            <MobileMenu onClick={handleMenuClick}></MobileMenu>
+            {session && session.user ? (
+              <>
+                <Image
+                  className="h-10 w-10 rounded-full sm:mt-2 cursor-pointer hover:opacity-80"
+                  width={20}
+                  height={20}
+                  src={session.user?.image_url || "/images/default-profile.png"}
+                  alt=""
+                  onClick={() => setIsProfileToolbarOpen(!isProfileToolbarOpen)}
+                />
+                {/* <ProfileToolbar
+                  isOpen={isProfileToolbarOpen}
+                  user={session.user}
+                  loginHandler={() => router.push("/signIn")}
+                ></ProfileToolbar> */}
+              </>
+            ) : (
+              <LoginButton
+                onClick={() => setIsProfileToolbarOpen(!isProfileToolbarOpen)}
+              ></LoginButton>
+            )}
           </div>
           {/* <ToggleButton
             onClick={handleMenuClick}
             toggleState={animationClass}
           ></ToggleButton> */}
-          <MobileMenu onClick={handleMenuClick}></MobileMenu>
         </div>
         {/* 모바일 메뉴 */}
         {isMenuOpen && (
@@ -127,6 +92,11 @@ export default function Header({ session }: HeaderProps) {
             onClick={hideMenu}
           ></ToggleMenu>
         )}
+        <ProfileToolbar
+          isOpen={isProfileToolbarOpen}
+          user={session?.user}
+          loginHandler={() => router.push("/signIn")}
+        ></ProfileToolbar>
       </nav>
     </header>
   );

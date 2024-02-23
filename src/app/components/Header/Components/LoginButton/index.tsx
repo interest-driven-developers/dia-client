@@ -1,15 +1,12 @@
 "use client";
 import { signIn } from "next-auth/react";
-
-export default function LoginButton() {
-  return (
-    <div className="mt-4">
-      <a
-        onClick={() => signIn()}
-        className="text-slate-700 hover:text-primary px-3 py-5 rounded-md text-sm font-semibold cursor-pointer"
-      >
-        로그인
-      </a>
-    </div>
-  );
+import { UserCircleIcon } from "@heroicons/react/24/solid";
+type Props = {
+  onClick: () => void;
 }
+export default function LoginButton({ onClick }: Props) {
+  return (
+    <UserCircleIcon className="w-10 h-10 sm:mt-2 text-primary hover:opacity-80" onClick={onClick}></UserCircleIcon>
+    );
+  }
+  
