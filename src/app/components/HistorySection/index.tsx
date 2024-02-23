@@ -27,21 +27,18 @@ export default function HistorySection({
     if (session) {
       try {
         await deleteHistory({
-          practiceHistoryPkValue: history.pkValue,
+          practiceHistoryPkValue: history.pkValue as number,
           accessToken: session?.user.access_token,
         });
       } catch (e) {
         console.error("Delete operation failed", e);
       }
     }
-    else {
-      // const getHistory = localStorage.getItem(`history=${history.question.pkValue}`);
-    }
   };
   return (
     <div
       className={twMerge(
-        `relative px-5 py-[45px]  bg-[#E2D7FF] rounded-[10px] h-[264px]`,
+        `flex relative px-5 py-[45px] bg-[#E2D7FF] rounded-[10px] h-full`,
         className
       )}
     >
@@ -61,10 +58,13 @@ export default function HistorySection({
           {history ? formatDateString(history.createdTimeValue) : ""}
         </p>
       </div>
-      <DeleteIcon
-        className="absolute bottom-2 left-3 hover:opacity-70"
-        onClick={handleDelete}
-      ></DeleteIcon>
+      {/* TODO: 추후 로그인후 저장 버튼이나 자동으로 저장되는 기능을 구현해야함 */}
+      {session ? (
+        <DeleteIcon
+          className="absolute bottom-2 left-3 hover:opacity-70"
+          onClick={handleDelete}
+        ></DeleteIcon>
+      ) : null}
       {history ? (
         <div className="absolute top-2.5 right-3 flex bg-[#EEEEEE] rounded-[100px] px-[7px] py-[3px] cursor-pointer hover:opacity-70">
           <p className="text-[#616161] text-[10px] leading-3">
