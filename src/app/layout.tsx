@@ -23,12 +23,12 @@ export default async function RootLayout({
 
   return (
     <html lang="ko">
-      <link
+      {/* <link
         rel="apple-touch-icon"
         sizes="76x76"
         href="/static/favicons/apple-touch-icon.png"
-      />
-      <link
+      /> */}
+      {/* <link
         rel="icon"
         type="image/png"
         sizes="32x32"
@@ -45,7 +45,7 @@ export default async function RootLayout({
         rel="mask-icon"
         href="/static/favicons/safari-pinned-tab.svg"
         color="#5bbad5"
-      />
+      /> */}
       <body className="font-Pretendard no-scrollbar">
         <AuthSession>
           <LayoutProvider session={session}>{children}</LayoutProvider>
