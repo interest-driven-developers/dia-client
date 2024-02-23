@@ -8,12 +8,14 @@ import {
 } from "next-auth/react";
 import GithubIcon from "@/app/ui/icons/GithubIcon";
 import Logo from "@/app/ui/Logo";
+import { useRouter } from "next/navigation";
 
 interface LoginProps {
-  providers: Record<string, ClientSafeProvider>;
+  providers?: Record<string, ClientSafeProvider>;
+  prevPath: string;
 }
 
-export default function Login() {
+export default function LoginMain({prevPath}:LoginProps) {
   const [providers, setProviders] = useState<ClientSafeProvider | null>(null);
 
   useEffect(() => {
@@ -45,7 +47,7 @@ export default function Login() {
                 <button
                   onClick={() =>
                     signIn(provider.id, {
-                      callbackUrl: process.env.NEXTAUTH_URL,
+                      callbackUrl: prevPath,
                     })
                   }
                   className="bg-[#333] text-white flex items-center justify-center gap-2 px-4 sm:px-8 py-1 sm:py-2 rounded hover:opacity-90"

@@ -1,7 +1,17 @@
 import { getProviders } from "next-auth/react";
-import Login from "./components/Login";
-export default async function Home() {
-  const providers = await getProviders();
+import LoginMain from "./components/LoginMain";
+import { Metadata } from "next";
 
-  return <Login />;
+export const generateMetadata = async ({ params }: any): Promise<Metadata> => {
+  return {
+    title: "회원 가입",
+    description: "회원가입을 통해 더 많은 기능을 이용하세요!",
+  };
+};
+export default async function Home({
+  searchParams,
+}: {
+  searchParams: { prevPath: string };
+}) {
+  return <LoginMain prevPath={searchParams.prevPath as string} />;
 }
