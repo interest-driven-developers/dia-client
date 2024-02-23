@@ -19,6 +19,8 @@ export default function TTSPlayer({
   const audio1Ref = useRef<HTMLAudioElement | null>(null);
   const audio2Ref = useRef<HTMLAudioElement | null>(null);
   const [time, setTime] = useState<number>(0);
+  const [isAudio1Playing, setIsAudio1Playing] = useState<boolean>(false);
+
   if (typeof window !== "undefined") {
   }
   const {
@@ -36,12 +38,22 @@ export default function TTSPlayer({
 
   const playAudio1 = () => {
     if (audio1Ref.current) {
-      audio1Ref.current.play();
+      const playPromise = audio1Ref.current.play();
+      if (playPromise !== undefined) {
+        playPromise
+          .then((_) => {
+            setIsAudio1Playing(true);
+          })
+          .catch((error) => {
+            console.log("error", error);
+          });
+      }
     }
   };
 
   const playAudio2 = () => {
     if (audio2Ref.current) {
+      audio2Ref.current.pause(); // 재생 전에 일단 중지
       audio2Ref.current.play();
     }
   };
@@ -49,6 +61,7 @@ export default function TTSPlayer({
   const stopAudio = () => {
     if (audio1Ref.current) {
       audio1Ref.current.pause();
+      setIsAudio1Playing(false);
     }
     if (audio2Ref.current) {
       audio2Ref.current.pause();
@@ -64,25 +77,33 @@ export default function TTSPlayer({
       }, 1000);
     }
     return () => {
+      stopSpeechToText();
       clearInterval(timer);
+      stopAudio();
+    };
+  }, [isStart]);
+
+  useEffect(() => {
+    if (handleStop && !isStart) {
+      stopAudio();
+      stopSpeechToText();
+      handleStop(interimResult as any, time);
+    }
+    return () => {
+      stopAudio();
+      stopSpeechToText();
     };
   }, [isStart, handleStop]);
 
-  useEffect(() => {
-    if (!isStart && handleStop) {
-      const finalResult = (results[0] as any)?.transcript;
-      stopAudio();
-      stopSpeechToText();
-      handleStop(finalResult, time);
-    }
-  }, [isStart, handleStop]);
-
   const handleAudio1Ended = () => {
-    // 첫 번째 MP3 파일 재생이 끝나면 두 번째 MP3 파일 실행
-    setTimeout(() => {
-      playAudio2();
-      startSpeechToText();
-    }, 1000);
+    if (!isAudio1Playing) {
+      return;
+    }
+    setIsAudio1Playing(false);
+    playAudio2();
+    // setTimeout(() => {
+    //   startSpeechToText();
+    // }, 1000);
   };
   const handleLoadedMetadata = () => {
     if (audio1Ref.current) {
@@ -90,16 +111,26 @@ export default function TTSPlayer({
       setDuration(audioDuration);
     }
   };
+  const handleAudio2Ended = () => {
+    startSpeechToText();
+  };
   if (error) return <p>Web Speech API is not available in this device 🤷‍</p>;
   return (
     <div>
+      {voice && (
+        <audio
+          ref={audio1Ref}
+          src={voice.fileUrlValue}
+          onEnded={handleAudio1Ended} //
+          onLoadedMetadata={handleLoadedMetadata}
+          preload="true"
+        ></audio>
+      )}
       <audio
-        ref={audio1Ref}
-        src={voice.fileUrlValue}
-        onEnded={handleAudio1Ended} //
-        onLoadedMetadata={handleLoadedMetadata}
+        ref={audio2Ref}
+        onEnded={handleAudio2Ended}
+        src="/sounds/beep.mp3"
       ></audio>
-      <audio ref={audio2Ref} src="/sounds/beep.mp3"></audio>
     </div>
   );
 }

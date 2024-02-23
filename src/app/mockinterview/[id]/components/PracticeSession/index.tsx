@@ -25,9 +25,9 @@ export default function PraceticeSession(props: Props) {
   const [duration, setDuration] = useState<number>(0);
   const [isStart, setIsStart] = useState<boolean>(true);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  const [practiceResult, setPracticeResult] = useState<
-    PracticeResult | undefined
-  >(undefined);
+  const [practiceResult, setPracticeResult] = useState<HistoryType | undefined>(
+    undefined
+  );
   const handleStop = useCallback(
     (interimResult: string, elapsedTime: number) => {
       setIsModalOpen(true);
@@ -45,27 +45,14 @@ export default function PraceticeSession(props: Props) {
           accessToken: typedSession.user.access_token,
         });
       } else {
-        const practiceResult: PracticeResult = {
-          interviewQuestionPkValue: question.pkValue as number,
+        const practiceResult: HistoryType = {
           contentValue: interimResult as string,
           typeValue: "SINGLE",
+          createdTimeValue: new Date().toISOString(),
           elapsedTimeValue: elapsedTime,
           filePathValue: null,
         };
         setPracticeResult(practiceResult);
-        // const getHistory = localStorage.getItem(`history=${question.pkValue}`);
-        // if (getHistory) {
-        //   const historyList = JSON.parse(getHistory);
-        //   localStorage.setItem(
-        //     `history=${question.pkValue}`,
-        //     JSON.stringify([practiceResult, ...historyList])
-        //   );
-        // } else {
-        //   localStorage.setItem(
-        //     `history=${question.pkValue}`,
-        //     JSON.stringify([practiceResult])
-        //   );
-        // }
       }
     },
     [question, session]
@@ -111,7 +98,7 @@ export default function PraceticeSession(props: Props) {
         <Link
           href={{
             pathname: `/result/${question.pkValue}`,
-            query: practiceResult,
+            query: !session ? practiceResult as any : {},
           }}
         >
           <Modal.Button className="rounded-md w-[100px] px-[81px] py-[10px]">
