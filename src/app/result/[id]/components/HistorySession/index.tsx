@@ -51,16 +51,16 @@ const dummyHistory = [
   },
 ];
 export default function HistorySession(props: Props) {
-  const { historyList} = props;
+  const { historyList } = props;
   // console.log("historyList", dummyHistory);
   const { data: session } = useSession();
   const typedSession = session as Session;
-  
+
   return (
-    <div className="px-5">
+    <div className="flex flex-col px-5 h-full">
       <ScriptSection id={props.id} className="h-[231px] sm:h-[300px] mb-3" />
       {historyList && historyList.length !== 0 && (
-        <div className="flex flex-row max-w-full overflow-x-auto gap-3">
+        <div className="flex flex-row max-w-full h-full overflow-x-auto gap-3 no-scrollbar">
           {historyList.map((history: any) => (
             <HistorySection
               key={history.pkValue}
@@ -72,19 +72,6 @@ export default function HistorySession(props: Props) {
           ))}
         </div>
       )}
-      {/* {dummyHistory && dummyHistory.length !== 0 && (
-        <div className="flex flex-row max-w-full overflow-x-auto gap-3 no-scrollbar">
-          {dummyHistory.map((history: any) => (
-            <HistorySection
-              key={history.pkValue}
-              id={history.pkValue}
-              className="min-w-[207px] sm:w-[500px] h-[364px] sm:h-[400px]"
-              history={history}
-              session={typedSession}
-            />
-          ))}
-        </div>
-      )} */}
     </div>
   );
 }

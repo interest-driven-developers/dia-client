@@ -8,17 +8,13 @@ import type { HistoryType } from "@/types/History";
 import type { Session } from "@/types/Session";
 import type { Question as QuestionType } from "@/types/Question";
 import ResultSession from "../ResultSession";
-import type { PracticeResult } from "@/types/PracticeResult";
 
 interface Props {
   pkValue: number;
   question: QuestionType;
-  isGuest: boolean;
-  resultData?: PracticeResult;
 }
 
-export default function ResultMain({ pkValue, question, isGuest = false, resultData }: Props) {
-  // const router = useRouter();
+export default function ResultMain({ pkValue, question }: Props) {
   const { data: session, status } = useSession();
   const typedSession = session as Session;
   const [isView, setIsView] = useState<number>(0); // 0: 현재 답변, 1: 히스토리
@@ -32,19 +28,11 @@ export default function ResultMain({ pkValue, question, isGuest = false, resultD
           typedSession?.user.access_token
         );
         if (getHistory) setHistoryList(getHistory);
-      // } else {
-      //   const getHistory = localStorage.getItem(`history=${pkValue}`);
-      //   if (getHistory) {
-      //     // 데이터가 없을 경우 기본값으로 빈 배열 설정
-      //     const historyArray = getHistory ? JSON.parse(getHistory) : [];
-      //     setHistoryList(historyArray);
-      //   }
       }
     };
 
     fetchData();
   }, [pkValue, typedSession, session]);
-
 
   const ViewComponent = () => {
     switch (isView) {
@@ -70,10 +58,7 @@ export default function ResultMain({ pkValue, question, isGuest = false, resultD
   };
   return (
     <>
-      {!isGuest && (
-        <SelectButtons isView={isView} setIsView={setIsView}></SelectButtons>
-      )}
-      
+      <SelectButtons isView={isView} setIsView={setIsView}></SelectButtons>
       <ViewComponent />
     </>
   );

@@ -6,13 +6,15 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { getQuestionScript } from "@/app/api/getQuestionScript";
 import type { PracticeResult } from "@/types/PracticeResult";
+import { HistoryType } from "@/types/History";
+import ResultMainGuest from "./components/ResultMainGuest";
 
 export const dynamic = "force-dynamic";
 
 export const generateMetadata = async ({ params }: any): Promise<Metadata> => {
   // const data = await getQuestionDetails(params.id);
   return {
-    title:"연습 결과",
+    title: "연습 결과",
     // description: data.description,
   };
 };
@@ -21,17 +23,17 @@ export default async function Home({
   searchParams,
 }: {
   params: { id: number };
-  searchParams: PracticeResult;
+  searchParams: HistoryType;
 }) {
   const result = await getQuestionDetails(params.id);
-  // console.log(searchParams);
+  const isGuest = searchParams.contentValue ? true : false;
   return (
-    <main className="flex flex-col mx-auto py-20 h-full max-w-[500px] max-h-[1000px] overflow-y-hidden bg-white no-scrollbar">
-      <ResultMain
-        pkValue={params.id}
-        question={result.data}
-        isGuest={searchParams.contentValue ? true : false}
-      ></ResultMain>
+    <main className="flex flex-col mx-auto py-20  max-w-[500px] h-full sm:max-h-[1000px] overflow-y-hidden bg-white no-scrollbar">
+      {isGuest ? (
+        <ResultMainGuest question={result.data} resultData={searchParams} />
+      ) : (
+        <ResultMain pkValue={params.id} question={result.data}></ResultMain>
+      )}
     </main>
   );
 }
