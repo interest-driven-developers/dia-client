@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import type { User } from "@/types/User";
-import { useRouter, usePathname } from "next/navigation";
+import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import LoginButton from "./Components/LoginButton";
 import Image from "next/image";
 import ProfileToolbar from "./Components/ProfileToolbar";
@@ -42,6 +42,7 @@ export default function Header({ session }: HeaderProps) {
     await new Promise((r) => setTimeout(r, 600));
     setIsMenuOpen(false);
   };
+  
   return (
     <header className="fixed z-40 bg-white w-full sm:mx-auto ">
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 sm:w-1/2 2xl:w-1/2">
@@ -95,7 +96,9 @@ export default function Header({ session }: HeaderProps) {
         <ProfileToolbar
           isOpen={isProfileToolbarOpen}
           user={session?.user}
-          loginHandler={() => router.push("/signIn")}
+          // loginHandler={() =>
+          //   router.push(`/signIn/${window.document.location.href}`)
+          // }
         ></ProfileToolbar>
       </nav>
     </header>

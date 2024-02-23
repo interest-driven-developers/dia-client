@@ -3,16 +3,15 @@ import { useState } from "react";
 import { signOut } from "next-auth/react";
 import Image from "next/image";
 import type { User } from "@/types/User";
+import Link from "next/link";
 interface ProfileToolbarProps {
   isOpen: boolean;
   user?: User;
-  loginHandler: () => void;
+  // loginHandler: () => void;
 }
-export default function ProfileToolbar({ isOpen, user, loginHandler }: ProfileToolbarProps) {
+export default function ProfileToolbar({ isOpen, user }: ProfileToolbarProps) {
   return (
-    <div
-      className={`flex relative transition-transform transform `}
-    >
+    <div className={`flex relative transition-transform transform `}>
       {isOpen && (
         <div className="w-72 divide-y divide-gray-100 absolute top-1 right-2 bg-white border rounded-lg shadow-md ">
           <div className="grid gap-y-2 m-4">
@@ -45,12 +44,16 @@ export default function ProfileToolbar({ isOpen, user, loginHandler }: ProfileTo
                 로그아웃
               </li>
             ) : (
-              <li
-                className="p-1 text-sm font-medium px-4 py-2 cursor-pointer hover:bg-gray-200"
-                onClick={loginHandler}
+              <Link
+                href={{
+                  pathname: `/signIn`,
+                  query: { prevPath: window.document.location.href },
+                }}
               >
-                로그인
-              </li>
+                <li className="p-1 text-sm font-medium px-4 py-2 cursor-pointer hover:bg-gray-200">
+                  로그인
+                </li>
+              </Link>
             )}
           </ul>
         </div>
