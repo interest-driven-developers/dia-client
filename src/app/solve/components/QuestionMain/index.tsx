@@ -18,7 +18,7 @@ export default function QuestionMain({ questionList, query }: Props) {
   const { data: session, status } = useSession();
   const [currentTag, setCurrentTag] = useState(query);
   return (
-    <div className="">
+    <>
       <div className="sticky top-16 bg-white z-10">
         <div className="flex flex-row w-full mb-4">
           <Link href={`/solve/${currentTag}`} className="flex-1">
@@ -48,6 +48,6 @@ export default function QuestionMain({ questionList, query }: Props) {
         ))}
         {/* <Pagination contentNum={questionList.length}></Pagination> */}
       </section>
-    </div>
+    </>
   );
 }

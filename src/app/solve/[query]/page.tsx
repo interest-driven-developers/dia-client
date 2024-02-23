@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default async function Home({ params }: { params: { query: string } }) {
   const questionList: Question[] = await getQuestionList(params.query);
   return (
-    <main className="flex flex-col gap-4 mx-auto px-5 sm:px-6 py-16 sm:w-1/2 no-scrollbar">
+    <main className="flex flex-col gap-4 mx-auto px-5 sm:px-6 py-16  sm:w-1/2 no-scrollbar">
       <QuestionMain
         questionList={questionList}
         query={params.query}
