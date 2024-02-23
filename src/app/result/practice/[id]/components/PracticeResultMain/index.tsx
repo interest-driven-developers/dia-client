@@ -24,7 +24,7 @@ export default function PracticeResultMain({ pkValue, questionList }: Props) {
   const [History, setHistory] = useState<HistoryType | null>(null);
   const { data: session, status } = useSession();
   const typedSession = session as Session;
-  console.log("questionList", questionList);
+  // console.log("questionList", questionList);
 
   useEffect(() => {
     const fetchData = async () => {

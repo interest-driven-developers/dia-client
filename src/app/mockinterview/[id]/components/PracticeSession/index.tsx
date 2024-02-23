@@ -11,6 +11,7 @@ import type { Session } from "@/types/Session";
 import { Modal } from "@/app/components/Modal";
 import TTSPlayer from "@/app/mockinterview/components/TTSPlayer";
 import Image from "next/image";
+import Link from "next/link";
 type Props = {
   question: Question;
   setIsView: (isView: number) => void;
@@ -24,7 +25,9 @@ export default function PraceticeSession(props: Props) {
   const [duration, setDuration] = useState<number>(0);
   const [isStart, setIsStart] = useState<boolean>(true);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-
+  const [practiceResult, setPracticeResult] = useState<
+    PracticeResult | undefined
+  >(undefined);
   const handleStop = useCallback(
     (interimResult: string, elapsedTime: number) => {
       setIsModalOpen(true);
@@ -42,7 +45,6 @@ export default function PraceticeSession(props: Props) {
           accessToken: typedSession.user.access_token,
         });
       } else {
-        const getHistory = localStorage.getItem(`history=${question.pkValue}`);
         const practiceResult: PracticeResult = {
           interviewQuestionPkValue: question.pkValue as number,
           contentValue: interimResult as string,
@@ -50,23 +52,24 @@ export default function PraceticeSession(props: Props) {
           elapsedTimeValue: elapsedTime,
           filePathValue: null,
         };
-        if (getHistory) {
-          const historyList = JSON.parse(getHistory);
-          localStorage.setItem(
-            `history=${question.pkValue}`,
-            JSON.stringify([practiceResult, ...historyList])
-          );
-        } else {
-          localStorage.setItem(
-            `history=${question.pkValue}`,
-            JSON.stringify([practiceResult])
-          );
-        }
+        setPracticeResult(practiceResult);
+        // const getHistory = localStorage.getItem(`history=${question.pkValue}`);
+        // if (getHistory) {
+        //   const historyList = JSON.parse(getHistory);
+        //   localStorage.setItem(
+        //     `history=${question.pkValue}`,
+        //     JSON.stringify([practiceResult, ...historyList])
+        //   );
+        // } else {
+        //   localStorage.setItem(
+        //     `history=${question.pkValue}`,
+        //     JSON.stringify([practiceResult])
+        //   );
+        // }
       }
     },
     [question, session]
   );
-
   return (
     <section className="w-full h-screen">
       <div className="flex px-[16px] py-[17px] m-5 bg-[#212121] rounded-[10px] justify-center">
@@ -88,14 +91,14 @@ export default function PraceticeSession(props: Props) {
         <EqualizerIcon />
         <ShrinkingIcon timeInSeconds={90} onClick={() => setIsStart(false)} />
       </div>
-      {/* {question && (
+      {question && (
         <TTSPlayer
           isStart={isStart}
           handleStop={handleStop}
           setDuration={setDuration}
           voice={question.voices[0]}
         ></TTSPlayer>
-      )} */}
+      )}
 
       {/* 모달 섹션 */}
       <Modal modalPosition="center" isOpen={isModalOpen}>
@@ -105,12 +108,16 @@ export default function PraceticeSession(props: Props) {
           className="mb-[36px]"
           descClassName="px-5 text-[18px] font-semibold text-[#616161] leading-[28px] text-center"
         />
-        <Modal.Button
-          onClick={() => router.push(`/result/${question.pkValue}`)}
-          className="rounded-md w-[100px] px-[81px] py-[10px]"
+        <Link
+          href={{
+            pathname: `/result/${question.pkValue}`,
+            query: practiceResult,
+          }}
         >
-          다음
-        </Modal.Button>
+          <Modal.Button className="rounded-md w-[100px] px-[81px] py-[10px]">
+            다음
+          </Modal.Button>
+        </Link>
       </Modal>
     </section>
   );

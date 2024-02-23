@@ -63,23 +63,20 @@ export default function TTSPlayer({
         setTime((prevTime) => prevTime + 1);
       }, 1000);
     }
-    // else if (!isStart && handleStop) {
-    //   stopAudio();
-    //   handleStop(interimResult as string, time);
-    //   stopSpeechToText();
-    // }
     return () => {
       clearInterval(timer);
-    }
+    };
   }, [isStart, handleStop]);
 
   useEffect(() => {
     if (!isStart && handleStop) {
+      const finalResult = (results[0] as any)?.transcript;
       stopAudio();
-      handleStop(interimResult as string, time);
       stopSpeechToText();
+      handleStop(finalResult, time);
     }
-  }, [isStart, handleStop, interimResult]);
+  }, [isStart, handleStop]);
+
   const handleAudio1Ended = () => {
     // 첫 번째 MP3 파일 재생이 끝나면 두 번째 MP3 파일 실행
     setTimeout(() => {
@@ -93,7 +90,6 @@ export default function TTSPlayer({
       setDuration(audioDuration);
     }
   };
-
   if (error) return <p>Web Speech API is not available in this device 🤷‍</p>;
   return (
     <div>

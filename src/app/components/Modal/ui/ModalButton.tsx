@@ -1,6 +1,6 @@
 import { twMerge } from "tailwind-merge";
 type Props = {
-  onClick: () => void;
+  onClick?: () => void;
   children: React.ReactNode;
   className?: string;
 };
@@ -10,7 +10,14 @@ export const ModalButton = ({ ...props }: Props) => {
     props.className
   );
   return (
-    <button className={Styled} onClick={() => props.onClick()}>
+    <button
+      className={Styled}
+      onClick={() => {
+        if (props.onClick) {
+          props.onClick();
+        }
+      }}
+    >
       {props.children}
     </button>
   );
