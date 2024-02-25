@@ -10,7 +10,7 @@ import formatDateString from "@/utils/\bformatDateString";
 import convertToHourMinute from "@/utils/convertToHourMinute";
 
 export interface HistorySectionProps {
-  id: number;
+  id?: number;
   className?: string;
   history: HistoryType;
   session: Session;
