@@ -46,6 +46,8 @@ export default function PraceticeSession(props: Props) {
         });
       } else {
         const practiceResult: HistoryType = {
+          pkValue: question.pkValue as number,
+          question: question,
           contentValue: interimResult as string,
           typeValue: "SINGLE",
           createdTimeValue: new Date().toISOString(),
