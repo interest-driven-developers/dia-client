@@ -21,7 +21,6 @@ export default function LoginMain({prevPath}:LoginProps) {
   useEffect(() => {
     (async () => {
       const res = await getProviders();
-      // console.log(res);
       setProviders(res as any);
     })();
   }, []);

@@ -9,8 +9,8 @@ interface Props {
 
 export default function GuidanceSession({ setIsView }: Props) {
   return (
-    <section className="px-4">
-      <div className="flex px-2 py-7 bg-[#212121] rounded-[10px] justify-center mb-4">
+    <section className="flex flex-col px-4 w-full h-screen">
+      <div className="flex w-full px-2 py-7 bg-[#212121] rounded-[10px] justify-center mb-4">
         <div className="whitespace-pre-wrap px-10 sm:px-16">
           <p className="text-[16px] leading-[22px] sm:text-lg font-medium text-center text-white">
             버튼을 클릭하면 면접이 시작됩니다
@@ -21,7 +21,7 @@ export default function GuidanceSession({ setIsView }: Props) {
           </p>
         </div>
       </div>
-      <div className="flex rounded-[10px] justify-center mb-5">
+      <div className="flex w-full h-full rounded-[10px] justify-center mb-5">
         <Image
           src="/images/interviewer.png"
           alt="면접관 이미지"
@@ -31,19 +31,7 @@ export default function GuidanceSession({ setIsView }: Props) {
           priority={true}
         />
       </div>
-      {/* <button
-        onClick={() => setIsView(1)}
-        className={`flex justify-center w-full px-[127px] py-[13px] rounded-[100px] whitespace-nowrap  items-center hover:opacity-90 bg-primary 
-          `}
-      >
-        <p className="text-white font-bold text-lg sm:text-xl ">시작하기</p>
-      </button> */}
-      <Button
-        onClick={() => setIsView(1)}
-
-      >
-        시작하기
-        </Button>
+      <Button onClick={() => setIsView(1)}>시작하기</Button>
     </section>
   );
 }

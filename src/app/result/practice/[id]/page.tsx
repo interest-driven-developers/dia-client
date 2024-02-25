@@ -14,7 +14,6 @@ export const generateMetadata = async ({ params }: any): Promise<Metadata> => {
 export default async function Home({ params }: { params: { id: number } }) {
   // const session = await getServerSession(authOptions);
   const result = await getQuestionList('backend');
-  return (
-    <PracticeResultMain pkValue={params.id} questionList={result} />
-  );
+  const questionList = result.slice(0, 2);
+  return <PracticeResultMain pkValue={params.id} questionList={questionList} />;
 }

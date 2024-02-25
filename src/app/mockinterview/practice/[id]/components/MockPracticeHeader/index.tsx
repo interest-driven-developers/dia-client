@@ -11,7 +11,7 @@ export default function MockPracticeHeader({ isView }: HeaderProps) {
   const router = useRouter();
 
   return (
-    <header className="flex px-4 items-center mb-[40px]">
+    <header className="flex px-4 items-center mb-[30px]">
       {isView !== 2 ? (
         <>
           <div onClick={() => router.back()}>

@@ -52,7 +52,6 @@ const dummyHistory = [
 ];
 export default function HistorySession(props: Props) {
   const { historyList} = props;
-  // console.log("historyList", dummyHistory);
   const { data: session } = useSession();
   const typedSession = session as Session;
   

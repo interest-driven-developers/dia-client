@@ -6,6 +6,12 @@ import { useEffect, useState } from "react";
 import type { Question } from "@/types/Question";
 import type { PracticeResult } from "@/types/PracticeResult";
 import type { VoiceType } from "@/types/Voice";
+import { Modal } from "@/app/components/Modal";
+import Image from "next/image";
+import Link from "next/link";
+import { useSession } from "next-auth/react";
+import { savePractice } from "@/app/api/savePractice";
+import type { Session } from "@/types/Session";
 type Props = {
   questionList: Question[];
   setIsView: (isView: number) => void;
@@ -13,69 +19,117 @@ type Props = {
 };
 
 export default function MockPraceticeSession(props: Props) {
+  const { data: session } = useSession();
+  const typedSession = session as Session;
   const { questionList, setIsView, setResultList } = props;
   const [questionIdx, setQuestionIdx] = useState<number>(0);
-  const [practiceResult, setPracticeResult] = useState<PracticeResult[]>([]);
+  const [practiceResultList, setPracticeResultList] = useState<
+    PracticeResult[]
+  >([]);
   const [duration, setDuration] = useState<number>(0);
   const [isStart, setIsStart] = useState<boolean>(true);
   const [elapsedTime, setElapsedTime] = useState<number>(0);
-
-  const handleStop = (interimResult: string) => {
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const handleStop = async (interimResult: string, time: number) => {
     if (
       questionIdx !== null &&
       questionIdx !== undefined &&
       questionIdx < questionList.length
     ) {
       // 결과 리스트 업데이트
-      setPracticeResult((prev: PracticeResult[]) => {
-        return [
-          ...prev,
-          {
+      if (session) {
+        await savePractice({
+          practiceResult: {
             interviewQuestionPkValue: questionList[questionIdx]
               .pkValue as number,
             contentValue: interimResult as string,
             typeValue: "MULTI",
-            elapsedTimeValue: 60,
+            elapsedTimeValue: time,
             filePathValue: null,
           },
-        ] as PracticeResult[];
-      });
-      setIsStart(true);
+          accessToken: typedSession.user.access_token,
+        });
+      } else {
+        setPracticeResultList((prev: PracticeResult[]) => {
+          return [
+            ...prev,
+            {
+              interviewQuestionPkValue: questionList[questionIdx]
+                .pkValue as number,
+              contentValue: interimResult as string,
+              typeValue: "MULTI",
+              elapsedTimeValue: time,
+              filePathValue: null,
+            },
+          ] as PracticeResult[];
+        });
+      }
     }
-  };
-
-  const handleNext = () => {
-    setIsStart(false);
     if (questionIdx + 1 < questionList.length) {
       setQuestionIdx((prev) => prev + 1);
+      setIsStart(true);
     } else {
-      setIsView(2);
+      setIsModalOpen(true);
     }
+  };
+  const handleNext = () => {
+    setIsStart(false);
+    // if (questionIdx + 1 < questionList.length) {
+    //   setQuestionIdx((prev) => prev + 1);
+    // } else {
+    //   setIsModalOpen(true);
+    // }
   };
 
   return (
-    <section className="w-full h-screen">
-      <div className="w-full sm:w-1/2 fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate-pulse">
-        <EqualizerIcon />
+    <section className="flex flex-col w-full h-full px-4">
+      <div className="flex px-[16px] py-[17px] bg-[#212121] rounded-[10px] justify-center mb-2.5">
+        <p className="text-[16px] leading-[22px] sm:text-lg font-medium text-center text-white">
+          마이크 버튼을 눌러 답변을 종료할 수 있습니다
+        </p>
       </div>
-      <ShrinkingIcon
-        timeInSeconds={duration + 2}
-        onClick={() => handleNext()}
-      />
+      <div className="flex rounded-[10px] justify-center mb-20">
+        <Image
+          src="/images/interviewer_sm.png"
+          alt="면접관 이미지"
+          width={320}
+          height={270}
+          className="w-full "
+          priority={true}
+        />
+      </div>
+      <div className="w-full relative ">
+        <EqualizerIcon />
+        <ShrinkingIcon timeInSeconds={90} onClick={() => handleNext()} />
+      </div>
       {questionList && questionIdx !== null && questionIdx !== undefined && (
         <TTSPlayer
           isStart={isStart}
           voice={questionList[questionIdx].voices[0] as VoiceType}
           handleStop={handleStop}
           setDuration={setDuration}
+          isEnd={isModalOpen}
         ></TTSPlayer>
       )}
-
-      <div className="fixed bottom-10 left-0 right-0 flex px-2 py-[17px] mx-4 w-auto sm:w-2/5 sm:mx-auto bg-[#212121] rounded-[10px] justify-center ">
-        <p className="text-[16px] leading-[22px] sm:text-lg font-medium text-center text-white">
-          마이크 버튼을 눌러 답변을 완료해주세요.
-        </p>
-      </div>
+      {/* 모달 섹션 */}
+      <Modal modalPosition="center" isOpen={isModalOpen}>
+        <Modal.Body
+          title="수고하셨습니다👍🏻"
+          description="작성된 스크립트와 녹음된 답변을 비교하러 가볼까요?"
+          className="mb-[36px]"
+          descClassName="px-5 text-[18px] font-semibold text-[#616161] leading-[28px] text-center"
+        />
+        <Link
+          href={{
+            pathname: `/result/practice/1`,
+            query: !session ? (practiceResultList as any) : {},
+          }}
+        >
+          <Modal.Button className="rounded-md w-[100px] px-[81px] py-[10px]">
+            다음
+          </Modal.Button>
+        </Link>
+      </Modal>
     </section>
   );
 }

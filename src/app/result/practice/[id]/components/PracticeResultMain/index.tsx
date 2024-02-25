@@ -24,29 +24,20 @@ export default function PracticeResultMain({ pkValue, questionList }: Props) {
   const [History, setHistory] = useState<HistoryType | null>(null);
   const { data: session, status } = useSession();
   const typedSession = session as Session;
-  // console.log("questionList", questionList);
 
   useEffect(() => {
     const fetchData = async () => {
       if (session) {
         const getHistory = await getQuestionHistory(
-          pkValue,
+          questionList[questionIdx - 1].pkValue,
           typedSession?.user.access_token
         );
         if (getHistory) setHistory(getHistory[0]);
-      } else {
-        const getHistory = localStorage.getItem(`history=${pkValue}`);
-        if (getHistory) {
-          // 데이터가 없을 경우 기본값으로 빈 배열 설정
-          const historyArray = getHistory ? JSON.parse(getHistory) : [];
-          setHistory(historyArray[0]);
-        }
       }
     };
 
     fetchData();
-  }, [questionIdx, pkValue, session, typedSession?.user.access_token]); // 의존성 배열 수정
-
+  }, [questionIdx, session, typedSession?.user.access_token]); // 의존성 배열 수정
   return (
     <main className="flex flex-col mx-auto py-20 h-full max-w-[500px] max-h-[1000px] overflow-y-hidden bg-white no-scrollbar">
       <section className="flex flex-col px-5">

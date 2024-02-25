@@ -15,7 +15,7 @@ export interface Props {
   className?: string;
 }
 
-const maxCharacterCount = 500;
+const maxCharacterCount = 3000;
 
 export default function ScriptSection({ id, className }: Props) {
   const { data: session, status } = useSession();

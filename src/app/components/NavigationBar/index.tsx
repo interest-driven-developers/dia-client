@@ -17,7 +17,7 @@ export default function NavigationBar({}: NavigationBarProps) {
   const pathname = usePathname();
   const [isMenu, setIsMenu] = useState("home");
   useEffect(() => {
-    const solvePathPattern = /^\/(solve|mockinterview)(\/.*)?$/;
+    const solvePathPattern = /^\/(solve|mockinterview|practice)(\/.*)?$/;
     const historyPathPattern = /^\/history(\/.*)?$/;
 
     if (pathname === "/") {
