@@ -20,7 +20,7 @@ export default function ResultSession(props: Props) {
 
   return (
     <section className="flex flex-col gap-3 h-full px-4">
-      <Question title={question.korTitleValue}></Question>
+      <Question question={question}></Question>
       <ScriptSection
         id={pkValue}
         className="flex-grow-3 h-[150px] sm:h-[200px]"

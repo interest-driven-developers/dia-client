@@ -37,7 +37,7 @@ export const HistoryMain = ({ historyList }: Props) => {
                 key={history.pkValue}
                 className="relative hover:opacity-70"
               >
-                <Question title={history && history.question.korTitleValue} />
+                <Question question={history && history.question} />
                 {index === historyByDate[date].length - 1 ? (
                   <div className="absolute -bottom-5 left-4 ml-0.5 bg-[#E0E0E0] h-5 w-[1px]" />
                 ) : (

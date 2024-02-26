@@ -22,7 +22,7 @@ export default function HistoryResult({ question, history }: Props) {
     <section className="flex flex-col gap-3 h-full px-4">
       {question && (
         <>
-          <Question title={question.korTitleValue}></Question>
+          <Question question={question}></Question>
           <ScriptSection
             id={question.pkValue}
             className="flex-grow-3 h-[150px] sm:h-[200px]"
