@@ -100,7 +100,11 @@ export default function MockPraceticeSession(props: Props) {
       </div>
       <div className="w-full relative ">
         <EqualizerIcon />
-        <ShrinkingIcon timeInSeconds={90} onClick={() => handleNext()} />
+        <ShrinkingIcon
+          timeInSeconds={90}
+          onClick={() => handleNext()}
+          isStart={isStart}
+        />
       </div>
       {questionList && questionIdx !== null && questionIdx !== undefined && (
         <TTSPlayer
