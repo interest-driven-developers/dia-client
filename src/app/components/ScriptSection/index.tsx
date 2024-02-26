@@ -39,7 +39,6 @@ export default function ScriptSection({ id, className }: Props) {
           ? JSON.parse(savedScriptString)
           : { contentValue: "" };
         setScript(savedScriptObj);
-
       }
     };
 
@@ -71,13 +70,16 @@ export default function ScriptSection({ id, className }: Props) {
   };
 
   const handleSectionClick = () => {
-    if (isEditing || script) return;
+    console.log(isEditing, script);
+    if (isEditing || script?.contentValue) return;
     setIsEditing(true);
   };
   return (
     <div
       className={twMerge(
-        `flex flex-col relative bg-[#F8F3FF] rounded-[5px] w-full `,
+        `flex flex-col relative bg-[#FAFAFA] rounded-[5px] w-full ${
+          !isEditing || !script?.contentValue ? "cursor-pointer" : ""
+        }`,
         className
       )}
       onClick={handleSectionClick}
@@ -89,7 +91,7 @@ export default function ScriptSection({ id, className }: Props) {
           <>
             <textarea
               value={script?.contentValue}
-              placeholder="여기에 스크립트를 작성해주세요."
+              placeholder="스크립트를 작성하시면 면접 후 답변과 비교해보실 수 있습니다"
               onChange={(e) =>
                 setScript(
                   (prevScript) =>
@@ -99,7 +101,7 @@ export default function ScriptSection({ id, className }: Props) {
                     } as Script)
                 )
               }
-              className="w-full h-40 p-2 rounded-md bg-[#F8F3FF] focus:ring-blue-500"
+              className="w-full h-40 p-2 rounded-md bg-[#FAFAFA] focus:ring-blue-500"
             />
             <div className="absolute bottom-4 left-4 flex items-center">
               <XCircleIcon
@@ -123,7 +125,7 @@ export default function ScriptSection({ id, className }: Props) {
               </p>
             ) : (
               <p className="text-[14px] text-[#D1C4E9] leading-7 sm:text-lg font-normal">
-                스크립트를 클릭 후 작성해주세요
+                스크립트를 작성하시면 면접 후 답변과 비교해보실 수 있습니다
               </p>
             )}
           </div>
@@ -133,7 +135,7 @@ export default function ScriptSection({ id, className }: Props) {
       {script && (
         <div className="absolute bottom-2 right-4 ">
           <p className="text-xs leading-7 font-medium text-[#D1C4E9]">
-            <span className="text-[#9575CD]">{script.contentValue.length}</span>
+            <span className="text-[#E2D7FF]">{script.contentValue.length}</span>
             {` / ${maxCharacterCount}`}
           </p>
         </div>

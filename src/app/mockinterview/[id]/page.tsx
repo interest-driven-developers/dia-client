@@ -16,9 +16,10 @@ import { Question } from "@/types/Question";
 //   return [{ id: "1" }, { id: "2" }, { id: "3" }];
 // }
 export default async function Main({ params }: { params: { id: number } }) {
-  const result = await getQuestionDetails(params.id);
+  const result = await getQuestionDetails({ id: params.id });
   return (
-    <main className="flex flex-col mx-auto py-20 h-full max-w-[450px] max-h-[1000px] overflow-y-hidden bg-[#E2D7FF] no-scrollbar">
+    <main className="flex flex-col mx-auto py-20 h-screen sm:h-screen sm:w-1/4 bg-[#E2D7FF] no-scrollbar">
+      {/* <main className="flex flex-col mx-auto py-20 h-full max-w-[450px] max-h-[1000px] overflow-y-hidden bg-[#E2D7FF] no-scrollbar"> */}
       <PracticeMain question={result.data}></PracticeMain>
     </main>
   );

@@ -4,9 +4,10 @@ type Props = {
   radius: number;
   stroke: number;
   progress: number;
+  isStart: boolean;
 };
 
-export const ProgressRing = ({ radius, stroke, progress }: Props) => {
+export const ProgressRing = ({ radius, stroke, progress, isStart }: Props) => {
   const normalizedRadius = radius - stroke * 2;
   const circumference = normalizedRadius * 2 * Math.PI;
 
@@ -31,11 +32,12 @@ export const ProgressRing = ({ radius, stroke, progress }: Props) => {
         animationFrameId = requestAnimationFrame(updateProgress);
       }
     };
-
-    updateProgress(); // 애니메이션 시작
+    if (isStart) {
+      updateProgress(); // 애니메이션 시작
+    }
 
     return () => cancelAnimationFrame(animationFrameId);
-  }, [radius, stroke, progress]); // 의존성 배열에 radius와 stroke를 직접 포함
+  }, [radius, stroke, progress,isStart]); // 의존성 배열에 radius와 stroke를 직접 포함
 
   return (
     <svg

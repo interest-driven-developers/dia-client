@@ -28,8 +28,8 @@ export default function PracticeMain({ question }: Props) {
     }
   };
   return (
-    <div>
-      <div className="flex px-4 items-center mb-[47px]">
+    <>
+      <div className="flex px-4 items-center mb-[40px]">
         <div onClick={() => router.back()}>
           <ChevronLeftIcon className="h-6 w-6 text-[#212121] cursor-pointer rounded-md hover:opacity-50" />
         </div>
@@ -39,6 +39,6 @@ export default function PracticeMain({ question }: Props) {
       </div>
       {/* <ViewPage></ViewPage> */}
       <PraceticeSession question={question} setIsView={setIsView} />
-    </div>
+    </>
   );
 }

@@ -60,25 +60,27 @@ export default function PraceticeSession(props: Props) {
     [question, session]
   );
   return (
-    <section className="w-full h-screen">
-      <div className="flex px-[16px] py-[17px] m-5 bg-[#212121] rounded-[10px] justify-center">
-        <p className="text-[16px] leading-[22px] sm:text-lg font-medium text-center text-white">
-          마이크 버튼을 눌러 답변을 종료할 수 있습니다
-        </p>
-      </div>
-      <div className="flex rounded-[10px] justify-center mb-16 m-4">
-        <Image
-          src="/images/interviewer_sm.png"
-          alt="면접관 이미지"
-          width={320}
-          height={270}
-          className="w-full "
-          priority={true}
-        />
+    <section className="flex flex-col w-full h-full">
+      <div className="flex flex-col px-4 gap-4">
+        <div className="flex px-[16px] py-[17px] bg-[#212121] rounded-[10px] justify-center">
+          <p className="text-[16px] leading-[22px] sm:text-lg font-medium text-center text-white">
+            마이크 버튼을 눌러 답변을 종료할 수 있습니다
+          </p>
+        </div>
+        <div className="flex rounded-[10px] justify-center mb-16">
+          <Image
+            src="/images/interviewer_sm.png"
+            alt="면접관 이미지"
+            width={320}
+            height={270}
+            className="w-full "
+            priority={true}
+          />
+        </div>
       </div>
       <div className="w-full relative ">
         <EqualizerIcon />
-        <ShrinkingIcon timeInSeconds={90} onClick={() => setIsStart(false)} />
+        <ShrinkingIcon timeInSeconds={90} onClick={() => setIsStart(false)} isStart={isStart} />
       </div>
       {question && (
         <TTSPlayer
@@ -100,7 +102,7 @@ export default function PraceticeSession(props: Props) {
         <Link
           href={{
             pathname: `/result/${question.pkValue}`,
-            query: !session ? practiceResult as any : {},
+            query: !session ? (practiceResult as any) : {},
           }}
         >
           <Modal.Button className="rounded-md w-[100px] px-[81px] py-[10px]">

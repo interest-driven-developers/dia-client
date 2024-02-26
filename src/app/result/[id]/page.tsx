@@ -25,7 +25,16 @@ export default async function Home({
   params: { id: number };
   searchParams: HistoryType;
 }) {
-  const result = await getQuestionDetails(params.id);
+    const session = await getServerSession(authOptions);
+    let result;
+    if (session) {
+      result = await getQuestionDetails({
+        id: params.id,
+        accessToken: session.user.access_token,
+      });
+    } else {
+      result = await getQuestionDetails({ id: params.id });
+    }
   const isGuest = searchParams.contentValue ? true : false;
   return (
     <main className="flex flex-col mx-auto py-20  max-w-[500px] h-full sm:max-h-[1000px] overflow-y-hidden bg-white no-scrollbar">

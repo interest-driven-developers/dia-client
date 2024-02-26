@@ -50,7 +50,7 @@ export default function Header({ session }: HeaderProps) {
           {/* 로고 */}
           <div className="flex items-center ">
             <Logo
-              className="w-[70px] h-10 cursor-pointer"
+              className="w-[52px] h-20 cursor-pointer"
               onClick={handleLogoClick}
             ></Logo>
           </div>

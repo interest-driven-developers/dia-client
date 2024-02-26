@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import ResultSession from "@/app/result/[id]/components/ResultSession";
-import Question from "@/app/solve/problem/[id]/components/Question";
+import Question from "@/app/components/Question";
 import { Question as QuestionType } from "@/types/Question";
 import { HistoryType } from "@/types/History";
 import { useSession } from "next-auth/react";
@@ -17,7 +17,6 @@ type Props = {
 export default function HistoryResult({ question, history }: Props) {
   const { data: session } = useSession();
   const typedSession = session as Session;
-
 
   return (
     <section className="flex flex-col gap-3 h-full px-4">

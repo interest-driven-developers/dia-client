@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { ChevronLeftIcon } from "@heroicons/react/20/solid";
-import Question from "../Question";
+import Question from "../../../../../components/Question";
 import ScriptSection from "@/app/components/ScriptSection";
 import type { Question as QuestionType } from "@/types/Question";
 import { Modal } from "@/app/components/Modal";
@@ -10,6 +10,7 @@ import Button from "@/app/components/Button";
 import ShareIcon from "@/app/ui/icons/ShareIcon";
 import { useSession } from "next-auth/react";
 import copyToClipboard from "@/utils/copyToClipBoard";
+import type { Session } from "@/types/Session";
 interface Props {
   questionData: QuestionType;
   session?: any;
@@ -20,8 +21,8 @@ export default function QuestionMain({
 }: // session,
 Props) {
   const { data: session, status } = useSession();
+  const typedSession = session as Session;
   const router = useRouter();
-
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [animationClass, setAnimationClass] = useState<string>("");
   const solveQuestion = () => {
@@ -40,9 +41,10 @@ Props) {
       setIsModalOpen(true);
     }
   };
+
   return (
-    <>
-      <div className="flex items-center mb-[34px]">
+    <section className="flex flex-col w-full h-screen max-h-[1000px]">
+      <div className="flex items-center mb-[32px]">
         <div onClick={() => router.back()}>
           <ChevronLeftIcon className="h-6 w-6 text-black cursor-pointer rounded-md hover:opacity-50" />
         </div>
@@ -53,8 +55,12 @@ Props) {
           <ShareIcon />
         </div>
       </div>
-      <div className="flex flex-col gap-y-3 mb-5 h-full">
-        <Question title={questionData.korTitleValue}></Question>
+      <div className="flex flex-col gap-y-3 mb-4 h-full">
+        <Question
+          question={questionData}
+          session={typedSession}
+          isBookmarkOn={typedSession ? true : false}
+        ></Question>
         <ScriptSection
           id={questionData.pkValue}
           className="h-full"
@@ -75,6 +81,6 @@ Props) {
         />
         <Modal.Button onClick={solveQuestion}>시작하기</Modal.Button>
       </Modal>
-    </>
+    </section>
   );
 }

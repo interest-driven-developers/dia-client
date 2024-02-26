@@ -4,4 +4,5 @@ export interface Question {
   korTitleValue: string;
   categories: {};
   voices: VoiceType[];
+  bookmark: boolean;
 }

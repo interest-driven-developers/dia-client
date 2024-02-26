@@ -9,7 +9,7 @@ import type { Session } from "@/types/Session";
 import type { Question as QuestionType } from "@/types/Question";
 import ResultSession from "../ResultSession";
 import NumberButton from "../NumberButton";
-import Question from "@/app/solve/problem/[id]/components/Question";
+import Question from "@/app/components/Question";
 import ScriptSection from "@/app/components/ScriptSection";
 import HistorySection from "@/app/components/HistorySection";
 
@@ -53,7 +53,7 @@ export default function PracticeResultMain({ pkValue, questionList }: Props) {
           ))}
         </div>
         <div className="flex flex-col gap-3">
-          <Question title={questionList[questionIdx - 1].korTitleValue} />
+          <Question question={questionList[questionIdx - 1]} />
           <ScriptSection
             id={questionList[questionIdx - 1].pkValue}
             className="h-[151px] sm:h-[250px]"

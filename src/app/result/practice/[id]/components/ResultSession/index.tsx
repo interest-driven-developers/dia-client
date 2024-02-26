@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import ScriptSection from "@/app/components/ScriptSection";
 import HistorySection from "@/app/components/HistorySection";
-import Question from "@/app/solve/problem/[id]/components/Question";
+import Question from "@/app/components/Question";
 import type { HistoryType } from "@/types/History";
 import type { Question as QuestionType } from "@/types/Question";
 import { useSession } from "next-auth/react";

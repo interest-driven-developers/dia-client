@@ -1,13 +1,13 @@
 "use client";
 import formatDateString from "@/utils/\bformatDateString";
-import Question from "@/app/solve/problem/[id]/components/Question";
+import Question from "@/app/components/Question";
 import { HistoryType } from "@/types/History";
 import Link from "next/link";
 
 type Props = {
-  historyList: HistoryType[]
+  historyList: HistoryType[];
 };
-export const HistoryMain = ({historyList} : Props) => {
+export const HistoryMain = ({ historyList }: Props) => {
   const historyByDate = {} as any;
   historyList.forEach((item) => {
     const date = formatDateString(item.createdTimeValue);
