@@ -14,7 +14,8 @@ export const getQuestionHistory = async (
     return null;
   }
 
-  const apiUrl = `${process.env.NEXT_PUBLIC_SERVER_URL}/api/v0/interview/practice/histories?questionPkValue=${id}`;
+  const apiUrl = `${process.env.NEXT_PUBLIC_CLIENT_URL}/api/v0/interview/practice/histories?questionPkValue=${id}`;
+  // const apiUrl = `${process.env.NEXT_PUBLIC_SERVER_URL}/api/v0/interview/practice/histories?questionPkValue=${id}`;
   const requestOptions: RequestInit = {
     method: "GET",
     headers: {

@@ -6,7 +6,8 @@ export const getQuestionList = async (category: string) => {
     .map((tag) => mapTagToPurpose(tag))
     .join(",");
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_SERVER_URL}/api/v0/interview/questions?categoryValues=${categoryValues}`,
+    `${process.env.NEXT_PUBLIC_CLIENT_URL}/api/v0/interview/questions?categoryValues=${categoryValues}`,
+    // `${process.env.NEXT_PUBLIC_SERVER_URL}/api/v0/interview/questions?categoryValues=${categoryValues}`,
     {
       method: "GET",
       headers: {

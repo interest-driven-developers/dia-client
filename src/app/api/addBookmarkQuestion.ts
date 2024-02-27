@@ -5,7 +5,8 @@ type Params = {
 };
 export const addBookmarkQuestion = async (params: Params): Promise<void> => {
   const { pkValue, accessToken } = params;
-  const apiUrl = `${process.env.NEXT_PUBLIC_SERVER_URL}/api/v0/interview/questions/${pkValue}/bookmark`;
+  const apiUrl = `${process.env.NEXT_PUBLIC_CLIENT_URL}/api/v0/interview/questions/${pkValue}/bookmark`;
+  // const apiUrl = `${process.env.NEXT_PUBLIC_SERVER_URL}/api/v0/interview/questions/${pkValue}/bookmark`;
 
   const requestOptions: RequestInit = {
     method: "POST",

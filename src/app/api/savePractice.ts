@@ -5,7 +5,8 @@ type Params = {
 };
 export const savePractice = async (params: Params): Promise<void> => {
   const { practiceResult, accessToken } = params;
-  const apiUrl = `${process.env.NEXT_PUBLIC_SERVER_URL}/api/v0/interview/practice/histories`;
+  const apiUrl = `${process.env.NEXT_PUBLIC_CLIENT_URL}/api/v0/interview/practice/histories`;
+  // const apiUrl = `${process.env.NEXT_PUBLIC_SERVER_URL}/api/v0/interview/practice/histories`;
 
   const requestOptions: RequestInit = {
     method: "POST",

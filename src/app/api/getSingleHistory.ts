@@ -10,7 +10,8 @@ export const getSingleHistory = async(params :Params
     return null;
   }
 
-  const apiUrl = `${process.env.NEXT_PUBLIC_SERVER_URL}/api/v0/interview/practice/histories/${practiceHistoryPkValue}`;
+  const apiUrl = `${process.env.NEXT_PUBLIC_CLIENT_URL}/api/v0/interview/practice/histories/${practiceHistoryPkValue}`;
+  // const apiUrl = `${process.env.NEXT_PUBLIC_SERVER_URL}/api/v0/interview/practice/histories/${practiceHistoryPkValue}`;
   const requestOptions: RequestInit = {
     method: "GET",
     headers: {
