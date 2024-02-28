@@ -29,7 +29,7 @@ export default async function Main({ params }: { params: { id: number } }) {
     result = await getQuestionDetails({ id: params.id });
   }
   return (
-    <main className="flex flex-col mx-auto px-5 sm:px-6 py-20 h-full sm:w-1/2 2xl:w-1/3 sm:h-screen no-scrollbar overflow-y-hidden">
+    <main className="flex flex-col mx-auto px-5 sm:px-6 py-20 h-screen max-h-[1000px] sm:w-1/2 2xl:w-1/3 sm:h-screen no-scrollbar overflow-y-hidden">
       <QuestionMain questionData={result.data}></QuestionMain>
     </main>
   );
