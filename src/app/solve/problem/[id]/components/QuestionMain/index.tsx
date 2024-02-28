@@ -43,7 +43,7 @@ Props) {
   };
 
   return (
-    <section className="flex flex-col w-full h-screen max-h-[1000px]">
+    <section className="flex flex-col w-full h-full max-h-[1000px]">
       <div className="flex items-center mb-[32px]">
         <div onClick={() => router.back()}>
           <ChevronLeftIcon className="h-6 w-6 text-black cursor-pointer rounded-md hover:opacity-50" />
