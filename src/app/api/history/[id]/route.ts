@@ -16,7 +16,7 @@ export async function GET(
   { params }: { params: { id: number } }
 ) {
   // const token = await getToken();
-  console.log("test get", params.id);
+  // console.log("test get", params.id);
   //   if (!token) {
   //     return new NextResponse("Unauthorized", { status: 403 });
   //   }
@@ -69,7 +69,7 @@ export async function POST(request: NextRequest) {
     try {
       return NextResponse.json(result);
     } catch (error) {
-      console.log("error parsing response", error);
+      // console.log("error parsing response", error);
       return NextResponse.json(undefined);
     }
   } else {

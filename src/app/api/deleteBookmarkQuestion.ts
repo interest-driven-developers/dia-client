@@ -5,7 +5,7 @@ type Params = {
 };
 export const deleteBookmarkQuestion = async (params: Params): Promise<void> => {
   const { pkValue, accessToken } = params;
-  console.log('삭제 api', pkValue, accessToken)
+  // console.log('삭제 api', pkValue, accessToken)
   const apiUrl = `${process.env.NEXT_PUBLIC_CLIENT_URL}/api/v0/interview/questions/${pkValue}/bookmark`;
   // const apiUrl = `${process.env.NEXT_PUBLIC_SERVER_URL}/api/v0/interview/questions/${pkValue}/bookmark`;
 
@@ -19,7 +19,6 @@ export const deleteBookmarkQuestion = async (params: Params): Promise<void> => {
 
   try {
     const response = await fetch(apiUrl, requestOptions);
-    console.log(response);
     if (!response.ok) {
       throw new Error(`Failed to edit question. Status: ${response.status}`);
     }

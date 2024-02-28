@@ -70,7 +70,7 @@ export default function ScriptSection({ id, className }: Props) {
   };
 
   const handleSectionClick = () => {
-    console.log(isEditing, script);
+    // console.log(isEditing, script);
     if (isEditing || script?.contentValue) return;
     setIsEditing(true);
   };
