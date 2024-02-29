@@ -81,3 +81,10 @@ body {
         url('https://cdn.jsdelivr.net/gh/webfontworld/pretendard/Pretendard-Bold.ttf') format("truetype");
     font-display: swap;
 }
+
+
+/* typed font styles */
+.typedFont {
+  font-weight: 800;
+  color: #7C4DFF
+}

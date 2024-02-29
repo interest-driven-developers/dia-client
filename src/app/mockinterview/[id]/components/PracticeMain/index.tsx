@@ -37,8 +37,8 @@ export default function PracticeMain({ question }: Props) {
           개별 모의연습
         </h1>
       </div>
-      {/* <ViewPage></ViewPage> */}
-      <PraceticeSession question={question} setIsView={setIsView} />
+      <ViewPage></ViewPage>
+      {/* <PraceticeSession question={question} setIsView={setIsView} /> */}
     </>
   );
 }

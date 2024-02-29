@@ -9,7 +9,7 @@ export default async function Layout({
 }) {
 
   return (
-    <div className="flex flex-col  bg-[#E2D7FF] h-screen">
+    <div className="flex flex-col bg-[#F9F5FF] h-screen">
       {/* <Header/> */}
       {children}
     </div>

@@ -18,7 +18,7 @@ import { Question } from "@/types/Question";
 export default async function Main({ params }: { params: { id: number } }) {
   const result = await getQuestionDetails({ id: params.id });
   return (
-    <main className="flex flex-col mx-auto py-20 h-screen sm:h-screen sm:w-1/4 bg-[#E2D7FF] no-scrollbar">
+    <main className="flex flex-col mx-auto py-20 h-screen w-screen max-h-[750px] sm:w-1/4 bg-[#F9F5FF] 2xl:w-1/3 no-scrollbar overflow-y-hidden">
       {/* <main className="flex flex-col mx-auto py-20 h-full max-w-[450px] max-h-[1000px] overflow-y-hidden bg-[#E2D7FF] no-scrollbar"> */}
       <PracticeMain question={result.data}></PracticeMain>
     </main>

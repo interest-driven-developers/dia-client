@@ -11,6 +11,7 @@ export default function InterviewIntroIcon({ className, onClick }: Props) {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
+      className={className}
     >
       <circle cx="37" cy="37" r="37" fill="#E2D7FF" />
       <circle cx="37" cy="37" r="30" fill="url(#pattern0)" />
