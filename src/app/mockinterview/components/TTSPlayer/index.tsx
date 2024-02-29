@@ -92,8 +92,18 @@ export default function TTSPlayer({
 
   useEffect(() => {
     if (handleStop && !isStart && !isEnd) {
+      let resultString = "";
+      if (results.length > 0) {
+        results.forEach((result: any) => {
+          resultString = resultString + result.transcript;
+        });
+      }
       stopAudio();
       stopSpeechToText();
+      if (resultString) {
+        handleStop(resultString, time);
+        return;
+      }
       handleStop(interimResult as any, time);
     }
     return () => {
@@ -111,7 +121,6 @@ export default function TTSPlayer({
   //   // }, 1000);
   // };
   const handleAudio1Ended = () => {
-
     setTimeout(() => {
       playAudio2();
     }, 1000);
