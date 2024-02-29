@@ -16,7 +16,6 @@ interface Props {
 export default function PracticeMain({ question }: Props) {
   const router = useRouter();
   const [isView, setIsView] = useState<number | null>(null); // 0: 히스토리 보기, 1: 스크립트 보기
-
   const ViewPage = () => {
     switch (isView) {
       case 0:
@@ -27,16 +26,16 @@ export default function PracticeMain({ question }: Props) {
         return <GuidanceSession setIsView={setIsView} />;
     }
   };
+
+  const handleBack = () => {
+    if (isView === 1) {
+      setIsView(0);
+    } else {
+      router.back();
+    }
+  }
   return (
     <>
-      <div className="flex px-4 items-center mb-[40px]">
-        <div onClick={() => router.back()}>
-          <ChevronLeftIcon className="h-6 w-6 text-[#212121] cursor-pointer rounded-md hover:opacity-50" />
-        </div>
-        <h1 className="text-lg sm:text-xl font-bold text-center text-primary flex-grow mr-6">
-          개별 모의연습
-        </h1>
-      </div>
       <ViewPage></ViewPage>
       {/* <PraceticeSession question={question} setIsView={setIsView} /> */}
     </>

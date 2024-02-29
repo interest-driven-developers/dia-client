@@ -4,12 +4,15 @@ import Image from "next/image";
 import Button from "@/app/components/Button";
 import InterviewIntroIcon from "@/app/ui/icons/InterviewIntroIcon";
 import Typed from "typed.js";
-
+import { ChevronLeftIcon } from "@heroicons/react/20/solid";
+import { useRouter } from "next/navigation";
+import Header from "@/app/mockinterview/[id]/components/Header";
 interface Props {
   setIsView: (view: number) => void;
 }
 
 export default function GuidanceSession({ setIsView }: Props) {
+  const router = useRouter();
   const el = React.useRef(null);
   const typed = React.useRef<Typed | null>(null);
   React.useEffect(() => {
@@ -29,26 +32,32 @@ export default function GuidanceSession({ setIsView }: Props) {
       typed.current?.destroy();
     };
   }, []);
+  const handleBack = () => {
+    router.back();
+  };
   return (
-    <section className="flex flex-col px-4 w-full h-full">
-      <InterviewIntroIcon className="mb-[30px] mt-[88px]"></InterviewIntroIcon>
-      <div className={`flex relative justify-start mb-60 w-full`}>
-        <div
-          className="absolute -top-4 left-3 w-0 h-0 
+    <>
+      <Header handleBack={handleBack} title="개별 모의연습"/>
+      <section className="flex flex-col px-4 w-full h-full">
+        <InterviewIntroIcon className="mb-[30px] mt-[88px]"></InterviewIntroIcon>
+        <div className={`flex relative justify-start mb-auto w-full`}>
+          <div
+            className="absolute -top-4 left-3 w-0 h-0 
   border-l-[25px] border-l-transparent
   border-b-[50px] border-white
   border-r-[25px] border-r-transparent"
-        />
-        <div
-          className={`rounded-lg px-[30px] py-5 max-w-xs  bg-white z-10 h-[130px] `}
-        >
-          <span
-            className="whitespace-pre text-[16px] leading-6 font-medium text-[#616161]"
-            ref={el}
           />
+          <div
+            className={`rounded-lg px-[30px] py-5 max-w-xs  bg-white z-10 h-[130px] `}
+          >
+            <span
+              className="whitespace-pre text-[16px] leading-6 font-medium text-[#616161]"
+              ref={el}
+            />
+          </div>
         </div>
-      </div>
-      <Button onClick={() => setIsView(1)}>시작하기</Button>
-    </section>
+        <Button onClick={() => setIsView(1)}>시작하기</Button>
+      </section>
+    </>
   );
 }
