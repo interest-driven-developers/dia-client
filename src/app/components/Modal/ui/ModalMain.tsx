@@ -26,7 +26,7 @@ export const ModalMain = (props: Props) => {
   const modalPositionClass = () => {
     switch (modalPosition) {
       case "center":
-        return "pin-y items-center";
+        return "pin-y items-center ";
       case "top":
         return "pin-t items-start";
       case "bottom":
@@ -37,25 +37,21 @@ export const ModalMain = (props: Props) => {
   };
 
   const modalStyleClass = () => {
-        switch (modalPosition) {
-          case "center":
-            return "rounded-[20px] w-[320px] h-[356px] py-[106px]";
-          case "top":
-            return "pin-t items-start";
-          case "bottom":
-            return "pin-b items-end";
-          default:
-            return "";
-        }
-  }
+    switch (modalPosition) {
+      case "center":
+        return "rounded-[20px] w-[320px] h-[356px] items-center justify-center";
+      case "top":
+        return "pin-t items-start";
+      case "bottom":
+        return "pin-b items-end";
+      default:
+        return "";
+    }
+  };
 
   const modalPositionStyle = twMerge(
     `fixed pin inset-0 flex items-end justify-center z-50 overflow-hidden`,
     modalPositionClass()
-  );
-  const modalStyle = twMerge(
-    `fixed bg-white px-6 py-14 rounded-t-[20px] shadow-lg sm:w-1/2 mx-auto mt-8  ${animationClass}`,
-    modalStyleClass()
   );
   useEffect(() => {
     setMounted(true);
@@ -67,8 +63,13 @@ export const ModalMain = (props: Props) => {
   return mounted ? (
     createPortal(
       <div className={modalPositionStyle}>
-        <div className="fixed inset-0 bg-[#424242] opacity-90"></div>
-        <div className={modalStyle}>
+        <div className="fixed inset-0 bg-[#424242] opacity-90 h-full"></div>
+        <div
+          className={twMerge(
+            `fixed flex flex-col bg-white px-6 py-10 w-full  rounded-t-[20px] shadow-lg sm:w-1/4 mx-auto ${animationClass}`,
+            modalStyleClass()
+          )}
+        >
           {isOverlayClickClose ? (
             <OverlayClickHandler onClick={() => setIsOpen(false)}>
               {children}
