@@ -17,7 +17,6 @@ import { Question } from "@/types/Question";
 export default async function Main({ params }: { params: { id: string } }) {
   // const result = await getPracticeDetails(params.id);
   const result = await getQuestionList("backend");
-  // 문제 리스트 앞에 3개로 줄여줘
   const questionList = result.slice(0, 2);
   // 여기서 문제 리스트를 가져와서 result에 추가해야함
   return <MockPracticeMain questionList={questionList}></MockPracticeMain>;
