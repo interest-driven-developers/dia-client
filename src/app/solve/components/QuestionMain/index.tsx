@@ -37,6 +37,7 @@ export default function QuestionMain({ questionList, query }: Props) {
       setFirstCheck(true);
     }
   };
+  console.log('questionlIst', questionList)
   return (
     <main className="flex flex-col mx-auto w-full px-5 sm:px-6 py-16 sm:w-1/2 no-scrollbar relative">
       <div className="sticky top-16 bg-white z-10">
@@ -57,13 +58,18 @@ export default function QuestionMain({ questionList, query }: Props) {
         </div>
       </div>
       <section className="grid gap-3 mb-3">
-        {questionList.map((qusetion: QuestionType, index: number) => (
-          <Question
-            question={qusetion}
-            key={index}
-            isDetail={true}
-            session={typedSession}
-          />
+        {questionList.map((question: QuestionType, index: number) => (
+          <Link
+            href={`/solve/problem/${question.pkValue}`}
+            key={question.pkValue}
+          >
+            <Question
+              question={question}
+              key={index}
+              isDetail={true}
+              session={typedSession}
+            />
+          </Link>
         ))}
       </section>
       {/* tooltip */}
