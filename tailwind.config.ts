@@ -53,7 +53,7 @@ const config: Config = {
       },
       colors: {
         primary: {
-          100: "#F5F5F5",
+          100: "#F9F5FF",
           200: "#E2D7FF",
           300: "#B39DDB",
           400: "#C1ABF1",
@@ -64,6 +64,7 @@ const config: Config = {
           900: "#212121",
         },
         "primary-gray": {
+          50: "#FAFAFA",
           100: "#F5F5F5",
           200: "#EEEEEE",
           300: "#E0E0E0",

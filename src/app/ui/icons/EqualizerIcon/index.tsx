@@ -1,129 +1,145 @@
 export default function EqualizerIcon(props: any) {
   return (
     <svg
-      width="360"
-      height="177"
-      viewBox="0 0 360 177"
+      width="354"
+      height="65"
+      viewBox="0 0 354 65"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className="w-full h-full px-[-100px] animate-pulse"
+      className={props.className}
     >
-      <rect opacity="0.1" x="15" y="72" width="11" height="33" fill="#7C4DFF" />
-      <rect opacity="0.1" x="-5" y="72" width="11" height="33" fill="#7C4DFF" />
-      <rect opacity="0.1" x="37" y="66" width="10" height="45" fill="#7C4DFF" />
-      <rect
-        opacity="0.1"
-        x="327"
-        y="111"
-        width="10"
-        height="45"
-        transform="rotate(-180 327 111)"
-        fill="#7C4DFF"
-      />
-      <rect
-        opacity="0.1"
-        x="346"
-        y="105"
-        width="10"
-        height="33"
-        transform="rotate(-180 346 105)"
-        fill="#7C4DFF"
-      />
-      <rect
-        opacity="0.1"
-        x="365"
-        y="105"
-        width="10"
-        height="33"
-        transform="rotate(-180 365 105)"
-        fill="#7C4DFF"
-      />
-      <rect opacity="0.1" x="58" y="43" width="11" height="91" fill="#7C4DFF" />
-      <rect
-        opacity="0.1"
-        x="306"
-        y="134"
-        width="11"
-        height="91"
-        transform="rotate(-180 306 134)"
-        fill="#7C4DFF"
-      />
-      <rect
-        opacity="0.1"
-        x="80"
-        y="26"
-        width="10"
-        height="125"
-        fill="#7C4DFF"
-      />
-      <rect
-        opacity="0.1"
-        x="284"
-        y="151"
-        width="10"
-        height="125"
-        transform="rotate(-180 284 151)"
-        fill="#7C4DFF"
-      />
-      <rect
-        opacity="0.1"
-        x="123"
-        y="26"
-        width="11"
-        height="125"
-        fill="#7C4DFF"
-      />
-      <rect
-        opacity="0.1"
-        x="144"
-        y="37"
-        width="11"
-        height="103"
-        fill="#7C4DFF"
-      />
-      <rect opacity="0.1" x="167" y="53" width="9" height="79" fill="#7C4DFF" />
-      <rect
-        opacity="0.1"
-        x="187"
-        y="40"
-        width="11"
-        height="97"
-        fill="#7C4DFF"
-      />
-      <rect
-        opacity="0.1"
-        x="209"
-        y="10"
-        width="11"
-        height="157"
-        fill="#7C4DFF"
-      />
-      <rect
-        opacity="0.1"
-        x="241"
-        y="151"
-        width="11"
-        height="125"
-        transform="rotate(-180 241 151)"
-        fill="#7C4DFF"
-      />
-      <rect
-        opacity="0.1"
-        x="101"
-        y="10"
-        width="11"
-        height="157"
-        fill="#7C4DFF"
-      />
-      <rect
-        opacity="0.1"
-        x="263"
-        y="177"
-        width="11"
-        height="177"
-        transform="rotate(-180 263 177)"
-        fill="#7C4DFF"
-      />
+      <mask
+        id="mask0_372_2229"
+        // style="mask-type:alpha"
+        maskUnits="userSpaceOnUse"
+        x="0"
+        y="0"
+        width="354"
+        height="65"
+      >
+        <rect
+          x="150"
+          y="62"
+          width="6.00001"
+          height="60"
+          transform="rotate(-180 150 62)"
+          fill="#E2D7FF"
+        />
+        <rect
+          width="6"
+          height="51.5537"
+          transform="matrix(1 -6.77301e-08 -1.12841e-07 -1 216 59)"
+          fill="#E2D7FF"
+        />
+        <rect
+          x="138"
+          y="59"
+          width="6"
+          height="51.5537"
+          transform="rotate(-180 138 59)"
+          fill="#E2D7FF"
+        />
+        <rect
+          width="6.00001"
+          height="52"
+          transform="matrix(1 -6.77301e-08 -1.12841e-07 -1 204 58)"
+          fill="#E2D7FF"
+        />
+        <rect
+          width="6"
+          height="13.6102"
+          transform="matrix(-1 0 0 1 354 26)"
+          fill="#E2D7FF"
+        />
+        <rect
+          width="6"
+          height="13.6102"
+          transform="matrix(-1 0 0 1 342 26)"
+          fill="#E2D7FF"
+        />
+        <rect x="12" y="26" width="6" height="13.6102" fill="#E2D7FF" />
+        <rect y="26" width="6" height="13.6102" fill="#E2D7FF" />
+        <rect
+          width="6"
+          height="18.5593"
+          transform="matrix(-1 0 0 1 330 23)"
+          fill="#E2D7FF"
+        />
+        <rect x="24" y="23" width="6" height="18.5593" fill="#E2D7FF" />
+        <rect
+          width="6"
+          height="32.5819"
+          transform="matrix(-1 0 0 1 258 16)"
+          fill="#E2D7FF"
+        />
+        <rect
+          width="6"
+          height="32.5819"
+          transform="matrix(-1 0 0 1 186 16)"
+          fill="#E2D7FF"
+        />
+        <rect x="168" y="16" width="6" height="32.5819" fill="#E2D7FF" />
+        <rect x="96" y="16" width="6" height="32.5819" fill="#E2D7FF" />
+        <rect
+          width="6"
+          height="37.5311"
+          transform="matrix(-1 0 0 1 318 14)"
+          fill="#E2D7FF"
+        />
+        <rect x="36" y="14" width="6" height="37.5311" fill="#E2D7FF" />
+        <rect
+          width="6"
+          height="40.0056"
+          transform="matrix(-1 0 0 1 246 12)"
+          fill="#E2D7FF"
+        />
+        <rect x="108" y="12" width="6" height="40.0056" fill="#E2D7FF" />
+        <rect
+          width="6"
+          height="42.4802"
+          transform="matrix(-1 0 0 1 270 11)"
+          fill="#E2D7FF"
+        />
+        <rect
+          width="6"
+          height="42.4802"
+          transform="matrix(-1 0 0 1 198 11)"
+          fill="#E2D7FF"
+        />
+        <rect x="156" y="11" width="6" height="42.4802" fill="#E2D7FF" />
+        <rect x="84" y="11" width="6" height="42.4802" fill="#E2D7FF" />
+        <rect
+          width="6"
+          height="51.5537"
+          transform="matrix(-1 0 0 1 306 7)"
+          fill="#E2D7FF"
+        />
+        <rect
+          width="6"
+          height="51.5537"
+          transform="matrix(-1 0 0 1 282 7)"
+          fill="#E2D7FF"
+        />
+        <rect x="72" y="7" width="6" height="51.5537" fill="#E2D7FF" />
+        <rect x="48" y="7" width="6" height="51.5537" fill="#E2D7FF" />
+        <rect
+          width="6"
+          height="64.7514"
+          transform="matrix(-1 0 0 1 294 0)"
+          fill="#E2D7FF"
+        />
+        <rect
+          width="6"
+          height="64.7514"
+          transform="matrix(-1 0 0 1 234 0)"
+          fill="#E2D7FF"
+        />
+        <rect x="120" width="6" height="64.7514" fill="#E2D7FF" />
+        <rect x="60" width="6" height="64.7514" fill="#E2D7FF" />
+      </mask>
+      <g mask="url(#mask0_372_2229)">
+        <rect x="14" y="-18" width="320" height="85" fill="#E2D7FF" />
+      </g>
     </svg>
   );
 }
