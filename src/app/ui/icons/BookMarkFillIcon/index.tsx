@@ -5,16 +5,16 @@ type Props = {
 export default function BookMarkFillIcon({ className, onClick }: Props) {
   return (
     <svg
-      width="14"
-      height="18"
-      viewBox="0 0 14 18"
+      width="12"
+      height="16"
+      viewBox="0 0 12 16"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className="group-hover:opacity-80"
+      className={className}
       onClick={onClick}
     >
       <path
-        d="M12 0H2C0.9 0 0.0100002 0.9 0.0100002 2L0 18L7 15L14 18V2C14 0.9 13.1 0 12 0Z"
+        d="M10.2857 0H1.71429C0.771429 0 0.00857162 0.8 0.00857162 1.77778L0 16L6 13.3333L12 16V1.77778C12 0.8 11.2286 0 10.2857 0Z"
         fill="#591FD9"
       />
     </svg>
