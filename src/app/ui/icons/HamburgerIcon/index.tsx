@@ -12,8 +12,8 @@ export default function HamburgerIcon(props: Props) {
       className={props.className}
     >
       <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
+        fillRule="evenodd"
+        clipRule="evenodd"
         d="M16 2H0V0H16V2ZM16 8H0V6H16V8ZM0 14H16V12H0V14Z"
         fill="#757575"
       />

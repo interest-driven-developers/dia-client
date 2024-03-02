@@ -14,6 +14,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { ChevronLeftIcon } from "@heroicons/react/20/solid";
 import Header from "../Header";
+import { MicroIcon } from "@/app/ui/icons/MicroIcon";
+import EqualizerLargeIcon from "@/app/ui/icons/EqualizerLargeIcon";
+import convertToHourMinute from "@/utils/convertToHourMinute";
 
 type Props = {
   question: Question;
@@ -33,8 +36,9 @@ export default function PraceticeSession(props: Props) {
   const [practiceResult, setPracticeResult] = useState<HistoryType | undefined>(
     undefined
   );
+  const [elapsedTime, setElapsedTime] = useState<number>(0);
   const handleStop = useCallback(
-    (interimResult: string, elapsedTime: number) => {
+    (interimResult: string, time:number) => {
       if (isCancel) {
         setIsCancelModalOpen(true);
         return;
@@ -48,7 +52,7 @@ export default function PraceticeSession(props: Props) {
             interviewQuestionPkValue: question.pkValue as number,
             contentValue: interimResult as string,
             typeValue: "SINGLE",
-            elapsedTimeValue: elapsedTime,
+            elapsedTimeValue: time,
             filePathValue: null,
           },
           accessToken: typedSession.user.access_token,
@@ -60,7 +64,7 @@ export default function PraceticeSession(props: Props) {
           contentValue: interimResult as string,
           typeValue: "SINGLE",
           createdTimeValue: new Date().toISOString(),
-          elapsedTimeValue: elapsedTime,
+          elapsedTimeValue: time,
           filePathValue: null,
         };
         setPracticeResult(practiceResult);
@@ -73,34 +77,72 @@ export default function PraceticeSession(props: Props) {
     setIsCancel(true);
     setIsStart(false);
   };
+  useEffect(() => {
+    let timer: any;
+    if (isStart) {
+      timer = setInterval(() => {
+        setElapsedTime((prevTime) => prevTime + 1);
+      }, 1000);
+    }
+    return () => {
+      clearInterval(timer);
+    };
+  }, [isStart]);
   return (
     <>
       <Header handleBack={handleBack} title="개별 모의연습" />
-      <section className="flex flex-col w-full h-[95%]">
+      <section className="flex flex-col w-full h-[96%]">
         <div className="flex flex-col px-4 gap-4">
-          <div className="flex px-[16px] py-[17px] bg-[#212121] rounded-[10px] justify-center">
+          <div className="flex px-[16px] py-[17px] bg-primary-gray-900 rounded-[10px] justify-center">
             <p className="text-[16px] leading-[22px] sm:text-lg font-medium text-center text-white">
               마이크 버튼을 눌러 답변을 종료할 수 있습니다
             </p>
           </div>
           <div className="flex rounded-[10px] justify-center mb-16">
-            <Image
-              src="/images/interviewer_sm.png"
-              alt="면접관 이미지"
-              width={320}
-              height={270}
-              className="w-full "
-              priority={true}
-            />
+            {window.innerHeight < 700 ? (
+              <Image
+                src="/images/interviewer_sm.png"
+                alt="면접관 이미지"
+                width={320}
+                height={360}
+                className="w-full h-full"
+                priority={true}
+              />
+            ) : (
+              <Image
+                src="/images/interviewer.png"
+                alt="면접관 이미지"
+                width={320}
+                height={360}
+                className="w-full max-h-[360px]"
+                priority={true}
+              />
+            )}
           </div>
         </div>
-        <div className="w-full relative ">
-          <EqualizerIcon />
-          <ShrinkingIcon
-            timeInSeconds={90}
-            onClick={() => setIsStart(false)}
-            isStart={isStart}
-          />
+
+        <div className="w-full relative mt-auto text-center my-auto">
+          <div className="absolute inset-0 flex justify-center items-center w-full">
+            <EqualizerLargeIcon
+              className={`z-40 ${isStart ? "animate-pulse" : ""}`}
+            />
+            <div
+              className="absolute bg-primary-600 p-3 w-[60px] h-[60px] flex mx-auto my-auto justify-center items-center rounded-full z-50  hover:opacity-75"
+              onClick={
+                isStart ? () => setIsStart(false) : () => setIsStart(true)
+              }
+            >
+              <div
+                className={`w-full h-full absolute ring-8 ring-primary-200 rounded-full ${
+                  isStart ? "animate-ping" : ""
+                }`}
+              ></div>
+              <h1 className="text-center font-semibold text-primary-600 absolute mx-auto my-auto -top-8 mr-1">
+                {convertToHourMinute(elapsedTime)}
+              </h1>
+              <MicroIcon className="w-[21px] h-[30px]" />
+            </div>
+          </div>
         </div>
         {question && (
           <TTSPlayer
@@ -110,7 +152,6 @@ export default function PraceticeSession(props: Props) {
             voice={question.voices[0]}
           ></TTSPlayer>
         )}
-
         {/* 저장 모달 섹션 */}
         <Modal modalPosition="center" isOpen={isEndModalOpen}>
           <Modal.Header closeModal={() => setIsEndModalOpen(false)} />

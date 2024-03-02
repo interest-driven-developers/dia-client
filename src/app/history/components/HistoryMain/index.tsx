@@ -1,5 +1,5 @@
 "use client";
-import formatDateString from "@/utils/\bformatDateString";
+import formatDateString from "@/utils/formatDateString";
 import Question from "@/app/components/Question";
 import { HistoryType } from "@/types/History";
 import Link from "next/link";

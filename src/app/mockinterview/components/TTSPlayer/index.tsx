@@ -6,7 +6,7 @@ import useSpeechToText from "react-hook-speech-to-text";
 interface TTSPlayerProps {
   isStart: boolean;
   setDuration: (duration: number) => void;
-  handleStop?: (interimResult: string, elapsedTime: number) => void;
+  handleStop?: (interimResult: string, time: number) => void;
   voice: VoiceType;
   isEnd?: boolean;
 }
@@ -20,8 +20,8 @@ export default function TTSPlayer({
 }: TTSPlayerProps) {
   const audio1Ref = useRef<HTMLAudioElement | null>(null);
   const audio2Ref = useRef<HTMLAudioElement | null>(null);
-  const [time, setTime] = useState<number>(0);
   const [isAudio1Playing, setIsAudio1Playing] = useState<boolean>(false);
+  const [time, setTime] = useState<number>(0);
 
   if (typeof window !== "undefined") {
   }
@@ -85,8 +85,8 @@ export default function TTSPlayer({
       }, 1000);
     }
     return () => {
-      stopSpeechToText();
       clearInterval(timer);
+      stopSpeechToText();
     };
   }, [isStart, voice]);
 
@@ -101,10 +101,10 @@ export default function TTSPlayer({
       stopAudio();
       stopSpeechToText();
       if (resultString) {
-        handleStop(resultString, time);
+        handleStop(resultString,time);
         return;
       }
-      handleStop(interimResult as any, time);
+      handleStop(interimResult as any,time);
     }
     return () => {
       stopSpeechToText();
@@ -136,6 +136,7 @@ export default function TTSPlayer({
     startSpeechToText();
   };
   if (error) return <p>Web Speech API is not available in this device 🤷‍</p>;
+  ("rec", isRecording, results, interimResult);
   return (
     <div>
       {voice && (

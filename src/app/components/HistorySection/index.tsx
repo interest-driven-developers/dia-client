@@ -6,7 +6,7 @@ import Spinner from "../Spinner";
 import DeleteIcon from "@/app/ui/icons/DeleteIcon";
 import { deleteHistory } from "@/app/api/deleteHistory";
 import type { Session } from "@/types/Session";
-import formatDateString from "@/utils/\bformatDateString";
+import formatDateString from "@/utils/formatDateString";
 import convertToHourMinute from "@/utils/convertToHourMinute";
 
 export interface HistorySectionProps {

@@ -37,7 +37,6 @@ export default function QuestionMain({ questionList, query }: Props) {
       setFirstCheck(true);
     }
   };
-  console.log('questionlIst', questionList)
   return (
     <main className="flex flex-col mx-auto w-full px-5 sm:px-6 py-16 sm:w-1/2 no-scrollbar relative">
       <div className="sticky top-16 bg-white z-10">
