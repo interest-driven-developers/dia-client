@@ -10,18 +10,18 @@ type MobileMenuProps = {
 
 export default function MobileMenu(props: MobileMenuProps) {
   return (
-    <div className="flex flex-row mr-2 md:hidden gap-2 items-center">
-      <div
+    <div className="flex flex-row md:hidden gap-2 items-center">
+      {/* <div
         className="cursor-pointer hover:opacity-70"
         onClick={() => alert("구현 중입니다")}
       >
-        <SearchIcon />
-      </div>
+        <SearchIcon className="h-5 w-5" />
+      </div> */}
       <div
         className="cursor-pointer hover:opacity-70"
         onClick={() => props.onClick && props.onClick()}
       >
-        <HamburgerIcon />
+        <HamburgerIcon className="h-5 w-5" />
       </div>
     </div>
   );

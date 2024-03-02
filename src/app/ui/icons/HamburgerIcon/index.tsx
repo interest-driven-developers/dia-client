@@ -1,23 +1,22 @@
-export default function HamburgerIcon(props: any) {
+type Props = {
+  className?: string;
+};
+export default function HamburgerIcon(props: Props) {
   return (
     <svg
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
+      width="16"
+      height="14"
+      viewBox="0 0 16 14"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      className={props.className}
     >
-      <g clipPath="url(#clip0_45_462)">
-        <path
-          d="M3 19H21V17H3V19ZM3 12H21V10H3V12ZM3 4V6H21V4H3Z"
-          fill="#757575"
-        />
-      </g>
-      <defs>
-        <clipPath id="clip0_45_462">
-          <rect width="24" height="24" fill="white" />
-        </clipPath>
-      </defs>
+      <path
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M16 2H0V0H16V2ZM16 8H0V6H16V8ZM0 14H16V12H0V14Z"
+        fill="#757575"
+      />
     </svg>
   );
 }

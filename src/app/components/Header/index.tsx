@@ -55,13 +55,13 @@ export default function Header({ session }: HeaderProps) {
             ></Logo>
           </div>
           {/* 메뉴 */}
-          <div className="ml-10 flex justify-items-end justify-self-end  space-x-4">
+          <div className="ml-10 flex justify-items-end justify-self-end  space-x-3">
             <DesktopMenu />
             <MobileMenu onClick={handleMenuClick}></MobileMenu>
             {session && session.user ? (
               <>
                 <Image
-                  className="h-10 w-10 rounded-full sm:mt-2 cursor-pointer hover:opacity-80"
+                  className="h-6 w-6 sm:h-8 sm:w-8 rounded-full mx-auto my-auto cursor-pointer hover:opacity-80"
                   width={20}
                   height={20}
                   src={session.user?.image_url || "/images/default-profile.png"}
