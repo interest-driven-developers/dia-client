@@ -136,7 +136,6 @@ export default function TTSPlayer({
     startSpeechToText();
   };
   if (error) return <p>Web Speech API is not available in this device 🤷‍</p>;
-  ("rec", isRecording, results, interimResult);
   return (
     <div>
       {voice && (
