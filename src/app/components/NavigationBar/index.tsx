@@ -8,6 +8,9 @@ import Logo from "@/app/ui/Logo";
 import HomeIcon from "@/app/ui/icons/HomeIcon";
 import SolveIcon from "@/app/ui/icons/SolveIcon";
 import HistoryIcon from "@/app/ui/icons/HistoryIcon";
+import HomeFillIcon from "@/app/ui/icons/HomeFillIcon";
+import SolveFillIcon from "@/app/ui/icons/SolveFillIcon ";
+import HistoryFillIcon from "@/app/ui/icons/HistoryFillIcon";
 interface NavigationBarProps {
   // session: any;
 }
@@ -46,9 +49,9 @@ export default function NavigationBar({}: NavigationBarProps) {
         className="flex flex-col items-center justify-center flex-grow cursor-pointer group"
         onClick={handleLogoClick}
       >
-        <HomeIcon className={isMenu === "home" ? "stroke-primary" : ""} />
+        {isMenu === "home" ? <HomeFillIcon /> : <HomeIcon />}
         <p
-          className={`text-[#E0E0E0] group-hover:text-primary group-focus:text-primary text-[10px] font-semibold text-center ${
+          className={`text-[#E0E0E0] group-hover:text-primary group-focus:text-primary text-[10px] font-semibold text-center mt-1 ${
             isMenu === "home" && "text-primary"
           }`}
         >
@@ -59,9 +62,9 @@ export default function NavigationBar({}: NavigationBarProps) {
         href="/solve/backend"
         className="flex flex-col items-center justify-center flex-grow cursor-pointer group"
       >
-        <SolveIcon className={isMenu === "solve" ? "fill-primary" : ""} />
+        {isMenu === "solve" ? <SolveFillIcon /> : <SolveIcon />}
         <p
-          className={`text-[#E0E0E0] group-hover:text-primary group-focus:text-primary text-[10px] font-semibold text-center ${
+          className={`text-[#E0E0E0] group-hover:text-primary group-focus:text-primary text-[10px] font-semibold text-center mt-1 ${
             isMenu === "solve" && "text-primary"
           }`}
         >
@@ -72,9 +75,9 @@ export default function NavigationBar({}: NavigationBarProps) {
         href="/history"
         className="flex flex-col items-center justify-center flex-grow cursor-pointer group"
       >
-        <HistoryIcon className={isMenu === "history" ? "stroke-primary" : ""} />
+        {isMenu === "history" ? <HistoryFillIcon /> : <HistoryIcon />}
         <p
-          className={`text-[#E0E0E0] group-hover:text-primary group-focus:text-primary text-[10px] font-semibold text-center ${
+          className={`text-[#E0E0E0] group-hover:text-primary group-focus:text-primary text-[10px] font-semibold text-center mt-1 ${
             isMenu === "history" && "text-primary"
           }`}
         >
