@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import Question from "./components/Question";
+// import Question from "./components/Question";
 import Pagination from "./components/Pagination";
 import Tag from "./components/Tag";
 import CategoryButton from "./components/CategoryButton";
@@ -10,6 +10,8 @@ import { getQuestionList } from "@/app/api/getQuestionList";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { ToolTips } from "../ToolTips";
+import Question from "@/app/components/Question";
+import { Session } from "@/types/Session";
 interface Props {
   questionList: QuestionType[];
   query: string;
@@ -17,12 +19,15 @@ interface Props {
 export default function QuestionMain({ questionList, query }: Props) {
   const tags = getTags();
   const { data: session, status } = useSession();
+  const typedSession = session as Session;
   const [currentTag, setCurrentTag] = useState(query);
   const [firstCheck, setFirstCheck] = useState<boolean>(false);
 
   useEffect(() => {
-    handleFirstCheck();
-  }, []);
+    if (!session) {
+      handleFirstCheck();
+    }
+  }, [session]);
   const handleFirstCheck = async () => {
     // 로컬스트리지에서 처음 접속했는지에 대한 정보를 찾아본다
     const firstCheck = localStorage.getItem("firstCheck");
@@ -33,9 +38,9 @@ export default function QuestionMain({ questionList, query }: Props) {
     }
   };
   return (
-    <main className="flex flex-col gap-4 mx-auto w-full px-5 sm:px-6 py-16 sm:w-1/2 no-scrollbar relative">
+    <main className="flex flex-col mx-auto w-full px-5 sm:px-6 py-16 sm:w-1/2 no-scrollbar relative">
       <div className="sticky top-16 bg-white z-10">
-        <div className="flex flex-row w-full mb-4">
+        <div className="flex flex-row w-full mb-3 border-b-[1px] border-[#F5F5F5]">
           <Link href={`/solve/${currentTag}`} className="flex-1">
             <CategoryButton selected={true}>개별연습</CategoryButton>
           </Link>
@@ -54,14 +59,12 @@ export default function QuestionMain({ questionList, query }: Props) {
       <section className="grid gap-3 mb-3">
         {questionList.map((qusetion: QuestionType, index: number) => (
           <Question
-            key={qusetion.pkValue}
-            id={qusetion.pkValue}
-            title={qusetion.korTitleValue}
-            // description={qusetion.description || ""}
-            // tags={qusetion.tags}
+            question={qusetion}
+            key={index}
+            isDetail={true}
+            session={typedSession}
           />
         ))}
-        {/* <Pagination contentNum={questionList.length}></Pagination> */}
       </section>
       {/* tooltip */}
       {firstCheck && !session && (
