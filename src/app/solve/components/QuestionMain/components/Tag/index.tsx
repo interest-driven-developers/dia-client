@@ -26,9 +26,9 @@ export default function Tag(props: TagProps) {
   }
   const tagStyle = (() => {
     if (categoryValues === props.children) {
-      return "bg-white text-primary border border-[#7C4DFF] border-solid";
+      return "bg-white text-primary-600 border border-[#7C4DFF] border-solid";
     } else {
-      return "bg-white text-[#E0E0E0] border border-[#E0E0E0] border-solid hover:border-[#7C4DFF] hover:text-primary";
+      return "bg-white text-[#E0E0E0] border border-[#E0E0E0] border-solid hover:border-[#7C4DFF] hover:text-primary-600";
     }
   })();
 

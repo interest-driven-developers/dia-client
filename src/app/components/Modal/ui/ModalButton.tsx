@@ -6,7 +6,7 @@ type Props = {
 };
 export const ModalButton = ({ ...props }: Props) => {
   const Styled = twMerge(
-    `flex justify-center py-[13px] w-full bg-primary rounded-[5px] mx-auto hover:opacity-90 whitespace-nowrap text-white font-bold text-lg sm:text-xl`,
+    `flex justify-center py-[13px] w-full bg-primary-600 rounded-[5px] mx-auto hover:opacity-90 whitespace-nowrap text-white font-bold text-lg sm:text-xl`,
     props.className
   );
   return (

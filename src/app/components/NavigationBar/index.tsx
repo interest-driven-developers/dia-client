@@ -51,7 +51,7 @@ export default function NavigationBar({}: NavigationBarProps) {
       >
         {isMenu === "home" ? <HomeFillIcon /> : <HomeIcon />}
         <p
-          className={`text-[#E0E0E0] group-hover:text-primary group-focus:text-primary text-[10px] font-semibold text-center mt-1 ${
+          className={`text-[#E0E0E0] group-hover:text-primary-600 group-focus:text-primary-600 text-[10px] font-semibold text-center mt-1 ${
             isMenu === "home" && "text-primary"
           }`}
         >
@@ -64,8 +64,8 @@ export default function NavigationBar({}: NavigationBarProps) {
       >
         {isMenu === "solve" ? <SolveFillIcon /> : <SolveIcon />}
         <p
-          className={`text-[#E0E0E0] group-hover:text-primary group-focus:text-primary text-[10px] font-semibold text-center mt-1 ${
-            isMenu === "solve" && "text-primary"
+          className={`text-[#E0E0E0] group-hover:text-primary-600 group-focus:text-primary-600 text-[10px] font-semibold text-center mt-1 ${
+            isMenu === "solve" && "text-primary-600"
           }`}
         >
           문제풀기
@@ -77,8 +77,8 @@ export default function NavigationBar({}: NavigationBarProps) {
       >
         {isMenu === "history" ? <HistoryFillIcon /> : <HistoryIcon />}
         <p
-          className={`text-[#E0E0E0] group-hover:text-primary group-focus:text-primary text-[10px] font-semibold text-center mt-1 ${
-            isMenu === "history" && "text-primary"
+          className={`text-[#E0E0E0] group-hover:text-primary-600 group-focus:text-primary-600 text-[10px] font-semibold text-center mt-1 ${
+            isMenu === "history" && "text-primary-600"
           }`}
         >
           히스토리

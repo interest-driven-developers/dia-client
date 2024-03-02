@@ -118,7 +118,7 @@ export default function ScriptSection({ id, className, placeholder }: Props) {
               ></XCircleIcon>
               <CheckCircleIcon
                 onClick={() => handleSaveScript()}
-                className="w-5 h-5 text-primary cursor-pointer hover:opacity-50"
+                className="w-5 h-5 text--600 cursor-pointer hover:opacity-50"
               ></CheckCircleIcon>
             </div>
           </>

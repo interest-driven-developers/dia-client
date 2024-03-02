@@ -6,9 +6,9 @@ interface Props {
 
 export default function NumberButton(props: Props) {
   const { children, isSelected } = props;
-  const selectStyle = "bg-primary text-white";
+  const selectStyle = "bg-primary-600 text-white";
   const defaultStyle =
-    "bg-white text-primary border border-primary hover:bg-primary hover:text-white cursor-pointer";
+    "bg-white text-primary-600 border border-primary-600 hover:bg-primary-600 hover:text-white cursor-pointer";
   const buttonStyle = isSelected ? selectStyle : defaultStyle;
 
   return (

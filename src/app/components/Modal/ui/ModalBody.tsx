@@ -30,10 +30,12 @@ export const ModalBody = ({ ...props }: Props) => {
   }
   return (
     <div className={mainStyled}>
-      <h1 className="flex items-center justify-center mb-2.5 text-[22px]">{mainIcon()}</h1>
+      <h1 className="flex items-center justify-center mb-2.5 text-[22px]">
+        {mainIcon()}
+      </h1>
       <h1
         className={twMerge(
-          "text-[1.375rem] leading-[1.375rem]  sm:text-2xl font-bold text-primary text-center mb-4",
+          "text-[1.375rem] leading-[1.375rem]  sm:text-2xl font-bold text-primary-600 text-center mb-4",
           props.titleClassName
         )}
       >

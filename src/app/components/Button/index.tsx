@@ -9,7 +9,7 @@ export default function Button(props: ButtonProps) {
   return (
     <button
       className={twMerge(
-        "flex justify-center w-full px-[128px] py-[13px] bg-primary rounded-[5px] items-center hover:opacity-90 whitespace-nowrap",
+        "flex justify-center w-full px-[128px] py-[13px] bg-primary-600 rounded-[5px] items-center hover:opacity-90 whitespace-nowrap",
         props.className
       )}
       onClick={() => props.onClick()}

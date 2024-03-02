@@ -26,8 +26,8 @@ export const HistoryMain = ({ historyList }: Props) => {
       {sortedDates.map((date, index) => (
         <div key={date} className="relative">
           <div className="flex flex-row gap-[9px] mb-2 pl-4">
-            <div className="bg-primary h-[6px] w-[6px] rounded-full mt-1" />
-            <h3 className="text-primary text-xs font-medium">{date}</h3>
+            <div className="bg-primary-600 h-[6px] w-[6px] rounded-full mt-1" />
+            <h3 className="text-primary-600 text-xs font-medium">{date}</h3>
           </div>
           <div className="absolute top-3 left-4 ml-0.5 bg-[#E0E0E0] h-3 w-[1px]" />
           <div className="flex flex-col relative gap-3">

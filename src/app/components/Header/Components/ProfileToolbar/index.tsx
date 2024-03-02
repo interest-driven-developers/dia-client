@@ -28,7 +28,9 @@ export default function ProfileToolbar({ isOpen, user }: ProfileToolbarProps) {
                 <p className="font-semibold ">{user.nickname}</p>
               </>
             ) : (
-              <p className="font-semibold text-primary">로그인이 필요합니다.</p>
+              <p className="font-semibold text-primary-600">
+                로그인이 필요합니다.
+              </p>
             )}
           </div>
 

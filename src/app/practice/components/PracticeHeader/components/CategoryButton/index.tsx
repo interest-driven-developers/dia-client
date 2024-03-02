@@ -5,9 +5,9 @@ type CategoryButtonProps = {
 export default function CategoryButton(props: CategoryButtonProps) {
   const curStyle = (() => {
     if (props.selected) {
-      return "text-primary";
+      return "text-primary-600";
     } else {
-      return "text-[#E0E0E0] cursor-pointer hover:text-primary";
+      return "text-[#E0E0E0] cursor-pointer hover:text-primary-600";
     }
   })();
 
@@ -18,7 +18,7 @@ export default function CategoryButton(props: CategoryButtonProps) {
       </p>
       {props.selected && (
         <div className="relative mt-2">
-          <div className="border-t-[5px] border-primary"></div>
+          <div className="border-t-[5px] border-primary-600"></div>
         </div>
       )}
     </div>

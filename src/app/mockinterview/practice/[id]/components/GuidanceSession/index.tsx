@@ -37,7 +37,7 @@ export default function GuidanceSession({ setIsView }: Props) {
   };
   return (
     <>
-      <Header handleBack={handleBack} title="모의연습" />
+      <Header handleBack={handleBack} title="모의연습" isSetting={true}/>
       <section className="flex flex-col px-4 w-full h-full">
         <InterviewIntroIcon
           className="mb-[30px] mt-[88px] ml-2"

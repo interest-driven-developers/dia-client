@@ -17,7 +17,7 @@ export default function Intro() {
           현재 베타 버전으로 모의 면접 기능만을 제공하고 있습니다.
         </p>
         <Link
-          className="mt-8 px-4 py-3 text-white bg-primary rounded-md hover:bg-indigo-700 focus:outline-none focus:bg-indigo-700"
+          className="mt-8 px-4 py-3 text-white bg-primary-600 rounded-md hover:bg-indigo-700 focus:outline-none focus:bg-indigo-700"
           href="/solve/backend"
         >
           바로 시작하기

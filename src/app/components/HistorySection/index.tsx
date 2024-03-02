@@ -54,7 +54,7 @@ export default function HistorySection({
         )}
       </div>
       <div className="absolute top-4 left-4">
-        <p className="text-xs leading-[14.4px] font-semibold text-primary">
+        <p className="text-xs leading-[14.4px] font-semibold text-primary-600">
           {history ? formatDateString(history.createdTimeValue) : ""}
         </p>
       </div>

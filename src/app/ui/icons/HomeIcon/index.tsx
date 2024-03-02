@@ -14,7 +14,7 @@ export default function HomeIcon(props: HomeIconProps) {
       <path
         d="M20 7.14286L10 0L0 7.14286V20H7.5V11.4286H12.5V20H20V7.14286Z"
         fill="#E0E0E0"
-        className="group-hover:fill-primary"
+        className="group-hover:fill-primary-600"
       />
     </svg>
   );

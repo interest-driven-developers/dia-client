@@ -17,12 +17,12 @@ export default function MockPracticeHeader({ isView }: HeaderProps) {
           <div onClick={() => router.back()}>
             <ChevronLeftIcon className="h-6 w-6 text-[#212121] cursor-pointer rounded-md hover:opacity-50" />
           </div>
-          <h1 className="text-lg sm:text-xl font-bold text-center text-primary flex-grow mr-6">
+          <h1 className="text-lg sm:text-xl font-bold text-center text-primary-600 flex-grow mr-6">
             실전연습
           </h1>
         </>
       ) : (
-        <h1 className="text-lg sm:text-xl font-bold text-center text-primary flex-grow mr-6">
+        <h1 className="text-lg sm:text-xl font-bold text-center text-primary-600 flex-grow mr-6">
           답변확인
         </h1>
       )}

@@ -9,15 +9,15 @@ export default function SelectButtons(props: SelctButtonsProps) {
   switch (props.isView) {
     case 0:
       firstButtonStyle =
-        "bg-primary flex-grow px-1.5 py-2 rounded-[100px] text-white";
+        "bg-primary-600 flex-grow px-1.5 py-2 rounded-[100px] text-white";
       break;
     case 1:
       secondButtonStyle =
-        "bg-primary flex-grow px-1.5 py-2 rounded-[100px] text-white";
+        "bg-primary-600 flex-grow px-1.5 py-2 rounded-[100px] text-white";
       break;
     default:
       firstButtonStyle =
-        "bg-primary flex-grow px-1.5 py-2 rounded-[100px] text-white";
+        "bg-primary-600 flex-grow px-1.5 py-2 rounded-[100px] text-white";
       break;
   }
 

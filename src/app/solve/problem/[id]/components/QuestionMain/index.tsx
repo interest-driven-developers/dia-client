@@ -48,7 +48,7 @@ Props) {
         <div onClick={() => router.back()}>
           <ChevronLeftIcon className="h-6 w-6 text-black cursor-pointer rounded-md hover:opacity-50" />
         </div>
-        <h1 className="text-lg leading-[21.6px] sm:text-xl font-bold text-center text-primary flex-grow mr-2">
+        <h1 className="text-lg leading-[21.6px] sm:text-xl font-bold text-center text-primary-600 flex-grow mr-2">
           스크립트 작성
         </h1>
         <div className="mr-1" onClick={() => copyToClipboard()}>

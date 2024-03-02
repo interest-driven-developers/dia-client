@@ -9,7 +9,10 @@ const CustomSeparator = ({ className }: CustomSeparatorProps) => {
     <div className="relative">
       <div className="border-t border-gray-300"></div>
       <div
-        className={twMerge("absolute left-0 top-0 h-full bg-primary", className)}
+        className={twMerge(
+          "absolute left-0 top-0 h-full bg-primary-600",
+          className
+        )}
       ></div>
     </div>
   );

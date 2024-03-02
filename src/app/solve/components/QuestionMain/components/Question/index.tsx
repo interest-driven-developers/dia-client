@@ -19,14 +19,14 @@ export default function Question({ id, title }: QuestionProps) {
         </div>
         <p className="text-[#616161] text-[12px] sm:text-lg font-semibold leading-[14.4px]">
           🛎️{" "}
-          <span className="text-primary">
+          <span className="text-primary-600">
             {Math.floor(Math.random() * 2000) + 1}
           </span>
           번 도전하고 있습니다
         </p>
         <div className="absolute bottom-[10px] right-[10px] mt-2 bg-[#EEEEEE] rounded-[100px] px-[10px] py-[3px]">
           <p className="text-[#616161] text-[10px] leading-[10px] font-medium">
-            <span className="text-primary text-[8px] leading-[9.6px] mr-[1px]">
+            <span className="text-primary-600 text-[8px] leading-[9.6px] mr-[1px]">
               평균 시간
             </span>{" "}
             01:30

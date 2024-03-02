@@ -16,13 +16,13 @@ export default function DesktopMenu() {
       <div className="flex">
         <a
           onClick={handleLogoClick}
-          className="text-slate-700 hover:text-primary px-3 py-5 rounded-md text-sm font-semibold cursor-pointer"
+          className="text-slate-700 hover:text-primary-600 px-3 py-5 rounded-md text-sm font-semibold cursor-pointer"
         >
           홈
         </a>
         <Link
           href="/solve/backend"
-          className="text-slate-700 hover:text-primary px-3 py-5 rounded-md text-sm font-semibold"
+          className="text-slate-700 hover:text-primary-600 px-3 py-5 rounded-md text-sm font-semibold"
         >
           문제 풀기
         </Link>
