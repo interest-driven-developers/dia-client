@@ -66,7 +66,7 @@ export const ModalMain = (props: Props) => {
         <div className="fixed inset-0 bg-[#424242] opacity-90 h-full"></div>
         <div
           className={twMerge(
-            `fixed flex flex-col bg-white px-6 py-10 w-full  rounded-t-[20px] shadow-lg sm:w-1/4 mx-auto ${animationClass}`,
+            `fixed flex flex-col bg-white px-6 py-10 w-full  rounded-t-[20px] shadow-lg sm:w-1/3 mx-auto ${animationClass}`,
             modalStyleClass()
           )}
         >

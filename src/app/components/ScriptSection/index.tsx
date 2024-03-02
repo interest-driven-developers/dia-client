@@ -13,11 +13,12 @@ import type { Script } from "@/types/Script";
 export interface Props {
   id: number;
   className?: string;
+  placeholder?: string;
 }
 
 const maxCharacterCount = 3000;
 
-export default function ScriptSection({ id, className }: Props) {
+export default function ScriptSection({ id, className, placeholder }: Props) {
   const { data: session, status } = useSession();
   const typedSession = session as Session;
   const [script, setScript] = useState<Script | undefined>(undefined);
@@ -91,7 +92,11 @@ export default function ScriptSection({ id, className }: Props) {
           <>
             <textarea
               value={script?.contentValue}
-              placeholder="스크립트를 작성하시면 면접 후 답변과 비교해보실 수 있습니다"
+              placeholder={
+                placeholder
+                  ? placeholder
+                  : "스크립트를 작성하시면 면접 후 답변과 비교해보실 수 있습니다"
+              }
               onChange={(e) =>
                 setScript(
                   (prevScript) =>
@@ -125,7 +130,8 @@ export default function ScriptSection({ id, className }: Props) {
               </p>
             ) : (
               <p className="text-[14px] text-[#D1C4E9] leading-7 sm:text-lg font-normal">
-                스크립트를 작성하시면 면접 후 답변과 비교해보실 수 있습니다
+                모의연습 전 스크립트를 먼저 작성해보세요.
+                <br /> 이후 음성 답변과 스크립트를 비교할 수 있습니다.
               </p>
             )}
           </div>
@@ -142,7 +148,7 @@ export default function ScriptSection({ id, className }: Props) {
       )}
       {!isEditing && (
         <div
-          className="absolute bottom-[18px] left-6 mt-2 cursor-pointer hover:opacity-70"
+          className="absolute bottom-3 left-3 bg-white w-8 h-8 rounded-full px-[7px] py-[7px] mx-auto my-auto mt-2 cursor-pointer hover:opacity-70"
           onClick={() => {
             setIsEditing(true);
             setPrevScript(script);

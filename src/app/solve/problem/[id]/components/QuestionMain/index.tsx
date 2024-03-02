@@ -64,9 +64,10 @@ Props) {
         <ScriptSection
           id={questionData.pkValue}
           className="h-full"
+          placeholder="모의연습 전 스크립트를 먼저 작성해보세요.이후 음성 답변과 스크립트를 비교할 수 있습니다."
         ></ScriptSection>
       </div>
-      <Button onClick={handleClick}>개별 모의연습</Button>
+      <Button onClick={handleClick}>모의연습 시작하기</Button>
       {/* 모달 섹션 */}
       <Modal
         animationClass={animationClass}
