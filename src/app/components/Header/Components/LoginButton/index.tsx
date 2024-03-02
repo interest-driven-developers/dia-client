@@ -6,7 +6,7 @@ type Props = {
 }
 export default function LoginButton({ onClick }: Props) {
   return (
-    <UserCircleIcon className="w-10 h-10 sm:mt-2 text-primary hover:opacity-80" onClick={onClick}></UserCircleIcon>
+    <UserCircleIcon className="w-6 h-6 sm:w-8 sm:h-8 mx-auto my-auto text-primary hover:opacity-80" onClick={onClick}></UserCircleIcon>
     );
   }
   

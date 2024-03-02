@@ -9,6 +9,7 @@ import { getTags } from "@/utils/getTags";
 import { getQuestionList } from "@/app/api/getQuestionList";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
+import { ToolTips } from "../ToolTips";
 interface Props {
   questionList: QuestionType[];
   query: string;
@@ -17,8 +18,22 @@ export default function QuestionMain({ questionList, query }: Props) {
   const tags = getTags();
   const { data: session, status } = useSession();
   const [currentTag, setCurrentTag] = useState(query);
+  const [firstCheck, setFirstCheck] = useState<boolean>(false);
+
+  useEffect(() => {
+    handleFirstCheck();
+  }, []);
+  const handleFirstCheck = async () => {
+    // 로컬스트리지에서 처음 접속했는지에 대한 정보를 찾아본다
+    const firstCheck = localStorage.getItem("firstCheck");
+    if (firstCheck === null) {
+      // 처음 접속했다면
+      localStorage.setItem("firstCheck", "true");
+      setFirstCheck(true);
+    }
+  };
   return (
-    <>
+    <main className="flex flex-col gap-4 mx-auto w-full px-5 sm:px-6 py-16 sm:w-1/2 no-scrollbar relative">
       <div className="sticky top-16 bg-white z-10">
         <div className="flex flex-row w-full mb-4">
           <Link href={`/solve/${currentTag}`} className="flex-1">
@@ -36,7 +51,7 @@ export default function QuestionMain({ questionList, query }: Props) {
           ))}
         </div>
       </div>
-      <section className="grid gap-3">
+      <section className="grid gap-3 mb-3">
         {questionList.map((qusetion: QuestionType, index: number) => (
           <Question
             key={qusetion.pkValue}
@@ -48,6 +63,10 @@ export default function QuestionMain({ questionList, query }: Props) {
         ))}
         {/* <Pagination contentNum={questionList.length}></Pagination> */}
       </section>
-    </>
+      {/* tooltip */}
+      {firstCheck && !session && (
+        <ToolTips onClick={() => setFirstCheck(false)} />
+      )}
+    </main>
   );
 }
