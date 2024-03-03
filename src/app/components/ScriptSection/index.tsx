@@ -125,13 +125,14 @@ export default function ScriptSection({ id, className, placeholder }: Props) {
         ) : (
           <div className="whitespace-pre-wrap flex w-full">
             {script && script.contentValue ? (
-              <p className="text-[14px] text-[#424242] leading-[22px] sm:text-lg font-normal">
+              <p className="text-[14px] text-primary-gray-800  leading-[22px] sm:text-lg font-normal">
                 {script.contentValue}
               </p>
             ) : (
               <p className="text-[14px] text-primary-gray-400 leading-7 sm:text-lg font-normal">
                 모의연습 전 스크립트를 먼저 작성해보세요.
-                <br />이후 음성 답변과 스크립트를 비교할 수 있습니다.
+                <br />
+                이후 음성 답변과 스크립트를 비교할 수 있습니다.
               </p>
             )}
           </div>
