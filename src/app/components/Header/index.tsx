@@ -42,10 +42,10 @@ export default function Header({ session }: HeaderProps) {
     await new Promise((r) => setTimeout(r, 600));
     setIsMenuOpen(false);
   };
-  
+
   return (
     <header className="fixed z-40 bg-white w-full sm:mx-auto ">
-      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 sm:w-1/2 2xl:w-1/2">
+      <nav className=" mx-auto px-4 sm:px-6 lg:px-8 sm:w-1/2 max-w-3xl">
         <div className="flex items-center justify-between h-16">
           {/* 로고 */}
           <div className="flex items-center ">
