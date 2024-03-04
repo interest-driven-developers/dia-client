@@ -44,7 +44,6 @@ export const TagBar = ({ currentTag, session, setQuestionList }: Props) => {
       setQuestionList(questionList);
     }
     setBookmarkOn(!bookmarkOn);
-
   };
   return (
     <div className="flex  w-full mb-3  relative">
@@ -54,14 +53,14 @@ export const TagBar = ({ currentTag, session, setQuestionList }: Props) => {
           {bookmarkOn ? (
             <div
               onClick={handleBookmark}
-              className="group flex items-center rounded-[5px] py-[7px] px-[9px] w-[30px] h-[30px]  bg-white text-primary-600 border border-primary-600 border-solid cursor-pointer  "
+              className="group flex items-center justify-center rounded-[5px] w-[30px] h-[30px]  bg-white text-primary-600 border border-primary-600 border-solid cursor-pointer  "
             >
               <BookMarkFillIcon />
             </div>
           ) : (
             <div
               onClick={handleBookmark}
-              className="group flex items-center rounded-[5px] py-[7px] px-[9px] w-[30px] h-[30px]  bg-white text-[#E0E0E0] border border-[#E0E0E0] border-solid hover:border-[#7C4DFF] hover:text-primary-600 cursor-pointer"
+              className="group flex items-center justify-center rounded-[5px] w-[30px] h-[30px]  bg-white text-[#E0E0E0] border border-[#E0E0E0] border-solid hover:border-[#7C4DFF] hover:text-primary-600 cursor-pointer"
             >
               <BookMarkIcon></BookMarkIcon>
             </div>
@@ -70,6 +69,11 @@ export const TagBar = ({ currentTag, session, setQuestionList }: Props) => {
         </div>
       )}
       <div className="flex flex-row gap-1.5 z-10 w-full mr-8 overflow-x-auto no-scrollbar">
+        {tags.map((tag, index) => (
+          <Tag key={index} selected={currentTag}>
+            {tag.name}
+          </Tag>
+        ))}
         {tags.map((tag, index) => (
           <Tag key={index} selected={currentTag}>
             {tag.name}

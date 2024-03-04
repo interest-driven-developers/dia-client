@@ -1,5 +1,4 @@
 import mapTagToPurpose from "../../utils/mapTagToPurpose";
-
 export const getQuestionList = async (
   category: string,
   accessToken?: string
@@ -23,9 +22,7 @@ export const getQuestionList = async (
     {
       method: "GET",
       headers: headers as HeadersInit,
-      next: {
-        revalidate: 0,
-      },
+      cache: "no-cache",
     }
   );
   const data = await res.json();

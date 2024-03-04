@@ -17,14 +17,17 @@ export default function QuestionMain({ questionsData, query }: Props) {
   const typedSession = session as Session;
   const [currentTag, setCurrentTag] = useState(query);
   const [firstCheck, setFirstCheck] = useState<boolean>(false);
-  const [questionList, setQuestionList] =
-    useState<QuestionType[]>(questionsData);
+  const [questionList, setQuestionList] = useState<QuestionType[]>([]);
 
   useEffect(() => {
     if (!session) {
       handleFirstCheck();
     }
   }, [session]);
+
+  useEffect(() => {
+    setQuestionList(questionsData);
+  }, [questionsData]);
   const handleFirstCheck = async () => {
     // 로컬스트리지에서 처음 접속했는지에 대한 정보를 찾아본다
     const firstCheck = localStorage.getItem("firstCheck");
@@ -45,7 +48,11 @@ export default function QuestionMain({ questionsData, query }: Props) {
             <CategoryButton>실전연습</CategoryButton>
           </Link>
         </div>
-        <TagBar currentTag={currentTag} session={typedSession} setQuestionList={setQuestionList}/>
+        <TagBar
+          currentTag={currentTag}
+          session={typedSession}
+          setQuestionList={setQuestionList}
+        />
       </div>
       <section className="grid gap-3 mb-3">
         {questionList.map((question: QuestionType, index: number) => (
@@ -58,6 +65,7 @@ export default function QuestionMain({ questionsData, query }: Props) {
               key={index}
               isDetail={true}
               session={typedSession}
+              isbookmark={question.bookmark}
             />
           </Link>
         ))}

@@ -5,7 +5,8 @@ import { Metadata } from "next";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { Session } from "@/types/Session";
-
+export const revalidate = 0;
+export const dynamic = "auto";
 export const metadata: Metadata = {
   title: "모든 문제",
   description: "현직 개발자가 엄선한 모든 문제들을 확인해보세요!",

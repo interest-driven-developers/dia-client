@@ -1,7 +1,8 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { ChevronLeftIcon } from "@heroicons/react/20/solid";
+// import { ChevronLeftIcon } from "@heroicons/react/20/solid";
+import ChevronLeftIcon from "@/app/ui/icons/ChevronLeftIcon";
 import Question from "../../../../../components/Question";
 import ScriptSection from "@/app/components/ScriptSection";
 import type { Question as QuestionType } from "@/types/Question";
@@ -46,7 +47,7 @@ Props) {
     <section className="flex flex-col w-full h-full max-h-[1000px]">
       <div className="flex items-center mb-[32px]">
         <div onClick={() => router.back()}>
-          <ChevronLeftIcon className="h-6 w-6 text-black cursor-pointer rounded-md hover:opacity-50" />
+          <ChevronLeftIcon className="h-3 w-3 text-[#212121] cursor-pointer hover:opacity-50" />
         </div>
         <h1 className="text-lg leading-[21.6px] sm:text-xl font-bold text-center text-primary-600 flex-grow mr-2">
           스크립트 작성
@@ -60,6 +61,7 @@ Props) {
           question={questionData}
           session={typedSession}
           isBookmarkOn={typedSession ? true : false}
+          isbookmark={questionData.bookmark}
         ></Question>
         <ScriptSection
           id={questionData.pkValue}

@@ -9,6 +9,7 @@ import { useRouter } from "next/navigation";
 import { deleteBookmarkQuestion } from "@/app/api/deleteBookmarkQuestion";
 interface QuestionProps {
   question: QuestionType;
+  isbookmark: boolean;
   isBookmarkOn?: boolean;
   session?: Session;
   isDetail?: boolean;
@@ -16,38 +17,50 @@ interface QuestionProps {
 
 export default function Question({
   question,
+  isbookmark,
   isBookmarkOn = true,
   session,
   isDetail = false,
 }: QuestionProps) {
   const router = useRouter();
-
-  const handleAddBookmark = async () => {
+  const handleAddBookmark = async (event: React.MouseEvent<SVGSVGElement>) => {
     await addBookmarkQuestion({
       pkValue: question.pkValue,
       accessToken: session?.user.access_token as string,
     });
     router.refresh();
+    // window.location.reload();
   };
-  const handleDeleteBookmark = async () => {
+  const handleDeleteBookmark = async (e: React.MouseEvent<SVGSVGElement>) => {
     await deleteBookmarkQuestion({
       pkValue: question.pkValue,
       accessToken: session?.user.access_token as string,
     });
     router.refresh();
+    // window.location.reload();
   };
   return (
     <div className="flex relative flex-col bg-[#F9F5FF] rounded-[5px] px-4 py-[18px]">
       {isBookmarkOn && (
-        <div className="absolute top-[9px] right-[9px] cursor-pointer group">
-          {question.bookmark ? (
+        <>
+          {isbookmark ? (
             <BookMarkFillIcon
-              onClick={() => handleDeleteBookmark()}
+              onClick={(e: React.MouseEvent<SVGSVGElement>) => {
+                e.preventDefault();
+                handleDeleteBookmark(e);
+              }}
+              className="absolute top-[2px] right-[2px] cursor-pointer group"
             ></BookMarkFillIcon>
           ) : (
-            <BookMarkIcon onClick={() => handleAddBookmark()}></BookMarkIcon>
+            <BookMarkIcon
+              onClick={(e: React.MouseEvent<SVGSVGElement>) => {
+                e.preventDefault();
+                handleAddBookmark(e);
+              }}
+              className="absolute top-[2px] right-[2px] cursor-pointer group"
+            ></BookMarkIcon>
           )}
-        </div>
+        </>
       )}
       <div>
         <h1 className="text-[#C1ABF1] text-[12px] sm:text-lg font-semibold leading-3">

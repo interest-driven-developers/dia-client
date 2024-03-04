@@ -3,9 +3,6 @@ import QuestionMain from "./components/QuestionMain";
 import { Metadata } from "next";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
-
-
-
 export const revalidate = 0;
 // export const dynamic = "auto";
 // export const revalidate = 0;
