@@ -7,18 +7,18 @@ import Link from "next/link";
 import { ToolTips } from "../ToolTips";
 import Question from "@/app/components/Question";
 import { Session } from "@/types/Session";
-import { getTags } from "@/utils/getTags";
 import { TagBar } from "./components/TagBar";
 interface Props {
-  questionList: QuestionType[];
+  questionsData: QuestionType[];
   query: string;
 }
-export default function QuestionMain({ questionList, query }: Props) {
-  const tags = getTags();
+export default function QuestionMain({ questionsData, query }: Props) {
   const { data: session, status } = useSession();
   const typedSession = session as Session;
   const [currentTag, setCurrentTag] = useState(query);
   const [firstCheck, setFirstCheck] = useState<boolean>(false);
+  const [questionList, setQuestionList] =
+    useState<QuestionType[]>(questionsData);
 
   useEffect(() => {
     if (!session) {
@@ -45,7 +45,7 @@ export default function QuestionMain({ questionList, query }: Props) {
             <CategoryButton>실전연습</CategoryButton>
           </Link>
         </div>
-        <TagBar currentTag={currentTag} />
+        <TagBar currentTag={currentTag} session={typedSession} setQuestionList={setQuestionList}/>
       </div>
       <section className="grid gap-3 mb-3">
         {questionList.map((question: QuestionType, index: number) => (

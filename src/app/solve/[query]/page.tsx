@@ -2,6 +2,9 @@ import { Question } from "@/types/Question";
 import { getQuestionList } from "@/app/api/getQuestionList";
 import QuestionMain from "../components/QuestionMain";
 import { Metadata } from "next";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { Session } from "@/types/Session";
 
 export const metadata: Metadata = {
   title: "모든 문제",
@@ -9,10 +12,20 @@ export const metadata: Metadata = {
 };
 
 export default async function Home({ params }: { params: { query: string } }) {
-  const questionList: Question[] = await getQuestionList(params.query);
+  const session = await getServerSession(authOptions);
+  const typedSession = session as Session;
+  let questionList: Question[] = [];
+  if (session) {
+    questionList = await getQuestionList(
+      params.query,
+      typedSession.user.access_token
+    );
+  } else {
+    questionList = await getQuestionList(params.query);
+  }
   return (
     <QuestionMain
-      questionList={questionList}
+      questionsData={questionList}
       query={params.query}
     ></QuestionMain>
   );
