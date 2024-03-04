@@ -1,6 +1,6 @@
 import { getTags } from "@/utils/getTags";
 import BookMarkIcon from "@/app/ui/icons/BookMarkIcon";
-import Tag from "../Tag";
+import Tag from "./Tag";
 type Props = {
   currentTag: string;
 };

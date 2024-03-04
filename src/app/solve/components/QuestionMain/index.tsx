@@ -1,18 +1,13 @@
 "use client";
 import React, { useState, useEffect } from "react";
-// import Question from "./components/Question";
-import Pagination from "./components/Pagination";
-import Tag from "./components/Tag";
 import CategoryButton from "./components/CategoryButton";
 import type { Question as QuestionType } from "@/types/Question";
-import { getQuestionList } from "@/app/api/getQuestionList";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { ToolTips } from "../ToolTips";
 import Question from "@/app/components/Question";
 import { Session } from "@/types/Session";
 import { getTags } from "@/utils/getTags";
-import BookMarkIcon from "@/app/ui/icons/BookMarkIcon";
 import { TagBar } from "./components/TagBar";
 interface Props {
   questionList: QuestionType[];

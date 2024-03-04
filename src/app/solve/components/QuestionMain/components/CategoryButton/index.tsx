@@ -7,7 +7,7 @@ export default function CategoryButton(props: CategoryButtonProps) {
     if (props.selected) {
       return "text-primary-600";
     } else {
-      return "text-[#E0E0E0] cursor-pointer hover:text-primary-600";
+      return "text-primary-gray-300 cursor-pointer hover:text-primary-600";
     }
   })();
 
