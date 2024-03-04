@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
-import { authOptions } from '../../auth/authOptions';
+// import { authOptions } from '../../auth/authOptions';
+import { authOptions } from '../../auth/[...nextauth]/route';
 import { Session } from '@/types/Session';
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
