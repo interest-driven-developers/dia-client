@@ -65,7 +65,7 @@ export default function QuestionMain({ questionsData, query }: Props) {
               key={index}
               isDetail={true}
               session={typedSession}
-              isbookmark={question.bookmark}
+            
             />
           </Link>
         ))}

@@ -9,7 +9,6 @@ import { useRouter } from "next/navigation";
 import { deleteBookmarkQuestion } from "@/app/api/deleteBookmarkQuestion";
 interface QuestionProps {
   question: QuestionType;
-  isbookmark: boolean;
   isBookmarkOn?: boolean;
   session?: Session;
   isDetail?: boolean;
@@ -17,7 +16,6 @@ interface QuestionProps {
 
 export default function Question({
   question,
-  isbookmark,
   isBookmarkOn = true,
   session,
   isDetail = false,
@@ -43,7 +41,7 @@ export default function Question({
     <div className="flex relative flex-col bg-[#F9F5FF] rounded-[5px] px-4 py-[18px]">
       {isBookmarkOn && (
         <>
-          {isbookmark ? (
+          {question.bookmark ? (
             <BookMarkFillIcon
               onClick={(e: React.MouseEvent<SVGSVGElement>) => {
                 e.preventDefault();

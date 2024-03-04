@@ -61,7 +61,6 @@ Props) {
           question={questionData}
           session={typedSession}
           isBookmarkOn={typedSession ? true : false}
-          isbookmark={questionData.bookmark}
         ></Question>
         <ScriptSection
           id={questionData.pkValue}
