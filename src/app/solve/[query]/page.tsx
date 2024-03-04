@@ -11,11 +11,9 @@ export const metadata: Metadata = {
 export default async function Home({ params }: { params: { query: string } }) {
   const questionList: Question[] = await getQuestionList(params.query);
   return (
-    
-      <QuestionMain
-        questionList={questionList}
-        query={params.query}
-      ></QuestionMain>
-    
+    <QuestionMain
+      questionList={questionList}
+      query={params.query}
+    ></QuestionMain>
   );
 }
