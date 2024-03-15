@@ -74,11 +74,7 @@ export const TagBar = ({ currentTag, session, setQuestionList }: Props) => {
             {tag.name}
           </Tag>
         ))}
-        {tags.map((tag, index) => (
-          <Tag key={index} selected={currentTag}>
-            {tag.name}
-          </Tag>
-        ))}
+
       </div>
     </div>
   );
