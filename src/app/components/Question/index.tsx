@@ -22,6 +22,7 @@ export default function Question({
 }: QuestionProps) {
   const router = useRouter();
   const handleAddBookmark = async (event: React.MouseEvent<SVGSVGElement>) => {
+    if (!session) alert("로그인 후 이용하실 수 있습니다");
     await addBookmarkQuestion({
       pkValue: question.pkValue,
       accessToken: session?.user.access_token as string,
@@ -30,6 +31,8 @@ export default function Question({
     // window.location.reload();
   };
   const handleDeleteBookmark = async (e: React.MouseEvent<SVGSVGElement>) => {
+    if (!session) alert("로그인 후 이용하실 수 있습니다");
+
     await deleteBookmarkQuestion({
       pkValue: question.pkValue,
       accessToken: session?.user.access_token as string,
