@@ -5,7 +5,7 @@ import type { Question as QuestionType } from "@/types/Question";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { ToolTips } from "../ToolTips";
-import Question from "@/app/components/Question";
+import { Question } from "@/app/components/Question";
 import { Session } from "@/types/Session";
 import { TagBar } from "./components/TagBar";
 interface Props {
@@ -65,8 +65,10 @@ export default function QuestionMain({ questionsData, query }: Props) {
               key={index}
               isDetail={true}
               session={typedSession}
-            
-            />
+            >
+              <Question.SubTitle className="text-primary-600">개별연습</Question.SubTitle>
+              <Question.Title>{question.korTitleValue}</Question.Title>
+            </Question>
           </Link>
         ))}
       </section>
