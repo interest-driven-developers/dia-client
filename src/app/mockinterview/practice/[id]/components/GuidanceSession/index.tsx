@@ -51,7 +51,7 @@ export default function GuidanceSession({ setIsView }: Props) {
   border-r-[25px] border-r-transparent"
           />
           <div
-            className={`rounded-lg px-[30px] py-5  w-full h-full bg-white z-10 `}
+            className={`rounded-lg px-5 py-5  w-full h-full bg-white z-10 `}
           >
             <span
               className="whitespace-nowrap text-[16px] leading-6 font-medium text-[#424242]"

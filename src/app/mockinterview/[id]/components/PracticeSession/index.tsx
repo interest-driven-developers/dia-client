@@ -17,6 +17,8 @@ import Header from "../Header";
 import { MicroIcon } from "@/app/ui/icons/MicroIcon";
 import EqualizerLargeIcon from "@/app/ui/icons/EqualizerLargeIcon";
 import convertToHourMinute from "@/utils/convertToHourMinute";
+import RetryIcon from "@/app/ui/icons/RetryIcon";
+import LayerLogoIcon from "@/app/ui/icons/LayerLogoIcon";
 
 type Props = {
   question: Question;
@@ -38,7 +40,7 @@ export default function PraceticeSession(props: Props) {
   );
   const [elapsedTime, setElapsedTime] = useState<number>(0);
   const handleStop = useCallback(
-    (interimResult: string, time:number) => {
+    (interimResult: string, time: number) => {
       if (isCancel) {
         setIsCancelModalOpen(true);
         return;
@@ -90,15 +92,18 @@ export default function PraceticeSession(props: Props) {
   }, [isStart]);
   return (
     <>
-      <Header handleBack={handleBack} title="개별 모의연습" />
+      <Header handleBack={handleBack} title="모의연습" />
       <section className="flex flex-col w-full h-[96%]">
+        <div className="justify-end place-self-end bg-white w-7 h-7 rounded-full px-[4px] py-[5px] mr-4 mb-[10px] cursor-pointer hover:opacity-70">
+          <RetryIcon className="m-auto w-6 h-6" />
+        </div>
         <div className="flex flex-col px-4 gap-4">
-          <div className="flex px-[16px] py-[17px] bg-primary-gray-900 rounded-[10px] justify-center">
-            <p className="text-[16px] leading-[22px] sm:text-lg font-medium text-center text-white">
-              마이크 버튼을 눌러 답변을 종료할 수 있습니다
+          <div className="flex px-[16px] py-[17px] bg-white rounded-[10px] justify-center">
+            <p className="text-[16px] leading-6 sm:text-lg font-medium text-center text-primary-gray-900">
+              마이크 버튼을 눌러 답변을 종료해주세요
             </p>
           </div>
-          <div className="flex rounded-[10px] justify-center mb-16">
+          {/* <div className="flex rounded-[10px] justify-center mb-16">
             {window.innerHeight < 700 ? (
               <Image
                 src="/images/interviewer_sm.png"
@@ -118,13 +123,16 @@ export default function PraceticeSession(props: Props) {
                 priority={true}
               />
             )}
+          </div> */}
+          <div>
+            <LayerLogoIcon className="w-full m-auto" />
           </div>
         </div>
 
         <div className="w-full relative mt-auto text-center my-auto">
           <div className="absolute inset-0 flex justify-center items-center w-full">
             <EqualizerLargeIcon
-              className={`z-40 ${isStart ? "animate-pulse" : ""}`}
+              className={`z-40 sm:px-4 ${isStart ? "animate-pulse" : ""}`}
             />
             <div
               className="absolute bg-primary-600 p-3 w-[60px] h-[60px] flex mx-auto my-auto justify-center items-center rounded-full z-50  hover:opacity-75"
@@ -144,14 +152,14 @@ export default function PraceticeSession(props: Props) {
             </div>
           </div>
         </div>
-        {question && (
+        {/* {question && (
           <TTSPlayer
             isStart={isStart}
             handleStop={handleStop}
             setDuration={setDuration}
             voice={question.voices[0]}
           ></TTSPlayer>
-        )}
+        )} */}
         {/* 저장 모달 섹션 */}
         <Modal modalPosition="center" isOpen={isEndModalOpen}>
           <Modal.Header closeModal={() => setIsEndModalOpen(false)} />

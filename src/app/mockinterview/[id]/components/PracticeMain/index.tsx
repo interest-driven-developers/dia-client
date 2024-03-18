@@ -36,8 +36,8 @@ export default function PracticeMain({ question }: Props) {
   }
   return (
     <>
-      <ViewPage></ViewPage>
-      {/* <PraceticeSession question={question} setIsView={setIsView} /> */}
+      {/* <ViewPage></ViewPage> */}
+      <PraceticeSession question={question} setIsView={setIsView} />
     </>
   );
 }
