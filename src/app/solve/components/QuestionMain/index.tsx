@@ -38,7 +38,7 @@ export default function QuestionMain({ questionsData, query }: Props) {
     }
   };
   return (
-    <main className="flex flex-col mx-auto w-full px-5 sm:px-6 py-16 sm:w-1/2 max-w-3xl no-scrollbar relative">
+    <main className="flex flex-col mx-auto w-full px-4 sm:px-6 py-16 sm:w-1/2 max-w-3xl no-scrollbar relative">
       <div className="sticky top-16 bg-white z-10">
         <div className="flex flex-row w-full mb-3 border-b-[1px] border-[#F5F5F5]">
           <Link href={`/solve/${currentTag}`} className="flex-1">

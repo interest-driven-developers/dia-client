@@ -9,6 +9,8 @@ interface TTSPlayerProps {
   handleStop?: (interimResult: string, time: number) => void;
   voice: VoiceType;
   isEnd?: boolean;
+  setIsRecording?: (isRecording: boolean) => void;
+  isRestart: boolean;
 }
 
 export default function TTSPlayer({
@@ -17,6 +19,8 @@ export default function TTSPlayer({
   handleStop,
   voice,
   isEnd,
+  setIsRecording,
+  isRestart,
 }: TTSPlayerProps) {
   const audio1Ref = useRef<HTMLAudioElement | null>(null);
   const audio2Ref = useRef<HTMLAudioElement | null>(null);
@@ -44,21 +48,6 @@ export default function TTSPlayer({
     }
   };
 
-  // const playAudio1 = () => {
-  //   if (audio1Ref.current) {
-  //     const playPromise = audio1Ref.current.play();
-  //     if (playPromise !== undefined) {
-  //       playPromise
-  //         .then((_) => {
-  //           setIsAudio1Playing(true);
-  //         })
-  //         .catch((error) => {
-  //           console.log("error", error);
-  //         });
-  //     }
-  //   }
-  // };
-
   const playAudio2 = () => {
     if (audio2Ref.current) {
       // audio1Ref.current!.pause(); // 재생 전에 일단 중지
@@ -78,8 +67,14 @@ export default function TTSPlayer({
 
   useEffect(() => {
     let timer: any;
+    // 초기상태 초기화
+    setResults([]);
+    stopAudio();
+    stopSpeechToText();
     if (isStart) {
-      playAudio1();
+      setTimeout(() => {
+        playAudio1();
+      }, 1000);
       timer = setInterval(() => {
         setTime((prevTime) => prevTime + 1);
       }, 1000);
@@ -88,38 +83,29 @@ export default function TTSPlayer({
       clearInterval(timer);
       stopSpeechToText();
     };
-  }, [isStart, voice]);
+  }, [isStart, voice, isRestart]);
 
   useEffect(() => {
     if (handleStop && !isStart && !isEnd) {
       let resultString = "";
       if (results.length > 0) {
         results.forEach((result: any) => {
-          resultString = resultString + result.transcript;
+          resultString = resultString + " " + result.transcript;
         });
       }
       stopAudio();
       stopSpeechToText();
       if (resultString) {
-        handleStop(resultString,time);
+        handleStop(resultString, time);
         return;
       }
-      handleStop(interimResult as any,time);
+      handleStop(interimResult as any, time);
     }
     return () => {
       stopSpeechToText();
     };
   }, [isStart, handleStop]);
-  // const handleAudio1Ended = () => {
-  //   if (!isAudio1Playing) {
-  //     return;
-  //   }
-  //   setIsAudio1Playing(false);
-  //   playAudio2();
-  //   // setTimeout(() => {
-  //   //   startSpeechToText();
-  //   // }, 1000);
-  // };
+
   const handleAudio1Ended = () => {
     setTimeout(() => {
       playAudio2();
@@ -133,6 +119,7 @@ export default function TTSPlayer({
   };
   const handleAudio2Ended = () => {
     stopAudio();
+    setIsRecording && setIsRecording(true);
     startSpeechToText();
   };
   if (error) return <p>Web Speech API is not available in this device 🤷‍</p>;

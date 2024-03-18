@@ -17,7 +17,7 @@ import Header from "../Header";
 import { MicroIcon } from "@/app/ui/icons/MicroIcon";
 import EqualizerLargeIcon from "@/app/ui/icons/EqualizerLargeIcon";
 import convertToHourMinute from "@/utils/convertToHourMinute";
-import RetryIcon from "@/app/ui/icons/RetryIcon";
+import RetryIcon from "@/app/ui/icons/RetryCircleIcon";
 import LayerLogoIcon from "@/app/ui/icons/LayerLogoIcon";
 
 type Props = {
@@ -39,6 +39,8 @@ export default function PraceticeSession(props: Props) {
     undefined
   );
   const [elapsedTime, setElapsedTime] = useState<number>(0);
+  const [isRecording, setIsRecording] = useState<boolean>(false);
+  const [isRestart, setIsRestart] = useState<boolean>(false);
   const handleStop = useCallback(
     (interimResult: string, time: number) => {
       if (isCancel) {
@@ -81,7 +83,7 @@ export default function PraceticeSession(props: Props) {
   };
   useEffect(() => {
     let timer: any;
-    if (isStart) {
+    if (isStart && isRecording) {
       timer = setInterval(() => {
         setElapsedTime((prevTime) => prevTime + 1);
       }, 1000);
@@ -89,50 +91,62 @@ export default function PraceticeSession(props: Props) {
     return () => {
       clearInterval(timer);
     };
-  }, [isStart]);
+  }, [isStart, isRecording]);
+
+  const handleRetry = () => {
+    setIsRestart(true);
+    setIsRecording(false);
+    setElapsedTime(0);
+  };
   return (
     <>
       <Header handleBack={handleBack} title="모의연습" />
       <section className="flex flex-col w-full h-[96%]">
-        <div className="justify-end place-self-end bg-white w-7 h-7 rounded-full px-[4px] py-[5px] mr-4 mb-[10px] cursor-pointer hover:opacity-70">
-          <RetryIcon className="m-auto w-6 h-6" />
-        </div>
-        <div className="flex flex-col px-4 gap-4">
+        {isRecording && (
+          <RetryIcon
+            onClick={handleRetry}
+            className="absolute right-4 hover:opacity-70 cursor-pointer mb-2"
+          />
+        )}
+        <div className="flex flex-col px-4 gap-4 mt-10">
           <div className="flex px-[16px] py-[17px] bg-white rounded-[10px] justify-center">
             <p className="text-[16px] leading-6 sm:text-lg font-medium text-center text-primary-gray-900">
               마이크 버튼을 눌러 답변을 종료해주세요
             </p>
           </div>
-          {/* <div className="flex rounded-[10px] justify-center mb-16">
-            {window.innerHeight < 700 ? (
+          <div className="relative mt-10">
+            <LayerLogoIcon className="absolute mx-auto  inset-0 bg-cover bg-center z-0" />
+            <div className="relative z-10 flex flex-row mt-6 gap-[-2px]">
               <Image
-                src="/images/interviewer_sm.png"
+                src="/images/mockinterview/interviewer_male.png"
                 alt="면접관 이미지"
                 width={320}
                 height={360}
-                className="w-full h-full"
+                className="w-1/2 ml-7 -mr-10"
                 priority={true}
               />
-            ) : (
               <Image
-                src="/images/interviewer.png"
+                src="/images/mockinterview/interviewer_female.png"
                 alt="면접관 이미지"
                 width={320}
                 height={360}
-                className="w-full max-h-[360px]"
+                className="w-1/2"
                 priority={true}
               />
-            )}
-          </div> */}
-          <div>
-            <LayerLogoIcon className="w-full m-auto" />
+            </div>
           </div>
         </div>
-
         <div className="w-full relative mt-auto text-center my-auto">
           <div className="absolute inset-0 flex justify-center items-center w-full">
-            <EqualizerLargeIcon
-              className={`z-40 sm:px-4 ${isStart ? "animate-pulse" : ""}`}
+            <Image
+              src="/images/equalizer.png"
+              alt="이퀄라이저"
+              width={1408}
+              height={344}
+              className={`z-40 w-full sm:px-4 ${
+                isStart ? "animate-pulse" : ""
+              }`}
+              priority={true}
             />
             <div
               className="absolute bg-primary-600 p-3 w-[60px] h-[60px] flex mx-auto my-auto justify-center items-center rounded-full z-50  hover:opacity-75"
@@ -152,21 +166,23 @@ export default function PraceticeSession(props: Props) {
             </div>
           </div>
         </div>
-        {/* {question && (
+        {question && (
           <TTSPlayer
             isStart={isStart}
             handleStop={handleStop}
             setDuration={setDuration}
             voice={question.voices[0]}
+            setIsRecording={setIsRecording}
+            isRestart={isRestart}
           ></TTSPlayer>
-        )} */}
+        )}
         {/* 저장 모달 섹션 */}
         <Modal modalPosition="center" isOpen={isEndModalOpen}>
           <Modal.Header closeModal={() => setIsEndModalOpen(false)} />
           <Modal.Body
             title="수고하셨습니다"
             description="작성된 스크립트와 녹음된 답변을 비교하러 가볼까요?"
-            descClassName="px-5 text-[18px] font-semibold text-[#616161] leading-[28px] text-center"
+            descClassName="px-7 text-[16px] font-normal text-primary-gray-900 leading-[22px] text-center"
             mainIcon="success"
           />
           <Link
@@ -185,7 +201,7 @@ export default function PraceticeSession(props: Props) {
           <Modal.Body
             title="종료하시겠습니까?"
             description="지금 연습을 종료하면 답변한 내용은 저장되지 않습니다 그래도 종료하시겠습니까?"
-            descClassName="px-8 text-[18px] font-semibold text-[#616161] leading-[28px] text-center"
+            descClassName="px-10 text-[16px] font-normal text-primary-gray-900 leading-[22px] text-center"
             mainIcon="info"
           />
 

@@ -27,7 +27,7 @@ export default function SettingSession({}: Props) {
       } w-screen h-[94vh] sm:max-h-[800px] sm:w-1/4 2xl:w-1/3 no-scrollbar`}
     >
       <Header handleBack={() => router.back()} title="설정" />
-      <section className="flex flex-col px-5 w-full h-screen">
+      <section className="flex flex-col px-4 w-full h-screen">
         <div className="flex flex-col w-full ml-4 mb-3">
           <h1 className="text-lg text-primary-gray-900 font-semibold">
             음량 테스트

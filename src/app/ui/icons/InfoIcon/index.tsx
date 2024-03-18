@@ -5,16 +5,16 @@ type Props = {
 export default function InfoIcon({ className, onClick }: Props) {
   return (
     <svg
-      width="20"
-      height="20"
-      viewBox="0 0 20 20"
+      width="60"
+      height="60"
+      viewBox="0 0 60 60"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <path
-        d="M9 5H11V7H9V5ZM9 9H11V15H9V9ZM10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM10 18C5.59 18 2 14.41 2 10C2 5.59 5.59 2 10 2C14.41 2 18 5.59 18 10C18 14.41 14.41 18 10 18Z"
-        fill="#591FD9"
-      />
+      <circle opacity="0.8" cx="30" cy="30" r="30" fill="#E2D7FF" />
+      <circle cx="30" cy="30" r="24" fill="#591FD9" />
+      <rect x="27" y="17" width="6" height="16" rx="1" fill="white" />
+      <rect x="27" y="37" width="6" height="6" rx="1" fill="white" />
     </svg>
   );
 }

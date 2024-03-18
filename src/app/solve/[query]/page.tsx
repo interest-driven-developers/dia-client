@@ -17,11 +17,13 @@ export default async function Home({ params }: { params: { query: string } }) {
   const typedSession = session as Session;
   let questionList: Question[] = [];
   if (session) {
+    if (!params.query) return;
     questionList = await getQuestionList(
       params.query,
       typedSession.user.access_token
     );
   } else {
+    if (!params.query) return;
     questionList = await getQuestionList(params.query);
   }
   return (

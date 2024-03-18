@@ -12,7 +12,7 @@ export default function LayerLogoIcon(props: Props) {
       xmlns="http://www.w3.org/2000/svg"
       className={props.className}
     >
-      <g opacity="0.2" clip-path="url(#clip0_454_1312)">
+      <g opacity="0.2" clipPath="url(#clip0_454_1312)">
         <path
           d="M108.009 0H92.4239C91.3067 0 90.3274 0.683088 90.024 1.69406L70.9075 62.5436C70.4385 64.06 71.6385 65.5765 73.3074 65.5765H89.3206C90.4377 65.5765 91.417 64.8934 91.7342 63.8824L95.4169 52.1333L110.865 3.03291C111.347 1.51646 110.134 0 108.465 0H108.009Z"
           fill="#591FD9"

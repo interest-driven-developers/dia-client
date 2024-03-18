@@ -8,9 +8,5 @@ export const generateMetadata = async ({ params }: any): Promise<Metadata> => {
   };
 };
 export default async function Home() {
-  return (
-    
-      <SettingSession />
-
-  );
+  return <SettingSession />;
 }

@@ -1,5 +1,6 @@
 import { twMerge } from "tailwind-merge";
 import InfoIcon from "@/app/ui/icons/InfoIcon";
+import SuccessCircleIcon from "@/app/ui/icons/SuccessCircleIcon";
 type Props = {
   title: string;
   description?: string;
@@ -19,7 +20,7 @@ export const ModalBody = ({ ...props }: Props) => {
       case "info":
         return <InfoIcon />;
       case "success":
-        return "🎉";
+        return <SuccessCircleIcon />;
       case "error":
         return "❌";
       case "warning":
@@ -44,7 +45,7 @@ export const ModalBody = ({ ...props }: Props) => {
       {props.description && (
         <div
           className={twMerge(
-            "px-[4.375rem] sm:px-10 mb-7 text-[#616161] text-sm sm:text-lg font-semibold leading-[18px]",
+            "px-[4.375rem]  mb-7 text-primary-gray-900 text-sm sm:text-lg font-normal leading-[22px]",
             props.descClassName
           )}
         >

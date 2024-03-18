@@ -12,6 +12,8 @@ import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { savePractice } from "@/app/api/savePractice";
 import type { Session } from "@/types/Session";
+import RetryIcon from "@/app/ui/icons/RetryCircleIcon";
+
 type Props = {
   questionList: Question[];
   setIsView: (isView: number) => void;
@@ -30,6 +32,8 @@ export default function MockPraceticeSession(props: Props) {
   const [isStart, setIsStart] = useState<boolean>(true);
   const [elapsedTime, setElapsedTime] = useState<number>(0);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [isRecording, setIsRecording] = useState<boolean>(false);
+  const [isRestart, setIsRestart] = useState<boolean>(false);
   const handleStop = async (interimResult: string, time: number) => {
     if (
       questionIdx !== null &&
@@ -80,9 +84,19 @@ export default function MockPraceticeSession(props: Props) {
     //   setIsModalOpen(true);
     // }
   };
-
+  const handleRetry = () => {
+    setIsRestart(true);
+    setIsRecording(false);
+    setElapsedTime(0);
+  };
   return (
     <section className="flex flex-col w-full h-full px-4">
+      {isRecording && (
+        <RetryIcon
+          onClick={handleRetry}
+          className="absolute right-4 hover:opacity-70 cursor-pointer mb-2"
+        />
+      )}
       <div className="flex px-[16px] py-[17px] bg-[#212121] rounded-[10px] justify-center mb-2.5">
         <p className="text-[16px] leading-[22px] sm:text-lg font-medium text-center text-white">
           마이크 버튼을 눌러 답변을 종료할 수 있습니다
@@ -113,6 +127,8 @@ export default function MockPraceticeSession(props: Props) {
           handleStop={handleStop}
           setDuration={setDuration}
           isEnd={isModalOpen}
+          isRestart={isRestart}
+          setIsRecording={setIsRecording}
         ></TTSPlayer>
       )}
       {/* 모달 섹션 */}
