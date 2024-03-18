@@ -68,13 +68,12 @@ export const TagBar = ({ currentTag, session, setQuestionList }: Props) => {
           {/* </div> */}
         </div>
       )}
-      <div className="flex flex-row gap-1.5 z-10 w-full mr-8 overflow-x-auto no-scrollbar">
+      <div className="flex flex-row gap-1.5 z-0 w-full pr-8  overflow-x-auto no-scrollbar">
         {tags.map((tag, index) => (
           <Tag key={index} selected={currentTag}>
             {tag.name}
           </Tag>
         ))}
-
       </div>
     </div>
   );
