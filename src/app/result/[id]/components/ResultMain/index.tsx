@@ -34,32 +34,13 @@ export default function ResultMain({ pkValue, question }: Props) {
     fetchData();
   }, [pkValue, typedSession, session]);
 
-  const ViewComponent = () => {
-    switch (isView) {
-      case 0:
-        return (
-          <ResultSession
-            pkValue={pkValue}
-            latestHistory={historyList[0]}
-            question={question}
-          />
-        );
-      case 1:
-        return <HistorySession id={pkValue} historyList={historyList} />;
-      default:
-        return (
-          <ResultSession
-            pkValue={pkValue}
-            latestHistory={historyList[0]}
-            question={question}
-          />
-        );
-    }
-  };
   return (
     <>
-      <SelectButtons isView={isView} setIsView={setIsView}></SelectButtons>
-      <ViewComponent />
+      <ResultSession
+        pkValue={pkValue}
+        latestHistory={historyList[0]}
+        question={question}
+      />
     </>
   );
 }

@@ -192,7 +192,7 @@ export default function PraceticeSession(props: Props) {
             </div>
           </div>
         </div>
-        {/* {question && (
+        {question && (
           <TTSPlayer
             isStart={isStart}
             handleStop={handleStop}
@@ -201,7 +201,7 @@ export default function PraceticeSession(props: Props) {
             setIsRecording={setIsRecording}
             isRestart={isRestart}
           ></TTSPlayer>
-        )} */}
+        )}
         {/* 저장 모달 섹션 */}
         <Modal modalPosition="center" isOpen={isEndModalOpen}>
           <Modal.Header closeModal={() => setIsEndModalOpen(false)} />

@@ -8,7 +8,7 @@ import { getQuestionScript } from "@/app/api/getQuestionScript";
 import type { PracticeResult } from "@/types/PracticeResult";
 import { HistoryType } from "@/types/History";
 import ResultMainGuest from "./components/ResultMainGuest";
-
+import Header from "@/app/mockinterview/[id]/components/Header";
 export const dynamic = "force-dynamic";
 
 export const generateMetadata = async ({ params }: any): Promise<Metadata> => {
@@ -37,7 +37,8 @@ export default async function Home({
     }
   const isGuest = searchParams.contentValue ? true : false;
   return (
-    <main className="flex flex-col mx-auto py-20  max-w-[500px] h-full sm:max-h-[1000px] overflow-y-hidden bg-white no-scrollbar">
+    <main className="flex flex-col mx-auto pt-20 pb-8  max-w-[500px] h-[100dvh] sm:max-h-[1000px] overflow-y-hidden bg-white no-scrollbar">
+      <Header title="답변확인" className="mb-5" />
       {isGuest ? (
         <ResultMainGuest question={result.data} resultData={searchParams} />
       ) : (
