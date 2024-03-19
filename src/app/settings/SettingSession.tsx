@@ -22,13 +22,11 @@ export default function SettingSession({}: Props) {
   const [audioBlob, setAudioBlob] = useState<Blob | null>(null);
   return (
     <main
-      className={`flex flex-col mx-auto ${
-        window.innerHeight < 670 ? "pt-6" : "pt-16"
-      } w-screen h-[94vh] sm:max-h-[800px] sm:w-1/4 2xl:w-1/3 no-scrollbar`}
+      className={`flex flex-col mx-auto w-screen pt-20 pb-8 h-[100dvh] sm:max-h-[1000px] sm:w-1/4 2xl:w-1/3 no-scrollbar`}
     >
-      <Header handleBack={() => router.back()} title="설정" />
+      <Header handleBack={() => router.back()} title="환경설정" />
       <section className="flex flex-col px-4 w-full h-screen">
-        <div className="flex flex-col w-full ml-4 mb-3">
+        <div className="flex flex-col w-full ml-4 mb-3"> 
           <h1 className="text-lg text-primary-gray-900 font-semibold">
             음량 테스트
           </h1>
@@ -38,9 +36,7 @@ export default function SettingSession({}: Props) {
         </div>
         <TestVoicePlayer src="https://dnia6texl8y7f.cloudfront.net/[경석]%20http와%20https.mp3" />
         <div
-          className={`flex flex-col ml-4 ${
-            window.innerHeight < 670 ? "mt-3" : "mt-[60px]"
-          } mb-3`}
+          className={`flex flex-col ml-4 mb-3 mt-3`}
         >
           <h1 className="text-lg text-primary-gray-900 font-semibold">
             마이크 테스트

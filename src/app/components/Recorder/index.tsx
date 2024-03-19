@@ -1,8 +1,10 @@
-'use client'
+"use client";
 import React, { useEffect, useState, useCallback } from "react";
 import EqualizerIcon from "@/app/ui/icons/EqualizerIcon";
 import { MicroIcon } from "@/app/ui/icons/MicroIcon";
 import { TestVoicePlayer } from "@/app/settings/TestVoicePlayer";
+import Image from "next/image";
+import { MicroCircleIcon } from "@/app/ui/icons/MicroCircleIcon";
 type Props = {
   setAudioBlob: (blob: Blob) => void;
 };
@@ -10,24 +12,19 @@ const Recorder: React.FC<Props> = (props: Props) => {
   const { setAudioBlob } = props;
   const [stream, setStream] = useState<any>();
   const [media, setMedia] = useState<any>();
-  const [onRec, setOnRec] = useState<boolean>(true);
+  const [onRec, setOnRec] = useState<boolean>(false);
   const [source, setSource] = useState<any>();
-  const [analyser, setAnalyser] = useState<any>();
   const [audioUrl, setAudioUrl] = useState<any>();
 
   const onRecAudio = () => {
     // 음원 정보를 담은 노드를 생성하거나 음원을 실행 또는 디코딩
+    setOnRec(true);
     const audioContext = new (window.AudioContext || AudioContext)();
-    // Javascript를 통해 음원의 진행상태에 직접 접근한다.
-    const analyser = audioContext.createScriptProcessor(0, 1, 1);
-    setAnalyser(analyser);
 
     function makeSound(stream: any) {
       // 내 컴퓨터의 마이크나 다른 소스를 통해 발생한 오디오 스트림의 정보를 보여 줌
       const source = audioContext.createMediaStreamSource(stream);
       setSource(source);
-      source.connect(analyser);
-      analyser.connect(audioContext.destination);
     }
 
     // 마이크 사용 권한 획득
@@ -37,24 +34,6 @@ const Recorder: React.FC<Props> = (props: Props) => {
       setStream(stream);
       setMedia(mediaRecorder);
       makeSound(stream);
-
-      analyser.onaudioprocess = function (e: any) {
-        // 1분(60초) 지나면 자동으로 음성 저장 및 녹음 중지
-        if (e.playbackTime > 60) {
-          stream.getAudioTracks().forEach((track: any) => track.stop());
-          mediaRecorder.stop();
-          // 메서드가 호출된 노드 연결 해제
-          analyser.disconnect();
-          audioContext.createMediaStreamSource(stream).disconnect();
-
-          mediaRecorder.ondataavailable = function (e: any) {
-            setAudioUrl(e.data);
-            setOnRec(true);
-          };
-        } else {
-          setOnRec(false);
-        }
-      };
     });
   };
   const offRecAudio = () => {
@@ -62,7 +41,7 @@ const Recorder: React.FC<Props> = (props: Props) => {
     media.ondataavailable = function (e: any) {
       setAudioBlob(e.data);
       // setAudioUrl(e.data);
-      setOnRec(true);
+      setOnRec(false);
     };
 
     // 모든 트랙에서 stop()을 호출해 오디오 스트림을 정지
@@ -71,7 +50,6 @@ const Recorder: React.FC<Props> = (props: Props) => {
     // 미디어 캡쳐 중지
     media.stop();
     // 메서드가 호출된 노드 연결 해제
-    analyser.disconnect();
     source.disconnect();
     // 저장하기
   };
@@ -103,24 +81,42 @@ const Recorder: React.FC<Props> = (props: Props) => {
   //     console.error("Error accessing microphone:", error);
   //   }
   // };
-
+  useEffect(() => {
+    return () => {
+      if (media) {
+        media.stop();
+      }
+      if (stream) {
+        stream.getTracks().forEach((track: any) => track.stop());
+      }
+    };
+  }, [stream]);
   return (
     <>
-      <div className="flex flex-col px-9 py-[27px] w-full h-full max-h-[180px] bg-primary-100 rounded-[5px] relative mb-4">
-        <h1 className="text-[16px] font-semibold leading-[19.2px] text-primary-400 text-center">
+      <div className="flex flex-col px-9 py-8 w-full h-full max-h-[187px] bg-primary-100 rounded-[5px] relative mb-4">
+        <h1 className="text-[16px] font-semibold leading-[19.2px] text-primary-500 text-center">
           다이아는 개발자 모의면접 플랫폼입니다
         </h1>
-        <div className="absolute inset-0 flex justify-center items-center mt-3">
-          <div className="bg-primary-600 p-3 w-14 h-14 flex justify-center items-center rounded-full z-50 relative hover:opacity-75">
+        <div className="absolute inset-0 flex justify-center items-center mt-[40px]">
+          <Image
+            src="/images/equalizer.png"
+            alt="이퀄라이저"
+            width={1408}
+            height={344}
+            className={`z-10 w-full max-h-[70px]  ${
+              onRec ? "animate-pulse" : " "
+            }`}
+            priority={true}
+          />
+          <div className="absolute flex mx-auto my-auto justify-center items-center rounded-full z-50  hover:opacity-75">
             <div
               className={`w-full h-full absolute ring-8 ring-primary-200 rounded-full ${
-                !onRec ? "animate-ping" : ""
+                onRec ? "animate-ping" : ""
               }`}
-              onClick={onRec ? onRecAudio : offRecAudio}
+              onClick={onRec ? offRecAudio : onRecAudio}
             ></div>
-            <MicroIcon className="w-[17px] h-[24px]" />
+            <MicroCircleIcon></MicroCircleIcon>
           </div>
-          <EqualizerIcon className="w-full h-full absolute inset-0 animate-pulse z-40" />
         </div>
       </div>
     </>
