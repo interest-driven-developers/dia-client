@@ -1,6 +1,6 @@
 "use client";
 import formatDateString from "@/utils/formatDateString";
-import Question from "@/app/components/Question";
+import { Question } from "@/app/components/Question";
 import { HistoryType } from "@/types/History";
 import Link from "next/link";
 
@@ -37,7 +37,20 @@ export const HistoryMain = ({ historyList }: Props) => {
                 key={history.pkValue}
                 className="relative hover:opacity-70"
               >
-                <Question question={history && history.question} />
+                <Question question={history && history.question}>
+                  <Question.SubTitle
+                    className={`${
+                      history.typeValue === "SINGLE"
+                        ? "text-primary-600"
+                        : "text-[#FDDA23]"
+                    }`}
+                  >
+                    {history.typeValue === "SINGLE" ? "개별연습" : "실전연습"}
+                  </Question.SubTitle>
+                  <Question.Title>
+                    {history.question?.korTitleValue}
+                  </Question.Title>
+                </Question>
                 {index === historyByDate[date].length - 1 ? (
                   <div className="absolute -bottom-5 left-4 ml-0.5 bg-[#E0E0E0] h-5 w-[1px]" />
                 ) : (

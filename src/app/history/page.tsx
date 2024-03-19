@@ -1,4 +1,3 @@
-
 import { Metadata } from "next";
 import { HistoryMain } from "./components/HistoryMain";
 import { getUserHistorys } from "../api/getUserHistorys";
@@ -17,5 +16,6 @@ export default async function Home() {
   if (session) {
     result = await getUserHistorys(session!.user!.access_token);
   }
+  // console.log(result);
   return <HistoryMain historyList={result as HistoryType[]}></HistoryMain>;
 }
