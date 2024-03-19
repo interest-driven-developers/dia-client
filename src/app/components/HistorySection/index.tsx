@@ -15,6 +15,7 @@ export interface HistorySectionProps {
   className?: string;
   history: HistoryType;
   session: Session;
+  theme?: "single" | "multi";
 }
 
 export default function HistorySection({
@@ -22,6 +23,7 @@ export default function HistorySection({
   className,
   history,
   session,
+  theme = "single",
 }: HistorySectionProps) {
   const handleDelete = async () => {
     if (session) {
@@ -38,12 +40,18 @@ export default function HistorySection({
   return (
     <div
       className={twMerge(
-        `flex flex-col relative px-5 py-3 bg-primary-100 rounded-[10px] h-full`,
+        `flex flex-col relative px-5 py-3 rounded-[10px] h-full ${
+          theme === "single" ? "bg-primary-100" : "bg-[#FFFEE5]"
+        }`,
         className
       )}
     >
       <div className="flex flex-row gap-1">
-        <p className="text-xs leading-[14.4px] font-semibold text-primary-600">
+        <p
+          className={`text-xs leading-[14.4px] font-semibold  ${
+            theme === "single" ? "text-primary-600" : "text-[#FDDA23]"
+          }`}
+        >
           {history ? formatDateString(history.createdTimeValue) : ""}
         </p>
         {history ? (

@@ -9,9 +9,11 @@ import type { Session } from "@/types/Session";
 import type { Question as QuestionType } from "@/types/Question";
 import ResultSession from "../ResultSession";
 import NumberButton from "../NumberButton";
-import Question from "@/app/components/Question";
+import { Question } from "@/app/components/Question";
 import ScriptSection from "@/app/components/ScriptSection";
 import HistorySection from "@/app/components/HistorySection";
+import Header from "@/app/mockinterview/[id]/components/Header";
+import { useRouter } from "next/navigation";
 
 interface Props {
   pkValue: number;
@@ -19,7 +21,7 @@ interface Props {
 }
 
 export default function PracticeResultMain({ pkValue, questionList }: Props) {
-  // const router = useRouter();
+  const router = useRouter();
   const [questionIdx, setQuestionIdx] = useState(1);
   const [History, setHistory] = useState<HistoryType | null>(null);
   const { data: session, status } = useSession();
@@ -39,7 +41,12 @@ export default function PracticeResultMain({ pkValue, questionList }: Props) {
     fetchData();
   }, [questionIdx, session, typedSession?.user.access_token]); // 의존성 배열 수정
   return (
-    <main className="flex flex-col mx-auto py-20 h-full max-w-[500px] max-h-[1000px] overflow-y-hidden bg-white no-scrollbar">
+    <main className="flex flex-col mx-auto pt-20 pb-8 h-[100dvh] max-w-[500px] max-h-[1000px] overflow-y-hidden bg-white no-scrollbar">
+      <Header
+        title="답변확인"
+        className="mb-5"
+        handleBack={() => router.push(`/mockinterview/practice/${pkValue}`)}
+      />
       <section className="flex flex-col px-5">
         <div className="flex gap-[6px] flex-row w-full overflow-x-auto no-scrollbar mb-4">
           {questionList.map((question, index) => (
@@ -53,7 +60,17 @@ export default function PracticeResultMain({ pkValue, questionList }: Props) {
           ))}
         </div>
         <div className="flex flex-col gap-3">
-          <Question question={questionList[questionIdx - 1]} />
+          <Question
+            question={questionList[questionIdx - 1]}
+            isBookmarkOn={session ? true : false}
+          >
+            <Question.SubTitle className="text-[#FDDA23]">
+              Question
+            </Question.SubTitle>
+            <Question.Title>
+              {questionList[questionIdx - 1].korTitleValue}
+            </Question.Title>
+          </Question>
           <ScriptSection
             id={questionList[questionIdx - 1].pkValue}
             className="h-[151px] sm:h-[250px]"
@@ -63,6 +80,7 @@ export default function PracticeResultMain({ pkValue, questionList }: Props) {
             history={History as HistoryType}
             session={typedSession}
             className="h-[369px]"
+            theme="multi"
           />
         </div>
       </section>

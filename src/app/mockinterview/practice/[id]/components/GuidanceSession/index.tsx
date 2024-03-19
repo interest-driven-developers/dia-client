@@ -9,12 +9,14 @@ import { useRouter } from "next/navigation";
 import Header from "@/app/mockinterview/[id]/components/Header";
 interface Props {
   setIsView: (view: number) => void;
+  theme?: string;
 }
 
-export default function GuidanceSession({ setIsView }: Props) {
+export default function GuidanceSession({ setIsView, theme = 'single' } : Props) {
   const router = useRouter();
   const el = React.useRef(null);
   const typed = React.useRef<Typed | null>(null);
+  const style = theme === "single" ? "#E2D7FF" : "#FFF09E";
   React.useEffect(() => {
     const options = {
       strings: [
@@ -37,11 +39,11 @@ export default function GuidanceSession({ setIsView }: Props) {
   };
   return (
     <>
-      <Header handleBack={handleBack} title="모의연습" isSetting={true}/>
+      <Header handleBack={handleBack} title={theme === 'single' ? '개별연습' : '실전연습'} isSetting={true} />
       <section className="flex flex-col px-4 w-full h-full">
         <InterviewIntroIcon
           className="mb-[30px] mt-[88px] ml-2"
-          ringColor="#E2D7FF"
+          ringColor={style}
         ></InterviewIntroIcon>
         <div className={`flex relative justify-start mb-auto w-full px-4`}>
           <div
@@ -50,9 +52,7 @@ export default function GuidanceSession({ setIsView }: Props) {
   border-b-[50px] border-white
   border-r-[25px] border-r-transparent"
           />
-          <div
-            className={`rounded-lg px-5 py-5  w-full h-full bg-white z-10 `}
-          >
+          <div className={`rounded-lg px-5 py-5  w-full h-full bg-white z-10 `}>
             <span
               className="whitespace-nowrap text-[16px] leading-6 font-medium text-[#424242]"
               ref={el}
