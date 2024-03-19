@@ -25,6 +25,7 @@ export default function ScriptSection({ id, className, placeholder }: Props) {
   const [prevScript, setPrevScript] = useState<Script | undefined>(undefined);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isEditing, setIsEditing] = useState<boolean>(false);
+  const textAreaRef = React.useRef<HTMLTextAreaElement>(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -46,7 +47,11 @@ export default function ScriptSection({ id, className, placeholder }: Props) {
     fetchData();
     setIsLoading(false);
   }, [id, typedSession, session]);
-
+  useEffect(() => {
+    if (isEditing) {
+      textAreaRef.current?.focus();
+    }
+  }, [isEditing]);
   const handleSaveScript = async () => {
     if (session && session.user) {
       if (prevScript) {
@@ -91,6 +96,7 @@ export default function ScriptSection({ id, className, placeholder }: Props) {
         ) : isEditing ? (
           <>
             <textarea
+              ref={textAreaRef}
               value={script?.contentValue}
               placeholder={
                 placeholder
@@ -106,7 +112,7 @@ export default function ScriptSection({ id, className, placeholder }: Props) {
                     } as Script)
                 )
               }
-              className="w-full h-40 p-2 rounded-md bg-[#FAFAFA] focus:ring-blue-500"
+              className="w-full h-40 rounded-md bg-[#FAFAFA] text-[14px] focus:ring-blue-500"
             />
             <div className="absolute bottom-4 left-4 flex items-center">
               <XCircleIcon
