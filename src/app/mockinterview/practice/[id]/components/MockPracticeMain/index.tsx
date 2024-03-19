@@ -37,12 +37,12 @@ export default function MockPracticeMain({ questionList }: Props) {
   return (
     <main className="flex flex-col pt-20 pb-8 h-[100dvh] overflow-y-auto no-scrollbar w-full mx-auto sm:w-1/4 sm:h-[1000px]">
       {/* <MockPracticeHeader isView={isView} /> */}
-      {/* <ViewPage /> */}
-      <MockPracticeSession
+      <ViewPage />
+      {/* <MockPracticeSession
         questionList={questionList}
         setIsView={setIsView}
         setResultList={setResultList}
-      />
+      /> */}
     </main>
   );
 }

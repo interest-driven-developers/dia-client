@@ -2,7 +2,7 @@ import EqualizerIcon from "@/app/ui/icons/EqualizerIcon";
 import TTSPlayer from "../../../../components/TTSPlayer";
 import ShrinkingIcon from "../ShrinkingIcon";
 import useSpeechToText, { ResultType } from "react-hook-speech-to-text";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
 import type { Question } from "@/types/Question";
 import type { PracticeResult } from "@/types/PracticeResult";
 import type { VoiceType } from "@/types/Voice";
@@ -68,36 +68,36 @@ export default function MockPraceticeSession(props: Props) {
       typed.current?.destroy();
     };
   }, []);
-  const handleStop = async (interimResult: string, time: number) => {
-    if (
-      questionIdx !== null &&
-      questionIdx !== undefined &&
-      questionIdx < questionList.length
-    ) {
-            if (isCancel) {
-              setIsCancelModalOpen(true);
-              return;
-            }
-      setIsEndModalOpen(true);
-      if (!interimResult) return;
-      // 결과 리스트 업데이트
-      if (session) {
-        await savePractice({
-          practiceResult: {
-            interviewQuestionPkValue: questionList[questionIdx]
-              .pkValue as number,
-            contentValue: interimResult as string,
-            typeValue: "MULTI",
-            elapsedTimeValue: time,
-            filePathValue: null,
-          },
-          accessToken: typedSession.user.access_token,
-        });
-      } else {
-        setPracticeResultList((prev: PracticeResult[]) => {
-          return [
-            ...prev,
-            {
+
+  useEffect(() => {
+    let timer: any;
+    if (isStart && isRecording) {
+      timer = setInterval(() => {
+        setElapsedTime((prevTime) => prevTime + 1);
+      }, 1000);
+    }
+    return () => {
+      clearInterval(timer);
+    };
+  }, [isStart, isRecording]);
+
+  const handleStop = useCallback(
+    async (interimResult: string, time: number) => {
+      if (
+        questionIdx !== null &&
+        questionIdx !== undefined &&
+        questionIdx < questionList.length
+      ) {
+        if (isCancel) {
+          setIsCancelModalOpen(true);
+          return;
+        }
+        setIsEndModalOpen(true);
+        if (!interimResult) return;
+        // 결과 리스트 업데이트
+        if (session) {
+          await savePractice({
+            practiceResult: {
               interviewQuestionPkValue: questionList[questionIdx]
                 .pkValue as number,
               contentValue: interimResult as string,
@@ -105,19 +105,36 @@ export default function MockPraceticeSession(props: Props) {
               elapsedTimeValue: time,
               filePathValue: null,
             },
-          ] as PracticeResult[];
-        });
+            accessToken: typedSession.user.access_token,
+          });
+        } else {
+          setPracticeResultList((prev: PracticeResult[]) => {
+            return [
+              ...prev,
+              {
+                interviewQuestionPkValue: questionList[questionIdx]
+                  .pkValue as number,
+                contentValue: interimResult as string,
+                typeValue: "MULTI",
+                elapsedTimeValue: time,
+                filePathValue: null,
+              },
+            ] as PracticeResult[];
+          });
+        }
       }
-    }
-    if (questionIdx + 1 < questionList.length) {
-      setQuestionIdx((prev) => prev + 1);
-      setIsStart(true);
-    } else {
-      setIsModalOpen(true);
-    }
-  };
+      if (questionIdx + 1 < questionList.length) {
+        setQuestionIdx((prev) => prev + 1);
+        setIsStart(true);
+      } else {
+        setIsModalOpen(true);
+      }
+    },
+    [questionIdx, questionList, session, isCancel]
+  );
   const handleNext = () => {
     setIsStart(false);
+    setElapsedTime(0);
     // if (questionIdx + 1 < questionList.length) {
     //   setQuestionIdx((prev) => prev + 1);
     // } else {
@@ -129,10 +146,10 @@ export default function MockPraceticeSession(props: Props) {
     setIsRecording(false);
     setElapsedTime(0);
   };
-    const handleBack = () => {
-      setIsCancel(true);
-      setIsStart(false);
-    };
+  const handleBack = () => {
+    setIsCancel(true);
+    setIsStart(false);
+  };
   return (
     <>
       <Header handleBack={handleBack} title="모의연습" />
@@ -188,9 +205,7 @@ export default function MockPraceticeSession(props: Props) {
             />
             <div
               className="absolute flex mx-auto my-auto justify-center items-center rounded-full z-50  hover:opacity-75"
-              onClick={
-                isStart ? () => setIsStart(false) : () => setIsStart(true)
-              }
+              onClick={handleNext}
             >
               <div
                 className={`w-full h-full absolute ring-8 ring-primary-200 rounded-full ${
@@ -204,7 +219,7 @@ export default function MockPraceticeSession(props: Props) {
             </div>
           </div>
         </div>
-        {/* {questionList && questionIdx !== null && questionIdx !== undefined && (
+        {questionList && questionIdx !== null && questionIdx !== undefined && (
           <TTSPlayer
             isStart={isStart}
             voice={questionList[questionIdx].voices[0] as VoiceType}
@@ -214,7 +229,7 @@ export default function MockPraceticeSession(props: Props) {
             isRestart={isRestart}
             setIsRecording={setIsRecording}
           ></TTSPlayer>
-        )} */}
+        )}
         {/* 모달 섹션 */}
         <Modal modalPosition="center" isOpen={isModalOpen}>
           <Modal.Body

@@ -87,14 +87,14 @@ export default function TTSPlayer({
 
   useEffect(() => {
     if (handleStop && !isStart && !isEnd) {
+      stopAudio();
+      stopSpeechToText();
       let resultString = "";
       if (results.length > 0) {
         results.forEach((result: any) => {
           resultString = resultString + " " + result.transcript;
         });
       }
-      stopAudio();
-      stopSpeechToText();
       if (resultString) {
         handleStop(resultString, time);
         return;
