@@ -43,7 +43,7 @@ export const QuestionMain = ({
     router.refresh();
   };
   return (
-    <div className="flex relative flex-col bg-[#F9F5FF] rounded-[5px] px-4 py-[18px]">
+    <div className="flex relative flex-col bg-primary-gray-50 rounded-[5px] px-4 py-[18px]">
       {isBookmarkOn && (
         <>
           {question.bookmark ? (
