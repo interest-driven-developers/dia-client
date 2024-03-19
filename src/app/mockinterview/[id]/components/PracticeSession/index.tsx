@@ -1,9 +1,8 @@
-import EqualizerIcon from "@/app/ui/icons/EqualizerIcon";
-import { useEffect, useState, useCallback } from "react";
+"use client";
+import { useEffect, useState, useCallback, useRef } from "react";
 import type { Question } from "@/types/Question";
 import type { PracticeResult } from "@/types/PracticeResult";
 import type { HistoryType } from "@/types/History";
-import ShrinkingIcon from "@/app/mockinterview/practice/[id]/components/ShrinkingIcon";
 import { savePractice } from "@/app/api/savePractice";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
@@ -12,14 +11,12 @@ import { Modal } from "@/app/components/Modal";
 import TTSPlayer from "@/app/mockinterview/components/TTSPlayer";
 import Image from "next/image";
 import Link from "next/link";
-import { ChevronLeftIcon } from "@heroicons/react/20/solid";
 import Header from "../Header";
-import { MicroIcon } from "@/app/ui/icons/MicroIcon";
-import EqualizerLargeIcon from "@/app/ui/icons/EqualizerLargeIcon";
 import convertToHourMinute from "@/utils/convertToHourMinute";
 import RetryIcon from "@/app/ui/icons/RetryCircleIcon";
 import LayerLogoIcon from "@/app/ui/icons/LayerLogoIcon";
-
+import { MicroCircleIcon } from "@/app/ui/icons/MicroCircleIcon";
+import Typed from "typed.js";
 type Props = {
   question: Question;
   setIsView: (isView: number) => void;
@@ -41,6 +38,32 @@ export default function PraceticeSession(props: Props) {
   const [elapsedTime, setElapsedTime] = useState<number>(0);
   const [isRecording, setIsRecording] = useState<boolean>(false);
   const [isRestart, setIsRestart] = useState<boolean>(false);
+  const el = useRef(null);
+  // Create reference to store the Typed instance itself
+  const typed = useRef<Typed | null>(null);
+  useEffect(() => {
+    const options = {
+      strings: [
+        "질문이 끝난 뒤 마이크 버튼을 눌러<br/> 답변 녹음을 시작해보세요.",
+        "질문을 다시 들으려면 다시듣기 아이콘을<br/> 눌러 한번 더 들으실 수 있습니다.",
+        "차분한 어조로 답변해보세요.",
+        "답변을 완료하면 마이크 버튼을 한번 더<br/>눌러 모의연습을 완료해주세요.",
+      ],
+      typeSpeed: 50,
+      backSpeed: 50,
+      showCursor: false,
+      cursorChar: "|",
+    };
+
+    // elRef refers to the <span> rendered below
+    typed.current = new Typed(el.current, options);
+
+    return () => {
+      // Make sure to destroy Typed instance during cleanup
+      // to prevent memory leaks
+      typed.current?.destroy();
+    };
+  }, []);
   const handleStop = useCallback(
     (interimResult: string, time: number) => {
       if (isCancel) {
@@ -101,42 +124,45 @@ export default function PraceticeSession(props: Props) {
   return (
     <>
       <Header handleBack={handleBack} title="모의연습" />
-      <section className="flex flex-col w-full h-[96%]">
+      <section className="flex flex-col w-full h-full relative">
         {isRecording && (
           <RetryIcon
             onClick={handleRetry}
             className="absolute right-4 hover:opacity-70 cursor-pointer mb-2"
           />
         )}
-        <div className="flex flex-col px-4 gap-4 mt-10">
-          <div className="flex px-[16px] py-[17px] bg-white rounded-[10px] justify-center">
-            <p className="text-[16px] leading-6 sm:text-lg font-medium text-center text-primary-gray-900">
-              마이크 버튼을 눌러 답변을 종료해주세요
-            </p>
+        <div className="flex flex-col px-4 mt-10 h-full w-full">
+          <div className="flex px-[16px] py-[17px] w-full  bg-white rounded-[10px] justify-center">
+            <span
+              ref={el}
+              className="whitespace-nowrap  text-[16px] leading-6 sm:text-lg font-medium text-center text-primary-gray-900"
+            ></span>
           </div>
-          <div className="relative mt-10">
-            <LayerLogoIcon className="absolute mx-auto  inset-0 bg-cover bg-center z-0" />
-            <div className="relative z-10 flex flex-row mt-6 gap-[-2px]">
-              <Image
-                src="/images/mockinterview/interviewer_male.png"
-                alt="면접관 이미지"
-                width={320}
-                height={360}
-                className="w-1/2 ml-7 -mr-10"
-                priority={true}
-              />
-              <Image
-                src="/images/mockinterview/interviewer_female.png"
-                alt="면접관 이미지"
-                width={320}
-                height={360}
-                className="w-1/2"
-                priority={true}
-              />
+          <div className="absolute top-0 left-0 right-0 bottom-0 flex justify-center items-center">
+            <div className="mx-auto my-auto inset-0 bg-cover bg-center z-0 max-w-[380px]">
+              <LayerLogoIcon className="mx-auto" />
+              <div className="relative z-10 flex flex-row gap-[-2px] justify-center -mt-4">
+                <Image
+                  src="/images/mockinterview/interviewer_male.png"
+                  alt="면접관 이미지"
+                  width={320}
+                  height={360}
+                  className="w-1/2 ml-3 -mr-10"
+                  priority={true}
+                />
+                <Image
+                  src="/images/mockinterview/interviewer_female.png"
+                  alt="면접관 이미지"
+                  width={320}
+                  height={360}
+                  className="w-1/2"
+                  priority={true}
+                />
+              </div>
             </div>
           </div>
         </div>
-        <div className="w-full relative mt-auto text-center my-auto">
+        <div className="w-full absolute bottom-12 text-center my-auto">
           <div className="absolute inset-0 flex justify-center items-center w-full">
             <Image
               src="/images/equalizer.png"
@@ -149,7 +175,7 @@ export default function PraceticeSession(props: Props) {
               priority={true}
             />
             <div
-              className="absolute bg-primary-600 p-3 w-[60px] h-[60px] flex mx-auto my-auto justify-center items-center rounded-full z-50  hover:opacity-75"
+              className="absolute flex mx-auto my-auto justify-center items-center rounded-full z-50  hover:opacity-75"
               onClick={
                 isStart ? () => setIsStart(false) : () => setIsStart(true)
               }
@@ -162,11 +188,11 @@ export default function PraceticeSession(props: Props) {
               <h1 className="text-center font-semibold text-primary-600 absolute mx-auto my-auto -top-8 mr-1">
                 {convertToHourMinute(elapsedTime)}
               </h1>
-              <MicroIcon className="w-[21px] h-[30px]" />
+              <MicroCircleIcon />
             </div>
           </div>
         </div>
-        {question && (
+        {/* {question && (
           <TTSPlayer
             isStart={isStart}
             handleStop={handleStop}
@@ -175,7 +201,7 @@ export default function PraceticeSession(props: Props) {
             setIsRecording={setIsRecording}
             isRestart={isRestart}
           ></TTSPlayer>
-        )}
+        )} */}
         {/* 저장 모달 섹션 */}
         <Modal modalPosition="center" isOpen={isEndModalOpen}>
           <Modal.Header closeModal={() => setIsEndModalOpen(false)} />
