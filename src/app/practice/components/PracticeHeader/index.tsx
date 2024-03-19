@@ -13,7 +13,7 @@ export const PracticeHeader = (props: Props) => {
 
   return (
     <header className="sticky top-16 bg-white z-10">
-      <div className="flex flex-row w-full mb-4">
+      <div className="flex flex-row w-full mb-3">
         <Link href={`/solve/${currentTag}`} className="flex-1">
           <CategoryButton>개별연습</CategoryButton>
         </Link>
@@ -21,7 +21,7 @@ export const PracticeHeader = (props: Props) => {
           <CategoryButton selected={true}>실전연습</CategoryButton>
         </Link>
       </div>
-      <div className="flex flex-row gap-3 overflow-x-auto w-full mb-4">
+      <div className="flex flex-row gap-2 overflow-x-auto w-full">
         {tags.map((tag, index) => (
           <Tag key={index} selected={currentTag}>
             {tag.name}

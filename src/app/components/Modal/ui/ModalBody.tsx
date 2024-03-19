@@ -12,7 +12,7 @@ type Props = {
 
 export const ModalBody = ({ ...props }: Props) => {
   const mainStyled = twMerge(
-    `flex flex-col justify-center w-full h-full mx-auto`,
+    `flex flex-col justify-center w-full h-full mx-auto pt-4`,
     props.className
   );
   const mainIcon = () => {
@@ -45,7 +45,7 @@ export const ModalBody = ({ ...props }: Props) => {
       {props.description && (
         <div
           className={twMerge(
-            "px-[4.375rem]  mb-7 text-primary-gray-900 text-sm sm:text-lg font-normal leading-[22px]",
+            "px-[3.7rem]  mb-7 text-primary-gray-900 text-sm sm:text-lg font-normal leading-[22px]",
             props.descClassName
           )}
         >

@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 const dummyList = [
   {
     pkValue: 1,
-    korTitleValue: "실전 모의고사 30분",
+    korTitleValue: "Java / Spring / Jpa",
   },
   // {
   //   pkValue: 2,

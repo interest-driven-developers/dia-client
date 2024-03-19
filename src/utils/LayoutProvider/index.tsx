@@ -17,6 +17,7 @@ export const LayoutProvider = ({ children, session }: LayoutProviderProps) => {
     "/signIn/",
     "/mockinterview/",
     "/solve/problem/",
+    "/practice/problem/",
     "/result/",
     "/settings/",
   ];
