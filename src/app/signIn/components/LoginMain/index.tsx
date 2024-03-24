@@ -40,32 +40,13 @@ export default function LoginMain({prevPath}:LoginProps) {
           <p className="text-xs text-[#616161] sm:text-md mb-2 sm:mb-4">
             자체적인 회원가입은 정책상 지원하지 않습니다 🛠️
           </p>
-          {providers &&
-            Object.values(providers).map((provider: any) => (
-              <div key={provider.name}>
-                <button
-                  onClick={() =>
-                    signIn(provider.id, {
-                      callbackUrl: prevPath,
-                    })
-                  }
-                  className="bg-[#333] text-white flex items-center justify-center gap-2 px-4 sm:px-8 py-1 sm:py-2 rounded hover:opacity-90"
-                >
-                  {provider.name === "GitHub" && (
-                    <>
-                      <GithubIcon className="w-4 h-4 sm:w-6 sm:h-6 text-white" />
-                      Login with GitHub
-                    </>
-                  )}
-                  {/* {provider.name === "Google" && (
-                  <>
-                    <GoogleIcon className="w-4 h-4 sm:w-6 sm:h-6 text-white" />
-                    Login with Google
-                  </>
-                )} */}
-                </button>
-              </div>
-            ))}
+          <a
+            className="bg-[#333] text-white flex items-center justify-center gap-2 px-4 sm:px-8 py-1 sm:py-2 rounded hover:opacity-90"
+            href={`https://github.com/login/oauth/authorize?client_id=${process.env.GITHUB_ID}&redirect_uri=${process.env.NEXT_PUBLIC_CLIENT_URL}/api/v0/auth/oauth/github/callback`}
+          >
+            <GithubIcon className="w-4 h-4 sm:w-6 sm:h-6 text-white" />
+            Login with GitHub
+          </a>
         </div>
       </div>
     </main>
