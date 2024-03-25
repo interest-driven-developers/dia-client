@@ -57,7 +57,7 @@ export default function HistorySection({
         {history ? (
           <div className="flex justify-center items-center bg-white  rounded-[100px] px-[6px] py-[3px] cursor-pointer hover:opacity-70">
             <p className="text-primary-gray-600 text-[8px] leading-[9.6px] font-semibold">
-              ⏱️{" " + convertToHourMinute(history.elapsedTimeValue)}
+              🎙️{" " + convertToHourMinute(history.elapsedTimeValue)}
             </p>
           </div>
         ) : null}

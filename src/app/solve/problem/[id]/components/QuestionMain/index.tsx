@@ -15,11 +15,21 @@ import type { Session } from "@/types/Session";
 import HistorySection from "@/app/components/HistorySection";
 import { getQuestionHistory } from "@/app/api/getQuestionHistory";
 import type { HistoryType } from "@/types/History";
-
+import PlusIcon from "@/app/ui/icons/PlusIcon";
+import Link from "next/link";
 interface Props {
   questionData: QuestionType;
   session?: any;
 }
+const dummyhistorys = [
+  {
+    pkValue: 1,
+    typeValue: "SINGLE",
+    elapsedTimeValue: 30,
+    contentValue: "첫번째 대답",
+    createdTimeValue: "2021-10-10T00:00:00",
+  },
+];
 
 export default function QuestionMain({
   questionData,
@@ -94,18 +104,46 @@ Props) {
           className={historyList.length > 0 ? "h-2/5" : "h-full"}
           placeholder="모의연습 전 스크립트를 먼저 작성해보세요.이후 음성 답변과 스크립트를 비교할 수 있습니다."
         ></ScriptSection>
-        {historyList.length > 0 && (
-          <div className="flex flex-row max-w-full h-3/5 overflow-x-auto gap-3 no-scrollbar">
-            {historyList.map((history, index) => (
-              <HistorySection
-                key={index}
-                history={history}
-                session={typedSession}
-                className="min-w-[90%] sm:min-w-[50%]"
-              ></HistorySection>
-            ))}
+
+        <div className="flex flex-col h-3/5">
+          <div className="flex flex-row mb-3 justify-between px-4">
+            <h1 className="text-[16px] leading-[19px] font-bold text-primary-600 ">
+              답변 히스토리
+            </h1>
+            <Link
+              href={`/solve/problem/history/${questionData.pkValue}`}
+              className="flex flex-row gap-1 text-[14px] leading-[16.71px] font-semibold text-primary-gray-600 pl-4 cursor-pointer hover:opacity-70"
+            >
+              모두 보기
+              <PlusIcon className=""></PlusIcon>
+            </Link>
           </div>
-        )}
+          {historyList.length > 0 ? (
+            <div className="flex flex-row max-w-full h-full overflow-x-auto gap-3 no-scrollbar">
+              {historyList.map((history, index) => (
+                <HistorySection
+                  key={index}
+                  history={history}
+                  session={typedSession}
+                  className="min-w-[90%] sm:min-w-[50%]"
+                ></HistorySection>
+              ))}
+            </div>
+          ) : (
+            <div className="flex flex-col px-5 py-3 rounded-[10px] h-full bg-primary-100">
+              <div className="flex flex-row gap-1">
+                <p className="text-[12px] text-primary-400 leading-[14px] font-semibold">
+                  연습 기록이 아직 없습니다
+                </p>
+                <div className="flex justify-center items-center bg-white  rounded-[100px] px-[6px] py-[3px] cursor-pointer hover:opacity-70">
+                  <p className="text-primary-gray-600 text-[8px] leading-[9.6px] font-semibold">
+                    🎙️--:--
+                  </p>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
       </div>
       <Button onClick={handleClick}>모의연습 시작하기</Button>
       {/* 모달 섹션 */}

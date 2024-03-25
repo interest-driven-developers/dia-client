@@ -14,11 +14,17 @@ export interface Props {
   id: number;
   className?: string;
   placeholder?: string;
+  writeScript?: boolean;
 }
 
 const maxCharacterCount = 3000;
 
-export default function ScriptSection({ id, className, placeholder }: Props) {
+export default function ScriptSection({
+  id,
+  className,
+  placeholder,
+  writeScript = true,
+}: Props) {
   const { data: session, status } = useSession();
   const typedSession = session as Session;
   const [script, setScript] = useState<Script | undefined>(undefined);
@@ -77,14 +83,14 @@ export default function ScriptSection({ id, className, placeholder }: Props) {
 
   const handleSectionClick = () => {
     // console.log(isEditing, script);
-    if (isEditing || script?.contentValue) return;
+    if (isEditing || script?.contentValue || !writeScript) return;
     setIsEditing(true);
   };
   return (
     <div
       className={twMerge(
         `flex flex-col relative bg-[#FAFAFA] rounded-[5px] w-full ${
-          !isEditing || !script?.contentValue ? "cursor-pointer" : ""
+          (!isEditing || !script?.contentValue) && writeScript ? "cursor-pointer" : ""
         }`,
         className
       )}
@@ -153,7 +159,7 @@ export default function ScriptSection({ id, className, placeholder }: Props) {
           </p>
         </div>
       )}
-      {!isEditing && (
+      {!isEditing && writeScript && (
         <div
           className="absolute bottom-3 left-3 bg-white w-8 h-8 rounded-full px-[7px] py-[7px] mx-auto my-auto mt-2 cursor-pointer hover:opacity-70"
           onClick={() => {
