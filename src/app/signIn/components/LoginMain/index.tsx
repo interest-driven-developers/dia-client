@@ -9,15 +9,16 @@ import {
 import GithubIcon from "@/app/ui/icons/GithubIcon";
 import Logo from "@/app/ui/Logo";
 import { useRouter } from "next/navigation";
+import AuthCodeLoginPage from "../AuthCodeLoginPage";
 
 interface LoginProps {
   providers?: Record<string, ClientSafeProvider>;
   prevPath: string;
 }
 
-export default function LoginMain({prevPath}:LoginProps) {
+export default function LoginMain({ prevPath }: LoginProps) {
   const [providers, setProviders] = useState<ClientSafeProvider | null>(null);
-
+  const [isLogin, setIsLogin] = useState(false);
   useEffect(() => {
     (async () => {
       const res = await getProviders();
@@ -41,12 +42,21 @@ export default function LoginMain({prevPath}:LoginProps) {
             자체적인 회원가입은 정책상 지원하지 않습니다 🛠️
           </p>
           <a
+            onClick={() => setIsLogin(true)}
+            className="bg-[#333] text-white flex items-center justify-center gap-2 px-4 sm:px-8 py-1 sm:py-2 rounded hover:opacity-90"
+            // href={`https://github.com/login/oauth/authorize?client_id=${process.env.GITHUB_ID}&redirect_uri=${process.env.NEXT_PUBLIC_CLIENT_URL}/api/v0/auth/oauth/github/callback`}
+          >
+            <GithubIcon className="w-4 h-4 sm:w-6 sm:h-6 text-white" />
+            Login with GitHub
+          </a>
+          {isLogin && <AuthCodeLoginPage />}
+          {/* <a
             className="bg-[#333] text-white flex items-center justify-center gap-2 px-4 sm:px-8 py-1 sm:py-2 rounded hover:opacity-90"
             href={`https://github.com/login/oauth/authorize?client_id=${process.env.GITHUB_ID}&redirect_uri=${process.env.NEXT_PUBLIC_CLIENT_URL}/api/v0/auth/oauth/github/callback`}
           >
             <GithubIcon className="w-4 h-4 sm:w-6 sm:h-6 text-white" />
             Login with GitHub
-          </a>
+          </a> */}
         </div>
       </div>
     </main>
