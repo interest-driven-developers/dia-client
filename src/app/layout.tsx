@@ -10,7 +10,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "DIA - Developer Interview Assistant",
-  description: "개발자 면접 도우미",
+  description: "개발자 면접 도우미 입니다.",
 };
 
 export default async function RootLayout({
